@@ -1,0 +1,131 @@
+.header-mobile-wrapper {
+	display: none;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 56px;
+	background-color: #ffffff;
+	z-index: 101;
+	padding: 0 15px;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
+
+	.logo {
+		img {
+			width: 98px;
+		}
+	}
+
+	.open-menu {
+		width: 18px;
+		height: 12px;
+		background-image: url('../../design/icons/spraite-iffc.png');
+		background-repeat: no-repeat;
+		background-position: 0 -216px;
+		cursor: pointer;
+	}
+
+	.tel {
+		width: 18px;
+    height: 18px;
+		
+		a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			background-image: url('../../design/icons/spraite-iffc.png');
+			background-repeat: no-repeat;
+			background-position: -50px -44px;
+		}
+	}
+
+	.left-menu {
+		position: fixed;
+    z-index: 102;
+    width: 100%;
+    height: 100%;
+    top: 0;
+		left: -100%;
+		background-color: rgba(0, 0, 0, 0);
+		transition: background-color .3s linear;
+		cursor: pointer;
+
+		&.open {
+			left: 0;
+			background-color: rgba(0, 0, 0, 0.15);
+			
+			.left-menu-inner {
+				transform: translate3d(0, 0, 0);
+			}
+		}
+
+		&.closing {
+			background-color: rgba(0, 0, 0, 0);
+
+			.left-menu-inner {
+				transform: translate3d(-250px, 0, 0);
+			}
+		}
+
+		.left-menu-inner {
+			position: absolute;
+			left: 0;
+			top: 0;
+			padding: 90px 60px 40px 30px;
+			width: 250px;
+			height: 100%;
+			background-color: #ffffff;
+			z-index: 0;
+			transform: translate3d(-250px, 0, 0);
+			transition: transform 0.3s ease-out;
+			box-shadow: 5px 0px 5px -4px rgba(0, 0, 0, 0.5);
+			cursor: auto;
+
+			.close-menu {
+				position: absolute;
+				z-index: 1;
+				display: block;
+				width: 14px;
+				height: 14px;
+				top: 20px;
+				left: 15px;
+				background-image: url('../../design/icons/spraite-iffc.png');
+				background-repeat: no-repeat;
+				background-position: 0 -231px;
+				cursor: pointer;
+			}
+
+			.nav-menu {
+				li {
+					padding: 8px 0;
+
+					a {
+						display: inline-block;
+						font-size: 16px;
+						font-family: $robotoregular;
+						color: #424242;
+						text-decoration: none;
+					}
+				}
+			}
+
+			.tel-menu {
+				position: absolute;
+				bottom: 40px;
+				font-size: 15px;
+				padding-left: 15px;
+				font-family: $robotoregular;
+				color: #424242;
+
+				a {
+					font-size: 18px;
+					color: #424242;
+					text-decoration: none;
+				}
+			}
+		}
+	}
+
+	@media screen and (max-width: $mobile-size) {
+    display: flex;
+  }
+}

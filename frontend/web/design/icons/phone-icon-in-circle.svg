@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59 (86127) - https://sketch.com -->
+    <title>phone-icon-in-circle</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.0004 0.0001 14 0.0001 14 14 0.0004 14"></polygon>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-11">
+            <g id="phone-icon-in-circle">
+                <g>
+                    <circle id="Oval" fill="#FF5722" cx="12" cy="12" r="12"></circle>
+                    <g id="Group-3" stroke-width="1" transform="translate(5.000000, 5.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="Clip-2"></g>
+                        <path d="M2.8154,6.0591 C3.9354,8.2601 5.7394,10.0571 7.9404,11.1841 L9.6524,9.4731 C9.8624,9.2641 10.1734,9.1931 10.4454,9.2871 C11.3164,9.5741 12.2574,9.7291 13.2224,9.7291 C13.6494,9.7291 14.0004,10.0801 14.0004,10.5081 L14.0004,13.2231 C14.0004,13.6491 13.6494,14.0001 13.2224,14.0001 C5.9194,14.0001 0.0004,8.0811 0.0004,0.7781 C0.0004,0.3501 0.3504,0.0001 0.7774,0.0001 L3.5004,0.0001 C3.9274,0.0001 4.2774,0.3501 4.2774,0.7781 C4.2774,1.7501 4.4334,2.6841 4.7214,3.5541 C4.8064,3.8271 4.7444,4.1301 4.5264,4.3481 L2.8154,6.0591 Z" id="Fill-1" fill="#FFFFFF" mask="url(#mask-2)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

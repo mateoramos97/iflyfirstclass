@@ -1,0 +1,65 @@
+@import 'blog-sidebar-right';
+
+.travel-tips-attactions-page {
+  .content {
+    width: 900px;
+
+    .item {
+      padding-bottom: 35px;
+      margin-bottom: 35px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    h1 {
+      font-size: 40px;
+      font-family: $robotobold;
+      font-weight: normal;
+      color: #212121;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 24px;
+      font-family: $robotomedium;
+      font-weight: normal;
+      color: #212121;
+      margin-bottom: 15px;
+    }
+
+    .img-poster {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      margin-bottom: 30px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .body {
+      font-size: 15px;
+      font-family: $robotoregular;
+      color: #616161;
+      line-height: 25px;
+      text-align: justify;
+    }
+  }
+
+  @include blog-sidebar-right;
+
+  @media screen and (max-width: $the-tablet-size) {
+    .content {
+      width: 100%;
+
+      h1 {
+        font-size: 24px;
+        margin-top: 50px;
+      }
+    }
+
+    .blog-sidebar-right {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,232 @@
+.visa-page {
+  .visa-page-title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    h1 {
+      font-size: 42px;
+      font-family: $robotolight;
+      font-weight: normal;
+      color: #333333;
+    }
+  }
+}
+
+body.visa-page .page-content-wrapper {
+	background-color: #607d8b;
+	margin-bottom: 100px;
+}
+body.visa-page #content {
+	width: 1200px;
+	margin: 0 auto;
+}
+body.visa-page #content .column {
+	display: table-cell;
+	width: 319px;
+	padding: 0 60px;
+	border-right: 1px solid #ffffff;
+	padding-bottom: 40px;
+	padding-top: 35px;
+}
+body.visa-page #content .columns .column:first-child {
+	padding-left: 0;
+}
+body.visa-page #content .columns .column:last-child {
+	padding-right: 0;
+	border: 0;
+}
+body.visa-page #content .column .title {
+	padding-bottom: 5px;
+	margin-bottom: 0;
+	font-family: "Roboto";
+	font-weight: 300;
+	font-size: 29px;
+	color: #ffffff;
+}
+body.visa-page #content .column-3 .title {
+	margin-bottom: 30px;
+}
+body.visa-page #visahqwebwidget,
+body.visa-page #visas_plugin,
+body.visa-page #passport_plugin {
+	width: 100%;
+	min-height: 312px;
+}
+body.visa-page #travelvisarequirementsid,
+body.visa-page #visahqwebwidget_title,
+body.visa-page #poweredbyvisahq,
+body.visa-page #psp_visahqwebwidget_title {
+	display: none !important;
+}
+body.visa-page #visahqwebwidgetmainid {
+	padding-top: 3px;
+	padding-bottom: 35px;
+	border: 0;
+	background-color: transparent;
+}
+body.visa-page #visahqwebwidgetmainid label,
+body.visa-page #visas_visahqwebwidget p,
+body.visa-page #psp_visahqwebwidget p {
+	padding-top: 20px;
+	padding-left: 15px;
+	padding-bottom: 0;
+	margin-bottom: 17px !important;
+	font-family: "Roboto";
+	font-weight: 300 !important;
+	font-size: 18px;
+	color: #ffffff;
+}
+body.visa-page #psp_visahqwebwidget p {
+	margin-left: 25px;
+	padding-top: 7px;
+}
+body.visa-page #visahqwebwidgetmainid .form {
+	width: 319px;
+}
+body.visa-page #visahqwebwidgetmainid select,
+body.visa-page #visas_visahqwebwidget select {
+	width: 319px !important;
+	padding: 5px 8px;
+	height: 40px;
+	margin-bottom: 5px;
+	border: 0;
+}
+body.visa-page #visahqwebwidgetbutton,
+body.visa-page #visas_visahqwebwidget .info_plug_butt,
+body.visa-page #psp_visahqwebwidget .info_plug_butt {
+	margin-left: 0 !important;
+	margin-top: 40px !important;
+	margin-bottom: 0 !important;
+	height: auto !important;
+	width: 305px !important;
+	text-align: center;
+	padding: 10px 5px;
+	border: 2px solid #FF5722 !important;
+	font-family: "Arial";
+	font-weight: bold !important;
+	font-size: 16px !important;
+	color: #ffffff !important;
+	background-color: #FF5722 !important;
+	background-image: none !important;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	-khtml-border-radius: 0;
+	border-radius: 4px;
+	text-transform: uppercase;
+}
+body.visa-page #visahqwebwidgetbutton:hover,
+body.visa-page #visas_visahqwebwidget .info_plug_butt:hover,
+body.visa-page #psp_visahqwebwidget .info_plug_butt:hover {
+    background-color: #ff7043 !important; 
+}
+body.visa-page #visahqwebwidgetajaxloadresult {
+	border: 0;
+	background: none !important;
+}
+body.visa-page #visahqwebwidgetajaxloadresult p {
+	margin: 0 !important;
+	padding-top: 16px !important;
+	padding-bottom: 16px !important;
+	background-color: #008ab8;
+	color: #ffffff;
+	font-family: "Roboto";
+	font-weight: normal !important;
+	font-size: 14px !important;
+	line-height: 18px !important;
+}
+body.visa-page #visahqwebwidgetajaxloadresult a {
+	color: #ffffff !important;
+}
+body.visa-page #visahqwebwidgetajaxloadresult span {
+	margin-top: 9px;
+	display: inline-block;
+}
+body.visa-page #visas_visahqwebwidget,
+body.visa-page #psp_visahqwebwidget {
+	width: 319px;
+	margin: 0 auto;
+	padding: 0 !important;
+	padding-top: 7px !important;
+	border: 0;
+	background: none;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	-khtml-border-radius: 0;
+	border-radius: 0;
+}
+body.visa-page #psp_visahqwebwidget {
+	padding-top: 5px;
+	font-family: "Roboto";
+	font-weight: 300;
+	font-size: 16px;
+	color: #ffffff;
+	background-color: #008ab8;
+}
+body.visa-page #visas_visahqwebwidget .info_plug_butt,
+body.visa-page #psp_visahqwebwidget .info_plug_butt {
+	height: 40px !important;
+	margin-bottom: 15px !important;
+	margin-top: 35px !important;
+}
+body.visa-page #psp_visahqwebwidget .info_plug_butt {
+	width: 280px !important;
+	margin-top: 78px !important;
+	margin-left: 20px !important;
+}
+body.visa-page #visas_visahqwebwidget #add_dest_span {
+	color: #0099cc !important;
+	margin-top: 65px;
+}
+body.visa-page #visas_visahqwebwidget #add_dest,
+body.visa-page #visas_visahqwebwidget #main_widget_body a {
+	margin-top: 31px;
+	font-family: "Roboto";
+	margin-left: 12px;
+	font-weight: 300;
+	font-size: 17px !important;
+	color: #ffffff !important;
+	text-decoration: underline;
+}
+body.visa-page #visas_visahqwebwidget a#add_dest {
+	font-size: 14px !important;
+}
+body.visa-page #psp_visahqwebwidget input[type="radio"] {
+	margin-top: 15px;
+	margin-right: 5px;
+	margin-left: 40px;
+}
+
+@media screen and (max-width: $the-tablet-size) {
+	body.visa-page #content {
+    width: 880px;
+	}
+	body.visa-page #content .column {
+    border-right: 0;
+	}
+	body.visa-page #content .columns .column-1 {
+    border-right: 1px solid #ffffff;
+    padding-left: 60px !important;
+	}
+	body.visa-page #content .columns .column-3 {
+    display: block;
+    margin: 0 auto;
+    padding-left: 0;
+	}
+}
+
+@media screen and (max-width: $mobile-size) {
+	body.visa-page #content {
+    width: 100%;
+	}
+	body.visa-page #content .column {
+    display: block;
+    width: 100%;
+		padding: 20px !important;
+		border: none;
+    box-sizing: border-box;
+	}
+	body.visa-page #content .columns .column-1 {
+		padding-left: 20px !important;
+		border: none;
+	}
+}

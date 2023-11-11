@@ -1,0 +1,53 @@
+@mixin blog-sidebar-right {
+  .blog-sidebar-right {
+    width: 310px;
+
+    .testimonials-block {
+      position: relative;
+      margin-bottom: 50px;
+
+      .shopperapproved {
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+      }
+    }
+
+    .news-sidebar-block {
+      font-family: $robotoregular;
+      color: #212121;
+
+      .title {
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+
+      .news {
+        a {
+          &:first-child {
+            display: block;
+            margin-bottom: 40px;
+          }
+
+          &.title {
+            font-size: 20px;
+            color: #212121;
+            text-decoration: none;
+          }
+
+          img {
+            width: 100%;
+          }
+        }
+
+        p {
+          font-size: 15px;
+          color: #616161;
+          line-height: 24px;
+          text-align: justify;
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}

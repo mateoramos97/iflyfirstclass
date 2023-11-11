@@ -1,0 +1,132 @@
+.request-quote-page {
+  .request-quote-title {
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    h1 {
+      font-size: 42px;
+      font-family: $robotolight;
+      font-weight: normal;
+      color: #333333;
+    }
+
+    @media screen and (max-width: $the-tablet-size) {
+      width: 100%;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+  }
+
+  .form-request-wrapper {
+    width: 100%;
+    background-color: #607d8b;
+	  margin-bottom: 100px;
+  }
+
+  .form-request {
+    width: 700px;
+	  margin: 0 auto;
+	  overflow: auto;
+    padding-top: 40px;
+  
+    .column {
+      width: 332px;
+    }
+
+    .component  {
+      width: 100%;
+      height: 40px;
+	    padding: 0 8px 0 37px;
+	    border: 1px solid #ffffff;
+      margin-bottom: 30px;
+      font-size: 17px;
+	    font-family: $robotoregular;
+	    color: #666666;
+	    background-repeat: no-repeat;
+      background-position: 6px center;
+      outline: none;
+      box-sizing: border-box;
+
+      &.component-message {
+        height: 122px;
+        padding-top: 11px;
+        padding-left: 8px;
+        resize: none;
+      }
+
+      &.component-from,
+      &.component-to {
+        padding-left: 8px;
+      }
+
+      &.component-depdate,
+      &.component-arrdate {
+        background-image: url("../../design/icons/calendar-2.png");
+      }
+
+      &.component-name {
+        background-image: url("../../design/icons/user-4.png");
+      }
+
+      &.component-cellphone {
+        background-image: url("../../design/icons/mobile-4.png");
+      }
+
+      &.component-workphone {
+        background-image: url("../../design/icons/mobile-5.png");
+      }
+
+      &.component-email {
+        background-image: url("../../design/icons/mail-4.png");
+      }
+
+      &.component-fare {
+        background-image: url("../../design/icons/dlr.png");
+      }
+    }
+
+    .has-error {
+      .component {
+        border-color: #FF0000;
+      }
+    }
+
+    .submit {
+      width: 100%;
+	    padding: 11px 0px;
+	    margin-top: 12px;
+	    height: 40px;
+	    font-size: 15px;
+	    font-weight: bold;
+	    text-transform: uppercase;
+	    font-family: "Arial";
+	    color: #ffffff;
+	    border: 2px solid #FF5722;
+	    border-radius: 4px;
+	    background-color: #FF5722;
+      cursor: pointer;
+      
+      &:hover {
+        background-color: #ff7043;
+      }
+    }
+
+    @media screen and (max-width: $the-tablet-size) {
+      width: 100%;
+      padding: 40px 20px;
+      box-sizing: border-box;
+
+      form {
+        > .flex {
+          flex-direction: column;
+        }
+      }
+
+      .column {
+        width: 100%;
+      }
+    }
+  }
+}

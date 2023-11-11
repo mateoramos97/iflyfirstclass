@@ -1,0 +1,222 @@
+.hotels-page {
+	.welcome-block-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 560px;
+    background-color: #000000;
+
+    .back-slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+			left: 0;
+			
+			&:after {
+				content: '';
+				display: block;
+				position: absolute;
+    		width: 100%;
+				height: 100%;
+				background-image: linear-gradient(to right, rgba(33, 33, 33, 0.8) 1%, rgba(33, 33, 33, 0.4));
+			}
+
+      .back-slide-inner {
+        float: left;
+        position: relative;
+        left: 50%;
+
+        img {
+          display: block;
+          position: relative;
+          left: -50%;
+        }
+      }
+    }
+
+    .welcome-block {
+      position: relative;
+      height: 100%;
+      padding: 90px 0;
+      box-sizing: border-box;
+
+      .content {
+        width: 400px;
+        padding-top: 80px;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        font-size: 18px;
+        font-family: $robotoregular;
+        font-weight: normal;
+        color: #ffffff;
+        padding-bottom: 7px;
+        margin-bottom: 18px;
+        border-bottom: 2px solid #ff5722;
+      }
+
+      .title-form {
+        font-size: 40px;
+        font-family: $robotoregular;
+        color: #ffffff;
+        padding-bottom: 18px;
+        border-bottom: 1px solid rgba(255,255,255,.24);
+        margin-bottom: 18px;
+      }
+
+      .phone {
+        font-size: 16px;
+        font-family: $robotomedium;
+        color: #ffffff;
+
+         > div {
+          margin-top: 10px;
+        }
+
+        span {
+          font-size: 24px;
+          letter-spacing: 2px;
+          margin-left: 10px;
+        }
+			}
+			
+			@media screen and (max-width: $the-tablet-size) {
+				padding: 80px 20px 30px;
+
+				.content {
+					flex: 1;
+    			width: auto;
+					padding-right: 20px;
+					padding-top: 0;
+				}
+
+				.title-form {
+					font-size: 30px;
+				}
+			}
+
+			@media screen and (max-width: $mobile-size) {
+				.content {
+					display: none;
+				}
+			}
+    }
+	}
+	
+	.form-block-wrapper {
+		width: 720px;
+    padding: 30px;
+    border-radius: 8px;
+		background-color: #ffffff;
+		
+		h3 {
+			font-size: 28px;
+			font-family: $robotomedium;
+			font-weight: normal;
+			color: #424242;
+			margin-bottom: 25px;
+		}
+
+		.row {
+			width: 100%;
+			margin-bottom: 24px;
+		}
+
+		.row-3 {
+			.form-group {
+				flex: 1;
+			}
+		}
+
+		.border-radius-left {
+			border-top-left-radius: 4px;
+			border-bottom-left-radius: 4px;
+		}
+
+		.border-radius-right {
+			border-top-right-radius: 4px;
+			border-bottom-right-radius: 4px;
+		}
+
+		.field-row {
+			width: 50%;
+
+			&:first-child {
+				padding-left: 0;
+				padding-right: 8px;
+			}
+		}
+
+		input, select {
+			width: 100%;
+			height: 48px;
+			font-size: 16px;
+			font-family: $robotoregular;
+			color: #424242;
+			padding: 0 12px 0 12px;
+			border: 1px solid #bdbdbd;
+			outline: none;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		select {
+			padding-left: 10px;
+		}
+
+		.has-error {
+			input, select {
+				border-color: #FF0000;
+			}
+		}
+
+		.form-action {
+			width: 280px;
+			height: 48px;
+
+			button {
+				width: 100%;
+				height: 100%;
+				font-size: 16px;
+				font-family: $robotomedium;
+				font-weight: normal;
+				color: #ffffff;
+				border: 0;
+				outline: none;
+				border-radius: 4px;
+				background-color: #ff5722;
+				cursor: pointer;
+			}
+		}
+
+		@media screen and (max-width: $mobile-size) {
+			width: 100%;
+
+			.row-2 {
+				flex-direction: column;
+
+				.field-row {
+					width: 100%;
+					margin-top: 24px;
+
+					&:first-child {
+						margin-top: 0;
+					}
+				}
+			}
+
+			.row-3 {
+				flex-direction: column;
+
+				.form-group {
+					margin-top: 24px;
+
+					&:first-child {
+						margin-top: 0;
+					}
+				}
+			}
+		}
+	}
+}

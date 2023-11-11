@@ -1,0 +1,670 @@
+body.front-page {
+  .welcome-block-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 560px;
+    background-color: #000000;
+
+    .back-slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      left: 0;
+
+      .back-slide-inner {
+        float: left;
+        position: relative;
+        left: 50%;
+
+        img {
+          display: block;
+          position: relative;
+          left: -50%;
+        }
+      }
+
+      .texture {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(to right, rgba(33, 33, 33, 0.56), rgba(33, 33, 33, 0.32));
+      }
+    }
+
+    .welcome-block {
+      position: relative;
+      height: 100%;
+      padding: 30px 0;
+      box-sizing: border-box;
+
+      .content {
+        width: 430px;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        width: 100%;
+        font-size: 26px;
+        font-family: $robotoregular;
+        font-weight: normal;
+        color: #ffffff;
+        padding-bottom: 16px;
+        margin-bottom: 18px;
+        border-bottom: 1px solid rgba(255,255,255,.24);
+      }
+
+      .title-form {
+        font-size: 40px;
+        font-family: $playfairdisplaymedium;
+        color: #ffffff;
+        padding-bottom: 18px;
+        border-bottom: 2px solid #ff7043;
+        margin-bottom: 18px;
+        text-transform: uppercase;
+        line-height: 50px;
+
+        span {
+          color: #ff5722;
+        }
+
+        .guarantee {
+          color: #ff5722;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .phone {
+        font-size: 16px;
+        font-family: $robotomedium;
+        color: #ff7043;
+        margin-bottom: 30px;
+
+        > div {
+          margin-top: 10px;
+          color: #ffffff;
+        }
+
+        span {
+          font-size: 24px;
+          letter-spacing: 2px;
+          margin-left: 10px;
+        }
+      }
+
+      @media screen and (max-width: $the-tablet-size) {
+        padding: 30px 20px;
+
+        .content {
+          flex: 1;
+          width: auto;
+          padding-right: 20px;
+        }
+
+        .title-form {
+          font-size: 30px;
+          line-height: 36px;
+        }
+
+        .form-block-wrapper {
+          flex: 2;
+
+          .form-flight-request-max-wrapper {
+            width: 100%;
+          }
+        }
+      }
+
+      @media screen and (max-width: $mobile-size) {
+        padding: 0;
+        
+        .content {
+          display: none;
+        }
+
+        .form-block-wrapper {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .page-content {
+    width: 100%;
+
+    .recently-flights-wrapper {
+      .head-block {
+        width: 100%;
+        height: 90px;
+
+        h3 {
+          font-size: 24px;
+          font-family: $robotomedium;
+          font-weight: normal;
+          color: #212121;
+        }
+
+        .shopper-approved {
+          margin-right: 30px;
+
+          span {
+            font-size: 18px;
+            font-family: $robotomedium;
+            color: #002639;
+            margin-left: 10px;
+          }
+
+          .star {
+            margin-left: 10px;
+          }
+        }
+
+        .separate-line {
+          position: relative;
+          margin-right: 30px;
+
+          &:before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 40px;
+            background-color: #e0e0e0;
+          }
+        }
+
+        @media screen and (max-width: $mobile-size) {
+          height: auto;
+          flex-direction: column;
+          line-height: 58px;
+          margin-bottom: 60px;
+
+          > .flex {
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .separate-line {
+            display: none;
+          }
+        }
+      }
+
+      .cities-block {
+        display: grid;
+        grid-gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        padding-bottom: 55px;
+
+        .item {
+          a {
+            text-decoration: none;
+          }
+
+          .city-item {
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background-color: #ffffff;
+
+            &:hover {
+              box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.16);
+            }
+          }
+
+          .photo-img {
+            width: 100%;
+            height: 302px;
+            overflow: hidden;
+
+            @media screen and (max-width: $the-tablet-size) {
+              width: 100%;
+              height: auto;
+            }
+          }
+
+          .photo {
+            position: relative;
+            width: 100%;
+            height: 302px;
+            overflow: hidden;
+
+            .back-slide {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+              left: 0;
+              top: 0;
+            }
+
+            .back-slide-inner {
+              float: left;
+              position: relative;
+              left: 50%;
+              height: 100%;
+            }
+
+            img {
+              display: block;
+              position: relative;
+              left: -50%;
+              height: 100%;
+
+              @media screen and (max-width: $the-tablet-size) {
+                width: 100%;
+              }
+            }
+          }
+
+          .body {
+            padding: 24px;
+          }
+
+          .title {
+            font-size: 20px;
+            font-family: $robotomedium;
+            color: #071c26;
+          }
+
+          .rating {
+            span {
+              font-size: 15px;
+              font-family: $robotobold;
+              color: #ff5722;
+              margin-left: 5px;
+            }
+          }
+
+          .cabin-class {
+            font-size: 14px;
+            font-family: $robotoregular;
+            color: #616161;
+            margin: 7px 0;
+          }
+
+          .price-block {
+            font-family: $robotomedium;
+
+            .new-price {
+              font-size: 18px;
+              color: #ff5722;
+            }
+
+            .old-price {
+              font-size: 15px;
+              color: #071c26;
+              text-decoration: line-through;
+            }
+          }
+        }
+      }
+    }
+
+    .dealth-block-wrapper {
+      width: 100%;
+      padding: 70px;
+      background-color: #263238;
+
+      .content {
+        width: 480px;
+
+        .sub-title {
+          font-size: 18px;
+          font-family: $robotoregular;
+          color: #ffffff;
+          padding-bottom: 7px;
+          margin-bottom: 18px;
+          border-bottom: 2px solid #ff5722;
+        }
+
+        h2 {
+          font-size: 40px;
+          font-family: $robotoregular;
+          font-weight: normal;
+          color: #ffffff;
+          margin-bottom: 50px;
+        }
+
+        .description {
+          font-size: 14px;
+          font-family: $robotoregular;
+          color: #b0bec5;
+          line-height: 24px;
+        }
+      }
+
+      .video-block {
+        width: 640px;
+        height: 402px;
+        cursor: pointer;
+
+        video {
+          &:hover {
+            box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.24);
+          }
+        }
+      }
+
+      @media screen and (max-width: $mobile-size) {
+        padding: 20px 0;
+
+        .dealth-block-inner {
+          flex-direction: column;
+        }
+
+        .content {
+          width: 100%;
+          align-items: center;
+
+          h2 {
+            font-size: 24px;
+            margin-bottom: 25px;
+          }
+        }
+
+        .video-block {
+          display: none;
+        }
+      }
+    }
+
+    .book-with-confidence {
+      width: 100%;
+      padding: 75px 0;
+
+      .book-with-confidence-inner {
+        padding-bottom: 75px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .title {
+        font-size: 40px;
+        font-family: $robotoregular;
+        color: #212121;
+        margin-bottom: 50px;
+      }
+
+      .confidence-items {
+        width: 880px;
+        display: grid;
+        grid-gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(266px, 1fr));
+
+        .title {
+          font-size: 20px;
+          font-family: $robotoregular;
+          color: #212121;
+          margin: 15px 0;
+        }
+
+        .body {
+          font-size: 15px;
+          font-family: $robotoregular;
+          color: #616161;
+          line-height: 24px;
+        }
+      }
+
+      .testimonials-block {
+        width: 337px;
+
+        .shopper-approved {
+          margin-bottom: 25px;
+        }
+
+        .shopperapproved {
+          bottom: -12px;
+          left: 16px;
+        }
+
+        .as-seen-on {
+          font-size: 20px;
+          font-family: $robotoregular;
+          color: #212121;
+
+          > div {
+            margin-bottom: 20px;
+          }
+        }
+      }
+
+      @media screen and (max-width: $mobile-size) {
+        .title {
+          font-size: 24px;
+          margin-bottom: 25px;
+          text-align: center;
+        }
+
+        .book-with-confidence-inner {
+          > .flex {
+            flex-direction: column;
+          }
+        }
+
+        .confidence-items {
+          width: 100%;
+          margin-bottom: 25px;
+
+          .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .body {
+              text-align: center;
+            }
+          }
+        }
+
+        .testimonials-block {
+          width: 100%;
+
+          .as-seen-on {
+            img {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    .news-block-wrapper {
+      width: 100%;
+      margin-bottom: 50px;
+
+      .news-inner {
+        padding-bottom: 50px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .title {
+        font-size: 32px;
+        font-family: $robotoregular;
+        color: #212121;
+        margin-bottom: 30px;
+      }
+
+      .news-block {
+        width: 320px;
+
+        .row {
+          margin-bottom: 20px;
+        }
+
+        a {
+          font-size: 18px;
+          font-family: $robotoregular;
+          color: #155daf;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .travel-tip-block {
+        width: 896px;
+
+        .body {
+          font-size: 15px;
+          font-family: $robotoregular;
+          color: #616161;
+          text-align: justify;
+          line-height: 24px;
+          margin-bottom: 25px;
+
+          img {
+            float: right;
+            width: 420px;
+            margin-left: 40px;
+            margin-bottom: 30px;
+          }
+        }
+
+        .action {
+          a {
+            font-size: 15px;
+            font-family: $robotoregular;
+            color: #212121;
+            padding: 8px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 3px;
+            text-decoration: none;
+
+            &:hover {
+              border-color: #000000;
+            }
+          }
+        }
+      }
+
+      @media screen and (max-width: $mobile-size) {
+        .news-inner {
+          flex-direction: column;
+        }
+
+        .news-block {
+          margin-bottom: 25px;
+        }
+
+        .travel-tip-block {
+          width: 100%;
+
+          .title {
+            font-size: 24px;
+          }
+
+          .body > img {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .our-philosophy-block {
+      margin-bottom: 40px;
+
+      .title {
+        h3 {
+          font-size: 32px;
+          font-family: $robotoregular;
+          font-weight: normal;
+          color: #212121;
+          margin-bottom: 30px;
+        }
+      }
+
+      .columns {
+        .column {
+          width: 47%;
+          font-size: 15px;
+          font-family: $robotoregular;
+          color: #616161;
+          text-align: justify;
+          line-height: 24px;
+
+          p {
+            margin-bottom: 25px;
+          }
+
+          h4 {
+            color: #212121;
+            margin-bottom: 10px;
+          }
+        }
+      }
+
+      @media screen and (max-width: $mobile-size) {
+        .title {
+          h3 {
+            font-size: 24px;
+          }
+        }
+        .columns {
+          flex-direction: column;
+
+          .column {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .guaranteed-block-wrapper {
+      display: none;
+
+      .content-wrapper {
+        position: fixed;
+        width: 700px;
+        height: 500px;
+        background-color: #ffffff;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        z-index: 10001;
+        padding: 15px 0 15px 15px;
+      }
+
+      .content-inner {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        padding-right: 20px;
+        text-align: justify;
+
+        p {
+          font-size: 14px;
+          font-family: $robotoregular;
+          color: #212121;
+          line-height: 24px;
+
+          span {
+            font-family: $robotobold;
+          }
+        }
+      }
+
+      .texture {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        background-color: #000000;
+        z-index: 10000;
+        opacity: 0.4;
+        cursor: pointer;
+      }
+    }
+
+    @import 'home-airlines-logo';
+    @import 'home-landing';
+  }
+}

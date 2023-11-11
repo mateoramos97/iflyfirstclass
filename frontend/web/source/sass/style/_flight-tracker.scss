@@ -1,0 +1,201 @@
+.flight-tracker-page {
+  .flight-tracker-title {
+    width: 710px;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    h1 {
+      font-size: 42px;
+      font-family: $robotolight;
+      font-weight: normal;
+      color: #333333;
+    }
+
+    @media screen and (max-width: $mobile-size) {
+      width: 100%;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+  }
+
+  .form-tracker {
+    background-color: #607d8b;
+    margin-bottom: 100px;
+    
+    .form-request {
+      width: 940px;
+	    margin: 0 auto;
+      overflow: auto;
+  
+      .component {
+        width: 277px;
+	      background-repeat: no-repeat;
+	      background-position: 9px center;
+	      padding: 11px 8px 11px 45px;
+	      border: 1px solid #ffffff;
+	      margin-bottom: 12px;
+	      font-family: $robotoregular;
+	      font-size: 17px;
+	      color: #666666;
+      }
+      
+      .component-airline {
+        background-image: url('../../design/icons/plane-4.png');
+      }
+
+      .component-depairport {
+        background-image: url('../../design/icons/plane-down.png');
+      }
+
+      .component-arrairport {
+        background-image: url('../../design/icons/plane-up.png');
+      }
+
+      .component-flightnum {
+        padding-left: 35px;
+        width: 112px;
+        background-image: url("../../design/icons/number.png");
+        background-position: 10px center !important;
+      }
+
+      .component-depdate {
+        width: 156px;
+        margin-right: 20px;
+        padding-left: 5px;
+        padding-right: 2px;
+        height: 47px;
+      }
+
+      .row-3 {
+        margin-bottom: 20px;
+      }
+
+      .row-4 {
+        text-align: center;
+
+        .button-submit {
+          width: 155px;
+          padding: 11px 0px;
+          margin-top: 0;
+          height: 46px;
+          font-size: 15px;
+          font-weight: bold;
+          text-transform: uppercase;
+          font-family: $robotoregular;
+          color: #ffffff;
+          border: 2px solid #FF5722;
+          border-radius: 4px;
+          background-color: #FF5722;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #ff7043; 
+          }
+        }
+      }
+
+      .row-5 {
+        text-align: center;
+        padding-top: 27px;
+        padding-bottom: 15px;
+
+        a {
+          display: inline-block;
+          width: 225px;
+          height: 19px;
+          margin-top: 30px;
+          padding: 11px 0px;
+          font-size: 15px;
+          font-weight: bold;
+          text-transform: uppercase;
+          font-family: $robotoregular;
+          color: #ffffff;
+          border: 2px solid #FF5722;
+          border-radius: 4px;
+          text-decoration: none;
+          background-color: #FF5722;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #ff7043; 
+          }
+        }
+
+        p {
+          width: 100%;
+          font-family: $robotolight;
+          font-size: 17px;
+          color: #ffffff;
+        }
+
+        .button-submit {
+          text-transform: uppercase;
+          color: #f0f0f0;
+          background-color: #999999;
+          margin-top: 25px;
+          padding-top: 5px;
+          text-decoration: none;
+          height: 25px;
+          display: inline-block;
+
+          &:hover {
+            background-color: #666666;
+          }
+        }
+      }
+
+      @media screen and (max-width: $mobile-size) {
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
+      }
+    }
+
+    form {
+      overflow: auto;
+	    width: 710px;
+	    margin: 0 auto;
+	    margin-top: 25px;
+	    padding-top: 40px;
+      padding-bottom: 35px;
+      
+      .row {
+        overflow: hidden;
+      }
+
+      @media screen and (max-width: $mobile-size) {
+        width: 100%;
+      }
+    }
+
+    .component-wrapper {
+      float: right;
+
+      &:first-child {
+        float: left;
+      }
+
+      label {
+        display: block;
+      }
+
+      @media screen and (max-width: $mobile-size) {
+        float: none;
+      }
+    }
+
+    .row-2 {
+      position: relative;
+      margin: 22px 0;
+      margin-bottom: 35px;
+      font-family: $robotolight;
+      font-size: 14px;
+      color: #ffffff;
+      background-color: #0084b0;
+      padding: 20px 110px;
+      text-align: center;
+      overflow: visible !important;
+    }
+  }
+}

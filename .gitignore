@@ -1,0 +1,7 @@
+.idea/
+frontend/runtime/
+node_modules/
+*.lock.json
+!vendor
+vendor/*
+!vendor/bower

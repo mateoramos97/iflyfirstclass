@@ -1,0 +1,112 @@
+#ui-datepicker-div {
+  width: 352px;
+  height: 315px;
+  z-index: 1000 !important;
+  padding: 0 20px 0 20px !important;
+  border-radius: 2px !important;
+  border: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  box-shadow: 0 0 18px -4px rgba(0, 0, 0, 0.8);
+
+  .ui-datepicker-header {
+    width: 100%;
+    height: 62px;
+    padding: 0;
+    border: 0;
+    background-color: #ffffff;
+  }
+
+  .ui-datepicker-title {
+    font-size: 18px;
+    font-family: $robotoregular;
+    font-weight: normal;
+    color: #212121;
+    line-height: 62px;
+  }
+
+  .ui-datepicker-prev,
+  .ui-datepicker-next {
+    margin-top: 17px;
+  }
+
+  .ui-icon-circle-triangle-w {
+    background-image: url("../../design/icons/datepicker.png");
+    background-position: -15px 0;
+    width: 15px;
+    height: 13px;
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  .ui-icon-circle-triangle-e {
+    background-image: url("../../design/icons/datepicker.png");
+    background-position: -15px 0;
+    width: 15px;
+    height: 13px;
+  }
+
+  .ui-datepicker-calendar th {
+    font-size: 13px;
+    font-family: $robotobold;
+    font-weight: normal;
+    color: #212121;
+  }
+
+  .ui-widget-header {
+    background: none;
+  }
+}
+
+.ui-datepicker {
+  .ui-datepicker-prev-hover,
+  .ui-datepicker-next-hover {
+    background: none !important;
+    border: 0;
+    top: 2px;
+    right: 2px;
+    cursor: pointer;
+  }
+
+  .ui-datepicker-prev-hover {
+    left: 2px;
+  }
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: none;
+  font-size: 15px;
+  font-family: $robotoregular;
+  font-weight: normal;
+  color: #212121;
+  padding: 0;
+  line-height: 32px;
+  text-align: center;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight {
+  background: none;
+  color: #212121;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active {
+  background: #1976d2;
+  color: #ffffff;
+}
+
+.ui-state-default:hover {
+  background: #ff5722;
+  border-radius: 0 !important;
+  color: #ffffff;
+}
