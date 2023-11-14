@@ -24,32 +24,15 @@ class RequestController extends BaseController
     public function actionSearchAirport()
     {
         $keyword = $_POST['keyword'];
-
-        // $url = 'https://www.flightstats.com/go/Suggest/airportSuggest.do?responseType=json&desiredResults=20&term=' . urlencode($keyword);
-        // $referer = 'https://www.flightstats.com/go/FlightTracker/flightTracker.do';
-
-        $url = 'http://api.iflyfirstclass.com/api/airports?term=' . urlencode($keyword);
-
-        // $url = 'http://api.iflyfirstclass:8892/api/airports?&term=' . urlencode($keyword);
-
-        // $ch = curl_init('https://abcname.net/');
-        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        // curl_setopt($ch, CURLOPT_HEADER, false);
-        // $html = curl_exec($ch);
-        // curl_close($ch);
+        $url = 'https://airlabs.co/api/v9/suggest?q=' . urlencode($keyword) . '&api_key=4a758c12-39af-453c-87f5-5ac58aa3ce37';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        // curl_setopt($ch, CURLOPT_REFERER, $referer);
         $content = curl_exec($ch);
         curl_close($ch);
 
-        // print_r(json_encode($content));
-
-        echo json_encode($content);
-        // echo $content;
+        return $content;
     }
 
     public function actionSearchAirline()

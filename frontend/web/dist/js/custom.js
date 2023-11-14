@@ -273,14 +273,7 @@ jQuery(document).ready(function ($) {
                         toAir = self.find(".field-to"),
                         formRequestNotify = self.find('.form-request-notify');
                     if (typeof fromAir.val() !== "undefined" && typeof toAir.val() !== "undefined" ) {
-                        // var a = fromAir.val().split(/\W+/g);
-                        // var b = toAir.val().split(/\W+/g);
-                        var a = fromAir.val().split(', ');
-                        var b = toAir.val().split(', ');
-                        var lastItemA = a[a.length - 1];
-                        var lastItemB = b[b.length - 1];
-
-                        if (lastItemA === 'United States' && lastItemB === 'United States') {
+                        if (fromAir.val().indexOf(' US,') !== -1 && toAir.val().indexOf(' US,') !== -1) {
                             formRequestNotify.addClass("open");
                         } else {
                             formRequestNotify.removeClass("open");
@@ -299,9 +292,24 @@ jQuery(document).ready(function ($) {
                             keyword: request.term
                         },
                         success: function (data) {
-                            response($.map($.parseJSON(data), function (item) {
+                            const result = data.response;
+                            const citiesByAirports = result.cities_by_airports;
+                            const cities = result.cities;
+                            const airports = result.airports;
+                            const airportsByCities = result.airports_by_cities;
+                            const citiesSearch = arrayUnique(cities.concat(citiesByAirports), 'city_code').sort(compare);
+                            const airportsSearch = arrayUnique(airports.concat(airportsByCities), 'icao_code').sort(compare);
+                            response($.map(airportsSearch, function (item) {
+                                const city = item.city_code;
+                                var result = '(' + (item.iata_code || item.icao_code) + ') ';
+                                const dataCity = citiesSearch.find(function (c) { return c.city_code == city });
+                                if (dataCity) {
+                                    result += dataCity.name + ', ';
+                                }
+                                result += item.country_code + ', ' + item.name;
+
                                 return {
-                                    value: item.field5 + ', ' + item.field3 + ', ' + item.field4
+                                    value: result
                                 }
                             }));
                         }
@@ -310,8 +318,35 @@ jQuery(document).ready(function ($) {
                 select: function (event, ui) {
                     setTimeout(autocomleteTest);
                 },
-                minLength: 3
+                minLength:3,
             });
+            function compare( a, b ) {
+                if ( a.popularity < b.popularity ){
+                    return 1;
+                }
+                if ( a.popularity > b.popularity ){
+                    return -1;
+                }
+                return 0;
+            }
+            function arrayUnique(array, prop) {
+                var a = array.concat();
+                for(var i=0; i<a.length; ++i) {
+                    if (typeof a[i][prop] === 'undefined'){
+                        continue;
+                    }
+                    for(var j=i+1; j<a.length; ++j) {
+                        if (typeof a[j][prop] === 'undefined'){
+                            continue;
+                        }
+                        if(a[i][prop] === a[j][prop]) {
+                            a.splice(j--, 1);
+                        }
+                    }
+                }
+
+                return a;
+            }
         };
         AutocompleteAirport();
     });
