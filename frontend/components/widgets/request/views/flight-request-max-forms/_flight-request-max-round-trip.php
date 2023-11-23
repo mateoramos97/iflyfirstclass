@@ -95,13 +95,16 @@ use yii\widgets\ActiveForm;
     <div class="form-group form-action">
         <?= Html::submitButton('Search Flight Now', ['class' => 'submit', 'name' => 'flyght-button']) ?>
     </div>
-    <div class="form-request-notify flex flex-align-center flex-justify-center">
+    <div class="form-request-notify flex flex-align-center">
         <div class="icon"></div>
         <div class="content">
-            <div class="title">Thank you for your request.</div>
+            <div class="title">Thank you for your request!</div>
             <p>
-                Unfortunately <span>we dont sell domestic flights.</span>
+                Unfortunately <span>we don’t do domestic flights.</span>
             </p>
+			<p>
+				But let us know next time you travel internationally and we will be happy to help!
+			</p>
         </div>
     </div>
     <?php ActiveForm::end(); ?>
