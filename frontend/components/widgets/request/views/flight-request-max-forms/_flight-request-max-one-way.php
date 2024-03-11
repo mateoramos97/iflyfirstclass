@@ -86,9 +86,19 @@ use yii\widgets\ActiveForm;
             </div>
         </div>
     </div>
-    <div class="form-group form-action">
-        <?= Html::submitButton('Search Flight Now', ['class' => 'submit', 'name' => 'flyght-button']) ?>
-    </div>
+	<div class="form-group form-action flex flex-justify-between flex-align-center">
+        <?= Html::submitButton('Search Flight Now', ['class' => 'submit form-action-button search-flights', 'name' => 'flyght-button']) ?>
+		<button
+				class="tools-ringme-ringmeLink form-action-button flex flex-justify-center flex-align-center call-us"
+				id="tools-ringme-ringmeLink"
+				data-test-automation-id="ringmeLink"
+				tabindex="0"
+				role="button"
+				type="button"
+				onclick='setTimeout(() => window.open("https://service.ringcentral.com/ringme/?uc=BD5DE3D086F9F9B2ABA3DC248F54530E5783399000016,0,,1,0&s=no&v=2&s_=1210", "Callback_RingMe", "resizable=no,width=500,height=635"), 0);return false;'>
+			<span>RingMe</span>
+		</button>
+	</div>
     <div class="form-request-notify flex flex-align-center">
         <div class="icon"></div>
         <div class="content">
