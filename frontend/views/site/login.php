@@ -10,30 +10,27 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="site-login container mx-auto my-20 xl:px-12 px-4">
+    <h2><?= Html::encode($this->title) ?></h2>
+    <p class="my-5 text-lg">Please fill out the following fields to login:</p>
+    <div class="w-fit my-6">
+		<?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+		<div class="grid grid-cols-1 gap-5">
+			<?= $form->field($model, 'username')->textInput(['autofocus' => true, ]) ?>
 
-    <p>Please fill out the following fields to login:</p>
+			<?= $form->field($model, 'password')->passwordInput() ?>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+			<?= $form->field($model, 'rememberMe')->checkbox() ?>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+			<div style="color:#999;margin:1em 0">
+				If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
+			</div>
+		</div>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+		<div class="form-group">
+			<?= Html::submitButton('Login', ['class' => 'btn btn-primary w-full', 'name' => 'login-button']) ?>
+		</div>
 
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
-
-                <div style="color:#999;margin:1em 0">
-                    If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
-                </div>
-
-                <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                </div>
-
-            <?php ActiveForm::end(); ?>
-        </div>
+		<?php ActiveForm::end(); ?>
     </div>
 </div>

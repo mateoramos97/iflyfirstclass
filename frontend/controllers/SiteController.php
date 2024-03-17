@@ -7,6 +7,7 @@ use common\sys\core\landing\CountryInfoService;
 use common\sys\core\landing\ContinentInfoService;
 use common\sys\core\landing\AirlineInfoService;
 use common\sys\core\blog\BlogArticleInfoService;
+use common\sys\core\testimonials\TestimonialsInfoService;
 use common\sys\core\traveltips\TravelTipsInfoService;
 use Yii;
 use yii\base\InvalidParamException;
@@ -86,13 +87,19 @@ class SiteController extends BaseController
         $airline_info_service = new AirlineInfoService();
         $blog_info_service = new BlogArticleInfoService();
         $travel_tips_info_service = new TravelTipsInfoService();
+        $testimonialsService = new TestimonialsInfoService();
 
         $static_page = $static_page_info_service->get_static_page_by_id(AppConfig::Home_Page);
         $random_cities = $city_info_service->get_random_cities(8);
         $countries = $country_info_service->get_countries_list();
         $cities = $city_info_service->get_cities_list();
         $airlines = $airline_info_service->get_airlines_list();
-        $top_articles_in_list = $blog_info_service->get_top_articles_in_list();
+        $top_articles_in_list = $blog_info_service->get_top_articles_in_list_with_images();
+
+        if (!$travel_tips = Yii::$app->cache->get('travel_tips')) {
+            $travel_tips = $travel_tips_info_service->random_travel_tips(4);
+            Yii::$app->cache->set('travel_tips', $travel_tips, 60*60*72); // cache 72 hours
+        }
 
         // Yii::$app->cache->delete('random_travel_tips'); //delete cache
         if (!$random_travel_tips = Yii::$app->cache->get('random_travel_tips')) {
@@ -110,14 +117,19 @@ class SiteController extends BaseController
             'content' => $static_page->keywords
         ]);
 
+        $articles = array_merge($top_articles_in_list, $travel_tips);
+        shuffle($articles);
+
         return $this->render('index', [
             'head_title' => $static_page->title,
             'random_cities' => $random_cities,
             'countries' => $countries,
             'cities' => $cities,
             'airlines' => $airlines,
-            'top_articles_in_list' => $top_articles_in_list,
-            'random_travel_tips' => $random_travel_tips
+            'top_articles_in_list' => $articles,
+            'travel_tips' => $travel_tips,
+            'random_travel_tips' => $random_travel_tips,
+            'reviews' => $testimonialsService->get_testimonials_is_top(3),
         ]);
     }
 

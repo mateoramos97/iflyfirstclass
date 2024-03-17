@@ -138,6 +138,25 @@ class BlogArticleRepository
             ->all();
     }
 
+    public function get_top_articles_in_list_with_images()
+    {
+        $sql = "SELECT `blog_articles`.`id`, `blog_articles`.`alias`, `blog_articles`.`title`, `blog_articles`.`posted`,
+                  `blog_articles`.`summary`, `image`.`alias` as image_alias, `image`.`title` as image_title
+            FROM blog_articles, image
+            WHERE `blog_articles`.`id` = `image`.`content_id` AND
+              `image`.`content_type_id` = :content_type_id AND
+              `image`.`content_field_id` = :content_field_id AND
+              `image`.`queue` = 0 AND `blog_articles`.`is_top_list` = 1
+            ORDER BY `blog_articles`.`id` DESC";
+
+        $query = Yii::$app->db->createCommand($sql)
+            ->bindValue(':content_type_id', AppConfig::Image_ContentType_BlogArticle)
+            ->bindValue(':content_field_id', AppConfig::Image_ContentField_BlogArticle)
+            ->queryAll();
+
+        return $query;
+    }
+
     public function get_blog_images($blog_id)
     {
         $sql = "SELECT `alias`, `queue`, `title`, `content_field_id`

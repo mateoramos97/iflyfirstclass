@@ -4,12 +4,11 @@
 /* @var $model \common\sys\models\request\RequestHotel */
 
 use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
 ?>
-<div class="form-block-wrapper border-box">
-    <h3>Going to</h3>
+<div class="border-box xl:bg-white xl:p-10 rounded-2xl pt-20">
+    <h4 class="text-white xl:text-primary text-center xl:text-left">Going to</h4>
     <?php $form = ActiveForm::begin([
         'id' => 'request_hotel',
         'enableClientValidation' => true,
@@ -19,31 +18,46 @@ use yii\widgets\ActiveForm;
         ],
     ]) ?>
 
-    <div class="row row-1 hotel-checkin">
+    <div class="row row-1 hotel-checkin mt-5">
         <?= $form->field($model, 'hotel_checkin')->textInput([
             'placeholder' => 'City, airport, landmark, or address',
-            'class' => 'border-radius-left border-radius-right'
+            'class' => 'bg-white'
         ]) ?>
     </div>
-    <div class="row row-2 flex">
-        <div class="field-row flex">
-            <?= $form->field($model, 'check_in')->textInput(['placeholder' => 'Check in', 'class' => 'border-radius-left datepicker']) ?>
-            <?= $form->field($model, 'check_out')->textInput(['placeholder' => 'Check out', 'class' => 'border-radius-right datepicker']) ?>
+    <div class="grid mt-5 xl:grid-cols-6 grid-cols-1 xl:gap-2 gap-5">
+		<div class="split-input-group flex col-span-3">
+			<div class="form-group w-1/2">
+            	<?= $form->field($model, 'check_in')->textInput(['placeholder' => 'Check in', 'class' => 'bg-white datepicker']) ?>
+			</div>
+			<i class="input-divider"></i>
+			<div class="form-group w-1/2">
+            	<?= $form->field($model, 'check_out')->textInput(['placeholder' => 'Check out', 'class' => 'bg-white datepicker']) ?>
+			</div>
         </div>
-        <div class="field-row flex flex-grows-1">
-            <?= $form->field($model, 'rooms_number')->dropDownList(($rooms), ['prompt' => 'Rooms', 'class' => 'border-radius-left']); ?>
-            <?= $form->field($model, 'adults_number')->dropDownList(($adults), ['prompt' => 'Adults']); ?>
-            <?= $form->field($model, 'children_number')->dropDownList(($children), ['prompt' => 'Children', 'class' => 'border-radius-right']); ?>
+		<div class="split-input-group flex col-span-3">
+			<div class="form-group w-1/3">
+				<?= $form->field($model, 'rooms_number')->dropDownList(($rooms), [
+						'class' => 'tom-select'
+				]); ?>
+			</div>
+			<i class="input-divider"></i>
+			<div class="form-group w-1/3">
+            	<?= $form->field($model, 'adults_number')->dropDownList(($adults), ['class' => 'tom-select']); ?>
+			</div>
+			<i class="input-divider"></i>
+			<div class="form-group w-1/3">
+            	<?= $form->field($model, 'children_number')->dropDownList(($children), ['class' => 'tom-select']); ?>
+			</div>
         </div>
     </div>
-    <div class="row row-3 flex">
-        <?= $form->field($model, 'name')->textInput(['placeholder' => 'Name*', 'class' => 'border-radius-left']) ?>
-        <?= $form->field($model, 'email')->textInput(['placeholder' => 'Email*']) ?>
-        <?= $form->field($model, 'phone')->textInput(['placeholder' => 'Phone/Mobile*', 'class' => 'border-radius-right']) ?>
+    <div class="grid xl:grid-cols-3 grid-cols-1 xl:gap-2 mt-5 gap-5">
+        <?= $form->field($model, 'name')->textInput(['placeholder' => 'Name*', 'class' => 'bg-white']) ?>
+        <?= $form->field($model, 'email')->textInput(['placeholder' => 'Email*', 'class' => 'bg-white']) ?>
+        <?= $form->field($model, 'phone')->textInput(['placeholder' => 'Phone/Mobile*', 'class' => 'bg-white']) ?>
     </div>
 
-    <div class="form-group form-action">
-        <?= Html::submitButton('Get quote now', ['class' => 'submit', 'name' => 'hotel-button']) ?>
+    <div class="form-group form-action mt-6">
+		<?= Html::submitButton('Get quote now', ['class' => 'btn btn-primary submit xl:w-1/2 w-full', 'name' => 'hotel-button']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

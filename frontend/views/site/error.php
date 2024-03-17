@@ -12,15 +12,15 @@ $this->title = $name;
 <script type="text/javascript">
     var body = document.getElementsByTagName('body')[0].classList.add('error-404');
 </script>
-<div class="site-error">
+<div class="site-error container mx-auto flex flex-col justify-center items-center my-28 xl:px-12 px-4">
     <?php if($exception->statusCode === 404) { ?>
-        <div class="code">
+        <div class="code text-4xl">
             404
         </div>
-        <div class="title">
+        <h1 class="title my-10">
             Page Not Found
-        </div>
-        <div class="actions">
+        </h1>
+        <div class="actions underline">
             <a href="/">Return to Home</a>
         </div>
     <?php } else { ?>

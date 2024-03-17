@@ -18,17 +18,17 @@ class RequestHotel extends Widget
 
         $rooms = [];
         for($i = 1; $i < 10; $i++){
-            $rooms[$i] = $i;
+            $rooms[$i] =  $i . ' Room(s)';
         }
 
         $adults = [];
         for($i = 1; $i < 7; $i++){
-            $adults[$i] = $i;
+            $adults[$i] = $i . ' Adult(s)';
         }
 
         $children = [];
         for($i = 0; $i < 7; $i++){
-            $children[$i] = $i;
+            $children[$i] = $i . ' Children';
         }
 
         return $this->render(

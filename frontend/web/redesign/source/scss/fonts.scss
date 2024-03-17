@@ -1,0 +1,68 @@
+@font-face {
+    font-display: swap;
+    font-family: "ProximaNova";
+    font-weight: normal;
+    font-style: normal;
+    src: url('../fonts/proximanova_regular.ttf') format("truetype");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: "Gilroy";
+    font-weight: normal;
+    font-style: normal;
+    src: url('../fonts/Gilroy-Regular.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: "GilroyLight";
+    src: url('../fonts/Gilroy-Light.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: "GilroySemiBold";
+    src: url('../fonts/Gilroy-SemiBold.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: "GilroyBold";
+    src: url('../fonts/Gilroy-Bold.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: "SilkSerifBold";
+    src: url('../fonts/Silk Serif Bold.otf') format("opentype");
+}
+
+@font-face {
+    font-family: "SilkSerifMedium";
+    src: url('../fonts/SilkSerif-Medium.woff') format("woff");
+}
+
+.font-proxima-nova-regular{
+    font-family: ProximaNova, sans-serif;
+}
+
+.font-gilroy-regular{
+    font-family: Gilroy, ProximaNova, sans-serif;
+}
+
+.font-gilroy-light{
+    font-family: GilroyLight, ProximaNova, sans-serif;
+}
+
+.font-gilroy-semibold{
+    font-family: GilroySemiBold, Gilroy, ProximaNova, sans-serif;
+}
+
+.font-gilroy-bold{
+    font-family: GilroyBold, Gilroy, ProximaNova, sans-serif;
+}
+
+.font-silk-serif-bold{
+    font-family: SilkSerifBold, sans-serif;
+}
+
+.font-silk-serif-medium{
+    font-family: SilkSerifMedium, sans-serif;
+}

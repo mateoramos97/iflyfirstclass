@@ -17,7 +17,22 @@ class TestimonialsInfoService
 
     public function get_testimonials_is_top($count)
     {
-        return $this->get_testimonials_repo()->get_testimonials_is_top($count);
+        $reviews = $this->get_testimonials_repo()->get_testimonials_is_top($count);
+
+        foreach($reviews as $index => &$review) {
+            $review['initials'] = self::getInitials($review['author']);
+            if (($index+1) % 3 === 0) {
+                $color = '#475871';
+            } elseif (($index+1) % 2=== 0) {
+                $color = '#4F724A';
+            } else {
+                $color = '#796D5E';
+            }
+
+            $review['initials-color'] = $color;
+        }
+
+        return $reviews;
     }
 
     public function get_testimonials_by_id($id)
@@ -33,5 +48,13 @@ class TestimonialsInfoService
     public function TestimonialsDataProvider($params)
     {
         return $this->get_testimonials_repo()->TestimonialsDataProvider($params);
+    }
+
+    public static function getInitials(string $string): string
+    {
+        $ret = '';
+        foreach (explode(' ', $string) as $word)
+            $ret .= strtoupper($word[0]);
+        return $ret;
     }
 }

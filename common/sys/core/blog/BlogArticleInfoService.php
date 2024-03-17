@@ -51,4 +51,9 @@ class BlogArticleInfoService
     {
         return $this->get_blog_article_repo()->get_top_articles_in_list();
     }
+
+    public function get_top_articles_in_list_with_images()
+    {
+        return $this->get_blog_article_repo()->get_top_articles_in_list_with_images();
+    }
 }

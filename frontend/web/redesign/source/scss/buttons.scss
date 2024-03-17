@@ -1,0 +1,28 @@
+.btn {
+  @apply rounded-lg px-8 py-4;
+  transition: 0.3s;
+  &.btn-primary {
+    background-color: $btn-primary;
+    color: $white;
+    font-weight: 600;
+    &:hover {
+      background-color: $btn-primary-hover;
+    }
+  }
+  &.btn-secondary {
+    background-color: $btn-secondary;
+    color: $orange-color;
+    font-weight: 600;
+    &:hover {
+      background-color: $btn-secondary-hover;
+    }
+  }
+  &.btn-warning {
+    background-color: $orange-light-color;
+    color: $btn-primary;
+    font-weight: 600;
+    &:hover {
+      background-color: $btn-secondary-hover;
+    }
+  }
+}

@@ -115,12 +115,11 @@ class TestimonialsRepository
                   `testimonials`.`rating`, `testimonials`.`is_top`, `testimonials`.`created_date`,
                   `testimonials`.`update_date`,
                   `image`.`alias` as image_alias, `image`.`title` as image_title
-                FROM `testimonials`, `image`
-                WHERE `testimonials`.`is_top` = 1
-                  AND `image`.`content_id` = `testimonials`.`id`
-                  AND `image`.`content_type_id` = :content_type_id
+                FROM `testimonials`
+                LEFT JOIN `image` ON `image`.`content_id` = `testimonials`.`id` AND `image`.`content_type_id` = :content_type_id
                   AND `image`.`content_field_id` = :content_field_id
                   AND `image`.`queue` = 0
+                WHERE `testimonials`.`is_top` = 1
                 ORDER BY RAND()".$count_sql;
         $query = Yii::$app->db->createCommand($sql)
             ->bindValue(':count', $count)

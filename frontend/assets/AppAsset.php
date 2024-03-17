@@ -30,21 +30,31 @@ class AppAsset extends AssetBundle
         {
             $this->css = [
                 'css/jquery-ui.min.css',
-                'dist/css/main.css',
+                'public/dist/css/talwind.css',
+                'public/dist/css/main.css',
+//                'dist/css/main.css',
             ];
             $this->js = [
                 'js/jquery-ui.min.js',
-                'dist/js/custom.js',
+//                'dist/js/custom.js',
+                'public/dist/js/manifest.js',
+                'public/dist/js/vendor.js',
+                'public/dist/js/main.js',
             ];
         }
         else if(YII_ENV_PROD) {
             $this->css = [
                 'css/jquery-ui.min.css',
-                'dist/css-min/main.min.css',
+                'public/dist/css/talwind.css',
+                'public/dist/css/main.css',
+//                'dist/css-min/main.min.css',
             ];
             $this->js = [
                 'js/jquery-ui.min.js',
-                'dist/js-min/custom.min.js',
+//                'dist/js/custom.js',
+                'public/dist/js/manifest.js',
+                'public/dist/js/vendor.js',
+                'public/dist/js/main.js',
             ];
         }
 

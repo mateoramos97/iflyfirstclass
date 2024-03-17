@@ -4,6 +4,7 @@ namespace app\components\widgets\custom;
 
 use app\components\AppConfig;
 use app\modules\imagemanager\models\Image;
+use common\sys\core\testimonials\TestimonialsInfoService;
 use common\sys\repository\blog\models\BlogArticles;
 use yii\base\Widget;
 
@@ -28,11 +29,14 @@ class LandingSidebarRight extends Widget
             'content_field_id' => AppConfig::Image_ContentField_BlogArticle,
         ]);
 
+        $testimonialsService = new TestimonialsInfoService();
+
         return $this->render(
             'landing-sidebar-right', [
                 'summary_sidebar' => $this->summary_sidebar,
                 'last_artical' => $last_artical,
                 'last_artical_img' => $last_artical_img,
+                'review' => current($testimonialsService->get_testimonials_is_top(1)),
             ]
         );
     }

@@ -1,8 +1,6 @@
 <?php
 
 /* @var $this yii\web\View */
-
-use yii\helpers\Html;
 ?>
 
 <?php foreach(Yii::$app->session->getAllFlashes() as $type => $messages): ?>

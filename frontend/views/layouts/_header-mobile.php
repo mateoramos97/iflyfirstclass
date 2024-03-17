@@ -1,17 +1,15 @@
 <?php
 use \yii\helpers\Url;
-
-$path_logo =  Url::base().'/design/iffc-logo.svg';
 ?>
 
-<div class="header-mobile-wrapper flex flex-justify-between flex-align-center border-box">
+<header class="header-mobile-wrapper xl:hidden flex justify-between items-center box-border pl-4 py-3 pr-2 shadow">
     <div class="open-menu"></div>
     <div class="logo">
         <a href="<?= Url::home(true); ?>">
-            <img src="<?= $path_logo ?>" alt="">
+            <img class="scale-85" src="/public/img/logo.svg" alt="">
         </a>
     </div>
-    <div class="tel"><a href="tel:+18883477817"></a></div>
+    <div class="tel bg-secondary rounded-xl p-3"><a href="tel:+18883477817"></a><i class="icon-phone text-lg text-brown"></i></div>
     <div class="left-menu">
         <div class="left-menu-inner border-box">
             <div class="close-menu"></div>
@@ -52,8 +50,8 @@ $path_logo =  Url::base().'/design/iffc-logo.svg';
             <div class="tel-menu">
                 <span>Call Us Now</span>
                 <br />
-                <a href="tel:+18003851359">1 800 385 1359</a>
+                <a href="tel:+18883477817">+1 888 347 7817</a>
             </div>
         </div>
     </div>
-</div>
+</header>

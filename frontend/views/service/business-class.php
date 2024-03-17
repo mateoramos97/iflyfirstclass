@@ -25,47 +25,53 @@ $path_img = Url::base() . '/public/images/';
 $path_img_thumbs = Url::base() . '/public/images/thumbs/';
 ?>
 
-<div class="welcome-block-wrapper">
+<div class="container mx-auto welcome-block-wrapper business-class-page">
     <div class="back-slide">
-        <div class="back-slide-inner">
-            <img src="<?= Url::base(true) . '/design/photo/business-class.jpg' ?>" alt="">
-        </div>
-        <div class="texture"></div>
-    </div>
-    <div class="welcome-block container-wrapper flex flex-justify-between">
-        <div class="content flex flex-align-center">
-            <div>
-                <h1>Business class flights</h1>
-            </div>
-        </div>
-        <div>
-            <?= FlightRequestMax::widget() ?>
-        </div>
+		<div class="welcome-block container-wrapper grid grid-cols-11 items-center">
+			<div class="content xl:flex flex-col hidden align-center pt-8 px-12 col-span-5">
+				<?= $this->render('@app/views/layouts/_breadcrumbs') ?>
+				<div class="title-form font-silk-serif-medium text-white 2xl:text-8xl xl:text-7xl md:text-xl mt-36">
+					<span>Business class flights</span>
+				</div>
+				<div class="my-16">
+					<span class="text-white bg-black px-3 pt-3 pb-1 font-gilroy-semibold">Call US Now to Book Your Flight️</span>
+					<div class="flex items-center bg-black p-2 w-fit">
+						<img class="mr-2 scale-75" src="/public/img/phone-operator.svg" alt="">
+						<a class="font-gilroy-semibold text-3xl pr-2" href="tel:+18883477817">
+							<span class="text-orange mr-1">+1</span> <span class="text-white">888 347 7817</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="form-block-wrapper xl:p-12 p-6 xl:col-span-6 col-span-11">
+				<?= FlightRequestMax::widget() ?>
+			</div>
+		</div>
     </div>
 </div>
-<div class="page-content">
-    <div class="container-wrapper flex flex-justify-between border-box">
-        <div class="content">
-            <div class="specialsup-banner border-box">
+<div class="page-content mt-16">
+	<div class="container mx-auto xl:px-10 px-2 grid grid-cols-12 xl:gap-5 gap-1 box-border">
+		<div class="content xl:col-span-9 col-span-12 xl:pr-16 pr-0">
+			<h4 class="specialsup-banner box-border">
                 With IFlyFirstClass You Can Save Up to 70% on Your Next Trip in Business Class
-            </div>
-            <div class="body">
-                <div class="columns flex flex-justify-between">
+            </h4>
+			<div class="body mt-10 text-justify">
+				<div class="xl:columns-2 columns-1 gap-10">
                     <div class="column">
-                        <p>
+						<p class="text-gray-2">
                             Relish the spaciousness and luxury of premium travel with I Fly First Class’ outstanding
                             discounts on business class seats and last minute business class fares. You’ll save
                             thousands of dollars on high-end travel that provides you with the space and amenities you
                             need to make your flight time productive and restful. Wherever you need to go, I Fly First
                             Class can get you there at the cheapest rates aboard the best-rated business class cabins.
                         </p>
-                        <h3>Enjoy World-Class Airlines</h3>
-                        <p>
+                        <h5 class="my-4">Enjoy World-Class Airlines</h5>
+						<p class="text-gray-2">
                             I Fly First Class’ unique travel partnerships give you access to the world’s top airlines,
                             the most popular domestic and international destinations and some of the choicest business
                             class amenities. We offer coveted routes on all of today’s acclaimed airlines, including:
                         </p>
-                        <ul>
+                        <ul class="text-gray-2 list-disc p-4">
                             <li>Qatar Airways,</li>
                             <li>Oman Air,</li>
                             <li>Swiss International Air Lines,</li>
@@ -75,8 +81,8 @@ $path_img_thumbs = Url::base() . '/public/images/thumbs/';
                             <li>Etihad Airways and,</li>
                             <li>Emirates.</li>
                         </ul>
-                        <h3>On The Ground</h3>
-                        <p>
+                        <h5 class="my-4">On The Ground</h5>
+						<p class="text-gray-2">
                             The magnificent service and amenities of premium travel begin at the airport where you'll be
                             welcomed into some of the finest, exclusive international airport lounges. On-site
                             concierges can assist you with checking in, destination information, on-ground
@@ -85,7 +91,7 @@ $path_img_thumbs = Url::base() . '/public/images/thumbs/';
                         </p>
                     </div>
                     <div class="column">
-                        <p>
+						<p class="text-gray-2">
                             Dine on gourmet fare, sip a cocktail or two, take advantage of fully equipped business
                             centers and relax in cushioned chairs and sofas in beautifully appointed business class
                             lounges. State-of-the-art business class programs showcase unrivaled service. Qatar
@@ -93,8 +99,8 @@ $path_img_thumbs = Url::base() . '/public/images/thumbs/';
                             Doha International Airport. There travelers enjoy dessert bars, sushi platters, sumptuous
                             massage chairs and a 24-hour clinic.
                         </p>
-                        <h3>In The Air</h3>
-                        <p>
+                        <h5 class="my-4">In The Air</h5>
+						<p class="text-gray-2">
                             The amenities on today's business class flights rival the extraordinary offerings of the
                             most lavish first class cabins. Here, you'll experience the ultimate in business
                             convenience, from ample storage space and extra work surfaces to abundant connectivity and
@@ -106,8 +112,8 @@ $path_img_thumbs = Url::base() . '/public/images/thumbs/';
                             and extra-wide LCD monitors. Some international flights even feature private business class
                             seats in suite-like configurations and in-air lounges and bars.
                         </p>
-                        <h3>The I Fly First Class Advantage</h3>
-                        <p>
+                        <h5 class="my-4">The I Fly First Class Advantage</h5>
+						<p class="text-gray-2">
                             At I Fly First Class, we are dedicated to helping you make the most out of your business and
                             pleasure travel by providing spectacular discounts on premium business travel. Our travel
                             professionals are adept at presenting superior service and incomparable route and travel
@@ -117,17 +123,22 @@ $path_img_thumbs = Url::base() . '/public/images/thumbs/';
                     </div>
                 </div>
             </div>
-            <a href="#" class="send-request-link-form">Send Request</a>
+			<div class="mt-10 xl:p-8 p-4 text-gray-2 flex flex-wrap gap-2 rounded-2xl border border-gray-light-2 items-start xl:justify-between justify-center">
+				<p class="xl:w-3/4 text-justify">IFlyFirstClass offers cheap Business Class flights to New Zeland, save thousands on last minute Business Class tickets. Best deals on Business Class.  Special fares on Business and First Class tickets. Discounted First & Business Class airline tickets. First Class & Business Class travel deals.</p>
+				<a href="#" class="btn btn-primary send-request-link-form ml-5">Book Flight Now</a>
+			</div>
         </div>
-        <?= LandingSidebarRight::widget(['summary_sidebar' => '']) ?>
+		<div class="col-span-3 xl:block hidden">
+       		<?= LandingSidebarRight::widget(['summary_sidebar' => '']) ?>
+		</div>
     </div>
-    <div class="sections border-box">
-        <div class="container-wrapper flex">
-            <div class="continents column">
-                <div class="title">Continent</div>
+	<div class="container mx-auto xl:px-10 px-4 box-border mt-16 mb-20">
+        <div class="flex">
+            <div class="continents">
+				<h5 class="title">Continent</h5>
                 <ul>
                     <?php foreach ($continents as $item): ?>
-                        <li>
+						<li class="my-3">
                             <a href="<?= Url::to(['continent/index', 'alias' => $item['alias']]); ?>">
                                 <?= Html::encode($item['name']) ?>
                             </a>

@@ -2,9 +2,9 @@
     <div class="layer" onclick="closeTermsConditions(this)"></div>
     <div class="terms-conditions-inner">
         <div class="content-wrapper">
-            <div class="title">
+            <h2 class="title">
                 Terms &amp; Conditions
-            </div>
+            </h2>
             <div>
                 <p>
                     <span>1.) PRICE QUOTES:</span> FlyFirst has the lowest fares for 5 star airlines. FlyFirst provide the lowest fares based on availability. The fare prices provided for all passengers are quoted in US Dollars. Fares and availability are subject to change until ticketed. Prices are guaranteed only at time of purchase. All advanced ticket purchases are non-refundable and non-transferable. Each ticket must be booked in the passenger’s name as it is precisely displayed on a government issued ID. Changing names on tickets is prohibited.
@@ -47,18 +47,8 @@
                 </p>
             </div>
         </div>
-        <div class="action flex flex-align-center flex-justify-center">
+        <div class="action flex items-center justify-center">
             <button class="close-terms-conditions" onclick="closeTermsConditions(this)">Okay, Got it</button>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function openTermsConditions(elem) {
-        var content = document.getElementsByClassName("terms-conditions-wrapper");
-        content[0].classList.add("open");
-    }
-    function closeTermsConditions(elem) {
-        var content = document.getElementsByClassName("terms-conditions-wrapper");
-        content[0].classList.remove("open");
-    }
-</script>

@@ -6,7 +6,7 @@ use app\components\widgets\breadcrumbs\BreadcrumbsMicrodata;
 ?>
 
 <?php if (isset($this->params['breadcrumbs'])) { ?>
-    <div class="bread-crumbs-wrapper flex flex-align-center">
+    <div class="bread-crumbs-wrapper flex items-center">
         <?= BreadcrumbsMicrodata::widget([
             'options' => [
                 'class' => 'breadcrumb container-wrapper',

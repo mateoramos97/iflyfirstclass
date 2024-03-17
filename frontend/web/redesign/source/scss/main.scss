@@ -1,0 +1,197 @@
+@import "variables";
+@import "swiper";
+@import "tom-select";
+@import "fonts";
+@import "../fonts/icons/css/iflyfirstclass-icons.css";
+@import "header";
+@import "footer";
+@import "buttons";
+@import "form";
+@import "bread-crumbs";
+
+body,
+html {
+  min-height: 100vh;
+  height: 100vh;
+}
+
+body {
+  @apply text-primary xl:text-base text-sm font-proxima-nova-regular leading-5 tracking-wide;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 600;
+  font-family: Gilroy, sans-serif;
+}
+
+h1 {
+  @apply xl:text-6xl text-5xl
+}
+
+h2 {
+  @apply xl:text-5xl text-4xl
+}
+
+h3 {
+  @apply xl:text-4xl text-3xl
+}
+
+h4 {
+  @apply xl:text-3xl text-2xl
+}
+
+h5 {
+  @apply xl:text-2xl text-xl
+}
+
+h6 {
+  @apply xl:text-xl text-lg
+}
+
+.link {
+  transition: 0.5s;
+  padding: 10px 15px;
+  @apply rounded-full cursor-pointer;
+  &:hover {
+    color: $orange-color;
+  }
+  &:active, &.active {
+    background-color: $hover-bg-color;
+    color: $orange-color;
+  }
+}
+
+.dropdown {
+  @apply flex items-center;
+  i {
+    padding-left: 4px;
+    padding-top: 2px;
+  }
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #E4E5E5;
+  padding: 0;
+}
+
+.back-slide {
+  width: 100%;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.welcome-block-wrapper{
+  &.home .back-slide{
+    background-image: linear-gradient(rgba(33, 33, 33, 0.32), rgba(33, 33, 33, 0.56)), url('/public/img/home-banner.png');
+  }
+  &.first-class-page .back-slide{
+    background-image: linear-gradient(rgba(33, 33, 33, 0.32), rgba(33, 33, 33, 0.56)), url('/design/photo/first-class.jpg');
+  }
+  &.business-class-page .back-slide{
+    background-image: linear-gradient(rgba(33, 33, 33, 0.32), rgba(33, 33, 33, 0.56)), url('/design/photo/business-class.jpg');
+  }
+  &.hotels-page .back-slide{
+    background-image: linear-gradient(rgba(33, 33, 33, 0.32), rgba(33, 33, 33, 0.56)), url('/design/photo/img-poster-hotel.jpg');
+  }
+  &.last-minute-deals-page .back-slide{
+    background-image: linear-gradient(rgba(33, 33, 33, 0.32), rgba(33, 33, 33, 0.56)), url('/design/photo/last-minyte-deals.jpg');
+    background-position-x: 50%;
+  }
+}
+
+.text-gold-gradient {
+  background: $gold-gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-gold-gradient {
+  border-image-slice: 1;
+  border-image-source:  $gold-gradient;
+}
+
+.text-gold-gradient-2 {
+  background: $gold-gradient-2;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-gold-gradient-2 {
+  border-image-slice: 1;
+  border-image-source:  $gold-gradient-2;
+}
+
+.text-white-gradient {
+  background: $white-gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.wave {
+  background-image: url('/public/img/wave-element.svg');
+  background-size: contain;
+  height: 10px;
+}
+
+.landing-columns {
+  height: 410px;
+  overflow: hidden;
+  &.open {
+    height: auto;
+  }
+}
+
+.landing-more-link {
+  &.disable{
+    display:none;
+  }
+}
+
+.ui-autocomplete {
+  height: 300px;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding: 5px;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #F0F0F0;
+    border-radius: 5px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #D7DBE0;
+    border-radius: 5px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #D7DBE0;
+  }
+  .ui-menu-item{
+    .ui-menu-item-wrapper {
+      padding: 5px 10px;
+      border-radius: 10px;
+      transition: 0.3s;
+      color: inherit;
+      &.ui-state-active, &:hover {
+        background: $hover-bg-color;
+        border:none;
+        color: inherit;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.ui-datepicker{
+  z-index: 2 !important;
+}
+

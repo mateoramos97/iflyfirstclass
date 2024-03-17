@@ -1,0 +1,15 @@
+
+.icon-airplane:before { content: '\e800'; } /* '' */
+.icon-airplan-fly:before { content: '\e801'; } /* '' */
+.icon-airplan-land:before { content: '\e802'; } /* '' */
+.icon-arrow-left:before { content: '\e803'; } /* '' */
+.icon-arrows:before { content: '\e804'; } /* '' */
+.icon-business:before { content: '\e805'; } /* '' */
+.icon-check:before { content: '\e806'; } /* '' */
+.icon-chevron:before { content: '\e807'; } /* '' */
+.icon-mail:before { content: '\e808'; } /* '' */
+.icon-person:before { content: '\e809'; } /* '' */
+.icon-person-card:before { content: '\e80a'; } /* '' */
+.icon-phone:before { content: '\e80b'; } /* '' */
+.icon-phone-ring:before { content: '\e80c'; } /* '' */
+.icon-calendar:before { content: '\e80d'; } /* '' */
