@@ -17,7 +17,7 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 
 ?>
 
-<div class="container mx-auto welcome-block-wrapper home">
+<div class="container mx-auto welcome-block-wrapper home xl:mt-0 mt-20">
     <div class="back-slide">
 		<div class="welcome-block container-wrapper grid grid-cols-11">
 			<div class="content xl:flex hidden align-center pt-28 px-12 col-span-5">

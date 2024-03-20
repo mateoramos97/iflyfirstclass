@@ -1,4 +1,5 @@
 <?php
+
 namespace common\queue;
 
 use common\sys\models\request\FlightRequestMax;

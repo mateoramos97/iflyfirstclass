@@ -22,21 +22,28 @@ class FlightRequestMin extends Widget
             AppConfig::Cabin_Class_First => 'First'
         ];
 
+        $trip_variants = [
+            AppConfig::Type_Trip_Round_Trip => 'Round-trip',
+            AppConfig::Type_Trip_One_Way => 'One-way',
+            AppConfig::Type_Trip_Multi_City => 'Multi-city'
+        ];
+
         $number_persones = [
-            1 => '1 Person(s)',
-            2 => '2 Person(s)',
-            3 => '3 Person(s)',
-            4 => '4 Person(s)',
-            5 => '5 Person(s)',
-            6 => '6 Person(s)',
-            7 => '7 Person(s)',
-            8 => '8 Person(s)',
+            1 => 'Travelers 1',
+            2 => 'Travelers 2',
+            3 => 'Travelers 3',
+            4 => 'Travelers 4',
+            5 => 'Travelers 5',
+            6 => 'Travelers 6',
+            7 => 'Travelers 7',
+            8 => 'Travelers 8',
         ];
 
         return $this->render(
             'flight-request-min', [
                 'cabin_class' => $cabin_class,
                 'number_persones' => $number_persones,
+                'trip_variants' => $trip_variants,
                 'model' => $flight_request_max_model
             ]
         );

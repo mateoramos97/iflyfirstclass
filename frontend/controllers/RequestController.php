@@ -79,12 +79,12 @@ class RequestController extends BaseController
 
         $request_form_users = $flight_request_info_service
             ->get_request_form_user_by_request_number($request_number);
-        
+
         if ($request_form_users['number_page_visits'] >= AppConfig::limit_number_page_visits_flight_request_page) {
             return $this->goHome();
         }
         $flight_request_edit_service->update_number_page_visits($request_number);
-            
+
         $request_form_user_info = $flight_request_info_service
             ->get_request_form_user_info_by_request_form_id($request_form_users['id']);
 
@@ -115,16 +115,30 @@ class RequestController extends BaseController
 
             $isEmailBlocked = $blocked_email_info_service->get_blocked_email($flight_request_max_model->email);
             if ($isEmailBlocked) return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
-
-            $trips = $flight_request_info_service->GetTrips(Yii::$app->request->post('FlightRequestMax'));
+            $flightRequestMax = Yii::$app->request->post('FlightRequestMax');
+            $trips = $flight_request_info_service->GetTrips($flightRequestMax);
 
             if ($isValid) {
-                $lastInsertID = $flight_request_edit_service->add_flight_request(Yii::$app->request->post('FlightRequestMax'));
-                
-                $flight_request_max_model
-                    ->sendEmailFlightRequest(Yii::$app->params['adminEmail'], Yii::$app->request->post('FlightRequestMax'), $trips, $lastInsertID);
-                $flight_request_max_model
-                    ->sendEmailFlightRequest($flight_request_max_model->email, Yii::$app->request->post('FlightRequestMax'), $trips, $lastInsertID);
+                $lastInsertID = $flight_request_edit_service->add_flight_request($flightRequestMax);
+
+                Yii::$app->queue->push(new \common\queue\SendEmail([
+                    'email' => Yii::$app->params['adminEmail'],
+                    'flightRequest' => $flightRequestMax,
+                    'trips' => $trips,
+                    'lastInsertId' => $lastInsertID,
+                ]));
+
+                Yii::$app->queue->push(new \common\queue\SendEmail([
+                    'email' => $flight_request_max_model->email,
+                    'flightRequest' => $flightRequestMax,
+                    'trips' => $trips,
+                    'lastInsertId' => $lastInsertID,
+                ]));
+
+                // $flight_request_max_model
+                //     ->sendEmailFlightRequest(Yii::$app->params['adminEmail'], Yii::$app->request->post('FlightRequestMax'), $trips, $lastInsertID);
+                // $flight_request_max_model
+                //     ->sendEmailFlightRequest($flight_request_max_model->email, Yii::$app->request->post('FlightRequestMax'), $trips, $lastInsertID);
 
                 $request_number = RequestFormUsers::find()
                     ->select(['request_number'])
@@ -247,7 +261,7 @@ class RequestController extends BaseController
             'name' => 'robots',
             'content' => 'noindex, follow'
         ]);
-        
+
         $model = new SupportForm();
         $blocked_email_info_service = new BlockedEmailsInfoService();
 
@@ -323,5 +337,26 @@ class RequestController extends BaseController
                 ];
             }
         }
+    }
+
+    public function actionTestEmail()
+    {
+//        $flightRequest = [
+//            'name' => 'Kostya',
+//            'phone' => 'Ivanov',
+//            'email' => 'test@email.com',
+//            'type_trip' => 'Round',
+//            'cabin_class_name' => 'test',
+//            'people_number' => '2',
+//        ];
+//
+//        Yii::$app->queue->push(new \common\queue\SendEmail([
+//            'email' => 'noskov.kos@gmail.com',
+//            'flightRequest' => $flightRequest,
+//            'trips' => [],
+//            'lastInsertId' => 5,
+//        ]));
+
+        return 'Ok';
     }
 }

@@ -3,15 +3,11 @@
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model \common\sys\models\request\FlightRequestMax */
 
+use app\components\AppConfig;
 use yii\helpers\Html;
 ?>
 
-<div class="form-request-tab tab-one-way border-box mt-3" data-tab-form="tab-2">
-    <input type="hidden" name="check_subscription" class="check-subscription" value="">
-    <?= $form->field($model, 'type_trip')->hiddenInput([
-        'value' => \app\components\AppConfig::Type_Trip_One_Way,
-        'id' => 'flightrequestmax_type_trip_one_way',
-    ]) ?>
+<div class="form-request-tab tab-one-way border-box mt-3" data-tab-form="<?= AppConfig::Type_Trip_One_Way ?>" v-if="activeForm == <?= AppConfig::Type_Trip_One_Way ?>">
 	<div class="split-input-group flex items-center">
 		<div class="field-row from grow relative">
 			<i class="input-prefix icon-airplan-fly text-gray bottom-4"></i>
@@ -38,7 +34,7 @@ use yii\helpers\Html;
 			<i class="input-prefix icon-calendar text-gray top-3 text-lg"></i>
 			<?= $form->field($model, 'dep_date[]')->textInput([
 					'placeholder' => 'Departure',
-					'class' => 'has-prefix has-suffix datepicker component-depdate w-full',
+					'class' => 'has-prefix has-suffix datepicker component-depdate w-full required-field bg-white',
 					'id' => 'dep-date-one-way',
 			]) ?>
 			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
@@ -77,7 +73,7 @@ use yii\helpers\Html;
 			<?= $form->field($model, 'name')->textInput([
 					'placeholder' => 'Name',
 					'id' => 'flightrequestmax_name_one_way',
-					'class' => 'has-prefix bg-white'
+					'class' => 'has-prefix bg-white required-field'
 			]) ?>
 		</div>
 		<div class="field-row phone-field relative">
@@ -86,7 +82,7 @@ use yii\helpers\Html;
 					'type' => 'number',
 					'placeholder' => 'Phone',
 					'id' => 'flightrequestmax_phone_one_way',
-					'class' => 'has-prefix bg-white'
+					'class' => 'has-prefix bg-white required-field'
 			]) ?>
 		</div>
 	</div>

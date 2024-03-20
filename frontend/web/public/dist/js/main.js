@@ -6502,264 +6502,6 @@ function parse(template, options = {}) {
 
 /***/ }),
 
-/***/ "./node_modules/@vue/devtools-api/lib/esm/const.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/@vue/devtools-api/lib/esm/const.js ***!
-  \*********************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   HOOK_PLUGIN_SETTINGS_SET: function() { return /* binding */ HOOK_PLUGIN_SETTINGS_SET; },
-/* harmony export */   HOOK_SETUP: function() { return /* binding */ HOOK_SETUP; }
-/* harmony export */ });
-const HOOK_SETUP = 'devtools-plugin:setup';
-const HOOK_PLUGIN_SETTINGS_SET = 'plugin:settings:set';
-
-
-/***/ }),
-
-/***/ "./node_modules/@vue/devtools-api/lib/esm/env.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/@vue/devtools-api/lib/esm/env.js ***!
-  \*******************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   getDevtoolsGlobalHook: function() { return /* binding */ getDevtoolsGlobalHook; },
-/* harmony export */   getTarget: function() { return /* binding */ getTarget; },
-/* harmony export */   isProxyAvailable: function() { return /* binding */ isProxyAvailable; }
-/* harmony export */ });
-function getDevtoolsGlobalHook() {
-    return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
-}
-function getTarget() {
-    // @ts-expect-error navigator and windows are not available in all environments
-    return (typeof navigator !== 'undefined' && typeof window !== 'undefined')
-        ? window
-        : typeof globalThis !== 'undefined'
-            ? globalThis
-            : {};
-}
-const isProxyAvailable = typeof Proxy === 'function';
-
-
-/***/ }),
-
-/***/ "./node_modules/@vue/devtools-api/lib/esm/index.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/@vue/devtools-api/lib/esm/index.js ***!
-  \*********************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   isPerformanceSupported: function() { return /* reexport safe */ _time_js__WEBPACK_IMPORTED_MODULE_0__.isPerformanceSupported; },
-/* harmony export */   now: function() { return /* reexport safe */ _time_js__WEBPACK_IMPORTED_MODULE_0__.now; },
-/* harmony export */   setupDevtoolsPlugin: function() { return /* binding */ setupDevtoolsPlugin; }
-/* harmony export */ });
-/* harmony import */ var _env_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./env.js */ "./node_modules/@vue/devtools-api/lib/esm/env.js");
-/* harmony import */ var _const_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./const.js */ "./node_modules/@vue/devtools-api/lib/esm/const.js");
-/* harmony import */ var _proxy_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./proxy.js */ "./node_modules/@vue/devtools-api/lib/esm/proxy.js");
-/* harmony import */ var _time_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./time.js */ "./node_modules/@vue/devtools-api/lib/esm/time.js");
-
-
-
-
-
-
-function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
-    const descriptor = pluginDescriptor;
-    const target = (0,_env_js__WEBPACK_IMPORTED_MODULE_1__.getTarget)();
-    const hook = (0,_env_js__WEBPACK_IMPORTED_MODULE_1__.getDevtoolsGlobalHook)();
-    const enableProxy = _env_js__WEBPACK_IMPORTED_MODULE_1__.isProxyAvailable && descriptor.enableEarlyProxy;
-    if (hook && (target.__VUE_DEVTOOLS_PLUGIN_API_AVAILABLE__ || !enableProxy)) {
-        hook.emit(_const_js__WEBPACK_IMPORTED_MODULE_2__.HOOK_SETUP, pluginDescriptor, setupFn);
-    }
-    else {
-        const proxy = enableProxy ? new _proxy_js__WEBPACK_IMPORTED_MODULE_3__.ApiProxy(descriptor, hook) : null;
-        const list = target.__VUE_DEVTOOLS_PLUGINS__ = target.__VUE_DEVTOOLS_PLUGINS__ || [];
-        list.push({
-            pluginDescriptor: descriptor,
-            setupFn,
-            proxy,
-        });
-        if (proxy) {
-            setupFn(proxy.proxiedTarget);
-        }
-    }
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/@vue/devtools-api/lib/esm/proxy.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/@vue/devtools-api/lib/esm/proxy.js ***!
-  \*********************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   ApiProxy: function() { return /* binding */ ApiProxy; }
-/* harmony export */ });
-/* harmony import */ var _const_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./const.js */ "./node_modules/@vue/devtools-api/lib/esm/const.js");
-/* harmony import */ var _time_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./time.js */ "./node_modules/@vue/devtools-api/lib/esm/time.js");
-
-
-class ApiProxy {
-    constructor(plugin, hook) {
-        this.target = null;
-        this.targetQueue = [];
-        this.onQueue = [];
-        this.plugin = plugin;
-        this.hook = hook;
-        const defaultSettings = {};
-        if (plugin.settings) {
-            for (const id in plugin.settings) {
-                const item = plugin.settings[id];
-                defaultSettings[id] = item.defaultValue;
-            }
-        }
-        const localSettingsSaveId = `__vue-devtools-plugin-settings__${plugin.id}`;
-        let currentSettings = Object.assign({}, defaultSettings);
-        try {
-            const raw = localStorage.getItem(localSettingsSaveId);
-            const data = JSON.parse(raw);
-            Object.assign(currentSettings, data);
-        }
-        catch (e) {
-            // noop
-        }
-        this.fallbacks = {
-            getSettings() {
-                return currentSettings;
-            },
-            setSettings(value) {
-                try {
-                    localStorage.setItem(localSettingsSaveId, JSON.stringify(value));
-                }
-                catch (e) {
-                    // noop
-                }
-                currentSettings = value;
-            },
-            now() {
-                return (0,_time_js__WEBPACK_IMPORTED_MODULE_0__.now)();
-            },
-        };
-        if (hook) {
-            hook.on(_const_js__WEBPACK_IMPORTED_MODULE_1__.HOOK_PLUGIN_SETTINGS_SET, (pluginId, value) => {
-                if (pluginId === this.plugin.id) {
-                    this.fallbacks.setSettings(value);
-                }
-            });
-        }
-        this.proxiedOn = new Proxy({}, {
-            get: (_target, prop) => {
-                if (this.target) {
-                    return this.target.on[prop];
-                }
-                else {
-                    return (...args) => {
-                        this.onQueue.push({
-                            method: prop,
-                            args,
-                        });
-                    };
-                }
-            },
-        });
-        this.proxiedTarget = new Proxy({}, {
-            get: (_target, prop) => {
-                if (this.target) {
-                    return this.target[prop];
-                }
-                else if (prop === 'on') {
-                    return this.proxiedOn;
-                }
-                else if (Object.keys(this.fallbacks).includes(prop)) {
-                    return (...args) => {
-                        this.targetQueue.push({
-                            method: prop,
-                            args,
-                            resolve: () => { },
-                        });
-                        return this.fallbacks[prop](...args);
-                    };
-                }
-                else {
-                    return (...args) => {
-                        return new Promise((resolve) => {
-                            this.targetQueue.push({
-                                method: prop,
-                                args,
-                                resolve,
-                            });
-                        });
-                    };
-                }
-            },
-        });
-    }
-    async setRealTarget(target) {
-        this.target = target;
-        for (const item of this.onQueue) {
-            this.target.on[item.method](...item.args);
-        }
-        for (const item of this.targetQueue) {
-            item.resolve(await this.target[item.method](...item.args));
-        }
-    }
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/@vue/devtools-api/lib/esm/time.js":
-/*!********************************************************!*\
-  !*** ./node_modules/@vue/devtools-api/lib/esm/time.js ***!
-  \********************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   isPerformanceSupported: function() { return /* binding */ isPerformanceSupported; },
-/* harmony export */   now: function() { return /* binding */ now; }
-/* harmony export */ });
-let supported;
-let perf;
-function isPerformanceSupported() {
-    var _a;
-    if (supported !== undefined) {
-        return supported;
-    }
-    if (typeof window !== 'undefined' && window.performance) {
-        supported = true;
-        perf = window.performance;
-    }
-    else if (typeof globalThis !== 'undefined' && ((_a = globalThis.perf_hooks) === null || _a === void 0 ? void 0 : _a.performance)) {
-        supported = true;
-        perf = globalThis.perf_hooks.performance;
-    }
-    else {
-        supported = false;
-    }
-    return supported;
-}
-function now() {
-    return isPerformanceSupported() ? perf.now() : Date.now();
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js ***!
@@ -18682,33 +18424,82 @@ const stringifySymbol = (v, i = "") => {
 
 /***/ }),
 
-/***/ "./frontend/web/redesign/source/js/main.js":
-/*!*************************************************!*\
-  !*** ./frontend/web/redesign/source/js/main.js ***!
-  \*************************************************/
+/***/ "./frontend/web/redesign/source/js/components/forms/form-request.js":
+/*!**************************************************************************!*\
+  !*** ./frontend/web/redesign/source/js/components/forms/form-request.js ***!
+  \**************************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store */ "./frontend/web/redesign/source/js/store/index.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-__webpack_require__(/*! ./scripts/custom */ "./frontend/web/redesign/source/js/scripts/custom.js");
+/* harmony import */ var _scripts_custom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../scripts/custom */ "./frontend/web/redesign/source/js/scripts/custom.js");
 
-
-
-var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)(_store__WEBPACK_IMPORTED_MODULE_1__["default"]);
-
-// store.Store.prototype.$set = function(param, data) {
-// 	this.commit("setData", { param, data });
-// };
-// store.Store.prototype.$unset = function(param) {
-// 	this.commit("unsetData", param);
-// };
 
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
-  setup: function setup() {}
-}).use(store).mount("#app");
+  setup: function setup() {
+    var activeForm = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(1);
+    var showHiddenFields = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    function changeActiveForm(event) {
+      activeForm.value = event.target.value;
+      (0,_scripts_custom__WEBPACK_IMPORTED_MODULE_1__.initFlightRequestForm)();
+    }
+    return {
+      activeForm: activeForm,
+      showHiddenFields: showHiddenFields,
+      changeActiveForm: changeActiveForm
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+    var form = this.$el.parentElement.querySelector('form');
+    $(form).find('input,select').change(function (e) {
+      _this.showHiddenFields = true;
+    });
+    $(form).submit(function (e) {
+      var self = $(this);
+      var hidden = self.find(".check-subscription");
+      var from = self.find(".from").find('input[type=text]').first();
+      var to = self.find(".to").find('input[type=text]').first();
+      var button = self.find("button[type='submit']");
+      hidden.val("jfghfHdhsdgUjbn345Hd");
+      var error = false;
+      self.find('.required-field').each(function () {
+        $(this).removeClass("error-field");
+      });
+      self.find('.required-field').each(function () {
+        var el = $(this);
+        if (el.val() === '') {
+          el.addClass("error-field");
+          error = true;
+        }
+      });
+      if (self.val().toLowerCase() === to.val().toLowerCase()) {
+        from.addClass("error-field");
+        to.addClass("error-field");
+        error = true;
+      }
+      if (!error) {
+        button.prop("disabled", true);
+        button.html("Searching...");
+        return true;
+      }
+      return false;
+    });
+    (0,_scripts_custom__WEBPACK_IMPORTED_MODULE_1__.initFlightRequestForm)();
+  }
+}).mount("#form-request");
+
+/***/ }),
+
+/***/ "./frontend/web/redesign/source/js/main.js":
+/*!*************************************************!*\
+  !*** ./frontend/web/redesign/source/js/main.js ***!
+  \*************************************************/
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+__webpack_require__(/*! ./scripts/custom */ "./frontend/web/redesign/source/js/scripts/custom.js");
+__webpack_require__(/*! ./components/forms/form-request */ "./frontend/web/redesign/source/js/components/forms/form-request.js");
 
 /***/ }),
 
@@ -18720,6 +18511,10 @@ var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)(_store__WEBPACK_IM
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   InitDatepicker: function() { return /* binding */ InitDatepicker; },
+/* harmony export */   initFlightRequestForm: function() { return /* binding */ initFlightRequestForm; }
+/* harmony export */ });
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.mjs");
 /* harmony import */ var swiper_modules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! swiper/modules */ "./node_modules/swiper/modules/index.mjs");
 /* harmony import */ var tom_select__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tom-select */ "./node_modules/tom-select/dist/js/tom-select.complete.js");
@@ -18727,19 +18522,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var InitDatepicker = function InitDatepicker() {
+  /* datepicker */
+  $(".datepicker").datepicker({
+    minDate: 0,
+    dateFormat: "d M, y"
+  });
+};
 jQuery(document).ready(function ($) {
   var isFront = false;
   var isFlightRequestMax = false;
   if ($(document.body).hasClass("flight-request-max")) isFlightRequestMax = true;
   if ($(document.body).hasClass("front-page")) isFront = true;
-  var InitDatepicker = function InitDatepicker() {
-    /* datepicker */
-    $(".datepicker").datepicker({
-      minDate: 0,
-      dateFormat: "d M, y"
-    });
-  };
-  var swiper = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiper', {
+  new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.news-block .swiper', {
     // configure Swiper to use modules
     modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Scrollbar],
     scrollbar: {
@@ -18748,6 +18543,15 @@ jQuery(document).ready(function ($) {
     },
     slidesPerView: "auto",
     spaceBetween: 30
+  });
+  new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.blog-list.swiper', {
+    // configure Swiper to use modules
+    modules: [swiper_modules__WEBPACK_IMPORTED_MODULE_1__.Navigation],
+    navigation: {
+      nextEl: ".swiper-next",
+      prevEl: ".swiper-prev"
+    },
+    slidesPerView: 3
   });
   document.querySelectorAll('.tom-select').forEach(function (el) {
     var settings = {};
@@ -18800,10 +18604,15 @@ jQuery(document).ready(function ($) {
       });
     });
     var ScrollEfectHeader = function ScrollEfectHeader() {
-      if (browser.scrollTop() > 36) {
+      if (browser.width() < 1260) {
+        return;
+      }
+      if (browser.scrollTop() > 120) {
+        $('body').css('padding-top', '100px');
         mainNav.addClass("fixed");
         menuSubWrapper.addClass("fixed");
       } else {
+        $('body').css('padding-top', '0px');
         mainNav.removeClass("fixed");
         menuSubWrapper.removeClass("fixed");
       }
@@ -18856,239 +18665,6 @@ jQuery(document).ready(function ($) {
   });
 
   //flight request
-  $(function () {
-    var formFlightRequestMaxWrapper = $(".form-flight-request"),
-      navFormTab = formFlightRequestMaxWrapper.find(".tab-menu").find("li a"),
-      formRequestTab = formFlightRequestMaxWrapper.find(".form-request-tab"),
-      formRequestAirline = formFlightRequestMaxWrapper.find(".form-request-airline");
-    /* tab form */
-    navFormTab.each(function () {
-      var self = $(this);
-      self.click(function () {
-        var dataNavId = $(this).data("tabLiId");
-        navFormTab.removeClass("active");
-        $(this).addClass("active");
-        formRequestTab.removeClass("active");
-        formRequestTab.filter("[data-tab-form='" + dataNavId + "']").addClass("active");
-      });
-    });
-    $('#flightrequestmax_trip_variants_name_round_trip').change(function () {
-      var val = $(this).val();
-      console.log(val);
-      formRequestTab.removeClass("active");
-      formRequestTab.filter("[data-tab-form='tab-" + val + "']").addClass("active");
-    });
-
-    //requset form
-    var FormrequestAirline = function FormrequestAirline() {
-      formRequestAirline.each(function () {
-        var self = $(this),
-          hidden = self.find(".check-subscription"),
-          from = self.find(".from").find('input[type=text]').first(),
-          to = self.find(".to").find('input[type=text]').first(),
-          button = self.find("button[type='submit']");
-        button.click(function () {
-          hidden.val("jfghfHdhsdgUjbn345Hd");
-        });
-        self.submit(function () {
-          var form = $(this),
-            error = false;
-          form.find('.required-field').each(function () {
-            $(this).removeClass("error-field");
-          });
-          form.find('.required-field').each(function () {
-            if ($(this).val() === '') {
-              $(this).addClass("error-field");
-              error = true;
-            }
-          });
-          if (from.val().toLowerCase() === to.val().toLowerCase()) {
-            from.addClass("error-field");
-            to.addClass("error-field");
-            error = true;
-          }
-          if (!error) {
-            button.prop("disabled", true);
-            button.html("Searching...");
-            return true;
-          }
-          return false;
-        });
-      });
-    };
-    FormrequestAirline();
-
-    /* multi city */
-    $(function () {
-      var totalRowDestination = 3,
-        currentCountRowDestination = 1,
-        destinationBlockWrapper = formFlightRequestMaxWrapper.find(".destination-block-wrapper"),
-        addDestinationBlock = formFlightRequestMaxWrapper.find(".add-destination"),
-        addDestination = formFlightRequestMaxWrapper.find(".add-destination").find("a"),
-        destinationRowFirstClone = formFlightRequestMaxWrapper.find("[data-destination-id='1']").clone();
-      /* add class datepicker first flight */
-      formFlightRequestMaxWrapper.find("[data-destination-id='1']").find(".depart .form-group").removeClass("field-dep-date-multi-city").addClass("field-dep-date-multi-city-1").find(".date-multi-city").addClass("datepicker").attr("id", "dep-date-multi-city-1");
-      InitDatepicker();
-      var CheckCurrentCountRowDestination = function CheckCurrentCountRowDestination() {
-        var destinationRow = formFlightRequestMaxWrapper.find(".destination-row");
-        return destinationRow.length;
-      };
-      var IsAddFlightButton = function IsAddFlightButton() {
-        if (CheckCurrentCountRowDestination() >= totalRowDestination) {
-          addDestinationBlock.addClass("disabled");
-        } else if (CheckCurrentCountRowDestination() < totalRowDestination && addDestinationBlock.hasClass("disabled")) {
-          addDestinationBlock.removeClass("disabled");
-        }
-      };
-      /* sort destination id */
-      var SortDestinationRowId = function SortDestinationRowId() {
-        var destinationRows = formFlightRequestMaxWrapper.find(".destination-row");
-        destinationRows.each(function () {
-          $(this).attr("data-destination-id", $(this).index() + 1).find(".depart .form-group").removeClass("field-dep-date-multi-city").addClass("field-dep-date-multi-city-" + $(this).index() + 1).find(".date-multi-city").attr("id", "dep-date-multi-city-" + $(this).index() + 1);
-        });
-      };
-      /* add flight */
-      var AddFlight = function AddFlight() {
-        addDestination.click(function () {
-          var destinationRowClone = destinationRowFirstClone.clone();
-          currentCountRowDestination = CheckCurrentCountRowDestination();
-          if (currentCountRowDestination < totalRowDestination) {
-            destinationRowClone.attr("data-destination-id", currentCountRowDestination + 1).appendTo(destinationBlockWrapper).find(".depart .form-group").removeClass("field-dep-date-multi-city").addClass("field-dep-date-multi-city-" + currentCountRowDestination + 1).find(".date-multi-city").addClass("datepicker").attr("id", "dep-date-multi-city-" + currentCountRowDestination + 1);
-            var newDepDateWrapper = $(".field-dep-date-multi-city-" + currentCountRowDestination + 1);
-            newDepDateWrapper.find(".date-multi-city").remove();
-            newDepDateWrapper.append($('<input/>', {
-              name: 'FlightRequestMax[dep_date][]',
-              type: 'text',
-              id: 'dep-date-multi-city-' + currentCountRowDestination + 1,
-              "class": 'date-multi-city border-radius-right datepicker required-field',
-              placeholder: 'Depart',
-              readonly: 'readonly'
-            }).datepicker({
-              minDate: 0,
-              dateFormat: "d M, y"
-            }));
-            RemoveFlight();
-            IsAddFlightButton();
-            AutocompleteAirport();
-          }
-          return false;
-        });
-      };
-      AddFlight();
-      /* remove flight */
-      var RemoveFlight = function RemoveFlight() {
-        var destinationRows = formFlightRequestMaxWrapper.find(".destination-row");
-        destinationRows.each(function () {
-          var self = $(this),
-            removeFlight = self.find(".remove-flight");
-          removeFlight.click(function () {
-            self.remove();
-            currentCountRowDestination = CheckCurrentCountRowDestination();
-            SortDestinationRowId();
-            IsAddFlightButton();
-          });
-        });
-      };
-      RemoveFlight();
-    });
-
-    /* autocomplete */
-    var AutocompleteAirport = function AutocompleteAirport() {
-      var autocomplete = formFlightRequestMaxWrapper.find(".autocomplete");
-      var autocomleteTest = function autocomleteTest() {
-        formRequestTab.each(function () {
-          var self = $(this),
-            fromAir = self.find(".field-from"),
-            toAir = self.find(".field-to"),
-            formRequestNotify = self.find('.form-request-notify');
-          if (typeof fromAir.val() !== "undefined" && typeof toAir.val() !== "undefined") {
-            if (fromAir.val().indexOf(' US,') !== -1 && toAir.val().indexOf(' US,') !== -1) {
-              formRequestNotify.addClass("open");
-            } else {
-              formRequestNotify.removeClass("open");
-            }
-          }
-        });
-      };
-      var autocompleteConfig = {
-        source: function source(request, response) {
-          $.ajax({
-            url: document.location.origin + "/request/search-airport",
-            dataType: "json",
-            type: "POST",
-            data: {
-              keyword: request.term
-            },
-            success: function success(data) {
-              var result = data.response;
-              var citiesByAirports = result.cities_by_airports;
-              var cities = result.cities;
-              var airports = result.airports;
-              var airportsByCities = result.airports_by_cities;
-              var citiesSearch = arrayUnique(cities.concat(citiesByAirports), 'city_code').sort(compare);
-              var airportsSearch = arrayUnique(airports.concat(airportsByCities), 'icao_code').sort(compare);
-              response($.map(airportsSearch, function (item) {
-                var city = item.city_code;
-                var result = '(' + (item.iata_code || item.icao_code) + ') ';
-                var dataCity = citiesSearch.find(function (c) {
-                  return c.city_code == city;
-                });
-                if (dataCity) {
-                  result += dataCity.name + ', ';
-                }
-                result += item.country_code + ', ' + item.name;
-                return {
-                  city: dataCity === null || dataCity === void 0 ? void 0 : dataCity.name,
-                  country: item.country_code,
-                  code: item.iata_code || item.icao_code,
-                  name: item.name,
-                  value: result
-                };
-              }));
-            }
-          });
-        },
-        select: function select(event, ui) {
-          setTimeout(autocomleteTest);
-        },
-        minLength: 3
-      };
-      var renderItem = function renderItem(ul, item) {
-        return $("<li>").append("<div class=\"flex items-center\">\n                           <i class=\"text-lg icon-airplane bg-white p-2 rounded-xl\"></i>\n                            <div class=\"ml-4\">\n                                <div>\n                                   <span class=\"font-gilroy-semibold\">".concat(item.name, "</span> <span class=\"font-gilroy-light\">").concat(item.code, "</span>\n                                </div>\n                                <div>\n                                    <span class=\"text-xs\">").concat(item.city ? item.city + ',' : '', " ").concat(item.country, "</span>\n                                </div>\n                            </div>\n                         </div>")).appendTo(ul);
-      };
-      autocomplete.each(function () {
-        var instance = $(this).autocomplete(autocompleteConfig);
-        $(this).autocomplete("instance")._renderItem = renderItem;
-      });
-      function compare(a, b) {
-        if (a.popularity < b.popularity) {
-          return 1;
-        }
-        if (a.popularity > b.popularity) {
-          return -1;
-        }
-        return 0;
-      }
-      function arrayUnique(array, prop) {
-        var a = array.concat();
-        for (var i = 0; i < a.length; ++i) {
-          if (typeof a[i][prop] === 'undefined') {
-            continue;
-          }
-          for (var j = i + 1; j < a.length; ++j) {
-            if (typeof a[j][prop] === 'undefined') {
-              continue;
-            }
-            if (a[i][prop] === a[j][prop]) {
-              a.splice(j--, 1);
-            }
-          }
-        }
-        return a;
-      }
-    };
-    AutocompleteAirport();
-  });
 
   //form-tracker
   $(function () {
@@ -19253,243 +18829,221 @@ window.readMoreLanding = function (elem) {
   landingMoreLink[0].classList.add('disable');
   content[0].classList.add("open");
 };
-
-/***/ }),
-
-/***/ "./frontend/web/redesign/source/js/store/index.js":
-/*!********************************************************!*\
-  !*** ./frontend/web/redesign/source/js/store/index.js ***!
-  \********************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _utils_object__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/object */ "./frontend/web/redesign/source/js/utils/object.js");
-
-var state = {
-  errors: []
-};
-var getters = {
-  getErrors: function getErrors(state) {
-    return state.errors;
-  }
-};
-var mutations = {
-  addError: function addError(state, value) {
-    state.errors.push(value);
-  },
-  clearErrors: function clearErrors(state) {
-    state.errors.splice(0, state.errors.length);
-  },
-  setErrors: function setErrors(state, errors) {
-    mutations.clearErrors(state);
-    errors.forEach(function (error) {
-      return mutations.addError(state, error);
-    });
-  },
-  setData: function setData(state, _ref) {
-    var param = _ref.param,
-      data = _ref.data;
-    if (!param || typeof param !== "string") {
-      console.error("Store: param must be a string, ", param, " given");
-      return;
-    }
-    var path = (0,_utils_object__WEBPACK_IMPORTED_MODULE_0__.pathToArr)(param);
-    var key = path.shift();
-    var obj;
-    var previosData = state[param];
-    if (!previosData) {
-      previosData = {};
-    }
-    var newData = Object.assign(previosData, data);
-    if (path.length) {
-      obj = Object.assign(previosData, state[key]);
-      (0,_utils_object__WEBPACK_IMPORTED_MODULE_0__.set)(previosData, path.join("."), newData);
-    } else {
-      obj = newData;
-    }
-    state[key] = obj;
-  },
-  unsetData: function unsetData(state, param) {
-    delete state[param];
-  },
-  setSettings: function setSettings(state, settings) {
-    state.settings = settings;
-  }
-};
-var actions = {};
-/* harmony default export */ __webpack_exports__["default"] = ({
-  state: state,
-  getters: getters,
-  mutations: mutations,
-  actions: actions
-});
-
-/***/ }),
-
-/***/ "./frontend/web/redesign/source/js/utils/object.js":
-/*!*********************************************************!*\
-  !*** ./frontend/web/redesign/source/js/utils/object.js ***!
-  \*********************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   forEach: function() { return /* binding */ forEach; },
-/* harmony export */   get: function() { return /* binding */ get; },
-/* harmony export */   isEmpty: function() { return /* binding */ isEmpty; },
-/* harmony export */   isObject: function() { return /* binding */ isObject; },
-/* harmony export */   pathToArr: function() { return /* binding */ pathToArr; },
-/* harmony export */   set: function() { return /* binding */ set; }
-/* harmony export */ });
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-/**
- * Detects if the given value is an object
- *
- * @param {*} val - a variable to check
- *
- */
-
-function isObject(val) {
-  return val != null && _typeof(val) === "object";
-}
-
-/**
- * Detects if the value is empty
- * returns true if the value is `undefined`, `null`, `false`, `''`, `0`, `[]` or `{}`
- *
- * @param {Any} val - value to check
- *
- * @returns {Boolean} - is the value empty
- */
-function isEmpty(val) {
-  if (!val) {
-    return true;
-  } else if (typeof val !== "function" && val.hasOwnProperty("length") && typeof val.length === "number") {
-    return !val.length;
-  } else if (_typeof(val) === "object") {
-    return !Object.keys(val).length;
-  }
-  return false;
-}
-
-/**
- * Creates an array by splitting given path to object's value
- *
- * @param {String} path - Path to value in object
- *
- * @returns {Array} Array of levels to object
- *
- * @example
- * // returns ['some', 'nested', '0', 'value']
- * pathToArr('some.nested[0].value')
- * pathToArr('some.nested.0.value')
- *
- */
-
-function pathToArr(path) {
-  return path.split(/(?:\]?\.|\[['"]?|['"]?\])/g).filter(function (part) {
-    return part !== "";
-  });
-}
-
-/**
- * Get a value by given path
- *
- * @param {Object} obj - object to search
- * @param {String} path - path to level
- * @param {*} defaultValue - default value if nothig found
- *
- * @returns {*} value of given path in object
- */
-
-function get(obj, path, defaultValue) {
-  if (!isObject(obj)) {
-    console.warn("get supports only objects, ", obj, " given");
-    return defaultValue;
-  }
-
-  // create a path array of levels from a key
-  path = pathToArr(path);
-  var current = obj,
-    value;
-  while (path.length && current) {
-    var key = path.shift();
-    if (path.length) {
-      current = current[key];
-    } else {
-      value = current[key];
-    }
-  }
-  return typeof value !== "undefined" ? value : defaultValue;
-}
-
-/**
- * Sets value in object by given path array
- * > mutates original objects!
- *
- * @param {Object} obj - flattened object
- * @param {Array} path - path levels
- * @param {*} value - value to set
- *
- * @returns {Object} - objects with setted values
- *
- */
-
-function set(obj, path, value) {
-  // create a path array of levels from a key
-  var _path = pathToArr(path);
-
-  // set current object level
-  var current = obj;
-  do {
-    // get next key
-    var _key = _path.shift();
-
-    // check if its a middle or last key
-    if (_path.length) {
-      // skip if a structure with such key exists
-      if (!current[_key]) {
-        // creaate an array if next key is numeric or an object otherwise
-        var nextStructure = isNaN(_path[0]) ? {} : [];
-        current[_key] = nextStructure;
+var initFlightRequestForm = function initFlightRequestForm() {
+  var formFlightRequestMaxWrapper = $(".form-flight-request"),
+    navFormTab = formFlightRequestMaxWrapper.find(".tab-menu").find("li a"),
+    formRequestTabs = formFlightRequestMaxWrapper.find(".form-request-tab"),
+    formRequestAirline = formFlightRequestMaxWrapper.find(".form-request-airline");
+  var InitFormRequestAirline = function InitFormRequestAirline() {
+    formRequestAirline.submit(function (e) {
+      e.preventDefault();
+      var self = $(this);
+      var hidden = self.find(".check-subscription");
+      var typeTrip = self.find(".type-trip");
+      var activeForm = formRequestTab.filter(".active").first();
+      var from = activeForm.find(".from").find('input[type=text]').first();
+      var to = activeForm.find(".to").find('input[type=text]').first();
+      var button = activeForm.find("button[type='submit']");
+      hidden.val("jfghfHdhsdgUjbn345Hd");
+      typeTrip.val(activeForm.data("tab-form"));
+      var error = false;
+      activeForm.find('.required-field').each(function () {
+        $(this).removeClass("error-field");
+      });
+      activeForm.find('.required-field').each(function () {
+        var el = $(this);
+        if (el.val() === '') {
+          el.addClass("error-field");
+          error = true;
+        }
+      });
+      if (activeForm.val().toLowerCase() === to.val().toLowerCase()) {
+        from.addClass("error-field");
+        to.addClass("error-field");
+        error = true;
       }
+      if (!error) {
+        button.prop("disabled", true);
+        button.html("Searching...");
+        self.submit();
+        return true;
+      }
+      return false;
+    });
+  };
+  // InitFormRequestAirline();
 
-      // go a level deeper for next iteration
-      current = current[_key];
-    } else {
-      // if this is a last key, set it`s value
-      current[_key] = value;
+  /* multi city */
+  $(function () {
+    var totalRowDestination = 3,
+      currentCountRowDestination = 1,
+      destinationBlockWrapper = formFlightRequestMaxWrapper.find(".destination-block-wrapper"),
+      addDestinationBlock = formFlightRequestMaxWrapper.find(".add-destination"),
+      addDestination = formFlightRequestMaxWrapper.find(".add-destination").find("a"),
+      destinationRowFirstClone = formFlightRequestMaxWrapper.find("[data-destination-id='1']").clone();
+    /* add class datepicker first flight */
+    formFlightRequestMaxWrapper.find("[data-destination-id='1']").find(".depart .form-group").removeClass("field-dep-date-multi-city").addClass("field-dep-date-multi-city-1").find(".date-multi-city").addClass("datepicker").attr("id", "dep-date-multi-city-1");
+    InitDatepicker();
+    var CheckCurrentCountRowDestination = function CheckCurrentCountRowDestination() {
+      var destinationRow = formFlightRequestMaxWrapper.find(".destination-row");
+      return destinationRow.length;
+    };
+    var IsAddFlightButton = function IsAddFlightButton() {
+      if (CheckCurrentCountRowDestination() >= totalRowDestination) {
+        addDestinationBlock.addClass("disabled");
+      } else if (CheckCurrentCountRowDestination() < totalRowDestination && addDestinationBlock.hasClass("disabled")) {
+        addDestinationBlock.removeClass("disabled");
+      }
+    };
+    /* sort destination id */
+    var SortDestinationRowId = function SortDestinationRowId() {
+      var destinationRows = formFlightRequestMaxWrapper.find(".destination-row");
+      destinationRows.each(function () {
+        $(this).attr("data-destination-id", $(this).index() + 1).find(".depart .form-group").removeClass("field-dep-date-multi-city").addClass("field-dep-date-multi-city-" + $(this).index() + 1).find(".date-multi-city").attr("id", "dep-date-multi-city-" + $(this).index() + 1);
+      });
+    };
+    /* add flight */
+    var AddFlight = function AddFlight() {
+      addDestination.click(function () {
+        var destinationRowClone = destinationRowFirstClone.clone();
+        currentCountRowDestination = CheckCurrentCountRowDestination();
+        if (currentCountRowDestination < totalRowDestination) {
+          destinationRowClone.attr("data-destination-id", currentCountRowDestination + 1).appendTo(destinationBlockWrapper).find(".depart .form-group").removeClass("field-dep-date-multi-city").addClass("field-dep-date-multi-city-" + currentCountRowDestination + 1).find(".date-multi-city").addClass("datepicker").attr("id", "dep-date-multi-city-" + currentCountRowDestination + 1);
+          var newDepDateWrapper = $(".field-dep-date-multi-city-" + currentCountRowDestination + 1);
+          newDepDateWrapper.find(".date-multi-city").remove();
+          newDepDateWrapper.append($('<input/>', {
+            name: 'FlightRequestMax[dep_date][]',
+            type: 'text',
+            id: 'dep-date-multi-city-' + currentCountRowDestination + 1,
+            "class": 'date-multi-city border-radius-right datepicker required-field',
+            placeholder: 'Depart',
+            readonly: 'readonly'
+          }).datepicker({
+            minDate: 0,
+            dateFormat: "d M, y"
+          }));
+          RemoveFlight();
+          IsAddFlightButton();
+          AutocompleteAirport();
+        }
+        return false;
+      });
+    };
+    AddFlight();
+    /* remove flight */
+    var RemoveFlight = function RemoveFlight() {
+      var destinationRows = formFlightRequestMaxWrapper.find(".destination-row");
+      destinationRows.each(function () {
+        var self = $(this),
+          removeFlight = self.find(".remove-flight");
+        removeFlight.click(function () {
+          self.remove();
+          currentCountRowDestination = CheckCurrentCountRowDestination();
+          SortDestinationRowId();
+          IsAddFlightButton();
+        });
+      });
+    };
+    RemoveFlight();
+  });
+
+  /* autocomplete */
+  setTimeout(AutocompleteAirport);
+};
+var AutocompleteAirport = function AutocompleteAirport() {
+  var autocomplete = $(".form-flight-request").find(".autocomplete");
+  var autocomleteTest = function autocomleteTest() {
+    $(".form-flight-request .form-request-tab").each(function () {
+      var self = $(this),
+        fromAir = self.find(".field-from"),
+        toAir = self.find(".field-to"),
+        formRequestNotify = self.find('.form-request-notify');
+      if (typeof fromAir.val() !== "undefined" && typeof toAir.val() !== "undefined") {
+        if (fromAir.val().indexOf(' US,') !== -1 && toAir.val().indexOf(' US,') !== -1) {
+          formRequestNotify.addClass("open");
+        } else {
+          formRequestNotify.removeClass("open");
+        }
+      }
+    });
+  };
+  var autocompleteConfig = {
+    source: function source(request, response) {
+      $.ajax({
+        url: document.location.origin + "/request/search-airport",
+        dataType: "json",
+        type: "POST",
+        data: {
+          keyword: request.term
+        },
+        success: function success(data) {
+          var result = data.response;
+          var citiesByAirports = result.cities_by_airports;
+          var cities = result.cities;
+          var airports = result.airports;
+          var airportsByCities = result.airports_by_cities;
+          var citiesSearch = arrayUnique(cities.concat(citiesByAirports), 'city_code').sort(compare);
+          var airportsSearch = arrayUnique(airports.concat(airportsByCities), 'icao_code').sort(compare);
+          response($.map(airportsSearch, function (item) {
+            var city = item.city_code;
+            var result = '(' + (item.iata_code || item.icao_code) + ') ';
+            var dataCity = citiesSearch.find(function (c) {
+              return c.city_code == city;
+            });
+            if (dataCity) {
+              result += dataCity.name + ', ';
+            }
+            result += item.country_code + ', ' + item.name;
+            return {
+              city: dataCity === null || dataCity === void 0 ? void 0 : dataCity.name,
+              country: item.country_code,
+              code: item.iata_code || item.icao_code,
+              name: item.name,
+              value: result
+            };
+          }));
+        }
+      });
+    },
+    select: function select(event, ui) {
+      setTimeout(autocomleteTest);
+    },
+    minLength: 3
+  };
+  var renderItem = function renderItem(ul, item) {
+    return $("<li>").append("<div class=\"flex items-center\">\n                           <i class=\"text-lg icon-airplane bg-white p-2 rounded-xl\"></i>\n                            <div class=\"ml-4\">\n                                <div>\n                                   <span class=\"font-gilroy-semibold\">".concat(item.name, "</span> <span class=\"font-gilroy-light\">").concat(item.code, "</span>\n                                </div>\n                                <div>\n                                    <span class=\"text-xs\">").concat(item.city ? item.city + ',' : '', " ").concat(item.country, "</span>\n                                </div>\n                            </div>\n                         </div>")).appendTo(ul);
+  };
+  autocomplete.each(function () {
+    $(this).autocomplete(autocompleteConfig);
+    $(this).autocomplete("instance")._renderItem = renderItem;
+  });
+  function compare(a, b) {
+    if (a.popularity < b.popularity) {
+      return 1;
     }
-  } while (_path.length);
-  return obj;
-}
-
-/**
- * Applies a function to every nested object in given object
- * and passes value, key and object itself
- *
- * @param  {Array, Object}   obj - given object
- * @param  {Function}        fn  - function to apply
- *
- * @return {Array, Object}   mutated object
- */
-
-function forEach(obj, fn) {
-  if (!isObject(obj)) return;
-  var keys = Object.keys(obj);
-  for (var i = 0; i < keys.length; i++) {
-    var key = keys[i];
-    var val = obj[key];
-    if (isObject(val)) {
-      forEach(val, fn);
-    } else {
-      fn.call(null, obj[key], key, obj);
+    if (a.popularity > b.popularity) {
+      return -1;
     }
+    return 0;
   }
-  return obj;
-}
+  function arrayUnique(array, prop) {
+    var a = array.concat();
+    for (var i = 0; i < a.length; ++i) {
+      if (typeof a[i][prop] === 'undefined') {
+        continue;
+      }
+      for (var j = i + 1; j < a.length; ++j) {
+        if (typeof a[j][prop] === 'undefined') {
+          continue;
+        }
+        if (a[i][prop] === a[j][prop]) {
+          a.splice(j--, 1);
+        }
+      }
+    }
+    return a;
+  }
+};
 
 /***/ }),
 
@@ -24822,1494 +24376,6 @@ __webpack_require__.r(__webpack_exports__);
 }));
 var tomSelect=function(el,opts){return new TomSelect(el,opts);} 
 //# sourceMappingURL=tom-select.complete.js.map
-
-
-/***/ }),
-
-/***/ "./node_modules/vuex/dist/vuex.esm-bundler.js":
-/*!****************************************************!*\
-  !*** ./node_modules/vuex/dist/vuex.esm-bundler.js ***!
-  \****************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Store: function() { return /* binding */ Store; },
-/* harmony export */   createLogger: function() { return /* binding */ createLogger; },
-/* harmony export */   createNamespacedHelpers: function() { return /* binding */ createNamespacedHelpers; },
-/* harmony export */   createStore: function() { return /* binding */ createStore; },
-/* harmony export */   mapActions: function() { return /* binding */ mapActions; },
-/* harmony export */   mapGetters: function() { return /* binding */ mapGetters; },
-/* harmony export */   mapMutations: function() { return /* binding */ mapMutations; },
-/* harmony export */   mapState: function() { return /* binding */ mapState; },
-/* harmony export */   storeKey: function() { return /* binding */ storeKey; },
-/* harmony export */   useStore: function() { return /* binding */ useStore; }
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _vue_devtools_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/devtools-api */ "./node_modules/@vue/devtools-api/lib/esm/index.js");
-/*!
- * vuex v4.0.2
- * (c) 2021 Evan You
- * @license MIT
- */
-
-
-
-var storeKey = 'store';
-
-function useStore (key) {
-  if ( key === void 0 ) key = null;
-
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(key !== null ? key : storeKey)
-}
-
-/**
- * Get the first item that pass the test
- * by second argument function
- *
- * @param {Array} list
- * @param {Function} f
- * @return {*}
- */
-function find (list, f) {
-  return list.filter(f)[0]
-}
-
-/**
- * Deep copy the given object considering circular structure.
- * This function caches all nested objects and its copies.
- * If it detects circular structure, use cached copy to avoid infinite loop.
- *
- * @param {*} obj
- * @param {Array<Object>} cache
- * @return {*}
- */
-function deepCopy (obj, cache) {
-  if ( cache === void 0 ) cache = [];
-
-  // just return if obj is immutable value
-  if (obj === null || typeof obj !== 'object') {
-    return obj
-  }
-
-  // if obj is hit, it is in circular structure
-  var hit = find(cache, function (c) { return c.original === obj; });
-  if (hit) {
-    return hit.copy
-  }
-
-  var copy = Array.isArray(obj) ? [] : {};
-  // put the copy into cache at first
-  // because we want to refer it in recursive deepCopy
-  cache.push({
-    original: obj,
-    copy: copy
-  });
-
-  Object.keys(obj).forEach(function (key) {
-    copy[key] = deepCopy(obj[key], cache);
-  });
-
-  return copy
-}
-
-/**
- * forEach for object
- */
-function forEachValue (obj, fn) {
-  Object.keys(obj).forEach(function (key) { return fn(obj[key], key); });
-}
-
-function isObject (obj) {
-  return obj !== null && typeof obj === 'object'
-}
-
-function isPromise (val) {
-  return val && typeof val.then === 'function'
-}
-
-function assert (condition, msg) {
-  if (!condition) { throw new Error(("[vuex] " + msg)) }
-}
-
-function partial (fn, arg) {
-  return function () {
-    return fn(arg)
-  }
-}
-
-function genericSubscribe (fn, subs, options) {
-  if (subs.indexOf(fn) < 0) {
-    options && options.prepend
-      ? subs.unshift(fn)
-      : subs.push(fn);
-  }
-  return function () {
-    var i = subs.indexOf(fn);
-    if (i > -1) {
-      subs.splice(i, 1);
-    }
-  }
-}
-
-function resetStore (store, hot) {
-  store._actions = Object.create(null);
-  store._mutations = Object.create(null);
-  store._wrappedGetters = Object.create(null);
-  store._modulesNamespaceMap = Object.create(null);
-  var state = store.state;
-  // init all modules
-  installModule(store, state, [], store._modules.root, true);
-  // reset state
-  resetStoreState(store, state, hot);
-}
-
-function resetStoreState (store, state, hot) {
-  var oldState = store._state;
-
-  // bind store public getters
-  store.getters = {};
-  // reset local getters cache
-  store._makeLocalGettersCache = Object.create(null);
-  var wrappedGetters = store._wrappedGetters;
-  var computedObj = {};
-  forEachValue(wrappedGetters, function (fn, key) {
-    // use computed to leverage its lazy-caching mechanism
-    // direct inline function use will lead to closure preserving oldState.
-    // using partial to return function with only arguments preserved in closure environment.
-    computedObj[key] = partial(fn, store);
-    Object.defineProperty(store.getters, key, {
-      // TODO: use `computed` when it's possible. at the moment we can't due to
-      // https://github.com/vuejs/vuex/pull/1883
-      get: function () { return computedObj[key](); },
-      enumerable: true // for local getters
-    });
-  });
-
-  store._state = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
-    data: state
-  });
-
-  // enable strict mode for new state
-  if (store.strict) {
-    enableStrictMode(store);
-  }
-
-  if (oldState) {
-    if (hot) {
-      // dispatch changes in all subscribed watchers
-      // to force getter re-evaluation for hot reloading.
-      store._withCommit(function () {
-        oldState.data = null;
-      });
-    }
-  }
-}
-
-function installModule (store, rootState, path, module, hot) {
-  var isRoot = !path.length;
-  var namespace = store._modules.getNamespace(path);
-
-  // register in namespace map
-  if (module.namespaced) {
-    if (store._modulesNamespaceMap[namespace] && ("development" !== 'production')) {
-      console.error(("[vuex] duplicate namespace " + namespace + " for the namespaced module " + (path.join('/'))));
-    }
-    store._modulesNamespaceMap[namespace] = module;
-  }
-
-  // set state
-  if (!isRoot && !hot) {
-    var parentState = getNestedState(rootState, path.slice(0, -1));
-    var moduleName = path[path.length - 1];
-    store._withCommit(function () {
-      if ((true)) {
-        if (moduleName in parentState) {
-          console.warn(
-            ("[vuex] state field \"" + moduleName + "\" was overridden by a module with the same name at \"" + (path.join('.')) + "\"")
-          );
-        }
-      }
-      parentState[moduleName] = module.state;
-    });
-  }
-
-  var local = module.context = makeLocalContext(store, namespace, path);
-
-  module.forEachMutation(function (mutation, key) {
-    var namespacedType = namespace + key;
-    registerMutation(store, namespacedType, mutation, local);
-  });
-
-  module.forEachAction(function (action, key) {
-    var type = action.root ? key : namespace + key;
-    var handler = action.handler || action;
-    registerAction(store, type, handler, local);
-  });
-
-  module.forEachGetter(function (getter, key) {
-    var namespacedType = namespace + key;
-    registerGetter(store, namespacedType, getter, local);
-  });
-
-  module.forEachChild(function (child, key) {
-    installModule(store, rootState, path.concat(key), child, hot);
-  });
-}
-
-/**
- * make localized dispatch, commit, getters and state
- * if there is no namespace, just use root ones
- */
-function makeLocalContext (store, namespace, path) {
-  var noNamespace = namespace === '';
-
-  var local = {
-    dispatch: noNamespace ? store.dispatch : function (_type, _payload, _options) {
-      var args = unifyObjectStyle(_type, _payload, _options);
-      var payload = args.payload;
-      var options = args.options;
-      var type = args.type;
-
-      if (!options || !options.root) {
-        type = namespace + type;
-        if (( true) && !store._actions[type]) {
-          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
-          return
-        }
-      }
-
-      return store.dispatch(type, payload)
-    },
-
-    commit: noNamespace ? store.commit : function (_type, _payload, _options) {
-      var args = unifyObjectStyle(_type, _payload, _options);
-      var payload = args.payload;
-      var options = args.options;
-      var type = args.type;
-
-      if (!options || !options.root) {
-        type = namespace + type;
-        if (( true) && !store._mutations[type]) {
-          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
-          return
-        }
-      }
-
-      store.commit(type, payload, options);
-    }
-  };
-
-  // getters and state object must be gotten lazily
-  // because they will be changed by state update
-  Object.defineProperties(local, {
-    getters: {
-      get: noNamespace
-        ? function () { return store.getters; }
-        : function () { return makeLocalGetters(store, namespace); }
-    },
-    state: {
-      get: function () { return getNestedState(store.state, path); }
-    }
-  });
-
-  return local
-}
-
-function makeLocalGetters (store, namespace) {
-  if (!store._makeLocalGettersCache[namespace]) {
-    var gettersProxy = {};
-    var splitPos = namespace.length;
-    Object.keys(store.getters).forEach(function (type) {
-      // skip if the target getter is not match this namespace
-      if (type.slice(0, splitPos) !== namespace) { return }
-
-      // extract local getter type
-      var localType = type.slice(splitPos);
-
-      // Add a port to the getters proxy.
-      // Define as getter property because
-      // we do not want to evaluate the getters in this time.
-      Object.defineProperty(gettersProxy, localType, {
-        get: function () { return store.getters[type]; },
-        enumerable: true
-      });
-    });
-    store._makeLocalGettersCache[namespace] = gettersProxy;
-  }
-
-  return store._makeLocalGettersCache[namespace]
-}
-
-function registerMutation (store, type, handler, local) {
-  var entry = store._mutations[type] || (store._mutations[type] = []);
-  entry.push(function wrappedMutationHandler (payload) {
-    handler.call(store, local.state, payload);
-  });
-}
-
-function registerAction (store, type, handler, local) {
-  var entry = store._actions[type] || (store._actions[type] = []);
-  entry.push(function wrappedActionHandler (payload) {
-    var res = handler.call(store, {
-      dispatch: local.dispatch,
-      commit: local.commit,
-      getters: local.getters,
-      state: local.state,
-      rootGetters: store.getters,
-      rootState: store.state
-    }, payload);
-    if (!isPromise(res)) {
-      res = Promise.resolve(res);
-    }
-    if (store._devtoolHook) {
-      return res.catch(function (err) {
-        store._devtoolHook.emit('vuex:error', err);
-        throw err
-      })
-    } else {
-      return res
-    }
-  });
-}
-
-function registerGetter (store, type, rawGetter, local) {
-  if (store._wrappedGetters[type]) {
-    if ((true)) {
-      console.error(("[vuex] duplicate getter key: " + type));
-    }
-    return
-  }
-  store._wrappedGetters[type] = function wrappedGetter (store) {
-    return rawGetter(
-      local.state, // local state
-      local.getters, // local getters
-      store.state, // root state
-      store.getters // root getters
-    )
-  };
-}
-
-function enableStrictMode (store) {
-  (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () { return store._state.data; }, function () {
-    if ((true)) {
-      assert(store._committing, "do not mutate vuex store state outside mutation handlers.");
-    }
-  }, { deep: true, flush: 'sync' });
-}
-
-function getNestedState (state, path) {
-  return path.reduce(function (state, key) { return state[key]; }, state)
-}
-
-function unifyObjectStyle (type, payload, options) {
-  if (isObject(type) && type.type) {
-    options = payload;
-    payload = type;
-    type = type.type;
-  }
-
-  if ((true)) {
-    assert(typeof type === 'string', ("expects string as the type, but found " + (typeof type) + "."));
-  }
-
-  return { type: type, payload: payload, options: options }
-}
-
-var LABEL_VUEX_BINDINGS = 'vuex bindings';
-var MUTATIONS_LAYER_ID = 'vuex:mutations';
-var ACTIONS_LAYER_ID = 'vuex:actions';
-var INSPECTOR_ID = 'vuex';
-
-var actionId = 0;
-
-function addDevtools (app, store) {
-  (0,_vue_devtools_api__WEBPACK_IMPORTED_MODULE_1__.setupDevtoolsPlugin)(
-    {
-      id: 'org.vuejs.vuex',
-      app: app,
-      label: 'Vuex',
-      homepage: 'https://next.vuex.vuejs.org/',
-      logo: 'https://vuejs.org/images/icons/favicon-96x96.png',
-      packageName: 'vuex',
-      componentStateTypes: [LABEL_VUEX_BINDINGS]
-    },
-    function (api) {
-      api.addTimelineLayer({
-        id: MUTATIONS_LAYER_ID,
-        label: 'Vuex Mutations',
-        color: COLOR_LIME_500
-      });
-
-      api.addTimelineLayer({
-        id: ACTIONS_LAYER_ID,
-        label: 'Vuex Actions',
-        color: COLOR_LIME_500
-      });
-
-      api.addInspector({
-        id: INSPECTOR_ID,
-        label: 'Vuex',
-        icon: 'storage',
-        treeFilterPlaceholder: 'Filter stores...'
-      });
-
-      api.on.getInspectorTree(function (payload) {
-        if (payload.app === app && payload.inspectorId === INSPECTOR_ID) {
-          if (payload.filter) {
-            var nodes = [];
-            flattenStoreForInspectorTree(nodes, store._modules.root, payload.filter, '');
-            payload.rootNodes = nodes;
-          } else {
-            payload.rootNodes = [
-              formatStoreForInspectorTree(store._modules.root, '')
-            ];
-          }
-        }
-      });
-
-      api.on.getInspectorState(function (payload) {
-        if (payload.app === app && payload.inspectorId === INSPECTOR_ID) {
-          var modulePath = payload.nodeId;
-          makeLocalGetters(store, modulePath);
-          payload.state = formatStoreForInspectorState(
-            getStoreModule(store._modules, modulePath),
-            modulePath === 'root' ? store.getters : store._makeLocalGettersCache,
-            modulePath
-          );
-        }
-      });
-
-      api.on.editInspectorState(function (payload) {
-        if (payload.app === app && payload.inspectorId === INSPECTOR_ID) {
-          var modulePath = payload.nodeId;
-          var path = payload.path;
-          if (modulePath !== 'root') {
-            path = modulePath.split('/').filter(Boolean).concat( path);
-          }
-          store._withCommit(function () {
-            payload.set(store._state.data, path, payload.state.value);
-          });
-        }
-      });
-
-      store.subscribe(function (mutation, state) {
-        var data = {};
-
-        if (mutation.payload) {
-          data.payload = mutation.payload;
-        }
-
-        data.state = state;
-
-        api.notifyComponentUpdate();
-        api.sendInspectorTree(INSPECTOR_ID);
-        api.sendInspectorState(INSPECTOR_ID);
-
-        api.addTimelineEvent({
-          layerId: MUTATIONS_LAYER_ID,
-          event: {
-            time: Date.now(),
-            title: mutation.type,
-            data: data
-          }
-        });
-      });
-
-      store.subscribeAction({
-        before: function (action, state) {
-          var data = {};
-          if (action.payload) {
-            data.payload = action.payload;
-          }
-          action._id = actionId++;
-          action._time = Date.now();
-          data.state = state;
-
-          api.addTimelineEvent({
-            layerId: ACTIONS_LAYER_ID,
-            event: {
-              time: action._time,
-              title: action.type,
-              groupId: action._id,
-              subtitle: 'start',
-              data: data
-            }
-          });
-        },
-        after: function (action, state) {
-          var data = {};
-          var duration = Date.now() - action._time;
-          data.duration = {
-            _custom: {
-              type: 'duration',
-              display: (duration + "ms"),
-              tooltip: 'Action duration',
-              value: duration
-            }
-          };
-          if (action.payload) {
-            data.payload = action.payload;
-          }
-          data.state = state;
-
-          api.addTimelineEvent({
-            layerId: ACTIONS_LAYER_ID,
-            event: {
-              time: Date.now(),
-              title: action.type,
-              groupId: action._id,
-              subtitle: 'end',
-              data: data
-            }
-          });
-        }
-      });
-    }
-  );
-}
-
-// extracted from tailwind palette
-var COLOR_LIME_500 = 0x84cc16;
-var COLOR_DARK = 0x666666;
-var COLOR_WHITE = 0xffffff;
-
-var TAG_NAMESPACED = {
-  label: 'namespaced',
-  textColor: COLOR_WHITE,
-  backgroundColor: COLOR_DARK
-};
-
-/**
- * @param {string} path
- */
-function extractNameFromPath (path) {
-  return path && path !== 'root' ? path.split('/').slice(-2, -1)[0] : 'Root'
-}
-
-/**
- * @param {*} module
- * @return {import('@vue/devtools-api').CustomInspectorNode}
- */
-function formatStoreForInspectorTree (module, path) {
-  return {
-    id: path || 'root',
-    // all modules end with a `/`, we want the last segment only
-    // cart/ -> cart
-    // nested/cart/ -> cart
-    label: extractNameFromPath(path),
-    tags: module.namespaced ? [TAG_NAMESPACED] : [],
-    children: Object.keys(module._children).map(function (moduleName) { return formatStoreForInspectorTree(
-        module._children[moduleName],
-        path + moduleName + '/'
-      ); }
-    )
-  }
-}
-
-/**
- * @param {import('@vue/devtools-api').CustomInspectorNode[]} result
- * @param {*} module
- * @param {string} filter
- * @param {string} path
- */
-function flattenStoreForInspectorTree (result, module, filter, path) {
-  if (path.includes(filter)) {
-    result.push({
-      id: path || 'root',
-      label: path.endsWith('/') ? path.slice(0, path.length - 1) : path || 'Root',
-      tags: module.namespaced ? [TAG_NAMESPACED] : []
-    });
-  }
-  Object.keys(module._children).forEach(function (moduleName) {
-    flattenStoreForInspectorTree(result, module._children[moduleName], filter, path + moduleName + '/');
-  });
-}
-
-/**
- * @param {*} module
- * @return {import('@vue/devtools-api').CustomInspectorState}
- */
-function formatStoreForInspectorState (module, getters, path) {
-  getters = path === 'root' ? getters : getters[path];
-  var gettersKeys = Object.keys(getters);
-  var storeState = {
-    state: Object.keys(module.state).map(function (key) { return ({
-      key: key,
-      editable: true,
-      value: module.state[key]
-    }); })
-  };
-
-  if (gettersKeys.length) {
-    var tree = transformPathsToObjectTree(getters);
-    storeState.getters = Object.keys(tree).map(function (key) { return ({
-      key: key.endsWith('/') ? extractNameFromPath(key) : key,
-      editable: false,
-      value: canThrow(function () { return tree[key]; })
-    }); });
-  }
-
-  return storeState
-}
-
-function transformPathsToObjectTree (getters) {
-  var result = {};
-  Object.keys(getters).forEach(function (key) {
-    var path = key.split('/');
-    if (path.length > 1) {
-      var target = result;
-      var leafKey = path.pop();
-      path.forEach(function (p) {
-        if (!target[p]) {
-          target[p] = {
-            _custom: {
-              value: {},
-              display: p,
-              tooltip: 'Module',
-              abstract: true
-            }
-          };
-        }
-        target = target[p]._custom.value;
-      });
-      target[leafKey] = canThrow(function () { return getters[key]; });
-    } else {
-      result[key] = canThrow(function () { return getters[key]; });
-    }
-  });
-  return result
-}
-
-function getStoreModule (moduleMap, path) {
-  var names = path.split('/').filter(function (n) { return n; });
-  return names.reduce(
-    function (module, moduleName, i) {
-      var child = module[moduleName];
-      if (!child) {
-        throw new Error(("Missing module \"" + moduleName + "\" for path \"" + path + "\"."))
-      }
-      return i === names.length - 1 ? child : child._children
-    },
-    path === 'root' ? moduleMap : moduleMap.root._children
-  )
-}
-
-function canThrow (cb) {
-  try {
-    return cb()
-  } catch (e) {
-    return e
-  }
-}
-
-// Base data struct for store's module, package with some attribute and method
-var Module = function Module (rawModule, runtime) {
-  this.runtime = runtime;
-  // Store some children item
-  this._children = Object.create(null);
-  // Store the origin module object which passed by programmer
-  this._rawModule = rawModule;
-  var rawState = rawModule.state;
-
-  // Store the origin module's state
-  this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
-};
-
-var prototypeAccessors$1 = { namespaced: { configurable: true } };
-
-prototypeAccessors$1.namespaced.get = function () {
-  return !!this._rawModule.namespaced
-};
-
-Module.prototype.addChild = function addChild (key, module) {
-  this._children[key] = module;
-};
-
-Module.prototype.removeChild = function removeChild (key) {
-  delete this._children[key];
-};
-
-Module.prototype.getChild = function getChild (key) {
-  return this._children[key]
-};
-
-Module.prototype.hasChild = function hasChild (key) {
-  return key in this._children
-};
-
-Module.prototype.update = function update (rawModule) {
-  this._rawModule.namespaced = rawModule.namespaced;
-  if (rawModule.actions) {
-    this._rawModule.actions = rawModule.actions;
-  }
-  if (rawModule.mutations) {
-    this._rawModule.mutations = rawModule.mutations;
-  }
-  if (rawModule.getters) {
-    this._rawModule.getters = rawModule.getters;
-  }
-};
-
-Module.prototype.forEachChild = function forEachChild (fn) {
-  forEachValue(this._children, fn);
-};
-
-Module.prototype.forEachGetter = function forEachGetter (fn) {
-  if (this._rawModule.getters) {
-    forEachValue(this._rawModule.getters, fn);
-  }
-};
-
-Module.prototype.forEachAction = function forEachAction (fn) {
-  if (this._rawModule.actions) {
-    forEachValue(this._rawModule.actions, fn);
-  }
-};
-
-Module.prototype.forEachMutation = function forEachMutation (fn) {
-  if (this._rawModule.mutations) {
-    forEachValue(this._rawModule.mutations, fn);
-  }
-};
-
-Object.defineProperties( Module.prototype, prototypeAccessors$1 );
-
-var ModuleCollection = function ModuleCollection (rawRootModule) {
-  // register root module (Vuex.Store options)
-  this.register([], rawRootModule, false);
-};
-
-ModuleCollection.prototype.get = function get (path) {
-  return path.reduce(function (module, key) {
-    return module.getChild(key)
-  }, this.root)
-};
-
-ModuleCollection.prototype.getNamespace = function getNamespace (path) {
-  var module = this.root;
-  return path.reduce(function (namespace, key) {
-    module = module.getChild(key);
-    return namespace + (module.namespaced ? key + '/' : '')
-  }, '')
-};
-
-ModuleCollection.prototype.update = function update$1 (rawRootModule) {
-  update([], this.root, rawRootModule);
-};
-
-ModuleCollection.prototype.register = function register (path, rawModule, runtime) {
-    var this$1$1 = this;
-    if ( runtime === void 0 ) runtime = true;
-
-  if ((true)) {
-    assertRawModule(path, rawModule);
-  }
-
-  var newModule = new Module(rawModule, runtime);
-  if (path.length === 0) {
-    this.root = newModule;
-  } else {
-    var parent = this.get(path.slice(0, -1));
-    parent.addChild(path[path.length - 1], newModule);
-  }
-
-  // register nested modules
-  if (rawModule.modules) {
-    forEachValue(rawModule.modules, function (rawChildModule, key) {
-      this$1$1.register(path.concat(key), rawChildModule, runtime);
-    });
-  }
-};
-
-ModuleCollection.prototype.unregister = function unregister (path) {
-  var parent = this.get(path.slice(0, -1));
-  var key = path[path.length - 1];
-  var child = parent.getChild(key);
-
-  if (!child) {
-    if ((true)) {
-      console.warn(
-        "[vuex] trying to unregister module '" + key + "', which is " +
-        "not registered"
-      );
-    }
-    return
-  }
-
-  if (!child.runtime) {
-    return
-  }
-
-  parent.removeChild(key);
-};
-
-ModuleCollection.prototype.isRegistered = function isRegistered (path) {
-  var parent = this.get(path.slice(0, -1));
-  var key = path[path.length - 1];
-
-  if (parent) {
-    return parent.hasChild(key)
-  }
-
-  return false
-};
-
-function update (path, targetModule, newModule) {
-  if ((true)) {
-    assertRawModule(path, newModule);
-  }
-
-  // update target module
-  targetModule.update(newModule);
-
-  // update nested modules
-  if (newModule.modules) {
-    for (var key in newModule.modules) {
-      if (!targetModule.getChild(key)) {
-        if ((true)) {
-          console.warn(
-            "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
-            'manual reload is needed'
-          );
-        }
-        return
-      }
-      update(
-        path.concat(key),
-        targetModule.getChild(key),
-        newModule.modules[key]
-      );
-    }
-  }
-}
-
-var functionAssert = {
-  assert: function (value) { return typeof value === 'function'; },
-  expected: 'function'
-};
-
-var objectAssert = {
-  assert: function (value) { return typeof value === 'function' ||
-    (typeof value === 'object' && typeof value.handler === 'function'); },
-  expected: 'function or object with "handler" function'
-};
-
-var assertTypes = {
-  getters: functionAssert,
-  mutations: functionAssert,
-  actions: objectAssert
-};
-
-function assertRawModule (path, rawModule) {
-  Object.keys(assertTypes).forEach(function (key) {
-    if (!rawModule[key]) { return }
-
-    var assertOptions = assertTypes[key];
-
-    forEachValue(rawModule[key], function (value, type) {
-      assert(
-        assertOptions.assert(value),
-        makeAssertionMessage(path, key, type, value, assertOptions.expected)
-      );
-    });
-  });
-}
-
-function makeAssertionMessage (path, key, type, value, expected) {
-  var buf = key + " should be " + expected + " but \"" + key + "." + type + "\"";
-  if (path.length > 0) {
-    buf += " in module \"" + (path.join('.')) + "\"";
-  }
-  buf += " is " + (JSON.stringify(value)) + ".";
-  return buf
-}
-
-function createStore (options) {
-  return new Store(options)
-}
-
-var Store = function Store (options) {
-  var this$1$1 = this;
-  if ( options === void 0 ) options = {};
-
-  if ((true)) {
-    assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
-    assert(this instanceof Store, "store must be called with the new operator.");
-  }
-
-  var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
-  var strict = options.strict; if ( strict === void 0 ) strict = false;
-  var devtools = options.devtools;
-
-  // store internal state
-  this._committing = false;
-  this._actions = Object.create(null);
-  this._actionSubscribers = [];
-  this._mutations = Object.create(null);
-  this._wrappedGetters = Object.create(null);
-  this._modules = new ModuleCollection(options);
-  this._modulesNamespaceMap = Object.create(null);
-  this._subscribers = [];
-  this._makeLocalGettersCache = Object.create(null);
-  this._devtools = devtools;
-
-  // bind commit and dispatch to self
-  var store = this;
-  var ref = this;
-  var dispatch = ref.dispatch;
-  var commit = ref.commit;
-  this.dispatch = function boundDispatch (type, payload) {
-    return dispatch.call(store, type, payload)
-  };
-  this.commit = function boundCommit (type, payload, options) {
-    return commit.call(store, type, payload, options)
-  };
-
-  // strict mode
-  this.strict = strict;
-
-  var state = this._modules.root.state;
-
-  // init root module.
-  // this also recursively registers all sub-modules
-  // and collects all module getters inside this._wrappedGetters
-  installModule(this, state, [], this._modules.root);
-
-  // initialize the store state, which is responsible for the reactivity
-  // (also registers _wrappedGetters as computed properties)
-  resetStoreState(this, state);
-
-  // apply plugins
-  plugins.forEach(function (plugin) { return plugin(this$1$1); });
-};
-
-var prototypeAccessors = { state: { configurable: true } };
-
-Store.prototype.install = function install (app, injectKey) {
-  app.provide(injectKey || storeKey, this);
-  app.config.globalProperties.$store = this;
-
-  var useDevtools = this._devtools !== undefined
-    ? this._devtools
-    : ( true) || 0;
-
-  if (useDevtools) {
-    addDevtools(app, this);
-  }
-};
-
-prototypeAccessors.state.get = function () {
-  return this._state.data
-};
-
-prototypeAccessors.state.set = function (v) {
-  if ((true)) {
-    assert(false, "use store.replaceState() to explicit replace store state.");
-  }
-};
-
-Store.prototype.commit = function commit (_type, _payload, _options) {
-    var this$1$1 = this;
-
-  // check object-style commit
-  var ref = unifyObjectStyle(_type, _payload, _options);
-    var type = ref.type;
-    var payload = ref.payload;
-    var options = ref.options;
-
-  var mutation = { type: type, payload: payload };
-  var entry = this._mutations[type];
-  if (!entry) {
-    if ((true)) {
-      console.error(("[vuex] unknown mutation type: " + type));
-    }
-    return
-  }
-  this._withCommit(function () {
-    entry.forEach(function commitIterator (handler) {
-      handler(payload);
-    });
-  });
-
-  this._subscribers
-    .slice() // shallow copy to prevent iterator invalidation if subscriber synchronously calls unsubscribe
-    .forEach(function (sub) { return sub(mutation, this$1$1.state); });
-
-  if (
-    ( true) &&
-    options && options.silent
-  ) {
-    console.warn(
-      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
-      'Use the filter functionality in the vue-devtools'
-    );
-  }
-};
-
-Store.prototype.dispatch = function dispatch (_type, _payload) {
-    var this$1$1 = this;
-
-  // check object-style dispatch
-  var ref = unifyObjectStyle(_type, _payload);
-    var type = ref.type;
-    var payload = ref.payload;
-
-  var action = { type: type, payload: payload };
-  var entry = this._actions[type];
-  if (!entry) {
-    if ((true)) {
-      console.error(("[vuex] unknown action type: " + type));
-    }
-    return
-  }
-
-  try {
-    this._actionSubscribers
-      .slice() // shallow copy to prevent iterator invalidation if subscriber synchronously calls unsubscribe
-      .filter(function (sub) { return sub.before; })
-      .forEach(function (sub) { return sub.before(action, this$1$1.state); });
-  } catch (e) {
-    if ((true)) {
-      console.warn("[vuex] error in before action subscribers: ");
-      console.error(e);
-    }
-  }
-
-  var result = entry.length > 1
-    ? Promise.all(entry.map(function (handler) { return handler(payload); }))
-    : entry[0](payload);
-
-  return new Promise(function (resolve, reject) {
-    result.then(function (res) {
-      try {
-        this$1$1._actionSubscribers
-          .filter(function (sub) { return sub.after; })
-          .forEach(function (sub) { return sub.after(action, this$1$1.state); });
-      } catch (e) {
-        if ((true)) {
-          console.warn("[vuex] error in after action subscribers: ");
-          console.error(e);
-        }
-      }
-      resolve(res);
-    }, function (error) {
-      try {
-        this$1$1._actionSubscribers
-          .filter(function (sub) { return sub.error; })
-          .forEach(function (sub) { return sub.error(action, this$1$1.state, error); });
-      } catch (e) {
-        if ((true)) {
-          console.warn("[vuex] error in error action subscribers: ");
-          console.error(e);
-        }
-      }
-      reject(error);
-    });
-  })
-};
-
-Store.prototype.subscribe = function subscribe (fn, options) {
-  return genericSubscribe(fn, this._subscribers, options)
-};
-
-Store.prototype.subscribeAction = function subscribeAction (fn, options) {
-  var subs = typeof fn === 'function' ? { before: fn } : fn;
-  return genericSubscribe(subs, this._actionSubscribers, options)
-};
-
-Store.prototype.watch = function watch$1 (getter, cb, options) {
-    var this$1$1 = this;
-
-  if ((true)) {
-    assert(typeof getter === 'function', "store.watch only accepts a function.");
-  }
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(function () { return getter(this$1$1.state, this$1$1.getters); }, cb, Object.assign({}, options))
-};
-
-Store.prototype.replaceState = function replaceState (state) {
-    var this$1$1 = this;
-
-  this._withCommit(function () {
-    this$1$1._state.data = state;
-  });
-};
-
-Store.prototype.registerModule = function registerModule (path, rawModule, options) {
-    if ( options === void 0 ) options = {};
-
-  if (typeof path === 'string') { path = [path]; }
-
-  if ((true)) {
-    assert(Array.isArray(path), "module path must be a string or an Array.");
-    assert(path.length > 0, 'cannot register the root module by using registerModule.');
-  }
-
-  this._modules.register(path, rawModule);
-  installModule(this, this.state, path, this._modules.get(path), options.preserveState);
-  // reset store to update getters...
-  resetStoreState(this, this.state);
-};
-
-Store.prototype.unregisterModule = function unregisterModule (path) {
-    var this$1$1 = this;
-
-  if (typeof path === 'string') { path = [path]; }
-
-  if ((true)) {
-    assert(Array.isArray(path), "module path must be a string or an Array.");
-  }
-
-  this._modules.unregister(path);
-  this._withCommit(function () {
-    var parentState = getNestedState(this$1$1.state, path.slice(0, -1));
-    delete parentState[path[path.length - 1]];
-  });
-  resetStore(this);
-};
-
-Store.prototype.hasModule = function hasModule (path) {
-  if (typeof path === 'string') { path = [path]; }
-
-  if ((true)) {
-    assert(Array.isArray(path), "module path must be a string or an Array.");
-  }
-
-  return this._modules.isRegistered(path)
-};
-
-Store.prototype.hotUpdate = function hotUpdate (newOptions) {
-  this._modules.update(newOptions);
-  resetStore(this, true);
-};
-
-Store.prototype._withCommit = function _withCommit (fn) {
-  var committing = this._committing;
-  this._committing = true;
-  fn();
-  this._committing = committing;
-};
-
-Object.defineProperties( Store.prototype, prototypeAccessors );
-
-/**
- * Reduce the code which written in Vue.js for getting the state.
- * @param {String} [namespace] - Module's namespace
- * @param {Object|Array} states # Object's item can be a function which accept state and getters for param, you can do something for state and getters in it.
- * @param {Object}
- */
-var mapState = normalizeNamespace(function (namespace, states) {
-  var res = {};
-  if (( true) && !isValidMap(states)) {
-    console.error('[vuex] mapState: mapper parameter must be either an Array or an Object');
-  }
-  normalizeMap(states).forEach(function (ref) {
-    var key = ref.key;
-    var val = ref.val;
-
-    res[key] = function mappedState () {
-      var state = this.$store.state;
-      var getters = this.$store.getters;
-      if (namespace) {
-        var module = getModuleByNamespace(this.$store, 'mapState', namespace);
-        if (!module) {
-          return
-        }
-        state = module.context.state;
-        getters = module.context.getters;
-      }
-      return typeof val === 'function'
-        ? val.call(this, state, getters)
-        : state[val]
-    };
-    // mark vuex getter for devtools
-    res[key].vuex = true;
-  });
-  return res
-});
-
-/**
- * Reduce the code which written in Vue.js for committing the mutation
- * @param {String} [namespace] - Module's namespace
- * @param {Object|Array} mutations # Object's item can be a function which accept `commit` function as the first param, it can accept another params. You can commit mutation and do any other things in this function. specially, You need to pass anthor params from the mapped function.
- * @return {Object}
- */
-var mapMutations = normalizeNamespace(function (namespace, mutations) {
-  var res = {};
-  if (( true) && !isValidMap(mutations)) {
-    console.error('[vuex] mapMutations: mapper parameter must be either an Array or an Object');
-  }
-  normalizeMap(mutations).forEach(function (ref) {
-    var key = ref.key;
-    var val = ref.val;
-
-    res[key] = function mappedMutation () {
-      var args = [], len = arguments.length;
-      while ( len-- ) args[ len ] = arguments[ len ];
-
-      // Get the commit method from store
-      var commit = this.$store.commit;
-      if (namespace) {
-        var module = getModuleByNamespace(this.$store, 'mapMutations', namespace);
-        if (!module) {
-          return
-        }
-        commit = module.context.commit;
-      }
-      return typeof val === 'function'
-        ? val.apply(this, [commit].concat(args))
-        : commit.apply(this.$store, [val].concat(args))
-    };
-  });
-  return res
-});
-
-/**
- * Reduce the code which written in Vue.js for getting the getters
- * @param {String} [namespace] - Module's namespace
- * @param {Object|Array} getters
- * @return {Object}
- */
-var mapGetters = normalizeNamespace(function (namespace, getters) {
-  var res = {};
-  if (( true) && !isValidMap(getters)) {
-    console.error('[vuex] mapGetters: mapper parameter must be either an Array or an Object');
-  }
-  normalizeMap(getters).forEach(function (ref) {
-    var key = ref.key;
-    var val = ref.val;
-
-    // The namespace has been mutated by normalizeNamespace
-    val = namespace + val;
-    res[key] = function mappedGetter () {
-      if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
-        return
-      }
-      if (( true) && !(val in this.$store.getters)) {
-        console.error(("[vuex] unknown getter: " + val));
-        return
-      }
-      return this.$store.getters[val]
-    };
-    // mark vuex getter for devtools
-    res[key].vuex = true;
-  });
-  return res
-});
-
-/**
- * Reduce the code which written in Vue.js for dispatch the action
- * @param {String} [namespace] - Module's namespace
- * @param {Object|Array} actions # Object's item can be a function which accept `dispatch` function as the first param, it can accept anthor params. You can dispatch action and do any other things in this function. specially, You need to pass anthor params from the mapped function.
- * @return {Object}
- */
-var mapActions = normalizeNamespace(function (namespace, actions) {
-  var res = {};
-  if (( true) && !isValidMap(actions)) {
-    console.error('[vuex] mapActions: mapper parameter must be either an Array or an Object');
-  }
-  normalizeMap(actions).forEach(function (ref) {
-    var key = ref.key;
-    var val = ref.val;
-
-    res[key] = function mappedAction () {
-      var args = [], len = arguments.length;
-      while ( len-- ) args[ len ] = arguments[ len ];
-
-      // get dispatch function from store
-      var dispatch = this.$store.dispatch;
-      if (namespace) {
-        var module = getModuleByNamespace(this.$store, 'mapActions', namespace);
-        if (!module) {
-          return
-        }
-        dispatch = module.context.dispatch;
-      }
-      return typeof val === 'function'
-        ? val.apply(this, [dispatch].concat(args))
-        : dispatch.apply(this.$store, [val].concat(args))
-    };
-  });
-  return res
-});
-
-/**
- * Rebinding namespace param for mapXXX function in special scoped, and return them by simple object
- * @param {String} namespace
- * @return {Object}
- */
-var createNamespacedHelpers = function (namespace) { return ({
-  mapState: mapState.bind(null, namespace),
-  mapGetters: mapGetters.bind(null, namespace),
-  mapMutations: mapMutations.bind(null, namespace),
-  mapActions: mapActions.bind(null, namespace)
-}); };
-
-/**
- * Normalize the map
- * normalizeMap([1, 2, 3]) => [ { key: 1, val: 1 }, { key: 2, val: 2 }, { key: 3, val: 3 } ]
- * normalizeMap({a: 1, b: 2, c: 3}) => [ { key: 'a', val: 1 }, { key: 'b', val: 2 }, { key: 'c', val: 3 } ]
- * @param {Array|Object} map
- * @return {Object}
- */
-function normalizeMap (map) {
-  if (!isValidMap(map)) {
-    return []
-  }
-  return Array.isArray(map)
-    ? map.map(function (key) { return ({ key: key, val: key }); })
-    : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
-}
-
-/**
- * Validate whether given map is valid or not
- * @param {*} map
- * @return {Boolean}
- */
-function isValidMap (map) {
-  return Array.isArray(map) || isObject(map)
-}
-
-/**
- * Return a function expect two param contains namespace and map. it will normalize the namespace and then the param's function will handle the new namespace and the map.
- * @param {Function} fn
- * @return {Function}
- */
-function normalizeNamespace (fn) {
-  return function (namespace, map) {
-    if (typeof namespace !== 'string') {
-      map = namespace;
-      namespace = '';
-    } else if (namespace.charAt(namespace.length - 1) !== '/') {
-      namespace += '/';
-    }
-    return fn(namespace, map)
-  }
-}
-
-/**
- * Search a special module from store by namespace. if module not exist, print error message.
- * @param {Object} store
- * @param {String} helper
- * @param {String} namespace
- * @return {Object}
- */
-function getModuleByNamespace (store, helper, namespace) {
-  var module = store._modulesNamespaceMap[namespace];
-  if (( true) && !module) {
-    console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
-  }
-  return module
-}
-
-// Credits: borrowed code from fcomb/redux-logger
-
-function createLogger (ref) {
-  if ( ref === void 0 ) ref = {};
-  var collapsed = ref.collapsed; if ( collapsed === void 0 ) collapsed = true;
-  var filter = ref.filter; if ( filter === void 0 ) filter = function (mutation, stateBefore, stateAfter) { return true; };
-  var transformer = ref.transformer; if ( transformer === void 0 ) transformer = function (state) { return state; };
-  var mutationTransformer = ref.mutationTransformer; if ( mutationTransformer === void 0 ) mutationTransformer = function (mut) { return mut; };
-  var actionFilter = ref.actionFilter; if ( actionFilter === void 0 ) actionFilter = function (action, state) { return true; };
-  var actionTransformer = ref.actionTransformer; if ( actionTransformer === void 0 ) actionTransformer = function (act) { return act; };
-  var logMutations = ref.logMutations; if ( logMutations === void 0 ) logMutations = true;
-  var logActions = ref.logActions; if ( logActions === void 0 ) logActions = true;
-  var logger = ref.logger; if ( logger === void 0 ) logger = console;
-
-  return function (store) {
-    var prevState = deepCopy(store.state);
-
-    if (typeof logger === 'undefined') {
-      return
-    }
-
-    if (logMutations) {
-      store.subscribe(function (mutation, state) {
-        var nextState = deepCopy(state);
-
-        if (filter(mutation, prevState, nextState)) {
-          var formattedTime = getFormattedTime();
-          var formattedMutation = mutationTransformer(mutation);
-          var message = "mutation " + (mutation.type) + formattedTime;
-
-          startMessage(logger, message, collapsed);
-          logger.log('%c prev state', 'color: #9E9E9E; font-weight: bold', transformer(prevState));
-          logger.log('%c mutation', 'color: #03A9F4; font-weight: bold', formattedMutation);
-          logger.log('%c next state', 'color: #4CAF50; font-weight: bold', transformer(nextState));
-          endMessage(logger);
-        }
-
-        prevState = nextState;
-      });
-    }
-
-    if (logActions) {
-      store.subscribeAction(function (action, state) {
-        if (actionFilter(action, state)) {
-          var formattedTime = getFormattedTime();
-          var formattedAction = actionTransformer(action);
-          var message = "action " + (action.type) + formattedTime;
-
-          startMessage(logger, message, collapsed);
-          logger.log('%c action', 'color: #03A9F4; font-weight: bold', formattedAction);
-          endMessage(logger);
-        }
-      });
-    }
-  }
-}
-
-function startMessage (logger, message, collapsed) {
-  var startMessage = collapsed
-    ? logger.groupCollapsed
-    : logger.group;
-
-  // render
-  try {
-    startMessage.call(logger, message);
-  } catch (e) {
-    logger.log(message);
-  }
-}
-
-function endMessage (logger) {
-  try {
-    logger.groupEnd();
-  } catch (e) {
-    logger.log('—— log end ——');
-  }
-}
-
-function getFormattedTime () {
-  var time = new Date();
-  return (" @ " + (pad(time.getHours(), 2)) + ":" + (pad(time.getMinutes(), 2)) + ":" + (pad(time.getSeconds(), 2)) + "." + (pad(time.getMilliseconds(), 3)))
-}
-
-function repeat (str, times) {
-  return (new Array(times + 1)).join(str)
-}
-
-function pad (num, maxLength) {
-  return repeat('0', maxLength - num.toString().length) + num
-}
-
-var index = {
-  version: '4.0.2',
-  Store: Store,
-  storeKey: storeKey,
-  createStore: createStore,
-  useStore: useStore,
-  mapState: mapState,
-  mapMutations: mapMutations,
-  mapGetters: mapGetters,
-  mapActions: mapActions,
-  createNamespacedHelpers: createNamespacedHelpers,
-  createLogger: createLogger
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (index);
-
 
 
 /***/ }),

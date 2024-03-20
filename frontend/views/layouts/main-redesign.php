@@ -30,7 +30,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</div>
 	</div>
 	<?= $this->render('@app/views/layouts/footer') ?>
-<!--	--><?php //= $this->render('@app/views/layouts/_support-chat') ?>
+	<?= $this->render('@app/views/layouts/_support-chat') ?>
 </div>
 <?= $this->render('@app/views/layouts/_scripts') ?>
 <?php $this->endBody() ?>

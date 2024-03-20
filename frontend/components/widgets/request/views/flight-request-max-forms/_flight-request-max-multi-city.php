@@ -3,15 +3,11 @@
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model \common\sys\models\request\FlightRequestMax */
 
+use app\components\AppConfig;
 use yii\helpers\Html;
 ?>
 
-<div class="form-request-tab tab-multi-city box-border mt-3" data-tab-form="tab-3">
-    <input type="hidden" name="check_subscription" class="check-subscription" value="">
-    <?= $form->field($model, 'type_trip')->hiddenInput([
-        'value' => \app\components\AppConfig::Type_Trip_Multi_City,
-        'id' => 'flightrequestmax_type_trip_multi_city',
-    ]) ?>
+<div class="form-request-tab tab-multi-city box-border mt-3" data-tab-form="<?= AppConfig::Type_Trip_Multi_City ?>" v-if="activeForm == <?= AppConfig::Type_Trip_Multi_City ?>">
 	<div class="split-input-group flex items-center">
 		<div class="field-row from grow relative">
 			<i class="input-prefix icon-airplan-fly text-gray bottom-4"></i>
@@ -38,7 +34,7 @@ use yii\helpers\Html;
 			<i class="input-prefix icon-calendar text-gray top-3 text-lg"></i>
 			<?= $form->field($model, 'dep_date[]')->textInput([
 					'placeholder' => 'Departure',
-					'class' => 'has-prefix has-suffix datepicker component-depdate bg-white',
+					'class' => 'has-prefix has-suffix datepicker component-depdate bg-white required-field',
 					'id' => 'dep-date-multi-city',
 			]) ?>
 			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>

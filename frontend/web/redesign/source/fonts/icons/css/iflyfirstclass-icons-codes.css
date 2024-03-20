@@ -13,3 +13,8 @@
 .icon-phone:before { content: '\e80b'; } /* '' */
 .icon-phone-ring:before { content: '\e80c'; } /* '' */
 .icon-calendar:before { content: '\e80d'; } /* '' */
+.icon-arrow-right:before { content: '\e80e'; } /* '' */
+.icon-person-fill:before { content: '\e80f'; } /* '' */
+.icon-location-fill:before { content: '\e810'; } /* '' */
+.icon-mail-fill:before { content: '\e811'; } /* '' */
+.icon-phone-fill:before { content: '\e812'; } /* '' */

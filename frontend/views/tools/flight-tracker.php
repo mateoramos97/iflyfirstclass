@@ -22,11 +22,14 @@ $before_date->modify('-1 day');
 $after_date = new DateTime();
 $after_date->modify('+1 day');
 ?>
+<div class="container mx-auto xl:px-12 px-4">
+	<?= $this->render('@app/views/layouts/_breadcrumbs') ?>
+</div>
 
-<div class="flight-tracker-title">
+<div class="container mx-auto xl:px-12 px-4 flight-tracker-title">
     <h1>Flight tracker</h1>
 </div>
-<div class="form-tracker">
+<div class="container mx-auto xl:px-12 px-4 form-tracker">
     <div class="form-request">
         <?php $form = ActiveForm::begin([
             'enableClientValidation' => false,
@@ -37,13 +40,13 @@ $after_date->modify('+1 day');
         ]) ?>
             <div class="row row-1">
                 <div class="component-wrapper">
-                    <input type="text" name="airline" class="component component-airline airline-autocomplete ui-autocomplete-input" autocomplete="off" placeholder="Airline">
+                    <input type="text" name="airline" class="component component-airline airline-autocomplete ui-autocomplete-input bg-white w-full" autocomplete="off" placeholder="Airline">
                 </div>
                 <div class="component-wrapper">
-                    <input type="text" name="flightNumber" class="component component-flightnum" placeholder="Flight Number">
+                    <input type="text" name="flightNumber" class="component component-flightnum bg-white" placeholder="Flight Number">
                 </div>
                 <div class="component-wrapper">
-                    <select name="departureDate" class="component component-depdate">
+                    <select name="departureDate" class="component component-depdate bg-white">
                         <option disabled="disabled">Departure Date</option>
                         <option value="<?php echo  $before_date->format('Y-m-d'); ?>">
                             <?php echo $before_date->format('F-j-Y'); ?>
@@ -63,10 +66,10 @@ $after_date->modify('+1 day');
             </div>
             <div class="row row-3">
                 <div class="component-wrapper">
-                    <input type="text" name="departure" class="component component-depairport airport-autocomplete ui-autocomplete-input" autocomplete="off" placeholder="Departure Airport (Optional)">
+                    <input type="text" name="departure" class="component component-depairport airport-autocomplete ui-autocomplete-input bg-white" autocomplete="off" placeholder="Departure Airport (Optional)">
                 </div>
                 <div class="component-wrapper">
-                    <input type="text" name="arrival" class="component component-arrairport airport-autocomplete ui-autocomplete-input" autocomplete="off" placeholder="Arrival Airport (Optional)">
+                    <input type="text" name="arrival" class="component component-arrairport airport-autocomplete ui-autocomplete-input bg-white" autocomplete="off" placeholder="Arrival Airport (Optional)">
                 </div>
             </div>
             <div class="row row-4">

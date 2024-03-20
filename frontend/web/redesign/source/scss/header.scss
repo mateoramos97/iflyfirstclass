@@ -56,7 +56,9 @@ header {
       display: block;
     }
   }
-
+  .current-page {
+    @apply text-gray-2;
+  }
 }
 
 .header-mobile-wrapper {
@@ -162,7 +164,7 @@ header {
     }
   }
 
-  @media screen and (max-width: $lg-screen) {
+  @media screen and (max-width: $xl-screen) {
     display: flex;
   }
 }

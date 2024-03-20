@@ -18,11 +18,13 @@ $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::base(true) . Yii::$
 $this->params['breadcrumbs'][] = 'Request Quote';
 
 ?>
-
-<div class="request-quote-title">
+<div class="container mx-auto xl:px-12 px-4 xl:mt-0 mt-24">
+	<?= $this->render('@app/views/layouts/_breadcrumbs') ?>
+</div>
+<div class="container mx-auto xl:px-12 px-4 request-quote-title">
     <h1>Request Quote</h1>
 </div>
-<div class="form-request-wrapper">
+<div class="container mx-auto xl:px-12 px-4 form-request-wrapper">
     <div class="form-request">
         <?= RequestQuoteForm::widget() ?>
     </div>

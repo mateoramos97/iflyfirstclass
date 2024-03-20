@@ -16,13 +16,16 @@ $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::base(true) . Yii::$
 $this->params['breadcrumbs'][] = 'Blog';
 
 ?>
-<div class="welcome-block-wrapper flex flex-align-center">
-    <div class="welcome-block-inner container-wrapper flex flex-column flex-align-start">
-        <h1>Blog</h1>
-        <div class="sub-title">The best travel news</div>
+
+<div class="welcome-block-wrapper bg-blue-white-gradient pb-12 xl:mt-0 mt-20">
+	<div class="flex items-center justify-center border-b-2 border-gray-light-3">
+		<?= $this->render('@app/views/layouts/_breadcrumbs') ?>
+	</div>
+    <div class="container mx-auto xl:px-12 px-4 mt-10">
+        <h1 class="xl:text-9xl lg:text-8xl text-5xl font-silk-serif-bold text-center drop-shadow-2xl head-shadow">Travel Blog</h1>
     </div>
 </div>
-<div class="page-content">
+<div class="page-content container mx-auto xl:px-12 px-4">
     <div class="page-content-inner border-box">
             <?php
                 echo ListView::widget([
@@ -39,9 +42,9 @@ $this->params['breadcrumbs'][] = 'Blog';
                         //'class' => 'item'
                     ],
                     'pager' => [
-                        'prevPageLabel' => 'Back',
-                        'nextPageLabel' => 'Next',
-                        'maxButtonCount' => 3
+                        'maxButtonCount' => 10,
+						'prevPageLabel' => '',
+						'nextPageLabel' => '',
                     ],
                 ]);
             ?>

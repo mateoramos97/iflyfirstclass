@@ -7,7 +7,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 ?>
 
-<div class="form-block-wrapper w-full px-16">
+<div class="form-block-wrapper w-full xl:px-16">
     <?php $form = ActiveForm::begin([
         'id' => 'request_corporate_accounts',
         'enableClientValidation' => true,
@@ -35,12 +35,6 @@ use yii\widgets\ActiveForm;
 						'class' => 'component component-cellphone has-prefix bg-white'
 				]) ?>
 			</div>
-<!--            --><?php //= $form->field($model, 'work_phone')->textInput(
-//                [
-//                    'class' => 'component component-workphone',
-//                    'placeholder' => 'Work Phone'
-//                ]
-//            ) ?>
 			<div class="field-row email-field grow relative">
 				<i class="input-prefix icon-mail text-gray top-4"></i>
 				<?= $form->field($model, 'email')->textInput([
@@ -48,7 +42,7 @@ use yii\widgets\ActiveForm;
 						'class' => 'component component-email has-prefix bg-white'
 				]) ?>
 			</div>
-			<?= Html::submitButton('Request a Quote', ['class' => 'submit btn btn-primary mt-6', 'name' => 'request-quote-button']) ?>
+			<?= Html::submitButton('Request a Quote', ['class' => 'submit btn btn-primary mt-6 xl:block hidden', 'name' => 'request-quote-button']) ?>
         </div>
 		<div class="grid grid-cols-1 gap-5">
 			<div class="form-group from">
@@ -89,12 +83,6 @@ use yii\widgets\ActiveForm;
 					<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 				</div>
 			</div>
-<!--            --><?php //= $form->field($model, 'fare')->textInput(
-//                [
-//                    'class' => 'component component-fare bg-white',
-//                    'placeholder' => 'Best Fare Quoted ($)'
-//                ]
-//            ) ?>
         </div>
 		<div class="grid grid-cols-1 gap-5">
 			<?= $form->field($model, 'message')->textarea(
@@ -106,6 +94,7 @@ use yii\widgets\ActiveForm;
 					]
 			) ?>
 		</div>
+		<?= Html::submitButton('Request a Quote', ['class' => 'submit btn btn-primary mt-6 xl:hidden block', 'name' => 'request-quote-button']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

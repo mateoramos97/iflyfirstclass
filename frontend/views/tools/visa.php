@@ -17,10 +17,13 @@ $this->params['breadcrumbs'][] = 'Visa';
 
 ?>
 
-<div class="visa-page-title container-wrapper">
+<div class="container mx-auto xl:px-12 px-4">
+	<?= $this->render('@app/views/layouts/_breadcrumbs') ?>
+</div>
+<div class="container mx-auto xl:px-12 px-4 visa-page-title container-wrapper">
     <h1>Apply for visa online</h1>
 </div>
-<div class="page-content-wrapper">
+<div class="container mx-auto xl:px-12 px-4 page-content-wrapper">
     <div id="columns" class="container-wrapper">
         <div id="content" class="column">
             <div class="columns">

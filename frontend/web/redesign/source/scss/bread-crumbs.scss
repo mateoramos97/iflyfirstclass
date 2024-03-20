@@ -1,6 +1,6 @@
 .bread-crumbs-wrapper {
   position: relative;
-  height: 55px;
+  height: 60px;
   background: transparent;
 
   .breadcrumb {
@@ -33,18 +33,49 @@
 
 				a, span {
 					color: $primary;
+				}
+				a {
 					font-weight: 600;
 				}
 			}
     }
 	}
 	
-	@media screen and (max-width: $lg-screen) {
+	@media screen and (max-width: $xl-screen) {
 		display: none;
 	}
 }
 
-.direction-city-page, .service-page, .hotels-page, .blog-page, .travel-tips-page, .about-page, .landing-page {
+.blog-page, .travel-tips-page {
+	.breadcrumb li {
+		a, span {
+			color: #697785;
+		}
+	}
+}
+
+.blog-article-page, .travel-tips-attactions-page {
+	.breadcrumb li {
+		a, span {
+			color: $primary;
+			font-weight: 600;
+		}
+		&.active {
+			a, span {
+				color: $gray;
+				font-weight: 400;
+			}
+		}
+	}
+}
+
+.landing-page {
+	.bread-crumbs-wrapper {
+		height: auto;
+	}
+}
+
+.direction-city-page, .service-page, .hotels-page, .landing-page {
 	.bread-crumbs-wrapper {
 		position: absolute;
 		z-index: 1;
@@ -79,7 +110,23 @@
 			display: flex;
 			align-items: center;
 			height: 100%;
-			border-bottom: 1px solid #999999;
+			border-bottom: 1px solid rgba(255,255,255, 0.1);
+			width: 100%;
+			justify-content: center;
+			li {
+				a, span {
+					color: $white;
+				}
+				&.active {
+					a, span {
+						color: $white;
+					}
+				}
+				&::after {
+					color: $white;
+				}
+			}
+
 		}
 	}
 }

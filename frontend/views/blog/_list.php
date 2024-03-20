@@ -29,9 +29,6 @@ $path_img_thumbs = Url::base() . '/public/images/thumbs/';
             <div class="summary">
                 <?= StringHelper::truncate($model['summary'], 225, '...') ?>
             </div>
-            <a href="<?= Url::to(['blog/index', 'alias' => $model['alias']]); ?>" class="action">
-                Read More
-            </a>
         </div>
     </div>
 </div>

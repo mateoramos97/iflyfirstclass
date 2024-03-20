@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use app\components\AppConfig;
 use app\modules\imagemanager\models\Image;
+use common\sys\core\blog\BlogArticleInfoService;
 use common\sys\core\seo\StaticPageInfoService;
 use common\sys\core\traveltips\TravelTipsAttactionsInfoService;
 use common\sys\repository\traveltips\models\TravelTips;
@@ -16,6 +17,14 @@ class TravelTipsController extends BaseController
 {
     private $travel_tips_info_repo;
     private $travel_tips_attactions_info_repo;
+    private $blog_info_service_repo;
+    private function get_blog_info_service_repo()
+    {
+        if($this->blog_info_service_repo != null)
+            return $this->blog_info_service_repo;
+        $this->blog_info_service_repo = new BlogArticleInfoService();
+        return $this->blog_info_service_repo;
+    }
     private function get_travel_tips_info_repo()
     {
         if($this->travel_tips_info_repo != null)
@@ -78,6 +87,7 @@ class TravelTipsController extends BaseController
             'images' => $images,
             'travel_tips_attactions' => $travel_tips_attactions,
             'random_travel_tips' => $random_travel_tips,
+            'blog_articles' => $this->get_blog_info_service_repo()->BlogListDataProvider(10)->getModels(),
         ]);
     }
 

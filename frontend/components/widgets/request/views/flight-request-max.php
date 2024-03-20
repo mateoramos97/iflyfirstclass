@@ -1,32 +1,38 @@
 <?php
+
+use app\components\AppConfig;
 use yii\widgets\ActiveForm;
 
 /* @var $model \common\sys\models\request\FlightRequestMax */
 /* @var $form yii\widgets\ActiveForm */
+/* @var array $trip_variants */
 ?>
 
-<?php $form = ActiveForm::begin([
-		'id' => 'flight_request_max_form',
-		'enableClientValidation' => true,
-		'action' => '/request/flight',
-		'fieldConfig' => [
-				'template' => "{input}",
-		],
-		'options' => [
+<div id="form-request" class="form-flight-request-max-wrapper form-flight-request border-box xl:bg-white xl:p-10 rounded-2xl" v-cloak>
+	<?php $form = ActiveForm::begin([
+			'id' => 'flight_request_max_form',
+			'enableClientValidation' => true,
+			'action' => '/request/flight',
+			'fieldConfig' => [
+					'template' => "{input}",
+			],
+			'options' => [
 				'class' => 'form-request-airline'
-		]
-]) ?>
-<div class="form-flight-request-max-wrapper form-flight-request border-box xl:bg-white xl:p-10 rounded-2xl pt-20">
+			]
+	]) ?>
+	<input type="hidden" name="check_subscription" class="check-subscription" value="">
+	<input type="hidden" name="FlightRequestMax[type_trip]" class="type-trip" :value="activeForm">
     <h4 class="xl:inline-block hidden">Book Flight</h4>
-    <h4 class="xl:hidden block text-white text-center font-silk-serif-bold">A Philosophy of Travel</h4>
+    <h4 class="xl:hidden block text-white text-center font-silk-serif-bold"><?= $shortHead ?? 'A Philosophy of Travel' ?></h4>
     <div class="form-nav xl:mt-2 mt-5">
 		<ul class="head-menu gap-3 flex-wrap xl:flex hidden">
 			<li class="form-group head-menu-item flex items-center">
 				<i class="input-prefix icon icon-arrows"></i>
-				<?= $form->field($model, 'cabin_class_name')->dropDownList(($trip_variants), [
-						'id' => 'flightrequestmax_trip_variants_name_round_trip',
-						'class' => 'has-prefix has-suffix border-none tom-select w-auto'
-				]); ?>
+				<select class=" has-prefix has-suffix border-none tom-select w-auto" @change="changeActiveForm($event)">
+					<?php foreach ($trip_variants as $value => $label): ?>
+						<option value="<?= $value ?>"><?= $label ?></option>
+					<?php endforeach; ?>
+				</select>
 				<i class="input-suffix icon-chevron text-ns"></i>
 			</li>
 			<li class="form-group head-menu-item flex items-center">
@@ -49,13 +55,16 @@ use yii\widgets\ActiveForm;
 		<div class="tab-menu xl:hidden block">
 			<ul class="flex gap-5 flex-wrap justify-center">
 				<li class="flex items-center ">
-					<a href="javascript:void(0)" class="active " data-tab-li-id="tab-1">Round trip</a>
+					<a href="javascript:void(0)" :class="{active: activeForm == <?= AppConfig::Type_Trip_Round_Trip ?>}"
+					   @click="activeForm = <?= AppConfig::Type_Trip_Round_Trip ?>">Round trip</a>
 				</li>
 				<li class="flex items-center">
-					<a href="javascript:void(0)" data-tab-li-id="tab-2">One-way</a>
+					<a href="javascript:void(0)" :class="{active: activeForm == <?= AppConfig::Type_Trip_One_Way ?>}"
+					   @click="activeForm = <?= AppConfig::Type_Trip_One_Way ?>">One-way</a>
 				</li>
 				<li class="flex items-center">
-					<a href="javascript:void(0)" data-tab-li-id="tab-3">Multi-City</a>
+					<a href="javascript:void(0)" :class="{active: activeForm == <?= AppConfig::Type_Trip_Multi_City ?>}"
+					   @click="activeForm = <?= AppConfig::Type_Trip_Multi_City ?>">Multi-City</a>
 				</li>
 			</ul>
 		</div>
@@ -81,6 +90,7 @@ use yii\widgets\ActiveForm;
 			'form' => $form
         ]) ?>
     </div>
+	<?php ActiveForm::end(); ?>
 	<div class="xl:hidden items-center flex justify-center mt-8">
 		<a class="flex" href="https://www.shopperapproved.com/reviews/iflyfirstclass.com" target="_blank">
 			<img class="scale-110" src="/public/img/shopper-approved-white.svg" alt="">
@@ -88,4 +98,3 @@ use yii\widgets\ActiveForm;
 		</a>
 	</div>
 </div>
-<?php ActiveForm::end(); ?>

@@ -4,6 +4,9 @@ namespace frontend\controllers;
 
 use app\components\AppConfig;
 use app\modules\imagemanager\models\Image;
+use common\sys\core\landing\AirlineInfoService;
+use common\sys\core\landing\CityInfoService;
+use common\sys\core\landing\CountryInfoService;
 use common\sys\repository\landing\models\City;
 use common\sys\repository\landing\models\Continent;
 use common\sys\repository\landing\models\Country;
@@ -45,21 +48,12 @@ class CityController extends BaseController
             'content' => $city->keywords,
         ]);
 
-
-        //sections
-        $country = Country::find()
-            ->select(['name', 'alias'])
-            ->where(['id' => $city->country_id])
-            ->one();
-
-        $continents = Continent::find()
-            ->select(['name', 'alias'])
-            ->all();
-
-        $cities = City::find()
-            ->select(['name', 'alias'])
-            ->where(['country_id' => $city->country_id])
-            ->all();
+        $airline_info_service = new AirlineInfoService();
+        $country_info_service = new CountryInfoService();
+        $city_info_service = new CityInfoService();
+        $airlines = $airline_info_service->get_airlines_list();
+        $countries = $country_info_service->get_countries_list();
+        $cities = $city_info_service->get_cities_list();
 
         $last_artical = BlogArticles::find()
             ->select(['id', 'alias', 'title', 'summary'])
@@ -74,8 +68,8 @@ class CityController extends BaseController
         return $this->render('index', [
             'city_model' => $city,
             'images' => $images,
-            'country' => $country,
-            'continents' => $continents,
+            'airlines' => $airlines,
+            'countries' => $countries,
             'cities' => $cities,
             'last_artical' => $last_artical,
             'last_artical_img' => $last_artical_img,

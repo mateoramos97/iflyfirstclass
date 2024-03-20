@@ -17,12 +17,13 @@ return [
         'mailer' => [
             'class' => \yii\symfonymailer\Mailer::class,            
             'transport' => [
+                'class' => 'Swift_SmtpTransport',
                 'scheme' => 'smtps',
                 'host' => '',
                 'username' => '',
                 'password' => '',
                 'port' => 465,
-                'dsn' => 'native://default',
+                'dsn' => 'sendmail://default',
             ],
             'viewPath' => '@common/mail',
             // send all mails to a file by default. You have to set

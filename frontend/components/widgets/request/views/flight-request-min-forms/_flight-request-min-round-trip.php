@@ -3,94 +3,96 @@
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model \common\sys\models\request\FlightRequestMax */
 
+use app\components\AppConfig;
 use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
-use yii\widgets\ActiveForm;
 ?>
 
-<div class="form-request-tab tab-round-trip border-box active" data-tab-form="tab-1">
-    <?php $form = ActiveForm::begin([
-        'id' => 'flight_request_min_round_trip',
-        'enableClientValidation' => true,
-        'action' => '/request/flight',
-        'fieldConfig' => [
-            'template' => "{input}",
-        ],
-        'options' => [
-            'class' => 'form-request-airline'
-        ]
-    ]) ?>
-    <input type="hidden" name="check_subscription" class="check-subscription" value="">
-    <?= $form->field($model, 'type_trip')->hiddenInput([
-        'value' => \app\components\AppConfig::Type_Trip_Round_Trip,
-        'id' => 'flightrequestmin_type_trip_round_trip',
-    ]) ?>
-    <div class="field-row from">
-        <?= $form->field($model, 'from[]')->textInput([
-            'placeholder' => 'From Airport or City*',
-            'id' => 'flightrequestmin_from_round_trip',
-            'class' => 'border-radius-left required-field autocomplete'
-        ]) ?>
+<div class="form-request-tab tab-round-trip box-border" data-tab-form="<?= AppConfig::Type_Trip_Round_Trip ?>" v-if="activeForm == <?= AppConfig::Type_Trip_Round_Trip ?>">
+	<div class="field-row from relative">
+		<i class="input-prefix icon-airplan-fly text-gray bottom-4"></i>
+		<?= $form->field($model, 'from[]')->textInput([
+				'placeholder' => 'Where form ?',
+				'id' => 'flightrequestmax_from_round_trip',
+				'class' => 'has-prefix has-suffix from field-from required-field autocomplete bg-white'
+		]) ?>
+		<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
+	</div>
+	<div class="field-row to relative mt-5">
+		<i class="input-prefix icon-airplan-land text-gray bottom-4"></i>
+		<?= $form->field($model, 'to[]')->textInput([
+				'placeholder' =>  'Where to ?',
+				'id' => 'flightrequestmax_to_round_trip',
+				'class' => 'has-prefix has-suffix to field-to required-field autocomplete bg-white'
+		]) ?>
+		<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
+	</div>
+	<div class="split-input-group field-row field-data flex bg-white mt-5">
+		<div class="relative w-1/2">
+			<i class="input-prefix icon-calendar text-gray top-3 text-lg"></i>
+			<?= $form->field($model, 'dep_date[]')->textInput([
+					'placeholder' => 'Departure',
+					'class' => 'has-prefix has-suffix datepicker',
+					'id' => 'dep-date-round-trip',
+					'readonly' => 'readonly'
+			]) ?>
+			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
+		</div>
+		<i class="input-divider"></i>
+		<div class="relative w-1/2">
+			<?= $form->field($model, 'arr_date[]')->textInput([
+					'placeholder' => 'Return',
+					'class' => 'has-suffix required-field datepicker',
+					'id' => 'arr-date-round-trip',
+					'readonly' => 'readonly'
+			]) ?>
+			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
+		</div>
+	</div>
+	<div class="split-input-group field-row field-data xl:hidden flex mt-5">
+		<div class="form-group w-1/2">
+			<i class="input-prefix icon icon-person top-3 text-lg"></i>
+			<?= $form->field($model, 'people_number')->dropDownList(($number_persones), [
+					'id' => 'flightrequestmax_people_number_round_trip',
+					'class' => 'has-prefix has-suffix border-none tom-select w-auto'
+			]); ?>
+			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
+		</div>
+		<i class="input-divider"></i>
+		<div class="form-group w-1/2">
+			<i class="input-prefix icon-business text-gray top-3 text-lg"></i>
+			<?= $form->field($model, 'cabin_class_name')->dropDownList(($cabin_class), [
+					'id' => 'flightrequestmax_cabin_class_name_round_trip',
+					'class' => 'has-prefix has-suffix border-none tom-select w-auto'
+			]); ?>
+			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
+		</div>
+	</div>
+	<div class="form-group field-row email-field mt-5 hidden-field" v-if="showHiddenFields">
+		<i class="input-prefix icon-mail text-gray top-4"></i>
+		<?= $form->field($model, 'email')->textInput([
+				'placeholder' => 'Email',
+				'id' => 'flightrequestmax_email_multi_city',
+				'class' => 'has-prefix bg-white'
+		]) ?>
+	</div>
+	<div class="form-group name-field mt-5 hidden-field" v-if="showHiddenFields">
+		<i class="input-prefix icon-person-card text-gray bottom-3 text-lg"></i>
+		<?= $form->field($model, 'name')->textInput([
+				'placeholder' => 'Name',
+				'id' => 'flightrequestmax_name_multi_city',
+				'class' => 'has-prefix bg-white'
+		]) ?>
+	</div>
+	<div class="form-group field-row phone-field mt-5 hidden-field" v-if="showHiddenFields">
+		<i class="input-prefix icon-phone text-gray bottom-3 text-lg"></i>
+		<?= $form->field($model, 'phone')->textInput([
+				'type' => 'number',
+				'placeholder' => 'Phone',
+				'id' => 'flightrequestmax_phone_multi_city',
+				'class' => 'has-prefix bg-white'
+		]) ?>
+	</div>
+    <div class="form-group form-action mt-6">
+		<?= Html::submitButton('Search Flight Now', ['class' => 'btn btn-primary submit form-action-button search-flights w-full py-5', 'name' => 'flyght-button']) ?>
     </div>
-    <div class="field-row to">
-        <?= $form->field($model, 'to[]')->textInput([
-            'placeholder' => 'To Airport or City*',
-            'id' => 'flightrequestmin_to_round_trip',
-            'class' => 'border-radius-right border-left-none required-field autocomplete'
-        ]) ?>
-    </div>
-    <div class="form-column-2 flex">
-        <div class="field-row field-data flex">
-            <?= $form->field($model, 'dep_date[]')->textInput([
-                'placeholder' => 'Depart',
-                'class' => 'depart-date border-radius-left datepicker',
-                'id' => 'dep-date-round-trip',
-                'readonly' => 'readonly'
-            ]) ?>
-            <?= $form->field($model, 'arr_date[]')->textInput([
-                'placeholder' => 'Return',
-                'class' => 'return-date border-radius-right border-left-none required-field datepicker',
-                'id' => 'arr-date-round-trip',
-                'readonly' => 'readonly'
-            ]) ?>
-        </div>
-    </div>
-    <div class="form-column-3 flex">
-        <div class="field-row cabin-class persones flex flex-grows-1 border-box">
-            <?= $form->field($model, 'cabin_class_name')->dropDownList(($cabin_class), [
-                'id' => 'flightrequestmin_cabin_class_name_round_trip',
-                'class' => 'border-radius-left'
-            ]); ?>
-            <?= $form->field($model, 'people_number')->dropDownList(($number_persones), [
-                'id' => 'flightrequestmin_people_number_round_trip',
-                'class' => 'border-radius-right border-left-none'
-            ]); ?>
-        </div>
-    </div>
-    <div class="contact-block-wrapper">
-        <div class="field-row name-field">
-            <?= $form->field($model, 'name')->textInput([
-                'placeholder' => 'Name*',
-                'id' => 'flightrequestmin_name_round_trip',
-                'class' => 'border-radius-left border-right-none'
-            ]) ?>
-        </div>
-        <div class="field-row email-field">
-            <?= $form->field($model, 'email')->textInput([
-                'placeholder' => 'Email*',
-                'id' => 'flightrequestmin_email_round_trip',
-            ]) ?>
-        </div>
-        <div class="field-row phone-field">
-            <?= $form->field($model, 'phone')->textInput([
-                'placeholder' => 'Phone*',
-                'id' => 'flightrequestmin_phone_round_trip',
-                'class' => 'border-radius-right border-left-none'
-            ]) ?>
-        </div>
-    </div>
-    <div class="form-group form-action">
-        <?= Html::submitButton('Request a Quote Now', ['class' => 'submit', 'name' => 'flyght-button']) ?>
-    </div>
-    <?php ActiveForm::end(); ?>
 </div>

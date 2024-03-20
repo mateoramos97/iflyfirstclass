@@ -78,6 +78,7 @@ class BlogController extends BaseController
         return $this->render('index', [
             'blog_article_model' => $blog_article,
             'images' => $images,
+            'blog_articles' => $this->get_blog_info_service_repo()->BlogListDataProvider(11)->getModels(),
         ]);
     }
 

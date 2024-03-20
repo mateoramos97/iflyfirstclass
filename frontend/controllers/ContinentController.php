@@ -4,6 +4,9 @@ namespace frontend\controllers;
 
 use app\components\AppConfig;
 use app\modules\imagemanager\models\Image;
+use common\sys\core\landing\AirlineInfoService;
+use common\sys\core\landing\CityInfoService;
+use common\sys\core\landing\CountryInfoService;
 use common\sys\repository\landing\models\Continent;
 use common\sys\repository\landing\models\Country;
 use yii\web\HttpException;
@@ -42,21 +45,19 @@ class ContinentController extends BaseController
             'content' => $continent->keywords,
         ]);
 
-        //sections
-        $countries = Country::find()
-            ->select(['name', 'alias'])
-            ->where(['continent_id' => $continent->id])
-            ->all();
-
-        $continents = Continent::find()
-            ->select(['name', 'alias'])
-            ->all();
+        $airline_info_service = new AirlineInfoService();
+        $country_info_service = new CountryInfoService();
+        $city_info_service = new CityInfoService();
+        $airlines = $airline_info_service->get_airlines_list();
+        $countries = $country_info_service->get_countries_list();
+        $cities = $city_info_service->get_cities_list();
 
         return $this->render('index', [
             'continent_model' => $continent,
             'images' => $images,
+            'airlines' => $airlines,
             'countries' => $countries,
-            'continents' => $continents,
+            'cities' => $cities,
         ]);
     }
 }

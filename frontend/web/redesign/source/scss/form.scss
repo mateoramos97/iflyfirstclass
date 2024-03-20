@@ -74,12 +74,6 @@ select {
 }
 
 .form-flight-request-max-wrapper {
-  .form-request-tab {
-    display: none;
-    &.active {
-      display: block;
-    }
-  }
   .form-nav {
     .head-menu {
       @apply text-gray;
@@ -209,6 +203,16 @@ select {
   }
 }
 
+.has-error {
+  input, select, textarea {
+    border-color: #FF0000 !important;
+  }
+}
+
+.error-field {
+  border-color: #FF0000 !important;
+}
+
 .add-destination {
   a {
     position: relative;
@@ -232,5 +236,60 @@ select {
 
   &.disabled {
     display: none;
+  }
+}
+
+.form-flight-request-min-wrapper {
+  background-color: #f0edeb;
+  backdrop-filter: blur(50px);
+
+  @media screen and (max-width: $xl-screen) {
+    background: none;
+    backdrop-filter: none;
+  }
+
+  input,select, .split-input-group {
+    border: 1px solid transparent;
+  }
+
+  input, select {
+    &:hover, &:focus, &:active, &:focus-visible {
+      border-color: $gray;
+    }
+  }
+
+  .ts-wrapper {
+    border: none;
+  }
+
+  .form-request-tab {
+    position: relative;
+    width: 100%;
+  }
+
+  .form-nav {
+    .head-menu {
+      .ts-wrapper {
+        padding: 10px;
+        .ts-dropdown {
+          top:unset;
+        }
+      }
+      .has-suffix {
+        padding-right: 30px;
+      }
+    }
+    .tab-menu {
+      a {
+        @apply border border-white rounded-full text-white text-base px-4 py-2;
+        &.active, &:active, &.active, &:hover {
+          @apply border-black bg-black
+        }
+      }
+    }
+  }
+
+  .btn {
+    @apply py-4 text-lg;
   }
 }

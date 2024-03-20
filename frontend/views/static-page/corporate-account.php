@@ -17,19 +17,19 @@ $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::base(true) . Yii::$
 $this->params['breadcrumbs'][] = 'Corporate accounts';
 
 ?>
-<div class="flex items-center justify-center border-t border-b border-gray-light-2">
+<div class="flex items-center justify-center border-t border-b border-gray-light-2 xl:mt-0 mt-20">
 	<?= $this->render('@app/views/layouts/_breadcrumbs') ?>
 </div>
 <div class="request-corporate-account-title container mx-auto xl:px-12 px-4 mt-8 mb-10 text-center">
     <h1 class="font-silk-serif-bold xl:text-7xl lg:text-6xl text-2xl">Corporate flights</h1>
 </div>
-<div class="form-request-wrapper bg-secondary py-20 container mx-auto xl:px-12 px-4">
+<div class="form-request-wrapper bg-secondary xl:py-20 py-10 container mx-auto xl:px-12 px-4">
     <div class="flex justify-between">
 		<?= RequestCorporateAcoounts::widget() ?>
     </div>
 </div>
-<div class="container mx-auto xl:px-20 px-4 my-20">
-	<div class="grid xl:grid-cols-3 grid-cols-1 gap-20">
+<div class="container mx-auto xl:px-20 px-4 xl:my-20 my-10">
+	<div class="grid xl:grid-cols-3 grid-cols-1 xl:gap-20 gap-4">
 		<div>
 			<h5>Corporate Accounts</h5>
 			<p class="text-gray-2 mt-5">

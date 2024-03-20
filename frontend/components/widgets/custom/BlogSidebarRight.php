@@ -2,9 +2,7 @@
 
 namespace app\components\widgets\custom;
 
-use app\components\AppConfig;
-use app\modules\imagemanager\models\Image;
-use common\sys\repository\blog\models\BlogArticles;
+use common\sys\core\testimonials\TestimonialsInfoService;
 use yii\base\Widget;
 
 class BlogSidebarRight extends Widget
@@ -16,20 +14,11 @@ class BlogSidebarRight extends Widget
 
     public function run()
     {
-        $last_artical = BlogArticles::find()
-            ->select(['id', 'alias', 'title', 'summary'])
-            ->where(['is_top' => 1])
-            ->one();
-        $last_artical_img = Image::findOne([
-            'content_id' => $last_artical->id,
-            'content_type_id' => AppConfig::Image_ContentType_BlogArticle,
-            'content_field_id' => AppConfig::Image_ContentField_BlogArticle,
-        ]);
+        $testimonialsService = new TestimonialsInfoService();
 
         return $this->render(
             'blog-sidebar-right', [
-                'last_artical' => $last_artical,
-                'last_artical_img' => $last_artical_img,
+                'reviews' => $testimonialsService->get_testimonials_is_top(3),
             ]
         );
     }

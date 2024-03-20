@@ -1,0 +1,214 @@
+.blog-page, .blog-article-page, .travel-tips-page, .travel-tips-attactions-page {
+  .blog-list {
+    .items {
+      @apply grid xl:grid-cols-3 grid-cols-1;
+
+      .item {
+        transition: 0.3s;
+        padding: 30px 30px 60px 30px;
+        border: 1px solid $white;
+        border-radius: 10px;
+        cursor: pointer;
+        background-color: $white;
+        position: relative;
+        &:hover {
+          border: 1px solid #cccccc;
+          &::after {
+            opacity: 1;
+          }
+          .title {
+            @apply underline;
+          }
+        }
+        &::after {
+          position: absolute;
+          transition: 0.3s;
+          opacity: 0;
+          width: 56px;
+          height: 56px;
+          content: '';
+          bottom: 0;
+          right: 0;
+          background-image: url('/public/img/blog-show-arrow.svg');
+        }
+
+
+        .photo {
+          position: relative;
+          margin-bottom: 25px;
+
+          .back-slide {
+            width: 100%;
+            height: 100%;
+          }
+
+          .back-slide-inner {
+            position: relative;
+            height: 100%;
+
+            img {
+              display: block;
+              position: relative;
+              border-radius: 10px;
+              width: 100%;
+              min-height: 310px;
+              object-fit: fill;
+            }
+          }
+        }
+
+        .title {
+          @apply xl:text-3xl text-2xl font-gilroy-regular;
+          transition: 0.3s;
+          color: $primary;
+        }
+
+        .summary {
+          @apply text-gray-2 mt-4;
+        }
+
+        .action {
+          font-size: 14px;
+          color: #ff5722;
+        }
+      }
+    }
+
+    .pagination {
+      display: flex;
+      @apply  gap-2 my-20 px-8;
+      justify-content: center;
+      flex-wrap:  wrap;
+
+      li {
+        display: inline;
+
+        span, a {
+          position: relative;
+          width: 56px;
+          height: 56px;
+          background-color: $white;
+          border: 1px solid #cccccc;
+          border-radius: 5px;
+          @apply flex items-center justify-center;
+
+          &:hover {
+            border: 1px solid $primary;
+          }
+        }
+      }
+
+      .prev {
+        @apply xl:flex-1;
+        a, span {
+          &:after {
+            position: absolute;
+            font-family: iflyfirstclass-icons;
+            content: "\e803";
+            font-size: 20px;
+            width: 20px;
+            height: 20px;
+            top: 15px;
+            left: 19px;
+          }
+        }
+      }
+
+      .next {
+        @apply xl:flex-1;
+        a,span {
+          margin-left: auto;
+          &:after {
+            position: absolute;
+            font-family: iflyfirstclass-icons;
+            transform: rotate(180deg);
+            content: "\e803";
+            font-size: 20px;
+            width: 20px;
+            height: 20px;
+            top: 16px;
+            left: 16px;
+          }
+        }
+      }
+
+      .disabled {
+        span {
+          color: #9e9e9e;
+          cursor: default;
+          pointer-events: none;
+          border-color: #eeeeee;
+        }
+      }
+
+      .active {
+        a, span, a:hover, span:hover, a:focus, span:focus {
+          z-index: 3;
+          color: $primary;
+          border: 1px solid $black;
+          font-weight: 600;
+          cursor: default;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $xl-screen) {
+    .blog-list {
+      .items {
+        @apply grid-cols-1;
+
+        .item {
+          padding: 10px  10px 60px 10px;
+          margin-bottom: 20px;
+
+          .photo {
+            .back-slide-inner {
+              width: 100%;
+
+              img {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $xxl-screen) {
+    .blog-list {
+      .photo {
+        .back-slide-inner {
+          img {
+            min-height: 250px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.blog-article-page, .travel-tips-attactions-page, .landing-page {
+  .body {
+    h1,h2,h3,h4,h5,h6 {
+      padding-bottom: 2rem;
+      color: $primary;
+    }
+
+    h3 {
+      @apply xl:text-xl text-lg;
+    }
+
+    p, ul > li {
+      padding-bottom: 1.4rem;
+      font-size: 16px;
+      line-height: 1.2rem;
+      @apply text-gray-2;
+    }
+    img {
+      @apply mx-auto w-full h-auto;
+    }
+  }
+}

@@ -8,6 +8,12 @@
 @import "buttons";
 @import "form";
 @import "bread-crumbs";
+@import "blog-list";
+@import "flight-request-accepted";
+@import "support-chat";
+@import "flight-tracker";
+@import "visa";
+@import "request-quote";
 
 body,
 html {
@@ -19,25 +25,29 @@ body {
   @apply text-primary xl:text-base text-sm font-proxima-nova-regular leading-5 tracking-wide;
 }
 
+[v-cloak] {
+  display: none;
+}
+
 h1,h2,h3,h4,h5,h6 {
   font-weight: 600;
   font-family: Gilroy, sans-serif;
 }
 
 h1 {
-  @apply xl:text-6xl text-5xl
+  @apply xl:text-6xl lg:text-5xl text-4xl
 }
 
 h2 {
-  @apply xl:text-5xl text-4xl
+  @apply xl:text-5xl lg:text-4xl text-3xl
 }
 
 h3 {
-  @apply xl:text-4xl text-3xl
+  @apply xl:text-4xl lg:text-3xl text-2xl
 }
 
 h4 {
-  @apply xl:text-3xl text-2xl
+  @apply xl:text-3xl lg:text-2xl text-xl
 }
 
 h5 {
@@ -100,6 +110,10 @@ hr {
     background-image: linear-gradient(rgba(33, 33, 33, 0.32), rgba(33, 33, 33, 0.56)), url('/design/photo/last-minyte-deals.jpg');
     background-position-x: 50%;
   }
+  &.contact-us .back-slide{
+    background-image:  url('/design/photo/about-top.jpg');
+    background-position-x: 70%;
+  }
 }
 
 .text-gold-gradient {
@@ -128,6 +142,22 @@ hr {
   background: $white-gradient;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.bg-blue-white-gradient {
+  background: $white-gradient-2 no-repeat border-box, $blue-gradient no-repeat border-box;
+}
+
+.bg-brown-white-gradient {
+  background: $white-gradient-2 no-repeat border-box, $brown-gradient no-repeat border-box;
+}
+
+.bg-white-gradient {
+  background: $white-gradient;
+}
+
+.bg-gray-gradient {
+  background: $gray-gradient;
 }
 
 .wave {
@@ -193,5 +223,23 @@ hr {
 
 .ui-datepicker{
   z-index: 2 !important;
+}
+
+.dotted-separator {
+  overflow: hidden;
+  position: relative;
+  &:after{
+    content:'....................................................................................................................................................................................';
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #9c9fa0;
+    position: absolute;
+    bottom: 2px;
+  }
+  span {
+    z-index: 1;
+    background-color: $white;
+  }
 }
 

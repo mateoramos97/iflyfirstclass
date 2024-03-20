@@ -10,7 +10,7 @@ $this->registerMetaTag(['property' => 'og:image', 'content' => '']);
 $this->registerMetaTag(['name' => 'robots', 'content' => 'index, follow']);
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::base(true) . Yii::$app->request->url]);
 ?>
-<div class="container-wrapper">
+<div class="container mx-auto xl:px-20 p-4 my-20">
     <div class="content">
         <h1>Reviews</h1>
         <div class="rows">

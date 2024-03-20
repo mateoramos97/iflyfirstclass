@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'iflyfirstclass-icons';
-  src: url('../font/iflyfirstclass-icons.eot?29363486');
-  src: url('../font/iflyfirstclass-icons.eot?29363486#iefix') format('embedded-opentype'),
-       url('../font/iflyfirstclass-icons.woff2?29363486') format('woff2'),
-       url('../font/iflyfirstclass-icons.woff?29363486') format('woff'),
-       url('../font/iflyfirstclass-icons.ttf?29363486') format('truetype'),
-       url('../font/iflyfirstclass-icons.svg?29363486#iflyfirstclass-icons') format('svg');
+  src: url('../font/iflyfirstclass-icons.eot?74501270');
+  src: url('../font/iflyfirstclass-icons.eot?74501270#iefix') format('embedded-opentype'),
+       url('../font/iflyfirstclass-icons.woff2?74501270') format('woff2'),
+       url('../font/iflyfirstclass-icons.woff?74501270') format('woff'),
+       url('../font/iflyfirstclass-icons.ttf?74501270') format('truetype'),
+       url('../font/iflyfirstclass-icons.svg?74501270#iflyfirstclass-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'iflyfirstclass-icons';
-    src: url('../font/iflyfirstclass-icons.svg?29363486#iflyfirstclass-icons') format('svg');
+    src: url('../font/iflyfirstclass-icons.svg?74501270#iflyfirstclass-icons') format('svg');
   }
 }
 */
@@ -68,3 +68,8 @@
 .icon-phone:before { content: '\e80b'; } /* '' */
 .icon-phone-ring:before { content: '\e80c'; } /* '' */
 .icon-calendar:before { content: '\e80d'; } /* '' */
+.icon-arrow-right:before { content: '\e80e'; } /* '' */
+.icon-person-fill:before { content: '\e80f'; } /* '' */
+.icon-location-fill:before { content: '\e810'; } /* '' */
+.icon-mail-fill:before { content: '\e811'; } /* '' */
+.icon-phone-fill:before { content: '\e812'; } /* '' */

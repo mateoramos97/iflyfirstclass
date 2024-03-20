@@ -1,7 +1,14 @@
 import Swiper from 'swiper';
-import { Scrollbar } from 'swiper/modules';
+import { Navigation, Scrollbar } from 'swiper/modules';
 import TomSelect from "tom-select";
 
+export const InitDatepicker = function () {
+    /* datepicker */
+    $(".datepicker").datepicker({
+        minDate: 0,
+        dateFormat: "d M, y"
+    });
+};
 
 jQuery(document).ready(function ($) {
     var isFront = false; var isFlightRequestMax = false;
@@ -10,15 +17,7 @@ jQuery(document).ready(function ($) {
     if ($(document.body).hasClass("front-page"))
         isFront = true;
 
-    var InitDatepicker = function () {
-        /* datepicker */
-        $(".datepicker").datepicker({
-            minDate: 0,
-            dateFormat: "d M, y"
-        });
-    };
-
-    const swiper = new Swiper('.swiper', {
+    new Swiper('.news-block .swiper', {
         // configure Swiper to use modules
         modules: [Scrollbar],
         scrollbar: {
@@ -27,6 +26,16 @@ jQuery(document).ready(function ($) {
         },
         slidesPerView: "auto",
         spaceBetween: 30,
+    });
+
+    new Swiper('.blog-list.swiper', {
+        // configure Swiper to use modules
+        modules: [Navigation],
+        navigation: {
+            nextEl: ".swiper-next",
+            prevEl: ".swiper-prev",
+        },
+        slidesPerView: 3,
     });
 
     document.querySelectorAll('.tom-select').forEach((el)=>{
@@ -85,10 +94,15 @@ jQuery(document).ready(function ($) {
         });
 
         var ScrollEfectHeader = function () {
-            if (browser.scrollTop() > 36) {
+            if (browser.width() < 1260) {
+                return;
+            }
+            if (browser.scrollTop() > 120) {
+                $('body').css('padding-top', '100px');
                 mainNav.addClass("fixed");
                 menuSubWrapper.addClass("fixed");
             } else {
+                $('body').css('padding-top', '0px');
                 mainNav.removeClass("fixed");
                 menuSubWrapper.removeClass("fixed");
             }
@@ -147,280 +161,7 @@ jQuery(document).ready(function ($) {
     });
 
     //flight request
-    $(function () {
-        var formFlightRequestMaxWrapper = $(".form-flight-request"),
-            navFormTab = formFlightRequestMaxWrapper.find(".tab-menu").find("li a"),
-            formRequestTab = formFlightRequestMaxWrapper.find(".form-request-tab"),
-            formRequestAirline = formFlightRequestMaxWrapper.find(".form-request-airline");
-        /* tab form */
-        navFormTab.each(function () {
-            var self = $(this);
-            self.click(function () {
-                var dataNavId = $(this).data("tabLiId");
-                navFormTab.removeClass("active");
-                $(this).addClass("active");
-                formRequestTab.removeClass("active");
-                formRequestTab.filter("[data-tab-form='" + dataNavId + "']").addClass("active");
-            });
-        });
 
-        $('#flightrequestmax_trip_variants_name_round_trip').change(function(){
-            const val = $(this).val();
-            console.log(val);
-            formRequestTab.removeClass("active");
-            formRequestTab.filter("[data-tab-form='tab-" + val + "']").addClass("active");
-        })
-
-        //requset form
-        var FormrequestAirline = function () {
-            formRequestAirline.each(function () {
-                var self = $(this),
-                    hidden = self.find(".check-subscription"),
-                    from = self.find(".from").find('input[type=text]').first(),
-                    to = self.find(".to").find('input[type=text]').first(),
-                    button = self.find("button[type='submit']");
-                button.click(function () {
-                    hidden.val("jfghfHdhsdgUjbn345Hd");
-                });
-                self.submit(function () {
-                    var form = $(this),
-                        error = false;
-
-                    form.find('.required-field').each(function () {
-                        $(this).removeClass("error-field");
-                    });
-
-                    form.find('.required-field').each(function () {
-                        if ($(this).val() === '') {
-                            $(this).addClass("error-field");
-                            error = true;
-                        }
-                    });
-
-                    if (from.val().toLowerCase() === to.val().toLowerCase()) {
-                        from.addClass("error-field");
-                        to.addClass("error-field");
-                        error = true;
-                    }
-
-                    if (!error) {
-                        button.prop("disabled", true);
-                        button.html("Searching...");
-                        return true;
-                    }
-
-                    return false;
-                });
-            });
-        };
-        FormrequestAirline();
-
-        /* multi city */
-        $(function () {
-            var totalRowDestination = 3,
-                currentCountRowDestination = 1,
-                destinationBlockWrapper = formFlightRequestMaxWrapper.find(".destination-block-wrapper"),
-                addDestinationBlock = formFlightRequestMaxWrapper.find(".add-destination"),
-                addDestination = formFlightRequestMaxWrapper.find(".add-destination").find("a"),
-                destinationRowFirstClone = formFlightRequestMaxWrapper.find("[data-destination-id='1']").clone();
-            /* add class datepicker first flight */
-            formFlightRequestMaxWrapper.find("[data-destination-id='1']")
-                .find(".depart .form-group")
-                .removeClass("field-dep-date-multi-city")
-                .addClass("field-dep-date-multi-city-1")
-                .find(".date-multi-city").addClass("datepicker")
-                .attr("id", "dep-date-multi-city-1");
-            InitDatepicker();
-            var CheckCurrentCountRowDestination = function () {
-                var destinationRow = formFlightRequestMaxWrapper.find(".destination-row");
-                return destinationRow.length;
-            };
-            var IsAddFlightButton = function () {
-                if (CheckCurrentCountRowDestination() >= totalRowDestination) {
-                    addDestinationBlock.addClass("disabled");
-                } else if (CheckCurrentCountRowDestination() < totalRowDestination && addDestinationBlock.hasClass("disabled")) {
-                    addDestinationBlock.removeClass("disabled");
-                }
-            };
-            /* sort destination id */
-            var SortDestinationRowId = function () {
-                var destinationRows = formFlightRequestMaxWrapper.find(".destination-row");
-                destinationRows.each(function () {
-                    $(this).attr("data-destination-id", $(this).index() + 1)
-                        .find(".depart .form-group")
-                        .removeClass("field-dep-date-multi-city")
-                        .addClass("field-dep-date-multi-city-" + $(this).index() + 1)
-                        .find(".date-multi-city")
-                        .attr("id", "dep-date-multi-city-" + $(this).index() + 1);
-                });
-            };
-            /* add flight */
-            var AddFlight = function () {
-                addDestination.click(function () {
-                    var destinationRowClone = destinationRowFirstClone.clone();
-                    currentCountRowDestination = CheckCurrentCountRowDestination();
-                    if (currentCountRowDestination < totalRowDestination) {
-                        destinationRowClone.attr("data-destination-id", currentCountRowDestination + 1)
-                            .appendTo(destinationBlockWrapper)
-                            .find(".depart .form-group")
-                            .removeClass("field-dep-date-multi-city")
-                            .addClass("field-dep-date-multi-city-" + currentCountRowDestination + 1)
-                            .find(".date-multi-city")
-                            .addClass("datepicker")
-                            .attr("id", "dep-date-multi-city-" + currentCountRowDestination + 1);
-                        var newDepDateWrapper = $(".field-dep-date-multi-city-" + currentCountRowDestination + 1);
-                        newDepDateWrapper.find(".date-multi-city").remove();
-                        newDepDateWrapper.append(
-                            $('<input/>', {
-                                name: 'FlightRequestMax[dep_date][]',
-                                type: 'text',
-                                id: 'dep-date-multi-city-' + currentCountRowDestination + 1,
-                                class: 'date-multi-city border-radius-right datepicker required-field',
-                                placeholder: 'Depart',
-                                readonly: 'readonly'}).datepicker({
-                                minDate: 0,
-                                dateFormat: "d M, y"
-                            })
-                        );
-                        RemoveFlight();
-                        IsAddFlightButton();
-                        AutocompleteAirport();
-                    }
-                    return false;
-                });
-            };
-            AddFlight();
-            /* remove flight */
-            var RemoveFlight = function () {
-                var destinationRows = formFlightRequestMaxWrapper.find(".destination-row");
-                destinationRows.each(function () {
-                    var self = $(this),
-                        removeFlight = self.find(".remove-flight");
-
-                    removeFlight.click(function () {
-                        self.remove();
-                        currentCountRowDestination = CheckCurrentCountRowDestination();
-                        SortDestinationRowId();
-                        IsAddFlightButton();
-                    });
-                });
-            };
-            RemoveFlight();
-        });
-
-        /* autocomplete */
-        var AutocompleteAirport = function () {
-            var autocomplete = formFlightRequestMaxWrapper.find(".autocomplete");
-
-            var autocomleteTest = function () {
-                formRequestTab.each(function () {
-                    var self = $(this),
-                        fromAir = self.find(".field-from"),
-                        toAir = self.find(".field-to"),
-                        formRequestNotify = self.find('.form-request-notify');
-                    if (typeof fromAir.val() !== "undefined" && typeof toAir.val() !== "undefined" ) {
-                        if (fromAir.val().indexOf(' US,') !== -1 && toAir.val().indexOf(' US,') !== -1) {
-                            formRequestNotify.addClass("open");
-                        } else {
-                            formRequestNotify.removeClass("open");
-                        }
-                    }
-                });
-            }
-
-            const autocompleteConfig = {
-                source: function (request, response) {
-                    $.ajax({
-                        url: document.location.origin + "/request/search-airport",
-                        dataType: "json",
-                        type: "POST",
-                        data: {
-                            keyword: request.term
-                        },
-                        success: function (data) {
-                            const result = data.response;
-                            const citiesByAirports = result.cities_by_airports;
-                            const cities = result.cities;
-                            const airports = result.airports;
-                            const airportsByCities = result.airports_by_cities;
-                            const citiesSearch = arrayUnique(cities.concat(citiesByAirports), 'city_code').sort(compare);
-                            const airportsSearch = arrayUnique(airports.concat(airportsByCities), 'icao_code').sort(compare);
-                            response($.map(airportsSearch, function (item) {
-                                const city = item.city_code;
-                                var result = '(' + (item.iata_code || item.icao_code) + ') ';
-                                const dataCity = citiesSearch.find(function (c) { return c.city_code == city });
-                                if (dataCity) {
-                                    result += dataCity.name + ', ';
-                                }
-                                result += item.country_code + ', ' + item.name;
-
-                                return {
-                                    city: dataCity?.name,
-                                    country: item.country_code,
-                                    code: item.iata_code || item.icao_code,
-                                    name: item.name,
-                                    value: result,
-                                }
-                            }));
-                        }
-                    });
-                },
-                select: function (event, ui) {
-                    setTimeout(autocomleteTest);
-                },
-                minLength:3,
-            };
-
-            const renderItem = function( ul, item ) {
-                return $( "<li>" )
-                    .append( `<div class="flex items-center">
-                           <i class="text-lg icon-airplane bg-white p-2 rounded-xl"></i>
-                            <div class="ml-4">
-                                <div>
-                                   <span class="font-gilroy-semibold">${item.name}</span> <span class="font-gilroy-light">${item.code}</span>
-                                </div>
-                                <div>
-                                    <span class="text-xs">${item.city ? item.city + ',' : '' } ${item.country}</span>
-                                </div>
-                            </div>
-                         </div>` )
-                    .appendTo( ul );
-            }
-
-            autocomplete.each(function (){
-                const instance = $(this).autocomplete(autocompleteConfig);
-                $(this).autocomplete("instance")._renderItem = renderItem;
-            });
-            function compare( a, b ) {
-                if ( a.popularity < b.popularity ){
-                    return 1;
-                }
-                if ( a.popularity > b.popularity ){
-                    return -1;
-                }
-                return 0;
-            }
-            function arrayUnique(array, prop) {
-                var a = array.concat();
-                for(var i=0; i<a.length; ++i) {
-                    if (typeof a[i][prop] === 'undefined'){
-                        continue;
-                    }
-                    for(var j=i+1; j<a.length; ++j) {
-                        if (typeof a[j][prop] === 'undefined'){
-                            continue;
-                        }
-                        if(a[i][prop] === a[j][prop]) {
-                            a.splice(j--, 1);
-                        }
-                    }
-                }
-
-                return a;
-            }
-        };
-        AutocompleteAirport();
-    });
 
     //form-tracker
     $(function () {
@@ -597,3 +338,263 @@ window.readMoreLanding = (elem) => {
     landingMoreLink[0].classList.add('disable');
     content[0].classList.add("open");
 }
+
+export const initFlightRequestForm = function () {
+    var formFlightRequestMaxWrapper = $(".form-flight-request"),
+        navFormTab = formFlightRequestMaxWrapper.find(".tab-menu").find("li a"),
+        formRequestTabs = formFlightRequestMaxWrapper.find(".form-request-tab"),
+        formRequestAirline = formFlightRequestMaxWrapper.find(".form-request-airline");
+
+    const InitFormRequestAirline = function () {
+        formRequestAirline.submit(function (e) {
+            e.preventDefault();
+            const self = $(this);
+            const hidden = self.find(".check-subscription");
+            const typeTrip = self.find(".type-trip");
+            const activeForm = formRequestTab.filter(".active").first();
+            const from = activeForm.find(".from").find('input[type=text]').first();
+            const to = activeForm.find(".to").find('input[type=text]').first();
+            const button = activeForm.find("button[type='submit']");
+
+            hidden.val("jfghfHdhsdgUjbn345Hd");
+            typeTrip.val(activeForm.data("tab-form"))
+
+            let error = false;
+
+            activeForm.find('.required-field').each(function () {
+                $(this).removeClass("error-field");
+            });
+
+            activeForm.find('.required-field').each(function () {
+                const el = $(this);
+                if (el.val() === '') {
+                    el.addClass("error-field");
+                    error = true;
+                }
+            });
+
+            if (activeForm.val().toLowerCase() === to.val().toLowerCase()) {
+                from.addClass("error-field");
+                to.addClass("error-field");
+                error = true;
+            }
+
+            if (!error) {
+                button.prop("disabled", true);
+                button.html("Searching...");
+                self.submit();
+                return true;
+            }
+
+            return false;
+        });
+    };
+    // InitFormRequestAirline();
+
+    /* multi city */
+    $(function () {
+        var totalRowDestination = 3,
+            currentCountRowDestination = 1,
+            destinationBlockWrapper = formFlightRequestMaxWrapper.find(".destination-block-wrapper"),
+            addDestinationBlock = formFlightRequestMaxWrapper.find(".add-destination"),
+            addDestination = formFlightRequestMaxWrapper.find(".add-destination").find("a"),
+            destinationRowFirstClone = formFlightRequestMaxWrapper.find("[data-destination-id='1']").clone();
+        /* add class datepicker first flight */
+        formFlightRequestMaxWrapper.find("[data-destination-id='1']")
+            .find(".depart .form-group")
+            .removeClass("field-dep-date-multi-city")
+            .addClass("field-dep-date-multi-city-1")
+            .find(".date-multi-city").addClass("datepicker")
+            .attr("id", "dep-date-multi-city-1");
+        InitDatepicker();
+        var CheckCurrentCountRowDestination = function () {
+            var destinationRow = formFlightRequestMaxWrapper.find(".destination-row");
+            return destinationRow.length;
+        };
+        var IsAddFlightButton = function () {
+            if (CheckCurrentCountRowDestination() >= totalRowDestination) {
+                addDestinationBlock.addClass("disabled");
+            } else if (CheckCurrentCountRowDestination() < totalRowDestination && addDestinationBlock.hasClass("disabled")) {
+                addDestinationBlock.removeClass("disabled");
+            }
+        };
+        /* sort destination id */
+        var SortDestinationRowId = function () {
+            var destinationRows = formFlightRequestMaxWrapper.find(".destination-row");
+            destinationRows.each(function () {
+                $(this).attr("data-destination-id", $(this).index() + 1)
+                    .find(".depart .form-group")
+                    .removeClass("field-dep-date-multi-city")
+                    .addClass("field-dep-date-multi-city-" + $(this).index() + 1)
+                    .find(".date-multi-city")
+                    .attr("id", "dep-date-multi-city-" + $(this).index() + 1);
+            });
+        };
+        /* add flight */
+        var AddFlight = function () {
+            addDestination.click(function () {
+                var destinationRowClone = destinationRowFirstClone.clone();
+                currentCountRowDestination = CheckCurrentCountRowDestination();
+                if (currentCountRowDestination < totalRowDestination) {
+                    destinationRowClone.attr("data-destination-id", currentCountRowDestination + 1)
+                        .appendTo(destinationBlockWrapper)
+                        .find(".depart .form-group")
+                        .removeClass("field-dep-date-multi-city")
+                        .addClass("field-dep-date-multi-city-" + currentCountRowDestination + 1)
+                        .find(".date-multi-city")
+                        .addClass("datepicker")
+                        .attr("id", "dep-date-multi-city-" + currentCountRowDestination + 1);
+                    var newDepDateWrapper = $(".field-dep-date-multi-city-" + currentCountRowDestination + 1);
+                    newDepDateWrapper.find(".date-multi-city").remove();
+                    newDepDateWrapper.append(
+                        $('<input/>', {
+                            name: 'FlightRequestMax[dep_date][]',
+                            type: 'text',
+                            id: 'dep-date-multi-city-' + currentCountRowDestination + 1,
+                            class: 'date-multi-city border-radius-right datepicker required-field',
+                            placeholder: 'Depart',
+                            readonly: 'readonly'}).datepicker({
+                            minDate: 0,
+                            dateFormat: "d M, y"
+                        })
+                    );
+                    RemoveFlight();
+                    IsAddFlightButton();
+                    AutocompleteAirport();
+                }
+                return false;
+            });
+        };
+        AddFlight();
+        /* remove flight */
+        var RemoveFlight = function () {
+            var destinationRows = formFlightRequestMaxWrapper.find(".destination-row");
+            destinationRows.each(function () {
+                var self = $(this),
+                    removeFlight = self.find(".remove-flight");
+
+                removeFlight.click(function () {
+                    self.remove();
+                    currentCountRowDestination = CheckCurrentCountRowDestination();
+                    SortDestinationRowId();
+                    IsAddFlightButton();
+                });
+            });
+        };
+        RemoveFlight();
+    });
+
+    /* autocomplete */
+    setTimeout(AutocompleteAirport);
+};
+
+var AutocompleteAirport = function () {
+    var autocomplete = $(".form-flight-request").find(".autocomplete");
+
+    var autocomleteTest = function () {
+        $(".form-flight-request .form-request-tab").each(function () {
+            var self = $(this),
+                fromAir = self.find(".field-from"),
+                toAir = self.find(".field-to"),
+                formRequestNotify = self.find('.form-request-notify');
+            if (typeof fromAir.val() !== "undefined" && typeof toAir.val() !== "undefined" ) {
+                if (fromAir.val().indexOf(' US,') !== -1 && toAir.val().indexOf(' US,') !== -1) {
+                    formRequestNotify.addClass("open");
+                } else {
+                    formRequestNotify.removeClass("open");
+                }
+            }
+        });
+    }
+
+    const autocompleteConfig = {
+        source: function (request, response) {
+            $.ajax({
+                url: document.location.origin + "/request/search-airport",
+                dataType: "json",
+                type: "POST",
+                data: {
+                    keyword: request.term
+                },
+                success: function (data) {
+                    const result = data.response;
+                    const citiesByAirports = result.cities_by_airports;
+                    const cities = result.cities;
+                    const airports = result.airports;
+                    const airportsByCities = result.airports_by_cities;
+                    const citiesSearch = arrayUnique(cities.concat(citiesByAirports), 'city_code').sort(compare);
+                    const airportsSearch = arrayUnique(airports.concat(airportsByCities), 'icao_code').sort(compare);
+                    response($.map(airportsSearch, function (item) {
+                        const city = item.city_code;
+                        var result = '(' + (item.iata_code || item.icao_code) + ') ';
+                        const dataCity = citiesSearch.find(function (c) { return c.city_code == city });
+                        if (dataCity) {
+                            result += dataCity.name + ', ';
+                        }
+                        result += item.country_code + ', ' + item.name;
+
+                        return {
+                            city: dataCity?.name,
+                            country: item.country_code,
+                            code: item.iata_code || item.icao_code,
+                            name: item.name,
+                            value: result,
+                        }
+                    }));
+                }
+            });
+        },
+        select: function (event, ui) {
+            setTimeout(autocomleteTest);
+        },
+        minLength:3,
+    };
+
+    const renderItem = function( ul, item ) {
+        return $( "<li>" )
+            .append( `<div class="flex items-center">
+                           <i class="text-lg icon-airplane bg-white p-2 rounded-xl"></i>
+                            <div class="ml-4">
+                                <div>
+                                   <span class="font-gilroy-semibold">${item.name}</span> <span class="font-gilroy-light">${item.code}</span>
+                                </div>
+                                <div>
+                                    <span class="text-xs">${item.city ? item.city + ',' : '' } ${item.country}</span>
+                                </div>
+                            </div>
+                         </div>` )
+            .appendTo( ul );
+    }
+
+    autocomplete.each(function (){
+        $(this).autocomplete(autocompleteConfig);
+        $(this).autocomplete("instance")._renderItem = renderItem;
+    });
+    function compare( a, b ) {
+        if ( a.popularity < b.popularity ){
+            return 1;
+        }
+        if ( a.popularity > b.popularity ){
+            return -1;
+        }
+        return 0;
+    }
+    function arrayUnique(array, prop) {
+        var a = array.concat();
+        for(var i=0; i<a.length; ++i) {
+            if (typeof a[i][prop] === 'undefined'){
+                continue;
+            }
+            for(var j=i+1; j<a.length; ++j) {
+                if (typeof a[j][prop] === 'undefined'){
+                    continue;
+                }
+                if(a[i][prop] === a[j][prop]) {
+                    a.splice(j--, 1);
+                }
+            }
+        }
+
+        return a;
+    }
+};

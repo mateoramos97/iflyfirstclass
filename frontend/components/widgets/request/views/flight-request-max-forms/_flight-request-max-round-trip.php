@@ -3,15 +3,11 @@
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model \common\sys\models\request\FlightRequestMax */
 
+use app\components\AppConfig;
 use yii\helpers\Html;
 ?>
 
-<div class="form-request-tab tab-round-trip box-border mt-3 active" data-tab-form="tab-1">
-    <input type="hidden" name="check_subscription" class="check-subscription" value="">
-    <?= $form->field($model, 'type_trip')->hiddenInput([
-        'value' => \app\components\AppConfig::Type_Trip_Round_Trip,
-        'id' => 'flightrequestmax_type_trip_round_trip',
-    ]) ?>
+<div class="form-request-tab tab-round-trip box-border mt-3" data-tab-form="<?= AppConfig::Type_Trip_Round_Trip ?>" v-if="activeForm == <?= AppConfig::Type_Trip_Round_Trip ?>">
     <div class="split-input-group flex items-center">
         <div class="field-row from grow relative">
 			<i class="input-prefix icon-airplan-fly text-gray bottom-4"></i>
@@ -39,9 +35,8 @@ use yii\helpers\Html;
 				<i class="input-prefix icon-calendar text-gray top-3 text-lg"></i>
 				<?= $form->field($model, 'dep_date[]')->textInput([
 						'placeholder' => 'Departure',
-						'class' => 'has-prefix has-suffix datepicker component-depdate',
+						'class' => 'has-prefix has-suffix datepicker required-field component-depdate',
 						'id' => 'dep-date-round-trip',
-						'readonly' => 'readonly'
 				]) ?>
 				<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 			</div>
@@ -51,7 +46,6 @@ use yii\helpers\Html;
 						'placeholder' => 'Return',
 						'class' => 'has-suffix required-field datepicker component-arrdate',
 						'id' => 'arr-date-round-trip',
-						'readonly' => 'readonly'
 				]) ?>
 				<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 			</div>
@@ -80,7 +74,8 @@ use yii\helpers\Html;
 			<?= $form->field($model, 'email')->textInput([
 					'placeholder' => 'Email',
 					'id' => 'flightrequestmax_email_round_trip',
-					'class' => 'has-prefix bg-white'
+					'class' => 'has-prefix bg-white',
+					'required' => false
 			]) ?>
 		</div>
     </div>

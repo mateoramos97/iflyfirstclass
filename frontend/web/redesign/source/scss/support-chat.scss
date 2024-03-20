@@ -1,0 +1,144 @@
+.support-chat-button {
+	position: fixed;
+	top: 170px;
+	right: 0;
+	z-index: 99;
+
+	.chat-now {
+		display: block;
+    	width: 28px;
+		height: 120px;
+		text-indent: -9999px;
+		background-image: url("/design/icons/chat-now-button.svg");
+	  	background-repeat: no-repeat;
+		cursor: pointer;
+		box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.24);
+	}
+}
+
+.front-page, .landing-page {
+	.support-chat-button {
+		top: 175px;
+	}
+}
+
+.message-support-wrapper {
+	display: none;
+	position: fixed;
+  width: 420px;
+  height: fit-content;
+  background-color: #ffffff;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  z-index: 100;
+  padding: 0px 0px 0px 0px;
+  border-radius: 3px;
+	box-shadow: 3px 3px 9px -1px #000000;
+	
+	.top-block {
+		width: 100%;
+    height: 50px;
+		border-bottom: 1px solid #d5d9da;
+		
+		.close {
+			position: relative;
+    	width: 50px;
+    	height: 50px;
+    	margin: 0 auto;
+    	line-height: 78px;
+    	text-align: center;
+    	font-size: 11px;
+			color: #999999;
+			cursor: pointer;
+
+			&::before {
+				content: '';
+				position: absolute;
+				width: 24px;
+				height: 24px;
+				top: 5px;
+				background-image: url("/design/icons/spraite-iffc.png");
+        background-repeat: no-repeat;
+				background-position: -102px -176px;
+			}
+		}
+	}
+
+	.title {
+		font-size: 26px;
+    font-family: ProximaNovaLight, sans-serif;
+    color: #333333;
+		padding-top: 10px;
+    padding-bottom: 0px;
+    text-align: center;
+	}
+
+	.form-block {
+		width: 100%;
+		padding: 0px 50px 0px 50px;
+		
+		label {
+			display: block;
+			text-align: center;
+			padding-top: 14px;
+			padding-bottom: 12px;
+			font-size: 14px;
+			color: #333333;
+		}
+
+		input, textarea {
+			width: 320px;
+			border: 1px solid #cccccc;
+			border-radius: 3px;
+			padding: 10px;
+			box-sizing: border-box;
+			outline: none;
+		}
+
+		textarea {
+			height: 120px;
+			resize: none;
+		}
+
+		button[type="submit"] {
+			width: 100%;
+			height: 40px;
+    	cursor: pointer;
+    	background-color: #0D47A1;
+    	border: 0px;
+    	font-size: 15px;
+		font-family: ProximaNovaLight, sans-serif;
+    	color: #ffffff;
+    	text-transform: uppercase;
+			border-radius: 3px;
+			margin-top: 14px;
+		}
+
+		.has-error {
+			input, textarea {
+				border-color: #FF0000;
+			}
+		}
+
+		.bottom-block {
+			text-align: center;
+			font-size: 11px;
+			font-family: ProximaNovaLight, sans-serif;
+			color: #999999;
+			padding-top: 10px;
+		}
+	}
+
+	@media screen and (max-width: $xl-screen) {
+		width: 90%;
+
+		.form-block {
+			input, textarea {
+				width: 100%;
+			}
+		}
+	}
+}

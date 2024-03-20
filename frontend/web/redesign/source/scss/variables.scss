@@ -1,4 +1,5 @@
 $white: #FFFFFF;
+$black: #000000;
 $orange-color: #DD7700;
 $orange-light-color: #E7C38E;
 $hover-bg-color: #FEF3E6;
@@ -17,9 +18,13 @@ $bg-secondary: #F7F5F2;
 $gold-gradient: linear-gradient(rgba(172, 136, 59, 1), rgba(226, 205, 131, 1), rgba(239, 237, 181, 1));
 $gold-gradient-2: linear-gradient(rgba(142, 115, 57, 1), rgba(168, 151, 90, 1));
 $white-gradient: linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+$white-gradient-2: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+$gray-gradient: linear-gradient(180deg, rgba(247, 245, 242, 1), rgba(247, 245, 242, 0));
+$blue-gradient:  linear-gradient(to right, rgba(235, 245, 246, 1), rgba(235, 244, 246, 1), rgba(235, 235, 246, 1));
+$brown-gradient:  linear-gradient(to right, rgba(240, 224, 224, 1), rgba(228, 233, 220, 1));
 
 $sm-screen: '600px';
 $md-screen: '728px';
 $lg-screen: '984px';
-$xl-screen: '1240px';
+$xl-screen: '1280px';
 $xxl-screen: '1496px';

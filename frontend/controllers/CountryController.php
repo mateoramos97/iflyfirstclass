@@ -4,6 +4,9 @@ namespace frontend\controllers;
 
 use app\components\AppConfig;
 use app\modules\imagemanager\models\Image;
+use common\sys\core\landing\AirlineInfoService;
+use common\sys\core\landing\CityInfoService;
+use common\sys\core\landing\CountryInfoService;
 use common\sys\repository\landing\models\City;
 use common\sys\repository\landing\models\Continent;
 use common\sys\repository\landing\models\Country;
@@ -44,20 +47,18 @@ class CountryController extends BaseController
             'content' => $country->keywords,
         ]);
 
-        //sections
-        $continents = Continent::find()
-            ->select(['name', 'alias'])
-            ->all();
-
-        $cities = City::find()
-            ->select(['name', 'alias'])
-            ->where(['country_id' => $country->id])
-            ->all();
+        $airline_info_service = new AirlineInfoService();
+        $country_info_service = new CountryInfoService();
+        $city_info_service = new CityInfoService();
+        $airlines = $airline_info_service->get_airlines_list();
+        $countries = $country_info_service->get_countries_list();
+        $cities = $city_info_service->get_cities_list();
 
         return $this->render('index', [
             'country_model' => $country,
             'images' => $images,
-            'continents' => $continents,
+            'airlines' => $airlines,
+            'countries' => $countries,
             'cities' => $cities,
         ]);
     }

@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
         ],
     ]) ?>
 
-    <div class="flex flex-justify-between">
+    <div class="flex justify-between">
         <div class="column column-1">
             <?= $form->field($model, 'name')->textInput(
                 [

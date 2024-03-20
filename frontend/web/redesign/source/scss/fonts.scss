@@ -1,16 +1,15 @@
 @font-face {
-    font-display: swap;
     font-family: "ProximaNova";
-    font-weight: normal;
-    font-style: normal;
     src: url('../fonts/proximanova_regular.ttf') format("truetype");
 }
 
 @font-face {
-    font-display: swap;
+    font-family: "ProximaNovaLight";
+    src: url('../fonts/proximanova_light.otf') format("truetype");
+}
+
+@font-face {
     font-family: "Gilroy";
-    font-weight: normal;
-    font-style: normal;
     src: url('../fonts/Gilroy-Regular.ttf') format("truetype");
 }
 
@@ -43,6 +42,10 @@
     font-family: ProximaNova, sans-serif;
 }
 
+.font-proxima-nova-light{
+    font-family: ProximaNovaLight, sans-serif;
+}
+
 .font-gilroy-regular{
     font-family: Gilroy, ProximaNova, sans-serif;
 }
@@ -65,4 +68,8 @@
 
 .font-silk-serif-medium{
     font-family: SilkSerifMedium, sans-serif;
+}
+
+.head-shadow {
+    text-shadow: 0 5px 5px #ccc;
 }
