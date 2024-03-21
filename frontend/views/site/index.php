@@ -17,9 +17,9 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 
 ?>
 
-<div class="container mx-auto welcome-block-wrapper home xl:mt-0 mt-20">
+<div class="welcome-block-wrapper home xl:mt-0 mt-20">
     <div class="back-slide">
-		<div class="welcome-block container-wrapper grid grid-cols-11">
+		<div class="container mx-auto welcome-block container-wrapper grid grid-cols-11">
 			<div class="content xl:flex hidden align-center pt-28 px-12 col-span-5">
 				<div>
 					<div class="title-form font-silk-serif-bold text-white 2xl:text-5xl xl:text-4xl md:text-xl">
@@ -199,8 +199,8 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 			<img class="block m-auto" src="/public/img/y.svg" alt="img">
 		</div>
 	</div>
-    <div class="news-block-wrapper bg-secondary xl:mt-22 mt-20 border-t border-b shadow-lg">
-        <div class="news-inner container mx-auto">
+    <div class="news-block-wrapper bg-secondary xl:mt-22 mt-20 shadow-lg">
+        <div class="news-inner">
 			<h2 class="font-silk-serif-bold text-center pt-20 xl:pb-20 py-14">
 				Travel <span class="xl:inline-block hidden">& Flight</span> <span class="text-brown">News</span>
 			</h2>

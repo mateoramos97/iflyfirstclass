@@ -20,9 +20,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Service', 'template' => '<li itemp
 $this->params['breadcrumbs'][] = 'Hotels';
 
 ?>
-<div class="container mx-auto welcome-block-wrapper hotels-page mb-20">
+<div class="welcome-block-wrapper hotels-page mb-20">
     <div class="back-slide">
-		<div class="welcome-block container-wrapper grid grid-cols-12 items-center">
+		<div class="container mx-auto welcome-block container-wrapper grid grid-cols-12 items-center">
 			<div class="content xl:flex flex-col hidden align-center pt-8 px-12 col-span-5">
 				<?= $this->render('@app/views/layouts/_breadcrumbs') ?>
 				<h6 class="border-b-2 border-white mt-28 w-fit text-white">Hotel bookings</h6>

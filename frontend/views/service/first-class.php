@@ -24,9 +24,9 @@ $path_img = Url::base() . '/public/images/';
 $path_img_thumbs = Url::base() . '/public/images/thumbs/';
 ?>
 
-<div class="container mx-auto welcome-block-wrapper first-class-page xl:mt-0 mt-20">
+<div class="welcome-block-wrapper first-class-page xl:mt-0 mt-20">
     <div class="back-slide">
-		<div class="welcome-block container-wrapper grid grid-cols-11 items-center">
+		<div class="container mx-auto welcome-block container-wrapper grid grid-cols-11 items-center">
 			<div class="content xl:flex flex-col hidden align-center pt-8 px-12 col-span-5">
 				<?= $this->render('@app/views/layouts/_breadcrumbs') ?>
 				<div class="title-form font-silk-serif-medium text-white 2xl:text-8xl xl:text-7xl md:text-xl mt-36">

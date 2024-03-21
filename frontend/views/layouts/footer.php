@@ -3,7 +3,7 @@ use \yii\helpers\Url;
 
 $path_icons =  Url::base().'/design/icons/';
 ?>
-<footer class="bg-secondary xl:px-12 px-8 pt-20 border-t shadow-lg">
+<footer class="bg-secondary xl:px-12 px-8 pt-20 shadow-lg">
 	<div class="container mx-auto">
 		<div class="flex justify-between mb-20 gap-10 flex-wrap">
 			<div>

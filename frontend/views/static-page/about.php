@@ -13,10 +13,10 @@ $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::base(true) . Yii::$
 $this->params['breadcrumbs'][] = 'About Us';
 
 ?>
-<div class="container mx-auto welcome-block-wrapper contact-us xl:mt-0 mt-20">
+<div class="welcome-block-wrapper contact-us xl:mt-0 mt-20">
     <div class="back-slide">
 		<?= $this->render('@app/views/layouts/_breadcrumbs') ?>
-		<div class="welcome-block container-wrapper flex flex-col items-center">
+		<div class="container mx-auto welcome-block container-wrapper flex flex-col items-center">
 			<div class="content flex flex-col items-center pb-20 pt-16 xl:px-24 px-6">
 				<p class="px-6 py-3 text-lg bg-black rounded-tl-3xl rounded-bl-lg rounded-r-3xl text-white font-semibold">Contact Us</p>
 				<h1 class="text-white text-center xl:text-5xl lg:text-4xl text-3xl mt-4 leading-10 px-10">
@@ -65,8 +65,8 @@ $this->params['breadcrumbs'][] = 'About Us';
 	</div>
 	<p class="text-center text-mute mt-10">Many of the changes and additions on here have been as a result of feedback from our customers and visitors and we appreciate the time taken to contact us.</p>
 </div>
-<div class="container mx-auto xl:p-14 p-4 bg-gray-gradient mb-20">
-	<div class="grid xl:grid-cols-2 grid-cols-1 items-center">
+<div class="xl:p-14 p-4 bg-gray-gradient mb-20">
+	<div class="container mx-auto grid xl:grid-cols-2 grid-cols-1 items-center">
 		<div>
 			<img src="/public/img/about-us-first-img.png" alt="image">
 		</div>
@@ -80,7 +80,7 @@ $this->params['breadcrumbs'][] = 'About Us';
 			</p>
 		</div>
 	</div>
-	<div class="grid xl:grid-cols-2 grid-cols-1 items-center justify-items-end mt-12">
+	<div class="container mx-auto grid xl:grid-cols-2 grid-cols-1 items-center justify-items-end mt-12">
 		<div class="xl:pr-24">
 <!--			<h4 class="xl:text-4xl">Some kind of title for this section.</h4>-->
 			<p class="text-gray mt-8">

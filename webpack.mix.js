@@ -10,7 +10,7 @@ mix.setPublicPath('frontend/web/public')
 			fonts: 'dist/fonts'
 		}
 	})
-	.extract(['vue', 'jquery'], 'dist/js/vendor.js')
+	.extract(['vue'], 'dist/js/vendor.js')
 	.vue()
 	.version()
 ;

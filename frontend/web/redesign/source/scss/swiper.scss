@@ -7,10 +7,9 @@
   }
 
   .swiper-slide {
-    width: 52%;
-    min-width: 700px;
+    max-width: 700px;
     max-height: 480px;
-    @media screen and (max-width: $lg-screen) {
+    @media screen and (max-width: $xl-screen) {
       width: 110%;
       min-width: 400px;
     }

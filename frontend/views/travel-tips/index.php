@@ -28,13 +28,13 @@ $this->params['breadcrumbs'][] = Html::encode($travel_tips_model['title']);
 	<div class="flex items-center justify-center bg-secondary">
 		<?= $this->render('@app/views/layouts/_breadcrumbs') ?>
 	</div>
-	<div class="container mx-auto">
-		<div class="box-border xl:mt-10 xl:px-32 px-4 text-center mt-28 mb-10">
+	<div>
+		<div class="container mx-auto box-border xl:mt-10 xl:px-32 px-4 text-center mt-28 mb-10">
 			<h1 class="font-silk-serif-bold"><?= Html::encode($travel_tips_model->title);  ?></h1>
 		</div>
 		<div class="blog-poster-wrapper">
 			<div class="back-slide" style="background-image: url(<?= $path_img . Html::encode($images[0]['alias']) ?>); background-position: center">
-				<div class="welcome-block container-wrapper grid grid-cols-12 items-center">
+				<div class="container mx-auto welcome-block container-wrapper grid grid-cols-12 items-center">
 					<div class="content xl:flex flex-col hidden align-center pt-8 px-12 xl:col-span-7 justify-end h-full">
 						<div class="my-16 text-3.2xl font-semibold">
 							<p class="text-white bg-black px-5 pt-5 pb-1 font-gilroy-regular w-fit">Enjoy The Best Service</p>
