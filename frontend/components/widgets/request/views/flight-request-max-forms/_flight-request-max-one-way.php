@@ -32,11 +32,12 @@ use yii\helpers\Html;
 	<div class="grid xl:grid-cols-2 grid-cols-1 xl:gap-4 gap-5 mt-5">
 		<div class="form-group field-row field-data flex grow flex-col">
 			<i class="input-prefix icon-calendar text-gray top-3 text-lg"></i>
-			<?= $form->field($model, 'dep_date[]')->textInput([
-					'placeholder' => 'Departure',
-					'class' => 'has-prefix has-suffix datepicker component-depdate w-full required-field bg-white',
-					'id' => 'dep-date-one-way',
-			]) ?>
+			<datepicker
+				name="FlightRequestMax[dep_date][]"
+				placeholder="Departure"
+				id="dep-date-one-way"
+				class-name="has-prefix has-suffix required-field w-full bg-white"
+			></datepicker>
 			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 		</div>
 		<div class="split-input-group field-row field-data xl:hidden flex grow">

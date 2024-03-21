@@ -7,7 +7,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 ?>
 
-<div class="form-block-wrapper w-full xl:px-16">
+<div class="form-flight-request form-block-wrapper w-full xl:px-16" id="form-request">
     <?php $form = ActiveForm::begin([
         'id' => 'request_corporate_accounts',
         'enableClientValidation' => true,
@@ -64,22 +64,22 @@ use yii\widgets\ActiveForm;
 			<div class="split-input-group flex">
 				<div class="form-group w-1/2">
 					<i class="input-prefix icon-calendar text-gray top-3 text-lg"></i>
-					<?= $form->field($model, 'dep_date')->textInput([
-							'placeholder' => 'Departure',
-							'class' => 'has-prefix has-suffix datepicker component component-depdate datepicker bg-white',
-							'id' => 'dep-date-round-trip',
-							'readonly' => 'readonly'
-					]) ?>
+					<datepicker
+						name="RequestCorporateAccounts[dep_date]"
+						placeholder="Departure"
+						id="dep-date-round-trip"
+						class-name="has-prefix has-suffix bg-white"
+					></datepicker>
 					<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 				</div>
 				<i class="input-divider"></i>
 				<div class="form-group w-1/2">
-					<?= $form->field($model, 'arr_date')->textInput([
-							'placeholder' => 'Return',
-							'class' => 'has-suffix required-field datepicker component component-arrdate datepicker bg-white',
-							'id' => 'arr-date-round-trip',
-							'readonly' => 'readonly'
-					]) ?>
+					<datepicker
+						name="RequestCorporateAccounts[arr_date]"
+						placeholder="Return"
+						id="dep-date-round-trip"
+						class-name="has-suffix bg-white"
+					></datepicker>
 					<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 				</div>
 			</div>

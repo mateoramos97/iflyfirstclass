@@ -1,7 +1,9 @@
 import { createApp, ref } from "vue";
 import {initFlightRequestForm} from "../../scripts/custom";
+import Datepicker from "../Datepicker.vue";
+import MultiFlights from "../MultiFlights.vue";
 
-createApp({
+const form = createApp({
 	setup() {
 		const activeForm = ref(1);
 		const showHiddenFields = ref(false);
@@ -63,4 +65,20 @@ createApp({
 		});
 		initFlightRequestForm();
 	}
-}).mount("#form-request");
+});
+
+form.component('datepicker', Datepicker);
+form.component('multi-flights', MultiFlights);
+form.directive('click-outside', (el, binding) => {
+	el.clickOutsideEvent = function(event) {
+		// Check if the clicked element is neither the element
+		// to which the directive is applied nor its child
+		if (!(el === event.target || el.contains(event.target))) {
+			// Invoke the provided method
+			binding.value(event);
+			// document.removeEventListener('click', el.clickOutsideEvent);
+		}
+	};
+	document.addEventListener('click', el.clickOutsideEvent);
+})
+form.mount("#form-request")

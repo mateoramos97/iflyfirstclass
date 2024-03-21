@@ -28,12 +28,12 @@ use yii\helpers\Html;
 	</div>
 	<div class="field-row to relative mt-5">
 		<i class="input-prefix icon-calendar text-gray top-3 text-lg"></i>
-		<?= $form->field($model, 'dep_date[]')->textInput([
-				'placeholder' => 'Departure',
-				'class' => 'has-prefix has-suffix datepicker bg-white',
-				'id' => 'dep-date-multi-city',
-				'readonly' => 'readonly'
-		]) ?>
+		<datepicker
+			name="FlightRequestMax[dep_date][]"
+			placeholder="Departure"
+			id="dep-date-multi-city"
+			class-name="has-prefix has-suffix required-field bg-white"
+		></datepicker>
 		<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 	</div>
 	<div class="field-row from relative mt-5">
@@ -56,12 +56,12 @@ use yii\helpers\Html;
 	</div>
 	<div class="field-row to relative mt-5">
 		<i class="input-prefix icon-calendar text-gray top-3 text-lg"></i>
-		<?= $form->field($model, 'dep_date[]')->textInput([
-				'placeholder' => 'Departure',
-				'class' => 'has-prefix has-suffix datepicker bg-white',
-				'id' => 'dep-date-multi-city-1',
-				'readonly' => 'readonly'
-		]) ?>
+		<datepicker
+				name="FlightRequestMax[dep_date][]"
+				placeholder="Departure"
+				id="dep-date-multi-city-1"
+				class-name="has-prefix has-suffix bg-white"
+		></datepicker>
 		<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 	</div>
 	<div class="form-group field-row email-field mt-5 hidden-field" v-if="showHiddenFields">

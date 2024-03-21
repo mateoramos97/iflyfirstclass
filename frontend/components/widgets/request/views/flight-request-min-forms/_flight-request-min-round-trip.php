@@ -29,22 +29,22 @@ use yii\helpers\Html;
 	<div class="split-input-group field-row field-data flex bg-white mt-5">
 		<div class="relative w-1/2">
 			<i class="input-prefix icon-calendar text-gray top-3 text-lg"></i>
-			<?= $form->field($model, 'dep_date[]')->textInput([
-					'placeholder' => 'Departure',
-					'class' => 'has-prefix has-suffix datepicker',
-					'id' => 'dep-date-round-trip',
-					'readonly' => 'readonly'
-			]) ?>
+			<datepicker
+				name="FlightRequestMax[dep_date][]"
+				placeholder="Departure"
+				id="dep-date-round-trip"
+				class-name="has-prefix has-suffix bg-white"
+			></datepicker>
 			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 		</div>
 		<i class="input-divider"></i>
 		<div class="relative w-1/2">
-			<?= $form->field($model, 'arr_date[]')->textInput([
-					'placeholder' => 'Return',
-					'class' => 'has-suffix required-field datepicker',
-					'id' => 'arr-date-round-trip',
-					'readonly' => 'readonly'
-			]) ?>
+			<datepicker
+				name="FlightRequestMax[arr_date][]"
+				placeholder="Return"
+				id="arr-date-round-trip"
+				class-name="has-suffix bg-white"
+			></datepicker>
 			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 		</div>
 	</div>

@@ -28,12 +28,12 @@ use yii\helpers\Html;
 	</div>
 	<div class="field-row to relative mt-5">
 		<i class="input-prefix icon-calendar text-gray top-3 text-lg"></i>
-		<?= $form->field($model, 'dep_date[]')->textInput([
-				'placeholder' => 'Departure',
-				'class' => 'has-prefix has-suffix datepicker bg-white',
-				'id' => 'dep-date-one-way',
-				'readonly' => 'readonly'
-		]) ?>
+		<datepicker
+				name="FlightRequestMax[dep_date][]"
+				placeholder="Departure"
+				id="dep-date-one-way"
+				class-name="has-prefix has-suffix bg-white"
+		></datepicker>
 		<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 	</div>
 	<div class="form-group field-row email-field mt-5 hidden-field" v-if="showHiddenFields">
