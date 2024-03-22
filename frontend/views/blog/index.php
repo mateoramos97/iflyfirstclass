@@ -44,10 +44,9 @@ $this->params['breadcrumbs'][] = Html::encode($blog_article_model['title']);
 							<div class="share-facebook bg-black w-fit px-5 pb-5">
 								<!-- Load Facebook SDK for JavaScript -->
 								<div id="fb-root"></div>
-								<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_EN/sdk.js#xfbml=1&version=v5.0"></script>
 								<div class="fb-share-button" data-href="<?= Url::base(true) . Yii::$app->request->url ?>" data-layout="button" data-size="large">
 									<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
-										<img src="/public/img/fb-share.svg">
+										<img src="/public/img/fb-share.svg" alt="fb-share" width="100" height="60">
 									</a>
 								</div>
 							</div>

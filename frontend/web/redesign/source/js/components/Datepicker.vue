@@ -3,7 +3,7 @@
         <input :name="name" :id="id" :placeholder="placeholder" :class="className"  :value="formattedResult"
                readonly
                @click.stop="handleClick"
-               autocomplete="off">
+        >
         <div class="calendar shadow-lg"  v-show="showCalendar" :style="{left:leftPositionCalendar}">
           <div class="dates-wrapper" v-show="!showMonths">
             <div class="flex justify-between items-center">

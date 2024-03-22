@@ -56,17 +56,17 @@ $path_icons =  Url::base().'/design/icons/';
 		</div>
 		<div itemscope="" itemtype="http://schema.org/Organization" id="logo" class="logo">
 			<a itemprop="url" href="<?= Url::home(true); ?>" >
-				<img src="/public/img/logo.svg" itemprop="logo" alt="" width="237" height="57">
+				<img src="/public/img/logo.svg" itemprop="logo" alt="logo" width="237" height="57">
 			</a>
 		</div>
 		<div class="flex gap-2 items-center">
-			<img src="/public/img/based-company.svg" width="104" height="29">
+			<img src="/public/img/based-company.svg" width="104" height="29" alt="based-company">
 		</div>
 	</div>
 	<div class="main-nav xl:block hidden pt-8 pb-5 bg-white top-0 left-0 w-full items-center justify-center">
 		<div class="flex items-center justify-center justify-items-center">
 			<div class="main-nav-logo flex justify-center">
-				<img class="scale-75"  src="/public/img/logo-2.svg" width="237" height="57">
+				<img class="scale-75"  src="/public/img/logo-2.svg" width="237" height="57" alt="logo-2">
 			</div>
 			<ul class="flex items-center justify-center gap-6">
 				<li>

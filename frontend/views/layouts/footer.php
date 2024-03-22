@@ -82,7 +82,7 @@ $path_icons =  Url::base().'/design/icons/';
 		<hr class="pb-10">
 		<div class="xl:flex hidden justify-between items-center pb-10">
 			<div class="flex">
-				<img src="/public/img/logo-2.svg" width="237" height="32">
+				<img src="/public/img/logo-2.svg" width="237" height="32" alt="logo">
 				<p class="text-xs px-11 text-mute max-w-4xl">
 					© 2022 IFlyFirstClass. All rights Reserved. Registered in accordance to California State regulations # 2107775-40. Use of this Web site constitutes acceptance of the <a href="javascript:void(0);" class="terms-conditions-link underline text-black" onclick="openTermsConditions(this)">Terms of Service</a> and Privacy Policy. Designated trademarks and brands are the property of their respective owners.
 				</p>
@@ -90,13 +90,13 @@ $path_icons =  Url::base().'/design/icons/';
 			</div>
 			<div class="flex gap-8 items-center">
 				<div>
-					<img src="/public/img/bbb.svg" width="28" height="42">
+					<img src="/public/img/bbb.svg" width="28" height="42" alt="bbb">
 				</div>
 				<div>
-					<img src="/public/img/asta.svg" width="33" height="42">
+					<img src="/public/img/asta.svg" width="33" height="42" alt="asta">
 				</div>
 				<div>
-					<img src="/public/img/db.svg" width="51" height="26">
+					<img src="/public/img/db.svg" width="51" height="26" alt="db">
 				</div>
 			</div>
 		</div>

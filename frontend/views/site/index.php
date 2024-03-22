@@ -56,9 +56,9 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
                 </div>
                 <div class="border-r border-gray-light h-10 mx-10"></div>
 				<div class="flex gap-8 items-center">
-					<img class="scale-110" src="/public/img/bbb.svg" width="31" height="46">
-					<img class="scale-125" src="/public/img/asta.svg" width="41" height="40">
-					<img class="scale-110" src="/public/img/db.svg" width="56" height="29">
+					<img class="scale-110" src="/public/img/bbb.svg" width="31" height="46" alt="bbb">
+					<img class="scale-125" src="/public/img/asta.svg" width="41" height="40" alt="astra">
+					<img class="scale-110" src="/public/img/db.svg" width="56" height="29" alt="db">
 				</div>
             </div>
         </div>
