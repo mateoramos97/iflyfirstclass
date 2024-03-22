@@ -9,13 +9,13 @@ $this->registerMetaTag(['property' => 'og:url', 'content' => Url::base(true) . Y
 $this->registerMetaTag(['property' => 'og:image', 'content' => Url::base(true) . '/design/photo/about-top.jpg']);
 $this->registerMetaTag(['name' => 'robots', 'content' => 'index, follow']);
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::base(true) . Yii::$app->request->url]);
+$this->registerLinkTag(['rel' => 'preload', 'href' =>  Url::base(true) . '/design/photo/about-top.jpg' ]);
 
 $this->params['breadcrumbs'][] = 'About Us';
 
 ?>
 <div class="welcome-block-wrapper contact-us xl:mt-0 mt-20">
     <div class="back-slide">
-		<img src="/design/photo/about-top.jpg" class="hidden" width="1496" height="592">
 		<?= $this->render('@app/views/layouts/_breadcrumbs') ?>
 		<div class="container mx-auto welcome-block container-wrapper flex flex-col items-center">
 			<div class="content flex flex-col items-center pb-20 pt-16 xl:px-24 px-6">

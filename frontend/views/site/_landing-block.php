@@ -41,7 +41,7 @@ $path_icons =  Url::base().'/design/icons/';
 	<div class="landing-more-link w-full">
 		<div class="mt-10 text-center">
 			<a href="javascript:void(0)" class="mx-auto rounded-full py-2 px-2 bg-secondary xl:w-fit w-full flex items-center" onclick="readMoreLanding(this)">
-				<img src="/public/img/download-fill.svg">
+				<img src="/public/img/download-fill.svg" alt="download-img" width="40" height="40">
 				<p class="font-semibold grow px-5">Show More Destination</p>
 			</a>
 		</div>

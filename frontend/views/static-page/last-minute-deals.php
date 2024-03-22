@@ -14,6 +14,7 @@ $this->registerMetaTag(['property' => 'og:url', 'content' => Url::base(true) . Y
 $this->registerMetaTag(['property' => 'og:image', 'content' => Url::base(true) . '/design/photo/last-minyte-deals.jpg']);
 $this->registerMetaTag(['name' => 'robots', 'content' => 'index, follow']);
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::base(true) . Yii::$app->request->url]);
+$this->registerLinkTag(['rel' => 'preload', 'href' =>  Url::base(true) . '/design/photo/last-minyte-deals.jpg']);
 
 $this->params['breadcrumbs'][] = 'Last minute deals';
 
@@ -21,7 +22,6 @@ $this->params['breadcrumbs'][] = 'Last minute deals';
 
 <div class="welcome-block-wrapper last-minute-deals-page">
     <div class="back-slide">
-		<img src="/design/photo/last-minyte-deals.jpg" class="hidden" width="1496" height="592">
 		<div class="container mx-auto welcome-block container-wrapper grid grid-cols-11 items-center">
 			<div class="content xl:flex flex-col hidden align-center pt-8 px-12 col-span-5">
 				<?= $this->render('@app/views/layouts/_breadcrumbs') ?>

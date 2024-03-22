@@ -8,6 +8,9 @@ use yii\helpers\Html;
 use \yii\helpers\Url;
 use app\components\widgets\request\FlightRequestMax;
 
+$path_img =  Url::base().'/public/images/';
+$path_img_thumbs =  Url::base().'/public/images/thumbs/';
+
 $this->title = $continent_model->browser_title;
 $this->registerMetaTag(['property' => 'og:locale', 'content' => 'en']);
 $this->registerMetaTag(['property' => 'og:title', 'content' => $continent_model->browser_title]);
@@ -16,16 +19,13 @@ $this->registerMetaTag(['property' => 'og:url', 'content' => Url::base(true) . Y
 $this->registerMetaTag(['property' => 'og:image', 'content' =>  Url::base(true) . '/public/images/' . $images[0]['alias']]);
 $this->registerMetaTag(['name' => 'robots', 'content' => 'index, follow']);
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::base(true) . Yii::$app->request->url]);
+$this->registerLinkTag(['rel' => 'preload', 'href' =>  Url::base(true) . $path_img . $images[0]['alias'] ]);
 
 $this->params['breadcrumbs'][] = Html::encode($continent_model['name']);
-
-$path_img =  Url::base().'/public/images/';
-$path_img_thumbs =  Url::base().'/public/images/thumbs/';
 ?>
 
 <div itemscope="" itemtype="http://schema.org/Product">
 	<div class="welcome-block-wrapper relative z-10">
-		<img src="<?= $path_img . Html::encode($images[0]['alias']) ?>" class="hidden" width="1496" height="592">
 		<div class="back-slide" style="background-image: url(<?= $path_img . Html::encode($images[0]['alias']) ?>); background-position: center">
 			<div class="container mx-auto welcome-block container-wrapper grid grid-cols-11 items-center">
 				<div class="content flex flex-col align-center xl:p-12 p-6 xl:col-span-5 col-span-11 justify-between h-full">
@@ -40,7 +40,7 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 					<div class="mt-16 xl:block hidden">
 						<span class="text-white bg-black px-3 pt-3 pb-1 font-gilroy-semibold">Call US Now to Book Your Flight️</span>
 						<div class="flex items-center bg-black p-2 w-fit">
-							<img class="mr-2 scale-75" src="/public/img/phone-operator.svg" alt="">
+							<img class="mr-2 scale-75" src="/public/img/phone-operator.svg" alt="operator-icon" width="40" height="40">
 							<a class="font-gilroy-semibold text-3xl pr-2" href="tel:+18883477817">
 								<span class="text-orange mr-1">+1</span> <span class="text-white">888 347 7817</span>
 							</a>
@@ -65,6 +65,7 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 							itemprop="image"
 							src="<?= $path_img_thumbs. Html::encode($images[1]['alias']) ?>"
 							title="<?= Html::encode($images[1]['title']) ?>"
+							width="253" height="172"
 							alt="<?= Html::encode($images[1]['title'])." - IFlyFirstClass" ?>">
 				</div>
 				<div class="col-span-5 px-10 py-8">
@@ -91,6 +92,7 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 							itemprop="image"
 							src="<?= $path_img_thumbs. Html::encode($images[2]['alias']) ?>"
 							title="<?= Html::encode($images[2]['title']) ?>"
+							width="253" height="172"
 							alt="<?= Html::encode($images[2]['title'])." - IFlyFirstClass" ?>">
 				</div>
 				<div class="col-span-5 px-10 py-8">

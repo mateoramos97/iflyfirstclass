@@ -13,7 +13,7 @@
 		};
 	}());
 </script>
-<script async>
+<script type="text/javascript" async>
 	(function (w, d, s, o, f, js, fjs) {
 		w["botsonic_widget"] = o;
 		w[o] =

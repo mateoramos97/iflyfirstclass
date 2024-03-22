@@ -18,6 +18,7 @@ $this->registerMetaTag(['property' => 'og:url', 'content' => Url::base(true) . Y
 $this->registerMetaTag(['property' => 'og:image', 'content' => Url::base(true) . '/design/photo/business-class.jpg']);
 $this->registerMetaTag(['name' => 'robots', 'content' => 'index, follow']);
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::base(true) . Yii::$app->request->url]);
+$this->registerLinkTag(['rel' => 'preload', 'href' =>  Url::base(true) . '/design/photo/business-class.jpg' ]);
 
 $this->params['breadcrumbs'][] = 'Business Class';
 
@@ -27,7 +28,6 @@ $path_img_thumbs = Url::base() . '/public/images/thumbs/';
 
 <div class="welcome-block-wrapper business-class-page xl:mt-0 mt-20">
     <div class="back-slide">
-		<img src="/design/photo/business-class.jpg" class="hidden" width="1496" height="592">
 		<div class="container mx-auto welcome-block container-wrapper grid grid-cols-11 items-center">
 			<div class="content xl:flex flex-col hidden align-center pt-8 px-12 col-span-5">
 				<?= $this->render('@app/views/layouts/_breadcrumbs') ?>
@@ -37,7 +37,7 @@ $path_img_thumbs = Url::base() . '/public/images/thumbs/';
 				<div class="my-16">
 					<span class="text-white bg-black px-3 pt-3 pb-1 font-gilroy-semibold">Call US Now to Book Your Flight️</span>
 					<div class="flex items-center bg-black p-2 w-fit">
-						<img class="mr-2 scale-75" src="/public/img/phone-operator.svg" alt="">
+						<img class="mr-2 scale-75" src="/public/img/phone-operator.svg" alt="operator-icon" width="40" height="40">
 						<a class="font-gilroy-semibold text-3xl pr-2" href="tel:+18883477817">
 							<span class="text-orange mr-1">+1</span> <span class="text-white">888 347 7817</span>
 						</a>

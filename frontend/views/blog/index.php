@@ -10,6 +10,9 @@ use \yii\helpers\Url;
 use app\components\widgets\custom\BlogSidebarRight;
 
 $this->title = $blog_article_model->title;
+$path_img = Url::base() . '/public/images/';
+$path_img_thumbs = Url::base() . '/public/images/thumbs/';
+
 $this->registerMetaTag(['property' => 'og:locale', 'content' => 'en']);
 $this->registerMetaTag(['property' => 'og:title', 'content' => $blog_article_model->title]);
 $this->registerMetaTag(['property' => 'og:description', 'content' => $blog_article_model->description]);
@@ -17,9 +20,7 @@ $this->registerMetaTag(['property' => 'og:url', 'content' => Url::base(true) . Y
 $this->registerMetaTag(['property' => 'og:image', 'content' => Url::base(true) . '/public/images/' . $images[0]['alias']]);
 $this->registerMetaTag(['name' => 'robots', 'content' => 'index, follow']);
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::base(true) . Yii::$app->request->url]);
-
-$path_img = Url::base() . '/public/images/';
-$path_img_thumbs = Url::base() . '/public/images/thumbs/';
+$this->registerLinkTag(['rel' => 'preload', 'href' =>  Url::base(true) . $path_img . $images[0]['alias'] ]);
 
 $this->params['breadcrumbs'][] = ['label' => 'Blog', 'url' => Url::to(['blog/list'])];
 $this->params['breadcrumbs'][] = Html::encode($blog_article_model['title']);
@@ -34,7 +35,6 @@ $this->params['breadcrumbs'][] = Html::encode($blog_article_model['title']);
 			<h1 class="font-silk-serif-bold"><?= Html::encode($blog_article_model['title']) ?></h1>
 		</div>
 		<div class="blog-poster-wrapper">
-			<img src="<?= $path_img . Html::encode($images[0]['alias']) ?>" class="hidden" width="1496" height="592">
 			<div class="back-slide" style="background-image: url(<?= $path_img . Html::encode($images[0]['alias']) ?>); background-position: center">
 				<div class="container mx-auto welcome-block container-wrapper grid grid-cols-12 items-center">
 					<div class="content xl:flex flex-col hidden align-center pt-8 px-12 xl:col-span-7 justify-end h-full">

@@ -20,7 +20,7 @@ $path_icons =  Url::base().'/design/icons/';
 					</form>
 				</div>
 				<div class="flex gap-6 items-center">
-					<a rel="nofollow" href="https://www.facebook.com/pages/I-Fly-First-Class/350113835017059" onMouseOver="document.getElementById('imgSocialFB').src='<?= $path_icons . 'facebook_button_link_to_fb.svg' ?>';" onMouseOut="document.getElementById('imgSocialFB').src='<?= $path_icons . 'facebook_button_link_to_fb.svg' ?>';"><img src="<?= $path_icons . 'facebook_button_link_to_fb.svg' ?>" id="imgSocialFB" alt="facebook"></a>
+					<a rel="nofollow" href="https://www.facebook.com/pages/I-Fly-First-Class/350113835017059" onMouseOver="document.getElementById('imgSocialFB').src='<?= $path_icons . 'facebook_button_link_to_fb.svg' ?>';" onMouseOut="document.getElementById('imgSocialFB').src='<?= $path_icons . 'facebook_button_link_to_fb.svg' ?>';"><img src="<?= $path_icons . 'facebook_button_link_to_fb.svg' ?>" id="imgSocialFB" alt="facebook" width="32" height="32"></a>
 					<iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FI-Fly-First-Class%2F350113835017059&amp;send=false&amp;layout=button_count&amp;width=200&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;locale=en_US" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:21px;" allowTransparency="true"></iframe>
 				</div>
 			</div>
@@ -82,7 +82,7 @@ $path_icons =  Url::base().'/design/icons/';
 		<hr class="pb-10">
 		<div class="xl:flex hidden justify-between items-center pb-10">
 			<div class="flex">
-				<img src="/public/img/logo-2.svg">
+				<img src="/public/img/logo-2.svg" width="237" height="32">
 				<p class="text-xs px-11 text-mute max-w-4xl">
 					© 2022 IFlyFirstClass. All rights Reserved. Registered in accordance to California State regulations # 2107775-40. Use of this Web site constitutes acceptance of the <a href="javascript:void(0);" class="terms-conditions-link underline text-black" onclick="openTermsConditions(this)">Terms of Service</a> and Privacy Policy. Designated trademarks and brands are the property of their respective owners.
 				</p>
@@ -90,13 +90,13 @@ $path_icons =  Url::base().'/design/icons/';
 			</div>
 			<div class="flex gap-8 items-center">
 				<div>
-					<img src="/public/img/bbb.svg">
+					<img src="/public/img/bbb.svg" width="28" height="42">
 				</div>
 				<div>
-					<img src="/public/img/asta.svg">
+					<img src="/public/img/asta.svg" width="33" height="42">
 				</div>
 				<div>
-					<img src="/public/img/db.svg">
+					<img src="/public/img/db.svg" width="51" height="26">
 				</div>
 			</div>
 		</div>

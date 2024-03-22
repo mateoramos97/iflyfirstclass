@@ -10,7 +10,7 @@ use \yii\helpers\Url;
 use app\components\widgets\request\FlightRequestMax;
 
 $this->title = $head_title;
-
+$this->registerLinkTag(['rel' => 'preload', 'href' => '/public/img/home-banner.png']);
 $path_icons =  Url::base().'/design/icons/';
 $path_img =  Url::base().'/public/images/';
 $path_img_thumbs =  Url::base().'/public/images/thumbs/';
@@ -19,7 +19,6 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 
 <div class="welcome-block-wrapper home xl:mt-0 mt-20">
     <div class="back-slide">
-		<img src="/public/img/home-banner.png" class="hidden" width="1496" height="592">
 		<div class="container mx-auto welcome-block container-wrapper grid grid-cols-11">
 			<div class="content xl:flex hidden align-center pt-28 px-12 col-span-5">
 				<div>
@@ -30,7 +29,7 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 					<div class="mt-10 pt-6 pl-4 pr-6 pb-4 bg-black-light w-fit rounded-tl-lg rounded-bl-3xl rounded-r-3xl border border-slate-500">
 						<span class="text-white">Call US Now to Book Your Flight 🌴️</span>
 						<div class="flex items-center mt-4">
-							<img class="mr-3" src="/public/img/phone-with-bg.png" alt="">
+							<img class="mr-3" src="/public/img/phone-with-bg.png" alt="phone" width="40" height="40">
 							<a href="tel:+18883477817">
 								<span class="text-orange text-lg mr-2 font-semibold">+1</span> <span class="text-white text-lg font-semibold">888 347 7817</span>
 							</a>
@@ -51,15 +50,15 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
             <div class="flex">
                 <div class="shopper-approved xl:flex items-center hidden">
                     <a class="flex" href="https://www.shopperapproved.com/reviews/iflyfirstclass.com" target="_blank">
-                        <img class="scale-110" src="/public/img/shopper-approved.svg" alt="">
-                        <img class="ml-6" src="/public/img/stars.svg" alt="">
+                        <img class="scale-110" src="/public/img/shopper-approved.svg" alt="shopper-approved-icon" width="226" height="52">
+                        <img class="ml-6" src="/public/img/stars.svg" alt="stars-icon" width="50" height="20">
                     </a>
                 </div>
                 <div class="border-r border-gray-light h-10 mx-10"></div>
 				<div class="flex gap-8 items-center">
-					<img class="scale-110" src="/public/img/bbb.svg">
-					<img class="scale-125" src="/public/img/asta.svg">
-					<img class="scale-110" src="/public/img/db.svg">
+					<img class="scale-110" src="/public/img/bbb.svg" width="31" height="46">
+					<img class="scale-125" src="/public/img/asta.svg" width="41" height="40">
+					<img class="scale-110" src="/public/img/db.svg" width="56" height="29">
 				</div>
             </div>
         </div>
@@ -99,7 +98,7 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
         </div>
 		<div class="mt-10 text-center">
 			<a href="/" class="mx-auto rounded-full py-2 px-2 border border-gray-light w-fit flex items-center">
-				<img src="/public/img/download-fill.svg">
+				<img src="/public/img/download-fill.svg" width="40" height="40" alt="download-icon">
 				<p class="font-semibold grow px-5">Show more details</p>
 			</a>
 		</div>
@@ -131,7 +130,7 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 			<div class="grid lg:grid-cols-3 grid-cols-1 gap-6 mt-8">
 				<div class="item px-8 pt-6 pb-10 bg-secondary rounded-3xl lg:text-left text-center">
 					<div>
-						<img class="p-2 bg-white rounded-xl mx-auto lg:mx-0" src="/public/img/gold-pig.svg" alt="">
+						<img class="p-2 bg-white rounded-xl mx-auto lg:mx-0" src="/public/img/gold-pig.svg" alt="gold-pig-icon" width="52" height="48">
 					</div>
 					<h6 class="mt-4">
 						Unpublished Fares
@@ -142,7 +141,7 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 				</div>
 				<div class="item px-8 pt-6 pb-10 bg-secondary rounded-3xl lg:text-left text-center">
 					<div>
-						<img class="p-2 bg-white rounded-xl mx-auto lg:mx-0" src="/public/img/team-gold.svg" alt="">
+						<img class="p-2 bg-white rounded-xl mx-auto lg:mx-0" src="/public/img/team-gold.svg" alt="gold-team-icon" width="55" height="44">
 					</div>
 					<h6 class="mt-4">
 						Expert Travel Team
@@ -153,7 +152,7 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 				</div>
 				<div class="item px-8 pt-6 pb-10 bg-secondary rounded-3xl lg:text-left text-center">
 					<div>
-						<img class="p-2 bg-white rounded-xl mx-auto lg:mx-0" src="/public/img/support-gold.svg" alt="">
+						<img class="p-2 bg-white rounded-xl mx-auto lg:mx-0" src="/public/img/support-gold.svg" alt="gold-support-icon" width="51" height="46">
 					</div>
 					<h6 class="mt-4">
 						24/7 Customer Suport
@@ -164,7 +163,7 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 				</div>
 				<div class="item px-8 pt-6 pb-10 bg-secondary rounded-3xl lg:text-left text-center">
 					<div>
-						<img class="p-2 bg-white rounded-xl mx-auto lg:mx-0" src="/public/img/security-gold.svg" alt="">
+						<img class="p-2 bg-white rounded-xl mx-auto lg:mx-0" src="/public/img/security-gold.svg" alt="gold-security-icon" width="44" height="50">
 					</div>
 					<h6 class="mt-4">
 						Credibility & Reliability
@@ -175,7 +174,7 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 				</div>
 				<div class="item px-8 pt-6 pb-10 bg-secondary rounded-3xl lg:text-left text-center">
 					<div>
-						<img class="p-2 bg-white rounded-xl mx-auto lg:mx-0" src="/public/img/flight-gold.svg" alt="">
+						<img class="p-2 bg-white rounded-xl mx-auto lg:mx-0" src="/public/img/flight-gold.svg" alt="gold-flight-icon" width="51" height="44">
 					</div>
 					<h6 class="mt-4">
 						Travel protection & flexibility
@@ -192,12 +191,12 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 			As seen on
 		</h3>
 		<div class="grid xl:grid-cols-6 grid-cols-2 gap-6 mt-8">
-			<img class="block m-auto" src="/public/img/cnn.svg" alt="img">
-			<img class="block m-auto" src="/public/img/cbsnews.svg" alt="img">
-			<img class="block m-auto" src="/public/img/fox.svg" alt="img">
-			<img class="block m-auto" src="/public/img/nbc.svg" alt="img">
-			<img class="block m-auto" src="/public/img/san-francisco-cr.svg" alt="img">
-			<img class="block m-auto" src="/public/img/y.svg" alt="img">
+			<img class="block m-auto" src="/public/img/cnn.svg" alt="cnn-img" width="169" height="112">
+			<img class="block m-auto" src="/public/img/cbsnews.svg" alt="cbsnews-img" width="151" height="120">
+			<img class="block m-auto" src="/public/img/fox.svg" alt="fox-img" width="168" height="106">
+			<img class="block m-auto" src="/public/img/nbc.svg" alt="nbc-img" width="120" height="120">
+			<img class="block m-auto" src="/public/img/san-francisco-cr.svg" alt="san-francisco-cr-img" width="208" height="117">
+			<img class="block m-auto" src="/public/img/y.svg" alt="y-img" width="141" height="112">
 		</div>
 	</div>
     <div class="news-block-wrapper bg-secondary xl:mt-22 mt-20 shadow-lg">
@@ -249,7 +248,7 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 					Reviews our Clients
 				</h2>
 				<a  href="http://www.shopperapproved.com/reviews/iflyfirstclass.com/" target="_blank" rel="nofollow">
-					<img class="block m-auto mt-5" src="/public/img/see-on-shopper-approved.svg" alt="">
+					<img class="block m-auto mt-5" src="/public/img/see-on-shopper-approved.svg" alt="see-on-shopper-approved-img" width="222" height="28">
 				</a>
 			</div>
 			<div class="mt-5">
@@ -271,8 +270,8 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 							</div>
 						</div>
 						<div class="flex justify-between items-center">
-							<img src="/public/img/shopper-approved.svg" alt="">
-							<img src="/public/img/stars.svg" alt="">
+							<img src="/public/img/shopper-approved.svg" alt="shopper-approved-img" width="205" height="32">
+							<img src="/public/img/stars.svg" alt="stars-img" width="50" height="20">
 						</div>
 					</div>
 				<?php endforeach; ?>
@@ -280,7 +279,7 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 			</div>
 			<div class="mt-10 text-center">
 				<a href="http://www.shopperapproved.com/reviews/iflyfirstclass.com/" target="_blank" rel="nofollow" class="mx-auto rounded-full py-2 px-2 bg-brown-light-3 w-fit flex items-center">
-					<img src="/public/img/download-fill.svg">
+					<img src="/public/img/download-fill.svg" alt="download-img" width="40" height="40">
 					<p class="font-semibold grow px-5">Show More Reviews</p>
 				</a>
 			</div>
@@ -292,11 +291,11 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 			We work with All major Airlines
 		</h3>
 		<div class="grid xl:grid-cols-9 grid-cols-2 gap-y-12 gap-x-6 mt-8 pb-16 border-b border-gray-light">
-			<img class="block mr-auto my-auto col-span-1" src="/public/img/emirates.svg" alt="img">
-			<img class="block m-auto xl:col-span-2 col-span-1" src="/public/img/british-airways.svg" alt="img">
-			<img class="block m-auto xl:col-span-2 col-span-1" src="/public/img/delta.svg" alt="img">
-			<img class="block m-auto xl:col-span-2 col-span-1" src="/public/img/cathay-pacific.svg" alt="img">
-			<img class="block ml-auto my-auto xl:col-span-2 col-span-1" src="/public/img/lufthansa.svg" alt="img">
+			<img class="block mr-auto my-auto col-span-1" src="/public/img/emirates.svg" alt="emirates-img"  width="106" height="72">
+			<img class="block m-auto xl:col-span-2 col-span-1" src="/public/img/british-airways.svg" alt="british-airways-img"  width="235" height="36">
+			<img class="block m-auto xl:col-span-2 col-span-1" src="/public/img/delta.svg" alt="delta-img"  width="183" height="28">
+			<img class="block m-auto xl:col-span-2 col-span-1" src="/public/img/cathay-pacific.svg" alt="cathay-pacific-img"  width="259" height="36">
+			<img class="block ml-auto my-auto xl:col-span-2 col-span-1" src="/public/img/lufthansa.svg" alt="lufthansa-img"  width="217" height="38">
 		</div>
 	</div>
     <div class="container mx-auto xl:px-16 px-6 box-border xl:mt-24 mt-20 pb-24">
