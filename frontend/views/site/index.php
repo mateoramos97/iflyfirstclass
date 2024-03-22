@@ -19,6 +19,7 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 
 <div class="welcome-block-wrapper home xl:mt-0 mt-20">
     <div class="back-slide">
+		<img src="/public/img/home-banner.png" class="hidden" width="1496" height="592">
 		<div class="container mx-auto welcome-block container-wrapper grid grid-cols-11">
 			<div class="content xl:flex hidden align-center pt-28 px-12 col-span-5">
 				<div>
@@ -68,14 +69,14 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
                 <div class="item">
                     <a href="<?= Url::to(['city/index', 'alias' => $city_item['alias']]); ?>">
                         <div class="city-item">
-                            <img class="rounded-lg photo-img" src="<?= $path_img. Html::encode($city_item['image_alias']) ?>" title="<?= Html::encode($city_item['image_title']) ?>" alt="<?= Html::encode($city_item['image_title'])." - IFlyFirstClass" ?>">
+                            <img class="rounded-lg photo-img" width="324" height="324" src="<?= $path_img. Html::encode($city_item['image_alias']) ?>" title="<?= Html::encode($city_item['image_title']) ?>" alt="<?= Html::encode($city_item['image_title'])." - IFlyFirstClass" ?>">
                             <div class="body box-border mt-4">
                                 <div class="flex justify-between item-center">
                                     <h5 class="title">
                                         <?= Html::encode($city_item['name']) ?>
                                     </h5>
                                     <div class="rating flex">
-                                        <img src="/public/img/stars.svg" class="star" alt="">
+                                        <img src="/public/img/stars.svg" class="star" alt="star-icon" width="50" height="30">
                                     </div>
                                 </div>
                                 <div class="cabin-class text-sm mt-3">

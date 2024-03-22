@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = Html::encode($blog_article_model['title']);
 			<h1 class="font-silk-serif-bold"><?= Html::encode($blog_article_model['title']) ?></h1>
 		</div>
 		<div class="blog-poster-wrapper">
+			<img src="<?= $path_img . Html::encode($images[0]['alias']) ?>" class="hidden" width="1496" height="592">
 			<div class="back-slide" style="background-image: url(<?= $path_img . Html::encode($images[0]['alias']) ?>); background-position: center">
 				<div class="container mx-auto welcome-block container-wrapper grid grid-cols-12 items-center">
 					<div class="content xl:flex flex-col hidden align-center pt-8 px-12 xl:col-span-7 justify-end h-full">

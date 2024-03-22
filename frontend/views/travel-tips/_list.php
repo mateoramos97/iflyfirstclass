@@ -17,7 +17,9 @@ $path_img_thumbs = Url::base() . '/public/images/thumbs/';
                         <img
                                 src="<?= $path_img_thumbs . Html::encode($model['image_alias']) ?>"
                                 title="<?= Html::encode($model['image_title']) ?>"
-                                alt="<?= Html::encode($model['image_title']) . " - IFlyFirstClass" ?>">
+                                alt="<?= Html::encode($model['image_title']) . " - IFlyFirstClass" ?>"
+								width="405"	height="310"
+						>
                     </a>
                 </div>
             </div>

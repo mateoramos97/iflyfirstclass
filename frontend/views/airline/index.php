@@ -25,6 +25,7 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
 
 <div itemscope="" itemtype="http://schema.org/Product">
 	<div class="welcome-block-wrapper relative z-10">
+		<img src="<?= $path_img . Html::encode($images[0]['alias']) ?>" class="hidden" width="1496" height="592">
 		<div class="back-slide" style="background-image: url(<?= $path_img . Html::encode($images[0]['alias']) ?>); background-position: right">
 			<div class="container mx-auto welcome-block container-wrapper grid grid-cols-11 items-center">
 				<div class="content flex flex-col align-center xl:p-12 p-6 xl:col-span-5 col-span-11 justify-between h-full">

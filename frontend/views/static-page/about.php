@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = 'About Us';
 ?>
 <div class="welcome-block-wrapper contact-us xl:mt-0 mt-20">
     <div class="back-slide">
+		<img src="/design/photo/about-top.jpg" class="hidden" width="1496" height="592">
 		<?= $this->render('@app/views/layouts/_breadcrumbs') ?>
 		<div class="container mx-auto welcome-block container-wrapper flex flex-col items-center">
 			<div class="content flex flex-col items-center pb-20 pt-16 xl:px-24 px-6">
@@ -68,7 +69,7 @@ $this->params['breadcrumbs'][] = 'About Us';
 <div class="xl:p-14 p-4 bg-gray-gradient mb-20">
 	<div class="container mx-auto grid xl:grid-cols-2 grid-cols-1 items-center">
 		<div>
-			<img src="/public/img/about-us-first-img.png" alt="image">
+			<img src="/public/img/about-us-first-img.png" alt="image" width="748" height="748">
 		</div>
 		<div class="xl:pl-24 xl:mt-0 mt-10">
 <!--			<h4 class="xl:text-4xl">Some kind of title for this section</h4>-->
@@ -91,7 +92,7 @@ $this->params['breadcrumbs'][] = 'About Us';
 			</p>
 		</div>
 		<div class="xl:mt-0 mt-10">
-			<img src="/public/img/about-us-second-img.png" alt="image">
+			<img src="/public/img/about-us-second-img.png" alt="image" width="748" height="748">
 		</div>
 	</div>
 </div>

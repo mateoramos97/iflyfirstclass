@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = 'Hotels';
 ?>
 <div class="welcome-block-wrapper hotels-page mb-20">
     <div class="back-slide">
+		<img src="/design/photo/img-poster-hotel.jpg" class="hidden" width="1496" height="592">
 		<div class="container mx-auto welcome-block container-wrapper grid grid-cols-12 items-center">
 			<div class="content xl:flex flex-col hidden align-center pt-8 px-12 col-span-5">
 				<?= $this->render('@app/views/layouts/_breadcrumbs') ?>
