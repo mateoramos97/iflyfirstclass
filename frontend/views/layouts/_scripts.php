@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script type="text/javascript" async>
 	var dispop_pixel_id = "3ad067416e8b9df40ee91a10d958e804";
 	var dispop_advertiser_id = "cebe1eff0954d86b5ed95b37efa7acbb";
 	var dispop_service_url = "//dispop.com/view/tags";
@@ -13,7 +13,7 @@
 		};
 	}());
 </script>
-<script>
+<script async>
 	(function (w, d, s, o, f, js, fjs) {
 		w["botsonic_widget"] = o;
 		w[o] =
