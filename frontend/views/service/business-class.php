@@ -15,10 +15,10 @@ $this->registerMetaTag(['property' => 'og:locale', 'content' => 'en']);
 $this->registerMetaTag(['property' => 'og:title', 'content' => $static_page->title]);
 $this->registerMetaTag(['property' => 'og:description', 'content' => $static_page->description]);
 $this->registerMetaTag(['property' => 'og:url', 'content' => Url::base(true) . Yii::$app->request->url]);
-$this->registerMetaTag(['property' => 'og:image', 'content' => Url::base(true) . '/design/photo/business-class.jpg']);
+$this->registerMetaTag(['property' => 'og:image', 'content' => Url::base(true) . '/design/photo/business-class.webp']);
 $this->registerMetaTag(['name' => 'robots', 'content' => 'index, follow']);
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::base(true) . Yii::$app->request->url]);
-$this->registerLinkTag(['rel' => 'preload', 'href' =>  Url::base(true) . '/design/photo/business-class.jpg' ]);
+$this->registerLinkTag(['rel' => 'preload', 'href' =>  Url::base(true) . '/design/photo/business-class.webp' ]);
 
 $this->params['breadcrumbs'][] = 'Business Class';
 

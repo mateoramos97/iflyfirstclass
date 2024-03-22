@@ -94,13 +94,13 @@ hr {
 
 .welcome-block-wrapper{
   &.home .back-slide{
-    background-image: linear-gradient(rgba(33, 33, 33, 0.32), rgba(33, 33, 33, 0.56)), url('/public/img/home-banner.png');
+    background-image: linear-gradient(rgba(33, 33, 33, 0.32), rgba(33, 33, 33, 0.56)), url('/public/img/home-banner.webp');
   }
   &.first-class-page .back-slide{
     background-image: linear-gradient(rgba(33, 33, 33, 0.32), rgba(33, 33, 33, 0.56)), url('/design/photo/first-class.jpg');
   }
   &.business-class-page .back-slide{
-    background-image: linear-gradient(rgba(33, 33, 33, 0.32), rgba(33, 33, 33, 0.56)), url('/design/photo/business-class.jpg');
+    background-image: linear-gradient(rgba(33, 33, 33, 0.32), rgba(33, 33, 33, 0.56)), url('/design/photo/business-class.webp');
   }
   &.hotels-page .back-slide{
     background-image: linear-gradient(rgba(33, 33, 33, 0.32), rgba(33, 33, 33, 0.56)), url('/design/photo/img-poster-hotel.jpg');

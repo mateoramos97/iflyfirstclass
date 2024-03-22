@@ -10,11 +10,15 @@ use \yii\helpers\Url;
 use app\components\widgets\request\FlightRequestMax;
 
 $this->title = $head_title;
-$this->registerLinkTag(['rel' => 'preload', 'href' => '/public/img/home-banner.png']);
+
+
+$this->registerLinkTag(['rel' => 'preload', 'href' => '/public/img/home-banner.webp']);
 $path_icons =  Url::base().'/design/icons/';
 $path_img =  Url::base().'/public/images/';
 $path_img_thumbs =  Url::base().'/public/images/thumbs/';
-
+foreach ($random_cities as $city_item) {
+	$this->registerLinkTag(['rel' => 'preload', 'href' => $path_img. Html::encode($city_item['image_alias'])]);
+}
 ?>
 
 <div class="welcome-block-wrapper home xl:mt-0 mt-20">
