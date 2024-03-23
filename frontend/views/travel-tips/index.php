@@ -40,7 +40,6 @@ $this->params['breadcrumbs'][] = Html::encode($travel_tips_model['title']);
 							<p class="text-white bg-black px-5 pt-5 pb-1 font-gilroy-regular w-fit">Enjoy The Best Service</p>
 							<p class="text-white bg-black px-5 pb-5 font-gilroy-regular w-fit">and Save Thousands</span></p>
 							<div class="share-facebook bg-black w-fit px-5 pb-5">
-								<!-- Load Facebook SDK for JavaScript -->
 								<div id="fb-root"></div>
 								<div class="fb-share-button" data-href="<?= Url::base(true) . Yii::$app->request->url ?>" data-layout="button" data-size="large">
 									<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">

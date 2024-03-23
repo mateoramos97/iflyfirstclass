@@ -16,7 +16,7 @@ AppAsset::register($this);
 <body class="<?= $this->context->bodyClass; ?>">
 <?php $this->beginBody() ?>
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WXFPQ7N"
+<noscript><iframe loading="lazy" src="https://www.googletagmanager.com/ns.html?id=GTM-WXFPQ7N"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <div class="flex flex-col h-full relative" id="app" v-cloak">

@@ -48,7 +48,7 @@ $path_icons =  Url::base().'/design/icons/';
 							<a class="flex items-center" rel="nofollow" href="https://www.facebook.com/pages/I-Fly-First-Class/350113835017059" onMouseOver="document.getElementById('imgSocialFB').src='<?= $path_icons . 'facebook_button_link_to_fb.svg' ?>';" onMouseOut="document.getElementById('imgSocialFB').src='<?= $path_icons . 'facebook_button_link_to_fb.svg' ?>';">
 								<img src="<?= $path_icons . 'facebook_button_link_to_fb.svg' ?>" id="imgSocialFB" alt="facebook" width="33" height="33"><span class="ml-3 font-semibold">Facebook</span>
 							</a>
-							<iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FI-Fly-First-Class%2F350113835017059&amp;send=false&amp;layout=button_count&amp;width=200&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;locale=en_US" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
+							<iframe loading="lazy" src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FI-Fly-First-Class%2F350113835017059&amp;send=false&amp;layout=button_count&amp;width=200&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;locale=en_US" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
 						</div>
 					</div>
 				</div>
