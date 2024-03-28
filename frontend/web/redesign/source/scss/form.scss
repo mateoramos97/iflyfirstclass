@@ -10,9 +10,9 @@ label {
 }
 
 input, select, textarea, .ts-wrapper {
-  padding: 15px;
+  padding: 16px;
   border: 1px solid $input-border;
-  border-radius: 12px;
+  border-radius: 10px;
   background-color: transparent;
   @apply placeholder:text-gray;
   &:hover, &:focus, &:active, &:focus-visible {
@@ -27,10 +27,6 @@ input, select, textarea, .ts-wrapper {
   &.has-suffix {
     padding-right: 40px;
   }
-}
-
-input, select, textarea, .ts-wrapper {
-
 }
 
 input:not([type=checkbox]), select, textarea, .ts-wrapper {
@@ -173,7 +169,7 @@ select {
 }
 
 .split-input-group {
-  border: 0.5px solid $input-border;
+  border: 1px solid $input-border;
   border-radius: 12px;
   background-color: $white;
   @apply items-center;
@@ -243,12 +239,16 @@ select {
 }
 
 .form-flight-request-min-wrapper {
-  background-color: #f0edeb;
-  backdrop-filter: blur(50px);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 8px 56px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(28.5px);
 
   @media screen and (max-width: $xl-screen) {
     background: none;
     backdrop-filter: none;
+    box-shadow: none;
+    border: none;
   }
 
   input,select, .split-input-group {

@@ -7,29 +7,37 @@ use app\components\AppConfig;
 use yii\helpers\Html;
 ?>
 
-<div class="form-request-tab tab-round-trip box-border mt-3" data-tab-form="<?= AppConfig::Type_Trip_Round_Trip ?>" v-if="activeForm == <?= AppConfig::Type_Trip_Round_Trip ?>">
+<div class="form-request-tab tab-round-trip box-border mt-4" data-tab-form="<?= AppConfig::Type_Trip_Round_Trip ?>" v-if="activeForm == <?= AppConfig::Type_Trip_Round_Trip ?>">
     <div class="split-input-group flex items-center">
-        <div class="field-row from grow relative">
+        <div class="field-row from grow relative autocomplete-wrapper">
 			<i class="input-prefix icon-airplan-fly text-gray bottom-4"></i>
             <?= $form->field($model, 'from[]')->textInput([
-                'placeholder' => 'Where form ?',
+                'placeholder' => 'Where from ?',
                 'id' => 'flightrequestmax_from_round_trip',
-                'class' => 'has-prefix has-suffix from field-from required-field autocomplete'
+                'class' => 'has-prefix has-suffix from field-from required-field autocomplete-value-input'
             ]) ?>
 			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
+			<div class="autocomplete-enter-input-wrapper">
+				<i class="input-prefix icon-airplan-fly text-gray bottom-4"></i>
+				<input class="has-prefix autocomplete" placeholder="Where from ?">
+			</div>
         </div>
 		<i class="input-divider"></i>
-        <div class="field-row to grow relative">
+        <div class="field-row to grow relative autocomplete-wrapper">
 			<i class="input-prefix icon-airplan-land text-gray bottom-4"></i>
             <?= $form->field($model, 'to[]')->textInput([
                 'placeholder' =>  'Where to ?',
                 'id' => 'flightrequestmax_to_round_trip',
-                'class' => 'has-prefix has-suffix to field-to required-field autocomplete'
+                'class' => 'has-prefix has-suffix to field-to required-field autocomplete-value-input'
             ]) ?>
 			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
+			<div class="autocomplete-enter-input-wrapper">
+				<i class="input-prefix icon-airplan-fly text-gray bottom-4"></i>
+				<input class="has-prefix autocomplete" placeholder="Where to ?">
+			</div>
         </div>
     </div>
-    <div class="grid xl:grid-cols-2 grid-cols-1 xl:gap-4 gap-5 mt-5">
+    <div class="grid xl:grid-cols-2 grid-cols-1 xl:gap-4 gap-5 mt-6">
         <div class="split-input-group field-row field-data flex grow">
 			<div class="relative w-1/2">
 				<i class="input-prefix icon-calendar text-gray top-3 text-lg"></i>
@@ -81,7 +89,7 @@ use yii\helpers\Html;
 			]) ?>
 		</div>
     </div>
-    <div class="contact-block-wrapper grid xl:grid-cols-2 lg:grid-cols-1 xl:gap-4 gap-5 mt-5">
+    <div class="contact-block-wrapper grid xl:grid-cols-2 lg:grid-cols-1 xl:gap-4 gap-5 mt-6">
 		<div class="field-row name-field relative">
 			<i class="input-prefix icon-person-card text-gray bottom-3 text-lg"></i>
 			<?= $form->field($model, 'name')->textInput([
@@ -100,7 +108,7 @@ use yii\helpers\Html;
 			]) ?>
 		</div>
     </div>
-    <div class="form-group form-action grid xl:grid-cols-2 lg:grid-cols-1 gap-5 mt-6">
+    <div class="form-group form-action grid xl:grid-cols-2 lg:grid-cols-1 gap-5 mt-9">
         <?= Html::submitButton('Request a Quote', ['class' => 'xl:block hidden btn btn-primary submit form-action-button search-flights', 'name' => 'flyght-button']) ?>
         <?= Html::submitButton('Search Flight Now', ['class' => 'xl:hidden block btn btn-warning submit form-action-button search-flights', 'name' => 'flyght-button']) ?>
 		<button

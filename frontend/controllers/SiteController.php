@@ -117,8 +117,15 @@ class SiteController extends BaseController
             'content' => $static_page->keywords
         ]);
 
-        $articles = array_merge($top_articles_in_list, $travel_tips);
-        shuffle($articles);
+        $articles = [];
+        for($i = 0; $i <= count($top_articles_in_list)-1; $i++)
+        {
+            $articles[2*$i] = $top_articles_in_list[$i];
+            if (isset($travel_tips[$i])) {
+                $articles[2*$i+1] = $travel_tips[$i];
+            }
+        }
+
 
         return $this->render('index', [
             'head_title' => $static_page->title,

@@ -7,7 +7,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div id="form-request" class="form-flight-request-min-wrapper form-flight-request border-box xl:p-10 rounded-3xl pt-5 shadow">
+<div id="form-request" class="form-flight-request-min-wrapper form-flight-request border-box xl:px-10 pb-[32px] pt-[35px] rounded-3xl pt-5 xl:w-[440px]">
 	<?php $form = ActiveForm::begin([
 			'id' => 'flight_request_min_form',
 			'enableClientValidation' => true,
@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
 	]) ?>
 	<input type="hidden" name="check_subscription" class="check-subscription" value="">
 	<input type="hidden" name="FlightRequestMax[type_trip]" class="type-trip" :value="activeForm">
-	<h5 class="px-2 xl:text-left text-center xl:text-primary text-white">Book Flight</h5>
+	<h5 class="px-2 xl:text-left text-center xl:text-primary text-white font-gilroy-semibold">Book Flight</h5>
 	<div class="form-nav xl:mt-3 mt-5 text-black">
 		<ul class="head-menu gap-2 flex-wrap xl:flex hidden">
 			<li class="form-group head-menu-item flex items-center">
@@ -51,15 +51,15 @@ use yii\widgets\ActiveForm;
 			<ul class="flex gap-5 flex-wrap justify-center">
 				<li class="flex items-center ">
 					<a href="javascript:void(0)" :class="{active: activeForm == <?= AppConfig::Type_Trip_Round_Trip ?>}"
-					   @click="activeForm = <?= AppConfig::Type_Trip_Round_Trip ?>">Round trip</a>
+					   @click="setActiveForm(<?= AppConfig::Type_Trip_Round_Trip ?>)">Round trip</a>
 				</li>
 				<li class="flex items-center">
 					<a href="javascript:void(0)" :class="{active: activeForm == <?= AppConfig::Type_Trip_One_Way ?>}"
-					   @click="activeForm = <?= AppConfig::Type_Trip_One_Way ?>">One-way</a>
+					   @click="setActiveForm(<?= AppConfig::Type_Trip_One_Way ?>)">One-way</a>
 				</li>
 				<li class="flex items-center">
 					<a href="javascript:void(0)" :class="{active: activeForm == <?= AppConfig::Type_Trip_Multi_City ?>}"
-					   @click="activeForm = <?= AppConfig::Type_Trip_Multi_City ?>">Multi-City</a>
+					   @click="setActiveForm(<?= AppConfig::Type_Trip_Multi_City ?>)">Multi-City</a>
 				</li>
 			</ul>
 		</div>

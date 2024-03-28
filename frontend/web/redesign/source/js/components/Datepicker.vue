@@ -2,20 +2,23 @@
     <fieldset class="relative" :data-uid="uid" v-click-outside="resetCalendarView">
         <input :name="name" :id="id" :placeholder="placeholder" :class="className"  :value="formattedResult"
                readonly
-               @click.stop="handleClick"
+               @click="handleClick"
         >
-        <div class="calendar shadow-lg"  v-show="showCalendar" :style="{left:leftPositionCalendar}">
+        <div class="calendar shadow-lg" :class="{opened: showCalendar}" :style="{left:leftPositionCalendar}">
+          <div class="px-[26px] pt-[26px] pb-[14px]">
+            <span class="text-xl font-gilroy-semibold">{{ placeholder }}</span>
+          </div>
           <div class="dates-wrapper" v-show="!showMonths">
-            <div class="flex justify-between items-center">
-              <div class="cursor-pointer" @click="showMonths = true">
+            <div class="flex justify-between items-center pl-[12px] pr-[14px]">
+              <div class="calendar-month-year" @click="showMonths = true">
                 <span class="text-sm">{{ nameSelectedMonth }} {{ selectedDate.format('YYYY') }}</span><i class="icon-chevron text-ns ml-3"></i>
               </div>
-              <div class="">
-                <i class="icon-arrow-left text-xs cursor-pointer" @click="previousMonth()"></i>
-                <i class="icon-arrow-right text-xs ml-5 cursor-pointer" @click="nextMonth()"></i>
+              <div class="flex">
+                <i class="month-arrow icon-arrow-left text-xs cursor-pointer" @click="previousMonth()"></i>
+                <i class="month-arrow icon-arrow-right text-xs ml-2 cursor-pointer" @click="nextMonth()"></i>
               </div>
             </div>
-            <div class="calendar-days">
+            <div class="calendar-days p-[12px]">
               <div class="days weekdays">
                 <span v-for="(day,index) in weekdays" :key="index" class="day">{{ day }}</span>
               </div>
@@ -42,16 +45,16 @@
             <hr>
             <div v-show="activeTab === 'months'">
               <div class="months-years-selection flex flex-col">
-                <span v-for="(month,i) in months" :key="i" class="month" @click="selectMonthHandler(i)">
-                  <i class="icon-check text-sm" v-if="isSelectedMonth(i)"></i>
+                <span v-for="(month,i) in months" :key="i" class="month" :class="{active: isSelectedMonth(i)}" @click="selectMonthHandler(i)">
+                  <i class="icon-check text-sm"></i>
                   {{ month }}
                 </span>
               </div>
             </div>
             <div v-show="activeTab === 'years'">
               <div class="months-years-selection flex flex-col">
-                <span v-for="(year,i) in years" :key="i" class="month" @click="selectYearHandler(year)">
-                  <i class="icon-check text-sm" v-if="isSelectedYear(year)"></i>
+                <span v-for="(year,i) in years" :key="i" class="month" :class="{active: isSelectedYear(year)}" @click="selectYearHandler(year)">
+                  <i class="icon-check text-sm"></i>
                   {{ year }}
                 </span>
               </div>
@@ -101,7 +104,7 @@ const $el = ref();
 const now = ref(dayjs());
 let selectedDate = ref(dayjs());
 let result = ref();
-let leftPositionCalendar = ref(0);
+let leftPositionCalendar = ref('-2px');
 
 const showMonths = ref(false);
 const showCalendar = ref(false);
@@ -197,11 +200,6 @@ function init() {
 }
 
 function handleClick() {
-  const el = $('#' + props.id);
-  const rightOffset = ($(window).width() - (el.offset().left));
-  if (rightOffset < 300) {
-    leftPositionCalendar.value = (rightOffset - 300) + 'px';
-  }
   showCalendar.value = !showCalendar.value;
   const event = new CustomEvent('open-calendar', {detail: {uid: uid.value}});
   window.dispatchEvent(event);
@@ -215,6 +213,14 @@ function resetCalendarView() {
 
 onMounted(() => {
   init();
+  setTimeout(() => {
+    const el = $('#' + props.id);
+    const rightOffset = ($(window).width() - (el.offset().left));
+    if (rightOffset < 360) {
+      leftPositionCalendar.value = (rightOffset - 360) + 'px';
+    }
+  })
+
   window.addEventListener('open-calendar', e => {
     if(uid.value !== e.detail.uid) {
       resetCalendarView();
@@ -227,13 +233,19 @@ onMounted(() => {
 <style scoped lang="scss">
   .calendar {
     position: absolute;
-    top: 100%;
-    width: 300px;
+    width: 360px;
     background-color: #ffffff;
     z-index: 9999;
-    margin-top: -10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    top: -10px;
+    box-shadow: 0 16px 56px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    opacity:0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-out;
+    &.opened {
+      opacity: 1;
+      visibility: visible;
+    }
     /* width */
     ::-webkit-scrollbar {
       width: 5px;
@@ -257,12 +269,35 @@ onMounted(() => {
     }
   }
 
-  .dates-wrapper {
-    padding:20px;
+  .calendar-month-year {
+    @apply cursor-pointer hover:text-orange flex items-center;
+    border-radius: 100px;
+    padding: 10px 15px;
+    &:active {
+      background: rgba(221, 119, 0, 0.1);
+    }
+  }
+
+  .month-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      background-color: #FCF1E5;
+      transform: translateX(1px);
+    }
+    &:active {
+      background-color: #F5D6B2;
+      transform: translateX(1px);
+    }
   }
 
   .months-years-header {
-    padding: 15px 45px;
+    padding: 0 50px 10px;
     font-size: 14px;
     span {
       color: #cccccc;
@@ -278,17 +313,30 @@ onMounted(() => {
         display: block;
       }
     }
+    .tab {
+      padding: 10px;
+      border-radius: 20px;
+      transition: 0.3s;
+      &.active:hover {
+        background-color: #ededee;
+        transform: translateX(1px);
+      }
+    }
+  }
+
+  hr {
+    border-color: #CAC4D0;
   }
 
   .months-years-selection {
     padding:10px 0;
-    max-height: 310px;
+    max-height: 360px;
     overflow: hidden;
     overflow-y: auto;
   }
 
   .month {
-    padding: 10px 45px;
+    padding: 13px 60px;
     cursor: pointer;
     color: #000000;
     font-size: 16px;
@@ -297,17 +345,19 @@ onMounted(() => {
     .icon-check {
       position: absolute;
       color: #3D4043;
-      left: 10px;
-      top: 12px;
+      left: 22px;
+      top: 16px;
+      display: none;
+    }
+    &.active {
+      background-color: #ededee;
+      .icon-check {
+        display: block;
+      }
     }
   }
 
-  .month:hover {
-    background-color: #ededee;
-  }
-
   .calendar-days {
-    margin-top: 20px;
     font-size: 14px;
   }
 
@@ -315,20 +365,34 @@ onMounted(() => {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(7, minmax(0, 1fr));
-    margin-bottom: 7px;
+    justify-items: center;
+    margin-bottom: 5px;
   }
 
   .day {
-    padding: 6px 9px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: 0.3s;
     border-radius: 5px;
-    cursor: pointer;
+    width: 40px;
+    height: 40px;
   }
 
-  .dates .day:not(.disabled):hover {
-    background-color: #DD7700;
-    color: #ffffff;
+  .dates {
+    .day {
+      font-family: GilroyMedium, sans,serif;
+      cursor: pointer;
+    }
+
+    .day:not(.disabled, .selected):hover,  {
+      background-color: #FCF1E5;
+      transform: translateX(1px);
+    }
+    .day:not(.disabled, .selected):active {
+      background-color: #F5D6B2;
+      transform: translateX(1px);
+    }
   }
 
   .selected {

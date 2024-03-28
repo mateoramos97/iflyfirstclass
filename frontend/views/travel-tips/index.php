@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = Html::encode($travel_tips_model['title']);
 							</div>
 						</div>
 					</div>
-					<div class="form-block-wrapper xl:p-12 p-6 xl:col-span-5 col-span-12">
+					<div class="form-block-wrapper xl:p-12 p-6 xl:col-span-5 col-span-12 xl:justify-self-end">
 						<?= FlightRequestMin::widget() ?>
 					</div>
 				</div>

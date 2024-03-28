@@ -6,9 +6,9 @@ use app\components\widgets\custom\LandingHeaderMenu;
 $path_logo =  Url::base().'/design/iffc-logo.svg';
 $path_icons =  Url::base().'/design/icons/';
 ?>
-<header id="header-wrapper" class="header-wrapper container px-14 mx-auto">
+<header id="header-wrapper" class="header-wrapper px-8 mx-auto">
 	<div class="m-auto xl:flex hidden justify-between items-end pt-2">
-		<div class="contact-btn flex items-center h-12 bg-secondary rounded-2xl px-4 relative cursor-pointer">
+		<div class="contact-btn flex items-center h-12 bg-secondary rounded-2xl px-4 relative cursor-pointer hover:bg-hover-2 transition duration-300">
 			<img src="/public/img/phone.svg" width="20" height="20" alt="phone-icon">
 			<div class="h-8 w-px bg-black bg-opacity-10 mx-4"></div>
 			<div class="flex items-center gap-2">
@@ -18,11 +18,11 @@ $path_icons =  Url::base().'/design/icons/';
 			<div class="contact-form absolute min-w-80 bg-white top-0 left-0 shadow rounded-xl p-2">
 				<div class="p-4 flex flex-col items-center">
 					<p class="font-gilroy-bold text-2xl text-center">Contacts</p>
-					<p class="font-gilroy-semibold mt-8 p-4 bg-hover rounded-r-2xl rounded-tl-2xl rounded-bl-lg w-fit">Call for exclusive deals! 😎</p>
+					<p class="flex items-center mt-8 px-5 h-[48px] bg-hover rounded-r-3xl rounded-tl-3xl rounded-bl-lg w-fit font-proxima-nova-medium">Call for exclusive deals! 😎</p>
 					<div class="mt-2 flex items-center">
-						<img class="scale-105" src="/public/img/phone-operator.svg" alt="operator-icon" width="40" height="40">
-						<p class="font-gilroy-semibold text-xl px-4 py-3 ml-2 bg-hover rounded-r-2xl rounded-tl-lg rounded-bl-2xl">
-							<a href="tel:+18883477817"><span class="text-orange">+1</span> <span class="font-semibold ml-2 pr-4">888 347 7817</span></a>
+						<img src="/public/img/phone-operator.svg" alt="operator-icon" width="48" height="48">
+						<p class=" text-xl px-5 ml-2 bg-hover rounded-r-3xl rounded-tl-lg rounded-bl-3xl h-[48px] flex items-center">
+							<a href="tel:+18883477817"><span class="text-orange font-gilroy-regular">+1</span> <span class="font-gilroy-semibold ml-2 pr-4">888 347 7817</span></a>
 						</p>
 					</div>
 					<p class="text-mute my-6">or</p>
@@ -41,12 +41,12 @@ $path_icons =  Url::base().'/design/icons/';
 					</button>
 				</div>
 				<hr class="my-2">
-				<div class="p-4">
-					<p class="font-semibold text-gray">Social media</p>
-					<div class="mt-4">
-						<div class="flex items-center justify-between">
+				<div class="py-4">
+					<p class="font-semibold text-gray text-[14px] px-4">Social media</p>
+					<div class="mt-6 px-2">
+						<div class="flex items-center justify-between hover:bg-hover-3 p-3 rounded-xl transition duration-300">
 							<a class="flex items-center" rel="nofollow" href="https://www.facebook.com/pages/I-Fly-First-Class/350113835017059" onMouseOver="document.getElementById('imgSocialFB').src='<?= $path_icons . 'facebook_button_link_to_fb.svg' ?>';" onMouseOut="document.getElementById('imgSocialFB').src='<?= $path_icons . 'facebook_button_link_to_fb.svg' ?>';">
-								<img src="<?= $path_icons . 'facebook_button_link_to_fb.svg' ?>" id="imgSocialFB" alt="facebook" width="33" height="33"><span class="ml-3 font-semibold">Facebook</span>
+								<img src="<?= $path_icons . 'facebook_button_link_to_fb.svg' ?>" id="imgSocialFB" alt="facebook" width="28" height="28"><span class="ml-3 font-semibold">Facebook</span>
 							</a>
 							<iframe loading="lazy" src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FI-Fly-First-Class%2F350113835017059&amp;send=false&amp;layout=button_count&amp;width=200&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;locale=en_US" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>
 						</div>
@@ -63,21 +63,36 @@ $path_icons =  Url::base().'/design/icons/';
 			<img src="/public/img/based-company.svg" width="104" height="29" alt="based-company">
 		</div>
 	</div>
-	<div class="main-nav xl:block hidden pt-8 pb-5 bg-white top-0 left-0 w-full items-center justify-center">
+	<div class="main-nav xl:block hidden pt-7 pb-[18px] bg-white top-0 left-0 w-full items-center justify-center">
 		<div class="flex items-center justify-center justify-items-center">
 			<div class="main-nav-logo flex justify-center">
-				<img class="scale-75"  src="/public/img/logo-2.svg" width="237" height="57" alt="logo-2">
+				<a href="<?= Url::home(true); ?>">
+					<img src="/public/img/logo-2.svg" width="168" height="15" alt="logo-2">
+				</a>
 			</div>
 			<ul class="flex items-center justify-center gap-6">
-				<li>
+				<li class="relative dropdown">
 					<span id="menu-service" data-menu="menu-service"
-						  class="link dropdown <?php echo in_array($this->context->route, [
+						  class="link <?php echo in_array($this->context->route, [
 								  'service/first-class', 'service/business-class', 'service/hotel'
 						  ]) ? 'menu current-page' : 'menu'; ?>"
 					>
 						Services
 						<i class="icon-chevron text-ns"></i>
 					</span>
+					<div id="menu-service-sub" class="absolute menu-dropdown" data-menu="menu-service">
+						<ul class="flex flex-col">
+							<li>
+								<a href="<?= Url::to(['service/first-class']); ?>">First Class</a>
+							</li>
+							<li>
+								<a href="<?= Url::to(['service/business-class']); ?>">Business Class</a>
+							</li>
+							<li>
+								<a href="<?= Url::to(['service/hotel']); ?>">Hotels</a>
+							</li>
+						</ul>
+					</div>
 				</li>
 				<li>
 					<a href="<?= Url::to(['static-page/last-minute-deals']); ?>"
@@ -118,21 +133,7 @@ $path_icons =  Url::base().'/design/icons/';
 			</ul>
 		</div>
 		<div class="menu-sub-wrapper">
-			<div id="menu-service-sub" class="menu-sub" data-menu="menu-service">
-				<div class="menu-content container-wrapper box-border">
-					<ul class="flex flex-row gap-10">
-						<li>
-							<a href="<?= Url::to(['service/first-class']); ?>">First Class</a>
-						</li>
-						<li>
-							<a href="<?= Url::to(['service/business-class']); ?>">Business Class</a>
-						</li>
-						<li>
-							<a href="<?= Url::to(['service/hotel']); ?>">Hotels</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+
 			<div id="menu-tools-sub" class="menu-sub" data-menu="menu-tools">
 				<div class="menu-content box-border">
 					<ul class="flex flex-row">
@@ -155,7 +156,7 @@ $path_icons =  Url::base().'/design/icons/';
 				</div>
 			</div>
 			<div id="menu-cc-sub" class="menu-sub menu-cc-sub" data-menu="menu-cc">
-				<div class="p-10 box-border flex justify-center">
+				<div class="p-10 box-border flex justify-center landing-header-menu">
 					<?= LandingHeaderMenu::widget() ?>
 				</div>
 			</div>

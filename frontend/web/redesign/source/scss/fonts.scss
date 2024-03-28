@@ -4,6 +4,11 @@
 }
 
 @font-face {
+    font-family: "ProximaNovaMedium";
+    src: url('../fonts/ProximaNova-Medium.otf') format("truetype");
+}
+
+@font-face {
     font-family: "ProximaNovaLight";
     src: url('../fonts/proximanova_light.otf') format("truetype");
 }
@@ -16,6 +21,11 @@
 @font-face {
     font-family: "GilroyLight";
     src: url('../fonts/Gilroy-Light.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: "GilroyMedium";
+    src: url('../fonts/Gilroy-Medium.ttf') format("truetype");
 }
 
 @font-face {
@@ -40,6 +50,10 @@
 
 .font-proxima-nova-regular{
     font-family: ProximaNova, sans-serif;
+}
+
+.font-proxima-nova-medium{
+    font-family: ProximaNovaMedium, sans-serif;
 }
 
 .font-proxima-nova-light{

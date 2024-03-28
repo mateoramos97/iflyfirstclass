@@ -26,7 +26,7 @@ foreach ($random_cities as $city_item) {
 		<div class="container mx-auto welcome-block container-wrapper grid grid-cols-11">
 			<div class="content xl:flex hidden align-center pt-28 px-12 col-span-5">
 				<div>
-					<div class="title-form font-silk-serif-bold text-white 2xl:text-5xl xl:text-4xl md:text-xl">
+					<div class="title-form font-gilroy-semibold text-white 2xl:text-4.8xl xl:text-4xl md:text-xl">
 						The lowest prices on <br> Business & First class <br> <span class="text-orange">Guaranteed</span>
 					</div>
 					<p class="font-gilroy-semibold text-lg text-hover">First and Business class flights</p>
@@ -50,46 +50,48 @@ foreach ($random_cities as $city_item) {
 <div class="page-content mt-16">
     <div class="container mx-auto xl:px-16 px-4 recently-flights-wrapper">
         <div class="head-block flex justify-between items-center">
-            <div class="flex flex-align-center"><h4>Best Deals</h4></div>
+            <div class="flex flex-align-center"><h4 class="font-gilroy-semibold text-black">Best Deals</h4></div>
             <div class="flex">
                 <div class="shopper-approved xl:flex items-center hidden">
                     <a class="flex" href="https://www.shopperapproved.com/reviews/iflyfirstclass.com" target="_blank">
-                        <img class="scale-110" src="/public/img/shopper-approved.svg" alt="shopper-approved-icon" width="226" height="52">
-                        <img class="ml-6" src="/public/img/stars.svg" alt="stars-icon" width="50" height="20">
+                        <img src="/public/img/shopper-approved.svg" alt="shopper-approved-icon" width="203" height="32">
+                        <img class="ml-6" src="/public/img/stars.svg" alt="stars-icon" width="45" height="20">
                     </a>
                 </div>
-                <div class="border-r border-gray-light h-10 mx-10"></div>
-				<div class="flex gap-8 items-center">
-					<img class="scale-110" src="/public/img/bbb.svg" width="31" height="46" alt="bbb">
-					<img class="scale-125" src="/public/img/asta.svg" width="41" height="40" alt="astra">
-					<img class="scale-110" src="/public/img/db.svg" width="56" height="29" alt="db">
+                <div class="border-r border-gray-light h-10 mx-10 xl:block hidden"></div>
+				<div class="flex xl:gap-10 gap-4 items-center xl:scale-100 scale-85">
+					<img src="/public/img/bbb.svg" width="32" height="48" alt="bbb">
+					<img src="/public/img/asta.svg" width="41" height="42" alt="astra">
+					<img src="/public/img/db.svg" width="62" height="32" alt="db">
 				</div>
             </div>
         </div>
-        <div class="cities-block mt-10 grid lg:grid-cols-4 grid-cols-2 gap-6">
+        <div class="cities-block mt-4 grid lg:grid-cols-4 grid-cols-2 gap-6">
             <!-- Images Start -->
             <?php foreach($random_cities as $city_item): ?>
                 <div class="item">
                     <a href="<?= Url::to(['city/index', 'alias' => $city_item['alias']]); ?>">
-                        <div class="city-item">
-                            <img class="rounded-lg photo-img" width="324" height="324" src="<?= $path_img. Html::encode($city_item['image_alias']) ?>" title="<?= Html::encode($city_item['image_title']) ?>" alt="<?= Html::encode($city_item['image_title'])." - IFlyFirstClass" ?>">
-                            <div class="body box-border mt-4">
+                        <div class="city-item mt-4">
+							<div class="rounded-lg w-full pt-[100%] transition-all duration-1000 bg-100 hover:bg-110 bg-center "
+								 style="background-image: url(<?= $path_img. Html::encode($city_item['image_alias']) ?>)">
+							</div>
+                            <div class="body box-border mt-5">
                                 <div class="flex justify-between item-center">
-                                    <h5 class="title">
+                                    <h5 class="title text-xl">
                                         <?= Html::encode($city_item['name']) ?>
                                     </h5>
                                     <div class="rating flex">
-                                        <img src="/public/img/stars.svg" class="star" alt="star-icon" width="50" height="30">
+                                        <img src="/public/img/stars.svg" class="star" alt="star-icon" width="44" height="19">
                                     </div>
                                 </div>
-                                <div class="cabin-class text-sm mt-3">
+                                <div class="cabin-class text-sm mt-2">
                                     Round trip / Business class
                                 </div>
                                 <div class="price-block flex items-center mt-3">
-                                    <h5 class="text-black new-price">
+                                    <h5 class="text-black new-price text-xl">
                                         $<?= Html::encode($city_item['business_class_price']) ?>
                                     </h5>
-                                    <div class="ml-4 text-sm line-through old-price">
+                                    <div class="ml-3 text-sm line-through old-price">
                                         $<?= Html::encode($city_item['business_class_old_price']) ?>
                                     </div>
                                 </div>
@@ -101,24 +103,23 @@ foreach ($random_cities as $city_item) {
             <!-- Images End -->
         </div>
 		<div class="mt-10 text-center">
-			<a href="/" class="mx-auto rounded-full py-2 px-2 border border-gray-light w-fit flex items-center">
-				<img src="/public/img/download-fill.svg" width="40" height="40" alt="download-icon">
+			<a href="/" class="mx-auto rounded-full py-2 px-2 border border-gray-light w-fit flex items-center show-more-btn">
+				<i class="icon-download"></i>
 				<p class="font-semibold grow px-5">Show more details</p>
 			</a>
 		</div>
     </div>
     <div class="container mx-auto xl:px-16 px-2 mt-12 dealth-block-wrapper box-border">
         <div class="dealth-block-inner grid xl:grid-cols-2 grid-cols-1 gap-2">
-			<video class="rounded-l-3xl rounded-r-3xl xl:rounded-r-lg" controls="" width="100%" poster="<?=  Url::base().'/design/video/video-poster.jpg' ?>">
-				<source src="<?=  Url::base().'/design/video/movie.mp4' ?>" type="video/mp4">
-				Your browser does not support the video tag.
-			</video>
-			<div class="bg-brown-light flex flex-col rounded-r-3xl rounded-l-3xl xl:rounded-l-lg xl:pt-22 pt-16 pb-10 xl:px-16 px-6 shadow-md xl:mt-0 -mt-12">
+			<div class="relative video-container rounded-l-3xl rounded-r-3xl xl:rounded-r-lg flex items-center justify-center">
+				<img src="/public/img/play-btn.png" class="play-btn cursor-pointer">
+			</div>
+			<div class="bg-brown-light flex flex-col rounded-r-3xl rounded-l-3xl xl:rounded-l-lg xl:pt-22 xl:py-[105px] py-14 xl:px-16 px-6 shadow-md xl:mt-0 -mt-12">
                 <div class="font-gilroy-semibold text-brown text-center xl:text-left">Top Rated Luxury Travel Agency</div>
                 <h3 class="xl:mt-4 mt-3 text-center xl:text-left">
                     Enjoy our Great Deals <br> on First & Business class
                 </h3>
-                <div class="description grid xl:grid-cols-2 grid-cols-1 gap-10 xl:mt-8 mt-6">
+                <div class="description grid xl:grid-cols-2 grid-cols-1 gap-10 xl:mt-10 mt-6">
 					<p>I Fly First Class is your personal travel concierge. We're at your service 24/7 to meet all your travel needs. Our professional staff is dedicated to saving you time and money. </p>
 					<p class="xl:block hidden">We'll sort out even the most complex travel itineraries in minutes, getting you the best but least costly business class airfares. Our business flight booking division is always at your service! </p>
                 </div>
@@ -131,60 +132,78 @@ foreach ($random_cities as $city_item) {
             <h2 class="font-silk-serif-bold text-center mt-5">
                 Book With Confidence
             </h2>
-			<div class="grid lg:grid-cols-3 grid-cols-1 gap-6 mt-8">
-				<div class="item px-8 pt-6 pb-10 bg-secondary rounded-3xl lg:text-left text-center">
-					<div>
-						<img class="p-2 bg-white rounded-xl mx-auto lg:mx-0" src="/public/img/gold-pig.svg" alt="gold-pig-icon" width="52" height="48">
+			<div class="grid lg:grid-cols-3 grid-cols-1 gap-6 mt-12">
+				<div class="item pb-10 bg-secondary rounded-3xl lg:text-left text-center">
+					<div class="p-6">
+						<div class="w-[56px] h-[56px] bg-white flex items-center justify-center rounded-xl p-[10px]">
+							<img class="mx-auto lg:mx-0" src="/public/img/gold-pig.svg" alt="gold-pig-icon" width="52" height="48">
+						</div>
 					</div>
-					<h6 class="mt-4">
-						Unpublished Fares
-					</h6>
-					<div class="mt-4 text-sm">
-						We offer discounted unpublished fares for First and Business Class Travel.
-					</div>
-				</div>
-				<div class="item px-8 pt-6 pb-10 bg-secondary rounded-3xl lg:text-left text-center">
-					<div>
-						<img class="p-2 bg-white rounded-xl mx-auto lg:mx-0" src="/public/img/team-gold.svg" alt="gold-team-icon" width="55" height="44">
-					</div>
-					<h6 class="mt-4">
-						Expert Travel Team
-					</h6>
-					<div class="mt-4 text-sm">
-						Our Experts are ready to help you with any travel plans.
+					<div class="px-8">
+						<h6>
+							Unpublished Fares
+						</h6>
+						<div class="mt-4 text-sm leading-6">
+							We offer discounted unpublished fares for First and Business Class Travel.
+						</div>
 					</div>
 				</div>
-				<div class="item px-8 pt-6 pb-10 bg-secondary rounded-3xl lg:text-left text-center">
-					<div>
-						<img class="p-2 bg-white rounded-xl mx-auto lg:mx-0" src="/public/img/support-gold.svg" alt="gold-support-icon" width="51" height="46">
+				<div class="item pb-10 bg-secondary rounded-3xl lg:text-left text-center">
+					<div class="p-6">
+						<div class="w-[56px] h-[56px] bg-white flex items-center justify-center rounded-xl p-[10px]">
+							<img class="mx-auto lg:mx-0" src="/public/img/team-gold.svg" alt="gold-team-icon" width="55" height="44">
+						</div>
 					</div>
-					<h6 class="mt-4">
-						24/7 Customer Suport
-					</h6>
-					<div class="mt-4 text-sm">
-						Your personal travel councierge available to assist you 24/7 with any travel needs.
-					</div>
-				</div>
-				<div class="item px-8 pt-6 pb-10 bg-secondary rounded-3xl lg:text-left text-center">
-					<div>
-						<img class="p-2 bg-white rounded-xl mx-auto lg:mx-0" src="/public/img/security-gold.svg" alt="gold-security-icon" width="44" height="50">
-					</div>
-					<h6 class="mt-4">
-						Credibility & Reliability
-					</h6>
-					<div class="mt-4 text-sm">
-						More then 10 years on the luxury travel market, member of Asta, Nacta, California Seller of Travel and BBB accredited.
+					<div class="px-8">
+						<h6>
+							Expert Travel Team
+						</h6>
+						<div class="mt-4 text-sm leading-6">
+							Our Experts are ready to help you with any travel plans.
+						</div>
 					</div>
 				</div>
-				<div class="item px-8 pt-6 pb-10 bg-secondary rounded-3xl lg:text-left text-center">
-					<div>
-						<img class="p-2 bg-white rounded-xl mx-auto lg:mx-0" src="/public/img/flight-gold.svg" alt="gold-flight-icon" width="51" height="44">
+				<div class="item pb-10 bg-secondary rounded-3xl lg:text-left text-center">
+					<div class="p-6">
+						<div class="w-[56px] h-[56px] bg-white flex items-center justify-center rounded-xl p-[10px]">
+							<img class="mx-auto lg:mx-0" src="/public/img/support-gold.svg" alt="gold-support-icon" width="51" height="46">
+						</div>
 					</div>
-					<h6 class="mt-4">
-						Travel protection & flexibility
-					</h6>
-					<div class="mt-4 text-sm">
-						Our tickets offer a Trip Protection to protect your travel investment and come with the most flexible fare rules in the industry.
+					<div class="px-8">
+						<h6>
+							24/7 Customer Suport
+						</h6>
+						<div class="mt-4 text-sm leading-6">
+							Your personal travel councierge available to assist you 24/7 with any travel needs.
+						</div>
+					</div>
+				</div>
+				<div class="item pb-10 bg-secondary rounded-3xl lg:text-left text-center">
+					<div class="p-6">
+						<div class="w-[56px] h-[56px] bg-white flex items-center justify-center rounded-xl p-[10px]">
+							<img class="mx-auto lg:mx-0" src="/public/img/security-gold.svg" alt="gold-security-icon" width="44" height="50">
+						</div>
+					</div>
+					<div class="px-8">
+						<h6>Credibility & Reliability</h6>
+						<div class="mt-4 text-sm leading-6">
+							More then 10 years on the luxury travel market, member of Asta, Nacta, California Seller of Travel and BBB accredited.
+						</div>
+					</div>
+				</div>
+				<div class="item pb-10 bg-secondary rounded-3xl lg:text-left text-center">
+					<div class="p-6">
+						<div class="w-[56px] h-[56px] bg-white flex items-center justify-center rounded-xl p-[10px]">
+							<img class="mx-auto lg:mx-0" src="/public/img/flight-gold.svg" alt="gold-flight-icon" width="51" height="44">
+						</div>
+					</div>
+					<div class="px-8">
+						<h6>
+							Travel protection & flexibility
+						</h6>
+						<div class="mt-4 text-sm leading-6">
+							Our tickets offer a Trip Protection to protect your travel investment and come with the most flexible fare rules.
+						</div>
 					</div>
 				</div>
 			</div>
@@ -282,8 +301,8 @@ foreach ($random_cities as $city_item) {
 				</div>
 			</div>
 			<div class="mt-10 text-center">
-				<a href="http://www.shopperapproved.com/reviews/iflyfirstclass.com/" target="_blank" rel="nofollow" class="mx-auto rounded-full py-2 px-2 bg-brown-light-3 w-fit flex items-center">
-					<img src="/public/img/download-fill.svg" alt="download-img" width="40" height="40">
+				<a href="http://www.shopperapproved.com/reviews/iflyfirstclass.com/" target="_blank" rel="nofollow" class="mx-auto rounded-full py-2 px-2 bg-brown-light-3 w-fit flex items-center show-more-btn">
+					<i class="icon-download"></i>
 					<p class="font-semibold grow px-5">Show More Reviews</p>
 				</a>
 			</div>
@@ -343,7 +362,7 @@ foreach ($random_cities as $city_item) {
 			</div>
 		</div>
     </div>
-	<div class="container mx-auto wave w-full px-14"></div>
+	<div class="wave"></div>
 	<div class="container mx-auto xl:px-16 px-4 box-border xl:mt-24 mt-20 pb-24">
 		<?= $this->render('_landing-block', [
 				'countries' => $countries,

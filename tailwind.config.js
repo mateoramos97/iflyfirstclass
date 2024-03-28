@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./frontend/web/redesign/dist/**", "./frontend/views/**/*.php", "./frontend/components/**/*.php"],
+  content: ["./frontend/web/redesign/source/**", "./frontend/views/**/*.php", "./frontend/components/**/*.php"],
   theme: {
     screens: {
       'sm': '640px',
@@ -45,6 +45,8 @@ module.exports = {
       'brown-light-2': '#EEDED3',
       'brown-light-3': '#E3DCD7',
       hover: '#FEF3E6',
+      'hover-2': '#EAE1DC',
+      'hover-3': '#F2F2F2',
       white: '#ffffff',
       'black-light': '#241f1e',
       'black-light-2': '#31302F',
@@ -77,6 +79,14 @@ module.exports = {
         xl: '1280px',
         '2xl': '1496px',
       },
+    },
+    backgroundSize: {
+      'auto': 'auto',
+      'cover': 'cover',
+      'contain': 'contain',
+      '115': '115%',
+      '110': '110%',
+      '100': '100%',
     }
   },
   experimental: {

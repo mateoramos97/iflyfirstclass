@@ -33,7 +33,7 @@ use yii\helpers\Html;
 </noscript>
 <!-- End Meta Pixel Code -->
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3V6TN8EEX1"></script>
+<script async defer src="https://www.googletagmanager.com/gtag/js?id=G-3V6TN8EEX1"></script>
 <script async>
 	window.dataLayer = window.dataLayer || [];
 	function gtag(){dataLayer.push(arguments);}

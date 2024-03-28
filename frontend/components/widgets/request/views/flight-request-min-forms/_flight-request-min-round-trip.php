@@ -8,23 +8,31 @@ use yii\helpers\Html;
 ?>
 
 <div class="form-request-tab tab-round-trip box-border" data-tab-form="<?= AppConfig::Type_Trip_Round_Trip ?>" v-if="activeForm == <?= AppConfig::Type_Trip_Round_Trip ?>">
-	<div class="field-row from relative">
+	<div class="field-row from relative autocomplete-wrapper">
 		<i class="input-prefix icon-airplan-fly text-gray bottom-4"></i>
 		<?= $form->field($model, 'from[]')->textInput([
-				'placeholder' => 'Where form ?',
+				'placeholder' => 'Where from ?',
 				'id' => 'flightrequestmax_from_round_trip',
-				'class' => 'has-prefix has-suffix from field-from required-field autocomplete bg-white'
+				'class' => 'has-prefix has-suffix from field-from required-field autocomplete-value-input bg-white'
 		]) ?>
 		<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
+		<div class="autocomplete-enter-input-wrapper">
+			<i class="input-prefix icon-airplan-fly text-gray bottom-4"></i>
+			<input class="has-prefix autocomplete" placeholder="Where from ?">
+		</div>
 	</div>
-	<div class="field-row to relative mt-5">
+	<div class="field-row to relative mt-5 autocomplete-wrapper">
 		<i class="input-prefix icon-airplan-land text-gray bottom-4"></i>
 		<?= $form->field($model, 'to[]')->textInput([
 				'placeholder' =>  'Where to ?',
 				'id' => 'flightrequestmax_to_round_trip',
-				'class' => 'has-prefix has-suffix to field-to required-field autocomplete bg-white'
+				'class' => 'has-prefix has-suffix to field-to required-field autocomplete-value-input bg-white'
 		]) ?>
 		<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
+		<div class="autocomplete-enter-input-wrapper">
+			<i class="input-prefix icon-airplan-fly text-gray bottom-4"></i>
+			<input class="has-prefix autocomplete" placeholder="Where to ?">
+		</div>
 	</div>
 	<div class="split-input-group field-row field-data flex bg-white mt-5">
 		<div class="relative w-1/2">
@@ -93,6 +101,6 @@ use yii\helpers\Html;
 		]) ?>
 	</div>
     <div class="form-group form-action mt-6">
-		<?= Html::submitButton('Search Flight Now', ['class' => 'btn btn-primary submit form-action-button search-flights w-full py-5', 'name' => 'flyght-button']) ?>
+		<?= Html::submitButton('Search Flight Now', ['class' => 'btn btn-primary submit form-action-button search-flights w-full py-5 !text-base-2', 'name' => 'flyght-button']) ?>
     </div>
 </div>

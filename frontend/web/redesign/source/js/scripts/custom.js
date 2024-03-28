@@ -1,6 +1,7 @@
 import Swiper from 'swiper';
 import { Navigation, Scrollbar } from 'swiper/modules';
-import TomSelect from "tom-select";
+import {tomSelectInit} from "./tom-select";
+import {InitAutocompleteAirport} from "./autocomplete";
 
 export const InitDatepicker = function () {
     /* datepicker */
@@ -17,8 +18,23 @@ jQuery(document).ready(function ($) {
     if ($(document.body).hasClass("front-page"))
         isFront = true;
 
+    $('.play-btn').click(function () {
+        popupwindow("/design/video/movie.mp4", 'I Fly First Class', 640, 480);
+    });
+
+    function popupwindow(url, title, w, h) {
+        var left = (screen.width/2)-(w/2);
+        var top = (screen.height/2)-(h/2);
+        return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+    }
+
+    $('.main-nav .dropdown').each(function(){
+       $(this).click(function(){
+           $(this).find('.menu-dropdown').toggleClass('active');
+       })
+    });
+
     new Swiper('.news-block .swiper', {
-        // configure Swiper to use modules
         modules: [Scrollbar],
         scrollbar: {
             el: '.swiper-scrollbar',
@@ -26,6 +42,11 @@ jQuery(document).ready(function ($) {
         },
         slidesPerView: "auto",
         spaceBetween: 30,
+        breakpoints: {
+            1280: {
+                slidesOffsetBefore: 400,
+            }
+        }
     });
 
     new Swiper('.blog-list.swiper', {
@@ -38,10 +59,7 @@ jQuery(document).ready(function ($) {
         slidesPerView: 3,
     });
 
-    document.querySelectorAll('.tom-select').forEach((el)=>{
-        let settings = {};
-        new TomSelect(el,settings);
-    });
+    tomSelectInit();
 
     InitDatepicker();
 
@@ -77,7 +95,7 @@ jQuery(document).ready(function ($) {
             menuSubWrapper = headerWrapper.find('.menu-sub-wrapper'),
             menues = headerWrapper.find('.menu'),
             menuSub = headerWrapper.find('.menu-sub');
-        menues.each(function () {
+            menues.each(function () {
             var self = $(this);
             self.click(function () {
                 var dataMenu = $(this).data("menu");
@@ -155,9 +173,6 @@ jQuery(document).ready(function ($) {
             }
         });
     });
-
-    //flight request
-
 
     //form-tracker
     $(function () {
@@ -336,118 +351,5 @@ window.readMoreLanding = (elem) => {
 }
 
 export const initFlightRequestForm = function () {
-    var formFlightRequestMaxWrapper = $(".form-flight-request");
-    /* autocomplete */
-    setTimeout(AutocompleteAirport);
-};
-
-export const AutocompleteAirport = function () {
-    var autocomplete = $(".form-flight-request").find(".autocomplete");
-
-    var autocomleteTest = function () {
-        $(".form-flight-request .form-request-tab").each(function () {
-            var self = $(this),
-                fromAir = self.find(".field-from"),
-                toAir = self.find(".field-to"),
-                formRequestNotify = self.find('.form-request-notify');
-            if (typeof fromAir.val() !== "undefined" && typeof toAir.val() !== "undefined" ) {
-                if (fromAir.val().indexOf(' US,') !== -1 && toAir.val().indexOf(' US,') !== -1) {
-                    formRequestNotify.addClass("open");
-                } else {
-                    formRequestNotify.removeClass("open");
-                }
-            }
-        });
-    }
-
-    const autocompleteConfig = {
-        source: function (request, response) {
-            $.ajax({
-                url: document.location.origin + "/request/search-airport",
-                dataType: "json",
-                type: "POST",
-                data: {
-                    keyword: request.term
-                },
-                success: function (data) {
-                    const result = data.response;
-                    const citiesByAirports = result.cities_by_airports;
-                    const cities = result.cities;
-                    const airports = result.airports;
-                    const airportsByCities = result.airports_by_cities;
-                    const citiesSearch = arrayUnique(cities.concat(citiesByAirports), 'city_code').sort(compare);
-                    const airportsSearch = arrayUnique(airports.concat(airportsByCities), 'icao_code').sort(compare);
-                    response($.map(airportsSearch, function (item) {
-                        const city = item.city_code;
-                        var result = '(' + (item.iata_code || item.icao_code) + ') ';
-                        const dataCity = citiesSearch.find(function (c) { return c.city_code == city });
-                        if (dataCity) {
-                            result += dataCity.name + ', ';
-                        }
-                        result += item.country_code + ', ' + item.name;
-
-                        return {
-                            city: dataCity?.name,
-                            country: item.country_code,
-                            code: item.iata_code || item.icao_code,
-                            name: item.name,
-                            value: result,
-                        }
-                    }));
-                }
-            });
-        },
-        select: function (event, ui) {
-            setTimeout(autocomleteTest);
-        },
-        minLength:3,
-    };
-
-    const renderItem = function( ul, item ) {
-        return $( "<li>" )
-            .append( `<div class="flex items-center">
-                           <i class="text-lg icon-airplane bg-white p-2 rounded-xl"></i>
-                            <div class="ml-4">
-                                <div>
-                                   <span class="font-gilroy-semibold">${item.name}</span> <span class="font-gilroy-light">${item.code}</span>
-                                </div>
-                                <div>
-                                    <span class="text-xs">${item.city ? item.city + ',' : '' } ${item.country}</span>
-                                </div>
-                            </div>
-                         </div>` )
-            .appendTo( ul );
-    }
-
-    autocomplete.each(function (){
-        $(this).autocomplete(autocompleteConfig);
-        $(this).autocomplete("instance")._renderItem = renderItem;
-    });
-    function compare( a, b ) {
-        if ( a.popularity < b.popularity ){
-            return 1;
-        }
-        if ( a.popularity > b.popularity ){
-            return -1;
-        }
-        return 0;
-    }
-    function arrayUnique(array, prop) {
-        var a = array.concat();
-        for(var i=0; i<a.length; ++i) {
-            if (typeof a[i][prop] === 'undefined'){
-                continue;
-            }
-            for(var j=i+1; j<a.length; ++j) {
-                if (typeof a[j][prop] === 'undefined'){
-                    continue;
-                }
-                if(a[i][prop] === a[j][prop]) {
-                    a.splice(j--, 1);
-                }
-            }
-        }
-
-        return a;
-    }
+    setTimeout(InitAutocompleteAirport);
 };

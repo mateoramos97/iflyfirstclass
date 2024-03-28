@@ -1,0 +1,119 @@
+.ui-widget.ui-widget-content {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: unset;
+  border-right: unset;
+  border-left: unset;
+}
+
+.ui-autocomplete {
+  overflow: hidden auto;
+  padding: 15px 5px 5px 5px;
+  width: 329px;
+  max-height: 408px;
+  background: #FFFFFF;
+  box-shadow: 0px 16px 11px rgba(0, 0, 0, 0.25);
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  opacity: 0;
+  display: none;
+  transition: opacity 0.3s;
+  margin-top: -19px;
+  &.opened {
+    opacity: 1;
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #F0F0F0;
+    border-radius: 5px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #D7DBE0;
+    border-radius: 5px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #D7DBE0;
+  }
+
+  .ui-menu-item{
+    .ui-menu-item-wrapper {
+      padding: 6px 10px;
+      min-height: 64px;
+      border-radius: 10px;
+      transition: 0.3s;
+      color: inherit;
+      &.ui-state-active, &:hover {
+        background: $hover-bg-color;
+        border:none;
+        color: inherit;
+        margin: 0;
+      }
+      .airport-wrapper {
+        padding-left: 12px;
+        max-width: 80%;
+        .airport-code {
+          color: rgba(61, 64, 67, 0.7);
+          font-size: 14px;
+        }
+        .airport-location {
+          color: rgba(61, 64, 67, 0.7);
+          font-size: 12px;
+        }
+        .airport-name {
+          font-size: 16px;
+          word-break: break-word;
+        }
+      }
+      i {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+      }
+    }
+  }
+}
+
+.autocomplete-enter-input-wrapper {
+  z-index: 3;
+  position: absolute;
+  left: -4px;
+  background-color: $white;
+  top: -4px;
+  height: 64px;
+  border-radius: 14px;
+  box-shadow: 0 16px 56px rgba(0, 0, 0, 0.25);
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  align-items: center;
+  transition: opacity 0.2s ease-out;
+  &.autocomplete-opened {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  input{
+    width: 329px;
+    border: 1px solid $white;
+    &:hover, &:focus, &:active{
+      border: 1px solid $white;
+    }
+    &.has-prefix {
+      padding-left: 62px;
+    }
+  }
+  .input-prefix {
+    left: 25px;
+    top: 20px;
+  }
+}

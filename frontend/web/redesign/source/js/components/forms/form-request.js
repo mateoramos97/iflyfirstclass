@@ -8,7 +8,11 @@ const form = createApp({
 		const activeForm = ref(1);
 		const showHiddenFields = ref(false);
 		function changeActiveForm(event) {
-			activeForm.value = event.target.value;
+			setActiveForm(event.target.value);
+		}
+
+		function setActiveForm(value) {
+			activeForm.value = value;
 			initFlightRequestForm();
 		}
 
@@ -16,6 +20,7 @@ const form = createApp({
 			activeForm,
 			showHiddenFields,
 			changeActiveForm,
+			setActiveForm,
 		}
 	},
 

@@ -2,23 +2,31 @@
   <div>
     <div class="destination-block-wrapper flex flex-col gap-4">
       <div class="destination-row flex align-center relative grid xl:grid-cols-10 gap-3" :data-destination-id="number" v-for="(number,index) in flights">
-        <div class="field-row from grow relative col-span-3">
+        <div class="field-row from grow relative col-span-3 autocomplete-wrapper">
           <i class="input-prefix icon-airplan-fly text-gray bottom-4"></i>
           <input name="FlightRequestMax[from][]"
                  :id="'flightrequestmax_from_multi_city_' + number"
-                 placeholder="Where form ?"
-                 class="has-prefix has-suffix from field-from required-field autocomplete bg-white"
+                 placeholder="Where from ?"
+                 class="has-prefix has-suffix from field-from required-field autocomplete-value-input bg-white"
           >
           <i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
+          <div class="autocomplete-enter-input-wrapper">
+            <i class="input-prefix icon-airplan-fly text-gray bottom-4"></i>
+            <input class="has-prefix autocomplete" placeholder="Where from ?">
+          </div>
         </div>
-        <div class="field-row to grow relative col-span-3">
+        <div class="field-row to grow relative col-span-3 autocomplete-wrapper">
           <i class="input-prefix icon-airplan-land text-gray bottom-4"></i>
           <input name="FlightRequestMax[to][]"
                  :id="'flightrequestmax_to_multi_city_' + number"
                  placeholder="Where to ?"
-                 class="has-prefix has-suffix from field-from required-field autocomplete bg-white"
+                 class="has-prefix has-suffix from field-from required-field autocomplete-value-input bg-white"
           >
           <i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
+          <div class="autocomplete-enter-input-wrapper">
+            <i class="input-prefix icon-airplan-fly text-gray bottom-4"></i>
+            <input class="has-prefix autocomplete" placeholder="Where to ?">
+          </div>
         </div>
         <div class="form-group field-row field-data flex grow flex-col col-span-3">
           <i class="input-prefix icon-calendar text-gray top-3 text-lg"></i>
@@ -45,14 +53,14 @@
 </template>
 
 <script setup>
-import { ref, computed, reactive, onMounted } from 'vue';
-import {AutocompleteAirport} from "../scripts/custom";
+import { ref, onMounted } from 'vue';
+import {InitAutocompleteAirport} from "../scripts/autocomplete";
 
 const flights = ref([1]);
 
 function addFlight() {
   flights.value.push(flights.value.length + 1);
-  setTimeout(AutocompleteAirport);
+  setTimeout(InitAutocompleteAirport);
 }
 
 function removeFlight(index) {
@@ -60,7 +68,7 @@ function removeFlight(index) {
 }
 
 onMounted(() => {
-  AutocompleteAirport();
+  InitAutocompleteAirport();
 });
 
 </script>

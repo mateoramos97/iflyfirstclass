@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'iflyfirstclass-icons';
-  src: url('../font/iflyfirstclass-icons.eot?74501270');
-  src: url('../font/iflyfirstclass-icons.eot?74501270#iefix') format('embedded-opentype'),
-       url('../font/iflyfirstclass-icons.woff2?74501270') format('woff2'),
-       url('../font/iflyfirstclass-icons.woff?74501270') format('woff'),
-       url('../font/iflyfirstclass-icons.ttf?74501270') format('truetype'),
-       url('../font/iflyfirstclass-icons.svg?74501270#iflyfirstclass-icons') format('svg');
+  src: url('../font/iflyfirstclass-icons.eot?81892321');
+  src: url('../font/iflyfirstclass-icons.eot?81892321#iefix') format('embedded-opentype'),
+       url('../font/iflyfirstclass-icons.woff2?81892321') format('woff2'),
+       url('../font/iflyfirstclass-icons.woff?81892321') format('woff'),
+       url('../font/iflyfirstclass-icons.ttf?81892321') format('truetype'),
+       url('../font/iflyfirstclass-icons.svg?81892321#iflyfirstclass-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'iflyfirstclass-icons';
-    src: url('../font/iflyfirstclass-icons.svg?74501270#iflyfirstclass-icons') format('svg');
+    src: url('../font/iflyfirstclass-icons.svg?81892321#iflyfirstclass-icons') format('svg');
   }
 }
 */
@@ -73,3 +73,4 @@
 .icon-location-fill:before { content: '\e810'; } /* '' */
 .icon-mail-fill:before { content: '\e811'; } /* '' */
 .icon-phone-fill:before { content: '\e812'; } /* '' */
+.icon-download:before { content: '\e813'; } /* '' */

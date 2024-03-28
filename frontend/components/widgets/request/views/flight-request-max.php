@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var array $trip_variants */
 ?>
 
-<div id="form-request" class="form-flight-request-max-wrapper form-flight-request border-box xl:bg-white xl:p-10 rounded-2xl" v-cloak>
+<div id="form-request" class="form-flight-request-max-wrapper form-flight-request border-box xl:bg-white xl:px-10 xl:pt-10 xl:pb-6 rounded-3xl" v-cloak>
 	<?php $form = ActiveForm::begin([
 			'id' => 'flight_request_max_form',
 			'enableClientValidation' => true,
@@ -22,13 +22,13 @@ use yii\widgets\ActiveForm;
 	]) ?>
 	<input type="hidden" name="check_subscription" class="check-subscription" value="">
 	<input type="hidden" name="FlightRequestMax[type_trip]" class="type-trip" :value="activeForm">
-    <h4 class="xl:inline-block hidden">Book Flight</h4>
+    <h4 class="xl:inline-block hidden font-gilroy-semibold pl-2">Book Flight</h4>
     <h4 class="xl:hidden block text-white text-center font-silk-serif-bold"><?= $shortHead ?? 'A Philosophy of Travel' ?></h4>
-    <div class="form-nav xl:mt-2 mt-5">
+    <div class="form-nav xl:mt-5 mt-5">
 		<ul class="head-menu gap-3 flex-wrap xl:flex hidden">
 			<li class="form-group head-menu-item flex items-center">
 				<i class="input-prefix icon icon-arrows"></i>
-				<select class=" has-prefix has-suffix border-none tom-select w-auto" @change="changeActiveForm($event)">
+				<select class=" has-prefix has-suffix border-none tom-select w-auto !py-[13px]" @change="changeActiveForm($event)">
 					<?php foreach ($trip_variants as $value => $label): ?>
 						<option value="<?= $value ?>"><?= $label ?></option>
 					<?php endforeach; ?>
@@ -39,7 +39,7 @@ use yii\widgets\ActiveForm;
 				<i class="input-prefix icon icon-person"></i>
 				<?= $form->field($model, 'people_number')->dropDownList(($number_persones), [
 					'id' => 'flightrequestmax_people_number_round_trip1',
-					'class' => 'has-prefix has-suffix border-none tom-select w-auto'
+					'class' => 'has-prefix has-suffix border-none tom-select w-auto !py-[13px]'
 				]); ?>
 				<i class="input-suffix icon-chevron text-ns"></i>
 			</li>
@@ -47,7 +47,7 @@ use yii\widgets\ActiveForm;
 				<i class="input-prefix icon icon-business"></i>
 				<?= $form->field($model, 'cabin_class_name')->dropDownList(($cabin_class), [
 						'id' => 'flightrequestmax_cabin_class_name_round_trip1',
-						'class' => 'has-prefix has-suffix border-none tom-select w-auto'
+						'class' => 'has-prefix has-suffix border-none tom-select w-auto !py-[13px]'
 				]); ?>
 				<i class="input-suffix icon-chevron text-ns"></i>
 			</li>
@@ -56,15 +56,15 @@ use yii\widgets\ActiveForm;
 			<ul class="flex gap-5 flex-wrap justify-center">
 				<li class="flex items-center ">
 					<a href="javascript:void(0)" :class="{active: activeForm == <?= AppConfig::Type_Trip_Round_Trip ?>}"
-					   @click="activeForm = <?= AppConfig::Type_Trip_Round_Trip ?>">Round trip</a>
+					   @click="setActiveForm(<?= AppConfig::Type_Trip_Round_Trip ?>)">Round trip</a>
 				</li>
 				<li class="flex items-center">
 					<a href="javascript:void(0)" :class="{active: activeForm == <?= AppConfig::Type_Trip_One_Way ?>}"
-					   @click="activeForm = <?= AppConfig::Type_Trip_One_Way ?>">One-way</a>
+					   @click="setActiveForm(<?= AppConfig::Type_Trip_One_Way ?>)">One-way</a>
 				</li>
 				<li class="flex items-center">
 					<a href="javascript:void(0)" :class="{active: activeForm == <?= AppConfig::Type_Trip_Multi_City ?>}"
-					   @click="activeForm = <?= AppConfig::Type_Trip_Multi_City ?>">Multi-City</a>
+					   @click="setActiveForm(<?= AppConfig::Type_Trip_Multi_City ?>)">Multi-City</a>
 				</li>
 			</ul>
 		</div>

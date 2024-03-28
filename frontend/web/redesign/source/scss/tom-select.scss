@@ -35,18 +35,80 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #D7DBE0;
   }
+
+  &.dropdown-active {
+    .ts-dropdown {
+      opacity: 1 !important;
+      height: auto !important;
+    }
+  }
+
+  .ts-dropdown {
+    background: #FFFFFF;
+    border: unset;
+    box-shadow: unset;
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    line-height: inherit;
+    min-width: 200px;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    transition:opacity 0.3s ease-out;
+    border-radius: 16px;
+
+    .ts-dropdown-content {
+      padding: 8px 2px;
+      box-shadow: 0px 16px 56px rgba(0, 0, 0, 0.16);
+      border-radius: 16px;
+
+      .option {
+        height: 48px;
+        padding: 0px 16px 0px 20px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        color: $black;
+        transition: 0.3s;
+        &.selected {
+          color: rgba(0, 0, 0, 0.5);
+          background: $white !important;
+          position: relative;
+          padding-left: 40px;
+          &:before {
+            display: block;
+            position: absolute;
+            left: 20px;
+            font-size: 9px;
+            font-family: iflyfirstclass-icons;
+            content: '\e806';
+            color: $orange-color;
+          }
+        }
+        &.active {
+          background: #FCF1E5;
+          border-radius: 10px;
+        }
+      }
+    }
+
+
+  }
+
+
 }
 
 .ts-control, .ts-wrapper.single.input-active .ts-control {
   background: transparent;
 }
 
-.ts-control, .ts-control input, .ts-dropdown {
-  font-size: inherit;
-  font-family: inherit;
-  color: inherit;
-  line-height: inherit;
-}
+//.ts-control, .ts-control input, .ts-dropdown {
+//  font-size: inherit;
+//  font-family: inherit;
+//  color: inherit;
+//  line-height: inherit;
+//}
 
 .has-items .ts-control>input {
   margin: 0 !important;
