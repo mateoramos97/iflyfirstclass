@@ -177,6 +177,17 @@ header {
   }
 }
 
+.main-nav-list {
+  .link {
+    padding: 10px 15px;
+    @apply rounded-full flex items-center;
+    &:active, &.active {
+      background-color: $hover-bg-color;
+      color: $orange-color;
+    }
+  }
+}
+
 .menu-dropdown {
   background: #FFFFFF;
   border: unset;
@@ -216,19 +227,6 @@ header {
         border-radius: 10px;
       }
     }
-  }
-}
-
-.link {
-  transition: 0.5s;
-  padding: 10px 15px;
-  @apply rounded-full cursor-pointer flex items-center;
-  &:hover {
-    color: $orange-color;
-  }
-  &:active, &.active {
-    background-color: $hover-bg-color;
-    color: $orange-color;
   }
 }
 

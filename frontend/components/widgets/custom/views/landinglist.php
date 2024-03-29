@@ -10,7 +10,7 @@ use \yii\helpers\Url;
         <div class="body">
             <ul>
                 <?php foreach($countries as $item): ?>
-                    <li><a href="<?= Url::to(['country/index', 'alias' => $item->alias]); ?>"><?= Html::encode($item->name) ?></a></li>
+                    <li><a class="link" href="<?= Url::to(['country/index', 'alias' => $item->alias]); ?>"><?= Html::encode($item->name) ?></a></li>
                 <?php endforeach; ?>
             </ul>
         </div>
@@ -22,7 +22,7 @@ use \yii\helpers\Url;
         <div class="body">
             <ul>
                 <?php foreach($airline as $item): ?>
-                    <li><a href="<?= Url::to(['airline/index', 'alias' => $item->alias]); ?>"><?= Html::encode($item->name) ?></a></li>
+                    <li><a class="link" href="<?= Url::to(['airline/index', 'alias' => $item->alias]); ?>"><?= Html::encode($item->name) ?></a></li>
                 <?php endforeach; ?>
             </ul>
         </div>
@@ -34,7 +34,7 @@ use \yii\helpers\Url;
         <div class="body">
             <ul>
                 <?php foreach($cities as $item): ?>
-                    <li><a href="<?= Url::to(['city/index', 'alias' => $item->alias]); ?>"><?= Html::encode($item->name) ?></a></li>
+                    <li><a class="link" href="<?= Url::to(['city/index', 'alias' => $item->alias]); ?>"><?= Html::encode($item->name) ?></a></li>
                 <?php endforeach; ?>
             </ul>
         </div>

@@ -70,7 +70,7 @@ $path_icons =  Url::base().'/design/icons/';
 					<img src="/public/img/logo-2.svg" width="168" height="15" alt="logo-2">
 				</a>
 			</div>
-			<ul class="flex items-center justify-center gap-6">
+			<ul class="flex items-center justify-center gap-6 main-nav-list">
 				<li class="relative dropdown">
 					<span id="menu-service" data-menu="menu-service"
 						  class="link <?php echo in_array($this->context->route, [
@@ -108,7 +108,7 @@ $path_icons =  Url::base().'/design/icons/';
 				</li>
 				<li>
 					<a href="<?= Url::to(['blog/list']); ?>"
-					   class="<?php echo $this->context->route == 'blog/list' ? 'current-page' : ''; ?>">
+					   class="link <?php echo $this->context->route == 'blog/list' ? 'current-page' : ''; ?>">
 						Blog
 					</a>
 				</li>
@@ -133,7 +133,6 @@ $path_icons =  Url::base().'/design/icons/';
 			</ul>
 		</div>
 		<div class="menu-sub-wrapper">
-
 			<div id="menu-tools-sub" class="menu-sub" data-menu="menu-tools">
 				<div class="menu-content box-border">
 					<ul class="flex flex-row">
@@ -156,7 +155,7 @@ $path_icons =  Url::base().'/design/icons/';
 				</div>
 			</div>
 			<div id="menu-cc-sub" class="menu-sub menu-cc-sub" data-menu="menu-cc">
-				<div class="p-10 box-border flex justify-center landing-header-menu">
+				<div class="px-10 py-14 box-border flex justify-center landing-header-menu">
 					<?= LandingHeaderMenu::widget() ?>
 				</div>
 			</div>

@@ -23,8 +23,8 @@ $this->params['breadcrumbs'][] = 'Corporate accounts';
 <div class="request-corporate-account-title container mx-auto xl:px-12 px-4 mt-8 mb-10 text-center">
     <h1 class="font-silk-serif-bold xl:text-7xl lg:text-6xl text-2xl">Corporate flights</h1>
 </div>
-<div class="form-request-wrapper bg-secondary xl:py-20 py-10 container mx-auto xl:px-12 px-4">
-    <div class="flex justify-between">
+<div class="form-request-wrapper bg-secondary xl:py-20 py-10">
+    <div class="container mx-auto xl:px-12 px-4 flex justify-between">
 		<?= RequestCorporateAcoounts::widget() ?>
     </div>
 </div>

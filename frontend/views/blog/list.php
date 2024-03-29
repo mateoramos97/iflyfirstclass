@@ -18,11 +18,11 @@ $this->params['breadcrumbs'][] = 'Blog';
 ?>
 
 <div class="welcome-block-wrapper bg-blue-white-gradient pb-12 xl:mt-0 mt-20">
-	<div class="flex items-center justify-center border-b-2 border-gray-light-3">
+	<div class="flex items-center justify-center border-b border-gray-light-3">
 		<?= $this->render('@app/views/layouts/_breadcrumbs') ?>
 	</div>
     <div class="container mx-auto xl:px-12 px-4 mt-10">
-        <h1 class="xl:text-9xl lg:text-8xl text-5xl font-silk-serif-bold text-center drop-shadow-2xl head-shadow">Travel Blog</h1>
+        <h1 class="xl:text-9xl lg:text-8xl text-5xl font-silk-serif-bold text-center drop-shadow-2xl">Travel Blog</h1>
     </div>
 </div>
 <div class="page-content container mx-auto xl:px-12 px-4">

@@ -25,7 +25,7 @@
     --swiper-scrollbar-bg-color: rgba(0, 0, 0, 0.1);
     --swiper-scrollbar-drag-bg-color: rgba(0, 0, 0, 0.7);
     --swiper-scrollbar-size: 2px;
-    @media screen and (max-width: $lg-screen) {
+    @media screen and (max-width: $xl-screen) {
       --swiper-scrollbar-sides-offset: 5%;
     }
   }

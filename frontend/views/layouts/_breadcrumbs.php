@@ -19,7 +19,7 @@ use app\components\widgets\breadcrumbs\BreadcrumbsMicrodata;
             ],
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             'itemTemplate' => '<li>{link}</li>',
-            'activeItemTemplate' => '<li class="active">{link}</li>',
+            'activeItemTemplate' => '<li class="active link">{link}</li>',
             'tag' => 'ul',
             'encodeLabels' => false
         ]); ?>

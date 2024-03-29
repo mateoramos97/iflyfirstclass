@@ -32,7 +32,7 @@ body {
 
 h1,h2,h3,h4,h5,h6 {
   font-weight: 600;
-  font-family: Gilroy, sans-serif;
+  font-family: GilroySemiBold, sans-serif;
 }
 
 h1 {
@@ -59,7 +59,13 @@ h6 {
   @apply xl:text-xl text-lg
 }
 
-
+.link {
+  transition: 0.5s;
+  @apply cursor-pointer;
+  &:hover {
+    color: $orange-color;
+  }
+}
 
 hr {
   display: block;
@@ -165,6 +171,20 @@ hr {
   }
 }
 
+.reviews-wrapper {
+  max-height: 320px;
+  overflow: hidden;
+  &.open {
+    max-height: unset;
+  }
+}
+
+.show-more-reviews {
+  &.disable{
+    display:none;
+  }
+}
+
 .ui-datepicker{
   z-index: 2 !important;
 }
@@ -195,22 +215,55 @@ hr {
 
 .show-more-btn {
   transition: 0.3s;
+  @apply rounded-full py-2 px-2 w-fit flex items-center cursor-pointer;
   i {
+    transition: 0.3s;
     width: 40px;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #EDEAE8;
     border-radius: 100%;
     font-size: 20px;
     padding-top: 2px;
   }
+}
 
+.show-more-deals {
+  @apply border border-gray-light;
+  i {
+    background-color: #EDEAE8;
+  }
   &:hover {
     background-color: #EDEAE8;
     i {
       background-color: #ffffff;
+    }
+  }
+}
+
+.show-more-reviews {
+  background-color: #E3DCD7;
+  i {
+    background-color: $white;
+  }
+  &:hover {
+    background-color: #EAE5E0;
+    i {
+      color: $orange-color;
+    }
+  }
+}
+
+.show-more-destination {
+  background-color: #F4F1ED;
+  i {
+    background-color: $white;
+  }
+  &:hover {
+    background-color: #EAE5E1;
+    i {
+      color: $orange-color;
     }
   }
 }

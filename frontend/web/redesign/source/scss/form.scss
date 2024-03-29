@@ -10,7 +10,6 @@ label {
 }
 
 input, select, textarea, .ts-wrapper {
-  padding: 16px;
   border: 1px solid $input-border;
   border-radius: 10px;
   background-color: transparent;
@@ -20,6 +19,10 @@ input, select, textarea, .ts-wrapper {
   }
   position: relative;
   transition: 0.6s;
+}
+
+input, select, textarea {
+  padding: 16px;
   &.has-prefix {
     padding-left: 42px;
   }
@@ -251,7 +254,7 @@ select {
     border: none;
   }
 
-  input,select, .split-input-group {
+  input,select, .split-input-group, .ts-wrapper {
     border: 1px solid transparent;
   }
 
@@ -259,10 +262,6 @@ select {
     &:hover, &:focus, &:active, &:focus-visible {
       border-color: $gray;
     }
-  }
-
-  .ts-wrapper {
-    border: none;
   }
 
   .form-request-tab {
@@ -273,7 +272,6 @@ select {
   .form-nav {
     .head-menu {
       .ts-wrapper {
-        padding: 10px;
         .ts-dropdown {
           top:unset;
         }

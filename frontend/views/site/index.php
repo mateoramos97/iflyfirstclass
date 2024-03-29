@@ -103,9 +103,9 @@ foreach ($random_cities as $city_item) {
             <!-- Images End -->
         </div>
 		<div class="mt-10 text-center">
-			<a href="/" class="mx-auto rounded-full py-2 px-2 border border-gray-light w-fit flex items-center show-more-btn">
+			<a href="/" class="mx-auto show-more-btn show-more-deals">
 				<i class="icon-download"></i>
-				<p class="font-semibold grow px-5">Show more details</p>
+				<p class="font-semibold grow px-5">Show More Deals</p>
 			</a>
 		</div>
     </div>
@@ -134,9 +134,9 @@ foreach ($random_cities as $city_item) {
             </h2>
 			<div class="grid lg:grid-cols-3 grid-cols-1 gap-6 mt-12">
 				<div class="item pb-10 bg-secondary rounded-3xl lg:text-left text-center">
-					<div class="p-6">
+					<div class="p-6 flex xl:justify-between justify-center">
 						<div class="w-[56px] h-[56px] bg-white flex items-center justify-center rounded-xl p-[10px]">
-							<img class="mx-auto lg:mx-0" src="/public/img/gold-pig.svg" alt="gold-pig-icon" width="52" height="48">
+							<img src="/public/img/gold-pig.svg" alt="gold-pig-icon" width="52" height="48">
 						</div>
 					</div>
 					<div class="px-8">
@@ -149,9 +149,9 @@ foreach ($random_cities as $city_item) {
 					</div>
 				</div>
 				<div class="item pb-10 bg-secondary rounded-3xl lg:text-left text-center">
-					<div class="p-6">
+					<div class="p-6 flex xl:justify-between justify-center">
 						<div class="w-[56px] h-[56px] bg-white flex items-center justify-center rounded-xl p-[10px]">
-							<img class="mx-auto lg:mx-0" src="/public/img/team-gold.svg" alt="gold-team-icon" width="55" height="44">
+							<img src="/public/img/team-gold.svg" alt="gold-team-icon" width="55" height="44">
 						</div>
 					</div>
 					<div class="px-8">
@@ -164,9 +164,9 @@ foreach ($random_cities as $city_item) {
 					</div>
 				</div>
 				<div class="item pb-10 bg-secondary rounded-3xl lg:text-left text-center">
-					<div class="p-6">
+					<div class="p-6 flex xl:justify-between justify-center">
 						<div class="w-[56px] h-[56px] bg-white flex items-center justify-center rounded-xl p-[10px]">
-							<img class="mx-auto lg:mx-0" src="/public/img/support-gold.svg" alt="gold-support-icon" width="51" height="46">
+							<img src="/public/img/support-gold.svg" alt="gold-support-icon" width="51" height="46">
 						</div>
 					</div>
 					<div class="px-8">
@@ -179,9 +179,9 @@ foreach ($random_cities as $city_item) {
 					</div>
 				</div>
 				<div class="item pb-10 bg-secondary rounded-3xl lg:text-left text-center">
-					<div class="p-6">
+					<div class="p-6 flex xl:justify-between justify-center">
 						<div class="w-[56px] h-[56px] bg-white flex items-center justify-center rounded-xl p-[10px]">
-							<img class="mx-auto lg:mx-0" src="/public/img/security-gold.svg" alt="gold-security-icon" width="44" height="50">
+							<img src="/public/img/security-gold.svg" alt="gold-security-icon" width="44" height="50">
 						</div>
 					</div>
 					<div class="px-8">
@@ -192,9 +192,9 @@ foreach ($random_cities as $city_item) {
 					</div>
 				</div>
 				<div class="item pb-10 bg-secondary rounded-3xl lg:text-left text-center">
-					<div class="p-6">
+					<div class="p-6 flex xl:justify-between justify-center">
 						<div class="w-[56px] h-[56px] bg-white flex items-center justify-center rounded-xl p-[10px]">
-							<img class="mx-auto lg:mx-0" src="/public/img/flight-gold.svg" alt="gold-flight-icon" width="51" height="44">
+							<img src="/public/img/flight-gold.svg" alt="gold-flight-icon" width="51" height="44">
 						</div>
 					</div>
 					<div class="px-8">
@@ -222,12 +222,12 @@ foreach ($random_cities as $city_item) {
 			<img class="block m-auto" src="/public/img/y.svg" alt="y-img" width="141" height="112">
 		</div>
 	</div>
-    <div class="news-block-wrapper bg-secondary xl:mt-22 mt-20 shadow-lg">
+    <div class="news-block-wrapper bg-secondary xl:mt-22 mt-20">
         <div class="news-inner">
 			<h2 class="font-silk-serif-bold text-center pt-20 xl:pb-20 py-14">
 				Travel <span class="xl:inline-block hidden">& Flight</span> <span class="text-brown">News</span>
 			</h2>
-			<div class="news-block pb-20 xl:px-20 px-0 pl-3">
+			<div class="news-block pb-20 px-0">
                 <div class="rows swiper">
 					<div class="swiper-wrapper">
 						<?php foreach($top_articles_in_list as $item): ?>
@@ -264,20 +264,21 @@ foreach ($random_cities as $city_item) {
                 </div>
             </div>
         </div>
-		<div class="container mx-auto px-4 box-border mt-4 py-10">
+		<div class="mx-auto px-4 box-border pt-6 pb-[40px]">
 			<div>
 				<p class="text-center">Customer Reviews</p>
 				<h2 class="font-silk-serif-bold text-center mt-5">
 					Reviews our Clients
 				</h2>
-				<a  href="http://www.shopperapproved.com/reviews/iflyfirstclass.com/" target="_blank" rel="nofollow">
-					<img class="block m-auto mt-5" src="/public/img/see-on-shopper-approved.svg" alt="see-on-shopper-approved-img" width="222" height="28">
+				<a class="flex mt-8 items-center justify-center" href="http://www.shopperapproved.com/reviews/iflyfirstclass.com/" target="_blank" rel="nofollow">
+					<img class="block" src="/public/img/shopper-star.svg" alt="see-on-shopper-approved-img" width="28" height="28">
+					<span class="text-orange font-proxima-nova-medium ml-2 text-base-2 pt-1 hover:underline">See on ShopperApproved</span>
 				</a>
 			</div>
-			<div class="mt-5">
-				<div class="grid xl:grid-cols-3 grid-cols-1 gap-5">
+			<div class="mt-[72px] reviews-wrapper">
+				<div class="flex flex-wrap gap-5 justify-center">
 				<?php foreach($reviews as $index => $review): ?>
-					<div class="bg-white rounded-xl p-8 flex flex-col justify-between">
+					<div class="bg-white rounded-xl p-8 flex flex-col justify-between max-w-[464px] h-[324px]">
 						<div>
 							<div class="flex items-center">
 								<div class="w-12 h-12 rounded-full flex justify-center items-center" style="background-color:<?= $review['initials-color'] ?>">
@@ -288,8 +289,8 @@ foreach ($random_cities as $city_item) {
 									<span class="mt-2 text-sm"><?= $review['address'] ?></span>
 								</div>
 							</div>
-							<div class="my-8">
-								<?= $review['body'] ?>
+							<div class="mt-8 mb-4">
+								<?= substr($review['body'], 0, 300) ?><?= strlen($review['body']) > 300 ? '...' : '' ?>
 							</div>
 						</div>
 						<div class="flex justify-between items-center">
@@ -300,20 +301,20 @@ foreach ($random_cities as $city_item) {
 				<?php endforeach; ?>
 				</div>
 			</div>
-			<div class="mt-10 text-center">
-				<a href="http://www.shopperapproved.com/reviews/iflyfirstclass.com/" target="_blank" rel="nofollow" class="mx-auto rounded-full py-2 px-2 bg-brown-light-3 w-fit flex items-center show-more-btn">
+			<div class="mt-[48px] text-center">
+				<div class="mx-auto show-more-btn show-more-reviews" id="show-more-reviews" onclick="readMoreReviews()">
 					<i class="icon-download"></i>
 					<p class="font-semibold grow px-5">Show More Reviews</p>
-				</a>
+				</div>
 			</div>
 		</div>
     </div>
-	<div class="container mx-auto xl:px-16 px-4 box-border xl:mt-24 mt-20">
+	<div class="container mx-auto xl:px-16 px-4 box-border xl:mt-[128px] mt-20">
 		<p class="text-center">Top Airlines</p>
 		<h3 class="font-silk-serif-bold text-center mt-5">
 			We work with All major Airlines
 		</h3>
-		<div class="grid xl:grid-cols-9 grid-cols-2 gap-y-12 gap-x-6 mt-8 pb-16 border-b border-gray-light">
+		<div class="grid xl:grid-cols-9 grid-cols-2 gap-y-12 gap-x-6 mt-[86px] pb-[80px] border-b border-gray-light">
 			<img class="block mr-auto my-auto col-span-1" src="/public/img/emirates.svg" alt="emirates-img"  width="106" height="72">
 			<img class="block m-auto xl:col-span-2 col-span-1" src="/public/img/british-airways.svg" alt="british-airways-img"  width="235" height="36">
 			<img class="block m-auto xl:col-span-2 col-span-1" src="/public/img/delta.svg" alt="delta-img"  width="183" height="28">

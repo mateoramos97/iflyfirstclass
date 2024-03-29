@@ -1,0 +1,205 @@
+/* imagemanager-unorderedstyle-component */
+
+.imagemanager-unorderedstyle-component
+{
+    position: relative;
+    min-height: 200px;
+    /*background-color: #f4f4f4;*/
+    /*background-image: url("../design/im/dropzone.png");
+    background-position: center right;
+    background-repeat: no-repeat;*/
+}
+.imagemanager-unorderedstyle-component .config
+{
+    display: none;
+}
+.imagemanager-unorderedstyle-component .dropzone-wrapper
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.imagemanager-unorderedstyle-component .dropzone-wrapper .dropzone,
+.imagemanager-unorderedstyle-component .dropzone-wrapper .dropzone input
+{
+    width: 100%;
+    height: 100%;
+}
+.imagemanager-unorderedstyle-component .dropzone-wrapper .dropzone
+{
+    outline: 0;
+    cursor: pointer;
+}
+.imagemanager-unorderedstyle-component .dropzone-wrapper .qq-upload-button-hover
+{
+    background: none;
+}
+.imagemanager-unorderedstyle-component .sortable
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 8px 0 8px 8px;
+    /*width: 75%;*/
+    width: 100%;
+    overflow: hidden;
+}
+.imagemanager-unorderedstyle-component .sortable li
+{
+    margin: 8px;
+    padding: 1px;
+    width: 500px;
+    height: 90px;
+    clear: both;
+}
+.imagemanager-unorderedstyle-component .file-process-wrapper
+{
+    position: relative;
+    height: 90px;
+    width: 98px;
+    display: table-cell;
+    vertical-align: middle;
+    background-color: #f4f4f4;
+    border: 1px dashed #cbd2d7;
+}
+.imagemanager-unorderedstyle-component .file-process-wrapper.hidden
+{
+    display: none;
+}
+.imagemanager-unorderedstyle-component .file-process-wrapper .icon
+{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("../design/im/loading.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.imagemanager-unorderedstyle-component .file-add-wrapper
+{
+    height: 90px;
+    width: 98px;
+    display: table-cell;
+    vertical-align: middle;
+    background-color: #f4f4f4;
+    border: 1px dashed #cbd2d7;
+}
+.imagemanager-unorderedstyle-component .file-add-wrapper.hidden
+{
+    display: none;
+}
+.imagemanager-unorderedstyle-component .file-add-wrapper a.addfile-link
+{
+    display: block;
+    height: 100%;
+    width: 100%;
+    background-image: url("../design/im/add.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.imagemanager-unorderedstyle-component .file-added-wrapper
+{
+    position: relative;
+    height: 90px;
+    width: 98px;
+    display: table-cell;
+    vertical-align: middle;
+    background-color: #E8F4DE;
+    border: 1px solid #b6cca2;
+    /*cursor: move;*/
+}
+.imagemanager-unorderedstyle-component .file-added-wrapper .gallery-link {
+    display: none;
+}
+.imagemanager-unorderedstyle-component .file-added-wrapper.hidden
+{
+    display: none;
+}
+.imagemanager-unorderedstyle-component .file-added-wrapper img
+{
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
+}
+.imagemanager-unorderedstyle-component .file-added-wrapper .actions
+{
+    display: none;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+.imagemanager-unorderedstyle-component .file-added-wrapper .actions .delete-link,
+.imagemanager-unorderedstyle-component .file-added-wrapper .actions .replace-link,
+.imagemanager-unorderedstyle-component .file-added-wrapper .actions .rotate-link {
+    display: block;
+    height: 20px;
+    width: 20px;
+    float: left;
+    margin-left: 5px;
+    background-image: url("../design/im/delete.png");
+    background-repeat: no-repeat;
+}
+.imagemanager-unorderedstyle-component .file-added-wrapper .actions .rotate-link {
+    /*display: none;*/
+    background-image: url("../design/im/rotate.png");
+}
+body.model-reg-step-3-page .imagemanager-unorderedstyle-component .file-added-wrapper .actions .rotate-link {
+    /*display: none;*/
+}
+.imagemanager-unorderedstyle-component .file-added-wrapper:hover .actions
+{
+    display: block;
+}
+.imagemanager-unorderedstyle-component .components-wrapper,
+.imagemanager-unorderedstyle-component .fineuploader-component
+{
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+.imagemanager-unorderedstyle-component .profile-photo {
+    display: none;
+}
+.imagemanager-unorderedstyle-component .components-wrapper {
+    position: relative;
+    float: left;
+    width: 350px;
+    height: 40px;
+    visibility: visible;
+    margin-left: 20px;
+}
+.imagemanager-unorderedstyle-component .components-wrapper > .file-title {
+    width: 350px;
+    height: 34px;
+}
+
+/* fileuploader-component */
+
+.fileuploader-component .dropzone-wrapper.active {
+    background: url("../design/im/loading.gif") no-repeat;
+    background-position: center;
+}
+.fileuploader-component .dropzone-wrapper .dropzone {
+    outline: 0;
+    cursor: pointer;
+}
+.fileuploader-component .dropzone-wrapper .qq-upload-button-hover {
+    background: none;
+}
+.fileuploader-component .dropzone.hide {
+    visibility: hidden;
+}
+.fileuploader-component .fineuploader-component {
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+.fileuploader-success-message {
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 300;
+    color: #333333;
+    display: none;
+}

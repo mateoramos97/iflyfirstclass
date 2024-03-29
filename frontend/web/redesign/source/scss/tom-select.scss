@@ -3,9 +3,24 @@
 .ts-wrapper {
   width: auto;
   cursor: pointer;
+  padding: 0;
+  z-index: 3;
+
+  &.has-prefix {
+    .ts-control {
+      padding-left: 42px;
+    }
+  }
+
+  &.has-suffix {
+    .ts-control {
+      padding-right: 40px !important;
+    }
+  }
+
   .ts-control {
     border: none;
-    padding: 0;
+    padding: 16px;
 
     input {
       min-width: auto;
@@ -57,7 +72,7 @@
     height: 0;
     transition:opacity 0.3s ease-out;
     border-radius: 16px;
-
+    z-index: 4;
     .ts-dropdown-content {
       padding: 8px 2px;
       box-shadow: 0px 16px 56px rgba(0, 0, 0, 0.16);
@@ -103,13 +118,6 @@
   background: transparent;
 }
 
-//.ts-control, .ts-control input, .ts-dropdown {
-//  font-size: inherit;
-//  font-family: inherit;
-//  color: inherit;
-//  line-height: inherit;
-//}
-
 .has-items .ts-control>input {
   margin: 0 !important;
 }
@@ -117,5 +125,23 @@
 .full {
   .ts-control {
     background-color: transparent;
+  }
+}
+
+.head-menu {
+  .ts-control {
+    padding-top: 13px !important;
+    padding-bottom: 13px !important;
+  }
+}
+
+.form-flight-request-min-wrapper {
+  .ts-control {
+    padding-left: 10px;
+  }
+  .has-suffix {
+    .ts-control {
+      padding-right: 0 !important;
+    }
   }
 }

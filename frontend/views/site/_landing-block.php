@@ -13,7 +13,7 @@ $path_icons =  Url::base().'/design/icons/';
 			</h5>
 			<ul class="mt-8 columns-3">
 				<?php foreach($countries as $item): ?>
-					<li class="mb-6"><a href="<?= Url::to(['country/index', 'alias' => $item->alias]); ?>"><?= Html::encode($item->name) ?></a></li>
+					<li class="mb-6"><a class="link" href="<?= Url::to(['country/index', 'alias' => $item->alias]); ?>"><?= Html::encode($item->name) ?></a></li>
 				<?php endforeach; ?>
 			</ul>
 		</div>
@@ -23,7 +23,7 @@ $path_icons =  Url::base().'/design/icons/';
 			</h5>
 			<ul class="mt-8 columns-3">
 				<?php foreach($cities as $item): ?>
-					<li class="mb-6"><a href="<?= Url::to(['city/index', 'alias' => $item->alias]); ?>"><?= Html::encode($item->name) ?></a></li>
+					<li class="mb-6"><a class="link" href="<?= Url::to(['city/index', 'alias' => $item->alias]); ?>"><?= Html::encode($item->name) ?></a></li>
 				<?php endforeach; ?>
 			</ul>
 		</div>
@@ -33,15 +33,15 @@ $path_icons =  Url::base().'/design/icons/';
 			</h5>
 			<ul class="mt-8 columns-2">
 				<?php foreach($airlines as $item): ?>
-					<li class="mb-6"><a href="<?= Url::to(['airline/index', 'alias' => $item->alias]); ?>"><?= Html::encode($item->name) ?></a></li>
+					<li class="mb-6"><a class="link" href="<?= Url::to(['airline/index', 'alias' => $item->alias]); ?>"><?= Html::encode($item->name) ?></a></li>
 				<?php endforeach; ?>
 			</ul>
 		</div>
 	</div>
 	<div class="landing-more-link w-full">
-		<div class="mt-10 text-center">
-			<a href="javascript:void(0)" class="mx-auto rounded-full py-2 px-2 bg-secondary xl:w-fit w-full flex items-center" onclick="readMoreLanding(this)">
-				<img src="/public/img/download-fill.svg" alt="download-img" width="40" height="40">
+		<div class="mt-16 text-center">
+			<a href="javascript:void(0)" class="mx-auto show-more-btn show-more-destination" onclick="readMoreLanding(this)">
+				<i class="icon-download"></i>
 				<p class="font-semibold grow px-5">Show More Destination</p>
 			</a>
 		</div>

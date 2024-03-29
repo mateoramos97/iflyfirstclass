@@ -30,7 +30,7 @@
 
 @font-face {
     font-family: "GilroySemiBold";
-    src: url('../fonts/Gilroy-SemiBold.ttf') format("truetype");
+    src: url('../fonts/Gilroy-SemiBold.ttf') format('truetype');
 }
 
 @font-face {
@@ -69,7 +69,7 @@
 }
 
 .font-gilroy-semibold{
-    font-family: GilroySemiBold, Gilroy, ProximaNova, sans-serif;
+    font-family: GilroySemiBold, Arial, sans-serif;
 }
 
 .font-gilroy-bold{
@@ -82,8 +82,4 @@
 
 .font-silk-serif-medium{
     font-family: SilkSerifMedium, sans-serif;
-}
-
-.head-shadow {
-    text-shadow: 0 5px 5px #ccc;
 }

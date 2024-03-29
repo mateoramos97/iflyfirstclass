@@ -43,8 +43,11 @@ jQuery(document).ready(function ($) {
         slidesPerView: "auto",
         spaceBetween: 30,
         breakpoints: {
-            1280: {
+            1580: {
                 slidesOffsetBefore: 400,
+            },
+            1280: {
+                slidesOffsetBefore: 300,
             }
         }
     });
@@ -90,25 +93,31 @@ jQuery(document).ready(function ($) {
     //header menu
     $(function () {
         var browser = $(window),
-            headerWrapper = $('#header-wrapper'),
-            mainNav = headerWrapper.find('.main-nav'),
-            menuSubWrapper = headerWrapper.find('.menu-sub-wrapper'),
-            menues = headerWrapper.find('.menu'),
-            menuSub = headerWrapper.find('.menu-sub');
-            menues.each(function () {
-            var self = $(this);
-            self.click(function () {
-                var dataMenu = $(this).data("menu");
-                if ($(this).hasClass('active')) {
-                    menues.removeClass("active");
-                    menuSub.removeClass("active");
-                } else {
-                    menues.removeClass("active");
-                    $(this).addClass("active");
-                    menuSub.removeClass("active");
-                    menuSub.filter("[data-menu='" + dataMenu + "']").addClass("active");
+        headerWrapper = $('#header-wrapper'),
+        mainNav = headerWrapper.find('.main-nav'),
+        menuSubWrapper = headerWrapper.find('.menu-sub-wrapper'),
+        menues = headerWrapper.find('.menu'),
+        menuSub = headerWrapper.find('.menu-sub');
+        menues.each(function () {
+        var self = $(this);
+        self.click(function () {
+            var dataMenu = $(this).data("menu");
+            if ($(this).hasClass('active')) {
+                menues.removeClass("active");
+                menuSub.removeClass("active");
+            } else {
+                menues.removeClass("active");
+                $(this).addClass("active");
+                menuSub.removeClass("active");
+                menuSub.filter("[data-menu='" + dataMenu + "']").addClass("active");
                 }
             });
+        });
+
+        $(document).click(function(event) {
+            if (!$(event.target).closest(".main-nav").length) {
+                menuSub.removeClass("active");
+            }
         });
 
         var ScrollEfectHeader = function () {
@@ -348,6 +357,13 @@ window.readMoreLanding = (elem) => {
         landingMoreLink = document.getElementsByClassName("landing-more-link");
     landingMoreLink[0].classList.add('disable');
     content[0].classList.add("open");
+}
+
+window.readMoreReviews = (elem) => {
+    const content = document.querySelector(".reviews-wrapper");
+    const moreLink = document.querySelector("#show-more-reviews");
+    moreLink.classList.add('disable');
+    content.classList.add("open");
 }
 
 export const initFlightRequestForm = function () {

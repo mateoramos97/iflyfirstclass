@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = Html::encode($airline_model['name']);
 
 <div itemscope="" itemtype="http://schema.org/Product">
 	<div class="welcome-block-wrapper relative z-10">
-		<div class="back-slide" style="background-image: url(<?= $path_img . Html::encode($images[0]['alias']) ?>); background-position: right">
+		<div class="back-slide" style="background-image: linear-gradient(90deg, rgba(33, 33, 33, 0.56) 0%, rgba(33, 33, 33, 0.32) 100%), url(<?= $path_img . Html::encode($images[0]['alias']) ?>); background-position: right">
 			<div class="container mx-auto welcome-block container-wrapper grid grid-cols-11 items-center">
 				<div class="content flex flex-col align-center xl:p-12 p-6 xl:col-span-5 col-span-11 justify-between h-full">
 					<?= $this->render('@app/views/layouts/_breadcrumbs') ?>
@@ -54,63 +54,65 @@ $this->params['breadcrumbs'][] = Html::encode($airline_model['name']);
 			</div>
 		</div>
 	</div>
-	<div class="container mx-auto xl:px-12 px-4 highlight-block-wrapper pt-20 pb-8 bg-secondary -mt-10">
-		<div class="title text-2xl mt-2 font-gilroy-regular">
-			<span>Special offer to</span> <span class="font-semibold"><?= Html::encode($airline_model['name']) ?></span>
-		</div>
-		<div class="container-wrapper grid xl:grid-cols-2 grid-cols-1 gap-6 mt-8">
-			<div class="grid grid-cols-8 items-center bg-white rounded-2xl gap-2">
-				<div class="col-span-3 h-full">
-					<img
-							class="rounded-l-2xl h-full object-cover"
-							itemprop="image"
-							src="<?= $path_img_thumbs. Html::encode($images[1]['alias']) ?>"
-							title="<?= Html::encode($images[1]['title']) ?>"
-							alt="<?= Html::encode($images[1]['title'])." - IFlyFirstClass" ?>"
-							width="253" height="172"
-					>
-				</div>
-				<div class="col-span-5 px-10 py-8">
-					<p class="font-gilroy-bold text-lg">Business Class</p>
-					<p class="text-mute text-xs mt-1">Round Trip</p>
-					<div class="flex justify-between mt-8">
-						<p itemprop="offers" itemscope="" itemtype="http://schema.org/Offer" class="price-new">
-							<meta itemprop="priceCurrency" content="USD">
-							Now
-							<span class="font-gilroy-semibold text-orange text-lg">
-								<span>$</span><span itemprop="price"><?= Html::encode($country_prices['business_class_price']) ?></span>
-							</span>
-						</p>
-						<p class="price-old">
-							Old price <span class="line-through">$<?= Html::encode($country_prices['business_class_old_price']) ?></span>
-						</p>
+	<div class="highlight-block-wrapper pt-20 pb-8 bg-secondary -mt-10">
+		<div class="container mx-auto xl:px-12 px-4">
+			<div class="title text-2xl mt-2 font-gilroy-regular">
+				<span>Special offer to</span> <span class="font-semibold"><?= Html::encode($airline_model['name']) ?></span>
+			</div>
+			<div class="container-wrapper grid xl:grid-cols-2 grid-cols-1 gap-6 mt-8">
+				<div class="grid grid-cols-8 items-center bg-white rounded-2xl gap-2">
+					<div class="col-span-3 h-full">
+						<img
+								class="rounded-l-2xl h-full object-cover"
+								itemprop="image"
+								src="<?= $path_img_thumbs. Html::encode($images[1]['alias']) ?>"
+								title="<?= Html::encode($images[1]['title']) ?>"
+								alt="<?= Html::encode($images[1]['title'])." - IFlyFirstClass" ?>"
+								width="253" height="172"
+						>
+					</div>
+					<div class="col-span-5 px-10 py-8">
+						<p class="font-gilroy-bold text-lg">Business Class</p>
+						<p class="text-mute text-xs mt-1">Round Trip</p>
+						<div class="flex justify-between mt-8">
+							<p itemprop="offers" itemscope="" itemtype="http://schema.org/Offer" class="price-new">
+								<meta itemprop="priceCurrency" content="USD">
+								Now
+								<span class="font-gilroy-semibold text-orange text-lg">
+									<span>$</span><span itemprop="price"><?= Html::encode($country_prices['business_class_price']) ?></span>
+								</span>
+							</p>
+							<p class="price-old">
+								Old price <span class="line-through">$<?= Html::encode($country_prices['business_class_old_price']) ?></span>
+							</p>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="grid grid-cols-8 items-center bg-white rounded-2xl gap-2">
-				<div class="col-span-3 h-full">
-					<img
-							class="rounded-l-2xl h-full object-cover"
-							itemprop="image"
-							src="<?= $path_img_thumbs. Html::encode($images[2]['alias']) ?>"
-							title="<?= Html::encode($images[2]['title']) ?>"
-							width="253" height="172"
-							alt="<?= Html::encode($images[2]['title'])." - IFlyFirstClass" ?>">
-				</div>
-				<div class="col-span-5 px-10 py-8">
-					<p class="font-gilroy-bold text-lg">First Class</p>
-					<p class="text-mute text-xs mt-1">Round Trip</p>
-					<div class="flex justify-between mt-8">
-						<p itemprop="offers" itemscope="" itemtype="http://schema.org/Offer" class="price-new">
-							<meta itemprop="priceCurrency" content="USD">
-							Now:
-							<span class="font-gilroy-semibold text-orange text-lg">
-								<span>$</span><span itemprop="price"><?= Html::encode($country_prices['first_class_price']) ?></span>
-							</span>
-						</p>
-						<p class="price-old">
-							Old price <span class="line-through">$<?= Html::encode($country_prices['first_class_old_price']) ?></span>
-						</p>
+				<div class="grid grid-cols-8 items-center bg-white rounded-2xl gap-2">
+					<div class="col-span-3 h-full">
+						<img
+								class="rounded-l-2xl h-full object-cover"
+								itemprop="image"
+								src="<?= $path_img_thumbs. Html::encode($images[2]['alias']) ?>"
+								title="<?= Html::encode($images[2]['title']) ?>"
+								width="253" height="172"
+								alt="<?= Html::encode($images[2]['title'])." - IFlyFirstClass" ?>">
+					</div>
+					<div class="col-span-5 px-10 py-8">
+						<p class="font-gilroy-bold text-lg">First Class</p>
+						<p class="text-mute text-xs mt-1">Round Trip</p>
+						<div class="flex justify-between mt-8">
+							<p itemprop="offers" itemscope="" itemtype="http://schema.org/Offer" class="price-new">
+								<meta itemprop="priceCurrency" content="USD">
+								Now:
+								<span class="font-gilroy-semibold text-orange text-lg">
+									<span>$</span><span itemprop="price"><?= Html::encode($country_prices['first_class_price']) ?></span>
+								</span>
+							</p>
+							<p class="price-old">
+								Old price <span class="line-through">$<?= Html::encode($country_prices['first_class_old_price']) ?></span>
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>

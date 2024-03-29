@@ -126,7 +126,6 @@ class SiteController extends BaseController
             }
         }
 
-
         return $this->render('index', [
             'head_title' => $static_page->title,
             'random_cities' => $random_cities,
@@ -136,7 +135,7 @@ class SiteController extends BaseController
             'top_articles_in_list' => $articles,
             'travel_tips' => $travel_tips,
             'random_travel_tips' => $random_travel_tips,
-            'reviews' => $testimonialsService->get_testimonials_is_top(3),
+            'reviews' => $testimonialsService->get_testimonials_is_top(15),
         ]);
     }
 

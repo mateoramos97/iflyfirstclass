@@ -14,6 +14,10 @@
 				font-size: 14px;
 				color: #7D6F5F;
 				text-decoration: none;
+				transition: 0.3s;
+				&:hover {
+					color: $orange-color;
+				}
 			}
 
 			&::after {
@@ -50,6 +54,9 @@
 	.breadcrumb li {
 		a, span {
 			color: #697785;
+			&:hover {
+				color: $orange-color;
+			}
 		}
 	}
 }
@@ -59,6 +66,9 @@
 		a, span {
 			color: $primary;
 			font-weight: 600;
+			&:hover {
+				color: $orange-color;
+			}
 		}
 		&.active {
 			a, span {
@@ -84,6 +94,9 @@
 			li {
 				a, span {
 					color: $white;
+					&:hover {
+						color: $orange-color;
+					}
 				}
 
 				a {
@@ -116,6 +129,9 @@
 			li {
 				a, span {
 					color: $white;
+					&:hover {
+						color: $orange-color;
+					}
 				}
 				&.active {
 					a, span {

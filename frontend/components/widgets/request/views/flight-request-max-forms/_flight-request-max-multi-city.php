@@ -18,7 +18,7 @@ use yii\helpers\Html;
 			]) ?>
 			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 			<div class="autocomplete-enter-input-wrapper">
-				<i class="input-prefix icon-airplan-fly text-gray bottom-4"></i>
+				<i class="input-prefix icon-airplan-fly text-orange bottom-4"></i>
 				<input class="has-prefix autocomplete" placeholder="Where from ?">
 			</div>
 		</div>
@@ -32,7 +32,7 @@ use yii\helpers\Html;
 			]) ?>
 			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 			<div class="autocomplete-enter-input-wrapper">
-				<i class="input-prefix icon-airplan-fly text-gray bottom-4"></i>
+				<i class="input-prefix icon-airplan-land text-orange bottom-4"></i>
 				<input class="has-prefix autocomplete" placeholder="Where to ?">
 			</div>
 		</div>

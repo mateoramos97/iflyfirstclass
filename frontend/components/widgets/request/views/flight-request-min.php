@@ -23,7 +23,7 @@ use yii\widgets\ActiveForm;
 	<input type="hidden" name="FlightRequestMax[type_trip]" class="type-trip" :value="activeForm">
 	<h5 class="px-2 xl:text-left text-center xl:text-primary text-white font-gilroy-semibold">Book Flight</h5>
 	<div class="form-nav xl:mt-3 mt-5 text-black">
-		<ul class="head-menu gap-2 flex-wrap xl:flex hidden">
+		<ul class="head-menu gap-1 flex-wrap xl:flex hidden">
 			<li class="form-group head-menu-item flex items-center">
 				<select class="has-suffix border-none tom-select w-auto" @change="changeActiveForm($event)">
 					<?php foreach ($trip_variants as $value => $label): ?>
