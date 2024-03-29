@@ -111,8 +111,8 @@ foreach ($random_cities as $city_item) {
     </div>
     <div class="container mx-auto xl:px-16 px-2 mt-12 dealth-block-wrapper box-border">
         <div class="dealth-block-inner grid xl:grid-cols-2 grid-cols-1 gap-2">
-			<div class="relative video-container rounded-l-3xl rounded-r-3xl xl:rounded-r-lg flex items-center justify-center">
-				<img src="/public/img/play-btn.png" class="play-btn cursor-pointer">
+			<div class="relative video-container rounded-l-3xl rounded-r-3xl xl:rounded-r-lg flex items-center justify-center play-btn cursor-pointer">
+				<img src="/public/img/play-btn.png">
 			</div>
 			<div class="bg-brown-light flex flex-col rounded-r-3xl rounded-l-3xl xl:rounded-l-lg xl:pt-22 xl:py-[105px] py-14 xl:px-16 px-6 shadow-md xl:mt-0 -mt-12">
                 <div class="font-gilroy-semibold text-brown text-center xl:text-left">Top Rated Luxury Travel Agency</div>
@@ -222,12 +222,12 @@ foreach ($random_cities as $city_item) {
 			<img class="block m-auto" src="/public/img/y.svg" alt="y-img" width="141" height="112">
 		</div>
 	</div>
-    <div class="news-block-wrapper bg-secondary xl:mt-22 mt-20">
+    <div class="news-block-wrapper bg-secondary xl:mt-22 mt-20 overflow-hidden">
         <div class="news-inner">
 			<h2 class="font-silk-serif-bold text-center pt-20 xl:pb-20 py-14">
 				Travel <span class="xl:inline-block hidden">& Flight</span> <span class="text-brown">News</span>
 			</h2>
-			<div class="news-block pb-20 px-0">
+			<div class="container news-block mx-auto pb-20 xl:px-16 px-4">
                 <div class="rows swiper">
 					<div class="swiper-wrapper">
 						<?php foreach($top_articles_in_list as $item): ?>

@@ -42,14 +42,7 @@ jQuery(document).ready(function ($) {
         },
         slidesPerView: "auto",
         spaceBetween: 30,
-        breakpoints: {
-            1580: {
-                slidesOffsetBefore: 400,
-            },
-            1280: {
-                slidesOffsetBefore: 300,
-            }
-        }
+        updateOnWindowResize: false,
     });
 
     new Swiper('.blog-list.swiper', {

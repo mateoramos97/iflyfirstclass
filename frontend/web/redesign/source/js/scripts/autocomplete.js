@@ -1,14 +1,23 @@
 export const InitAutocompleteAirport = function () {
 
 	const leftOffset = 4;
+	const minRightOffset = 14;
 	$('.autocomplete-value-input').each(function() {
 		const elAutocompleteInput = $(this).closest('.autocomplete-wrapper').find('.autocomplete-enter-input-wrapper');
 		const elValueInput = $(this).closest('.autocomplete-wrapper').find('.autocomplete-value-input');
+		const form = $(this).closest('.form-flight-request');
 		if(elValueInput.outerWidth() > (elAutocompleteInput.outerWidth() - leftOffset)) {
 			elAutocompleteInput.css('width', elValueInput.outerWidth() + leftOffset);
 		}
+		const windowWidth = $(window).width();
 		const rightOffset = ($(window).width() - (elValueInput.offset().left));
-		if (rightOffset < elAutocompleteInput.outerWidth()) {
+		const formLeftFullOffset = form.offset().left + form.outerWidth();
+		const elAutocompleteInputLeftFullOffset = elAutocompleteInput.offset().left + elAutocompleteInput.outerWidth();
+
+		if (elAutocompleteInputLeftFullOffset > formLeftFullOffset) {
+			const left = (formLeftFullOffset -  elAutocompleteInputLeftFullOffset) - (windowWidth > 1024 ? minRightOffset : 0);
+			elAutocompleteInput.css('left', left+ 'px');
+		} else if (rightOffset < elAutocompleteInput.outerWidth()) {
 			elAutocompleteInput.css('left', (rightOffset - elAutocompleteInput.outerWidth()) + 'px');
 		}
 
