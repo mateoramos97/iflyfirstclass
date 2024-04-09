@@ -37,7 +37,7 @@ use yii\helpers\Html;
 			</div>
         </div>
     </div>
-    <div class="grid xl:grid-cols-2 grid-cols-1 xl:gap-4 gap-5 xl:mt-6 mt-5">
+    <div class="grid xl:grid-cols-2 grid-cols-1 xl:gap-x-4 xl:gap-y-5 mt-5">
         <div class="split-input-group field-row field-data flex grow">
 			<div class="relative w-1/2">
 				<i class="input-prefix icon-calendar text-gray top-[14px] text-lg"></i>
@@ -60,37 +60,30 @@ use yii\helpers\Html;
 				<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 			</div>
         </div>
-		<div class="split-input-group field-row field-data xl:hidden flex grow">
+		<div class="split-input-group field-row field-data xl:hidden flex grow mt-5 mb-5">
 			<div class="form-group w-1/2">
 				<i class="input-prefix icon icon-person top-3 text-lg"></i>
-				<?= $form->field($model, 'people_number')->dropDownList(($number_persones), [
-						'id' => 'flightrequestmax_people_number_round_trip',
-						'class' => 'has-prefix has-suffix border-none tom-select w-auto'
-				]); ?>
+				<select class="has-prefix has-suffix border-none tom-select w-auto"
+						name="FlightRequestMax[people_number]" v-model="peopleNumber">
+					<?php foreach ($number_persones as $value => $label): ?>
+						<option value="<?= $value ?>"><?= $label ?></option>
+					<?php endforeach; ?>
+				</select>
 				<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 			</div>
 			<i class="input-divider"></i>
 			<div class="form-group w-1/2">
 				<i class="input-prefix icon-business text-gray top-3 text-lg"></i>
-				<?= $form->field($model, 'cabin_class_name')->dropDownList(($cabin_class), [
-						'id' => 'flightrequestmax_cabin_class_name_round_trip1',
-						'class' => 'has-prefix has-suffix border-none tom-select w-auto'
-				]); ?>
+				<select class="has-prefix has-suffix border-none tom-select w-auto"
+						name="FlightRequestMax[cabin_class_name]" v-model="cabinClassName">
+					<?php foreach ($cabin_class as $value => $label): ?>
+						<option value="<?= $value ?>"><?= $label ?></option>
+					<?php endforeach; ?>
+				</select>
 				<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 			</div>
 		</div>
-		<div class="field-row email-field grow relative xl:block hidden">
-			<i class="input-prefix icon-mail text-gray top-[17px]"></i>
-			<?= $form->field($model, 'email')->textInput([
-					'placeholder' => 'Email',
-					'id' => 'flightrequestmax_email_round_trip',
-					'class' => 'has-prefix bg-white',
-					'required' => false
-			]) ?>
-		</div>
-    </div>
-    <div class="contact-block-wrapper grid xl:grid-cols-2 lg:grid-cols-1 xl:gap-4 xl:mt-6 mt-5">
-		<div class="field-row email-field grow relative xl:hidden block">
+		<div class="field-row email-field grow relative">
 			<i class="input-prefix icon-mail text-gray top-[17px]"></i>
 			<?= $form->field($model, 'email')->textInput([
 					'placeholder' => 'Email',

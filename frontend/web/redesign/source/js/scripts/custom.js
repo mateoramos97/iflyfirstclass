@@ -18,7 +18,6 @@ jQuery(document).ready(function ($) {
     if ($(document.body).hasClass("front-page"))
         isFront = true;
 
-    const close = $("#close-video-popup");
     const videoPopup = $("#video-popup");
 
     $(document).on('click', '#video-popup', function(event){
@@ -26,7 +25,6 @@ jQuery(document).ready(function ($) {
             videoPopup.find('video').trigger('pause');
             videoPopup.hide();
         }
-        console.log(event.target.tagName);
     });
 
     $('.play-btn').click(function () {

@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
 		<ul class="head-menu gap-3 flex-wrap xl:flex hidden">
 			<li class="form-group head-menu-item flex items-center">
 				<i class="input-prefix icon icon-arrows"></i>
-				<select class=" has-prefix has-suffix border-none tom-select w-auto" @change="changeActiveForm($event)">
+				<select class="has-prefix has-suffix border-none tom-select w-auto" @change="changeActiveForm($event)">
 					<?php foreach ($trip_variants as $value => $label): ?>
 						<option value="<?= $value ?>"><?= $label ?></option>
 					<?php endforeach; ?>
@@ -37,18 +37,22 @@ use yii\widgets\ActiveForm;
 			</li>
 			<li class="form-group head-menu-item flex items-center">
 				<i class="input-prefix icon icon-person"></i>
-				<?= $form->field($model, 'people_number')->dropDownList(($number_persones), [
-					'id' => 'flightrequestmax_people_number_round_trip1',
-					'class' => 'has-prefix has-suffix border-none tom-select w-auto'
-				]); ?>
+				<select class="has-prefix has-suffix border-none tom-select w-auto"
+						name="FlightRequestMax[people_number]" v-model="peopleNumber">
+					<?php foreach ($number_persones as $value => $label): ?>
+						<option value="<?= $value ?>"><?= $label ?></option>
+					<?php endforeach; ?>
+				</select>
 				<i class="input-suffix icon-chevron text-ns"></i>
 			</li>
 			<li class="form-group head-menu-item flex items-center">
 				<i class="input-prefix icon icon-business"></i>
-				<?= $form->field($model, 'cabin_class_name')->dropDownList(($cabin_class), [
-						'id' => 'flightrequestmax_cabin_class_name_round_trip1',
-						'class' => 'has-prefix has-suffix border-none tom-select w-auto'
-				]); ?>
+				<select class="has-prefix has-suffix border-none tom-select w-auto"
+						name="FlightRequestMax[cabin_class_name]" v-model="cabinClassName">
+					<?php foreach ($cabin_class as $value => $label): ?>
+						<option value="<?= $value ?>"><?= $label ?></option>
+					<?php endforeach; ?>
+				</select>
 				<i class="input-suffix icon-chevron text-ns"></i>
 			</li>
 		</ul>

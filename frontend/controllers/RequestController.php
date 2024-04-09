@@ -157,8 +157,9 @@ class RequestController extends BaseController
                     ->select(['request_number'])
                     ->where(['id' => $lastInsertID])
                     ->one();
-                $this->redirect(['flight-request/' . $request_number->request_number]);
+                return $this->redirect(['flight-request/' . $request_number->request_number]);
             }
+            var_dump($flight_request_max_model->getErrors());
         }
     }
 

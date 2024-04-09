@@ -126,7 +126,7 @@ foreach ($random_cities as $cityGroup) {
 				</div>
 				<div id="video-popup" class="popup">
 					<div class="popup-content">
-						<video controls autoplay
+						<video controls
 						>
 							<source src="/design/video/movie.mp4" type="video/mp4">
 						</video>

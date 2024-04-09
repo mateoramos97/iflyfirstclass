@@ -7,6 +7,8 @@ import MultiFlights from "../MultiFlights.vue";
 const form = createApp({
 	setup() {
 		const activeForm = ref(1);
+		const peopleNumber = ref(1);
+		const cabinClassName = ref(1);
 		const showHiddenFields = ref(false);
 		function changeActiveForm(event) {
 			setActiveForm(event.target.value);
@@ -24,6 +26,8 @@ const form = createApp({
 			showHiddenFields,
 			changeActiveForm,
 			setActiveForm,
+			peopleNumber,
+			cabinClassName,
 		}
 	},
 
