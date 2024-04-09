@@ -23,8 +23,8 @@ use yii\widgets\ActiveForm;
 	<input type="hidden" name="check_subscription" class="check-subscription" value="">
 	<input type="hidden" name="FlightRequestMax[type_trip]" class="type-trip" :value="activeForm">
     <h4 class="xl:inline-block hidden font-gilroy-semibold pl-2">Book Flight</h4>
-    <h4 class="xl:hidden block text-white text-center font-silk-serif-bold"><?= $shortHead ?? 'A Philosophy of Travel' ?></h4>
-    <div class="form-nav xl:mt-5 mt-5">
+    <h4 class="xl:hidden block text-white text-center font-silk-serif-medium text-3.2xl font-normal pt-4"><?= $shortHead ?? 'A Philosophy of Travel' ?></h4>
+    <div class="form-nav xl:mt-5 mt-8">
 		<ul class="head-menu gap-3 flex-wrap xl:flex hidden">
 			<li class="form-group head-menu-item flex items-center">
 				<i class="input-prefix icon icon-arrows"></i>
@@ -52,8 +52,8 @@ use yii\widgets\ActiveForm;
 				<i class="input-suffix icon-chevron text-ns"></i>
 			</li>
 		</ul>
-		<div class="tab-menu xl:hidden block">
-			<ul class="flex gap-5 flex-wrap justify-center">
+		<div class="tab-menu xl:hidden flex justify-center">
+			<ul class="flex justify-center">
 				<li class="flex items-center ">
 					<a href="javascript:void(0)" :class="{active: activeForm == <?= AppConfig::Type_Trip_Round_Trip ?>}"
 					   @click="setActiveForm(<?= AppConfig::Type_Trip_Round_Trip ?>)">Round trip</a>

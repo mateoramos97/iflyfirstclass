@@ -16,32 +16,34 @@ export const tomSelectInit = function () {
 				this.dropdown.style.display = 'block';
 				this.focus();
 				this.trigger('dropdown_open', this.dropdown);
-			},
+			}
 
-				this.close = () => {
-					var trigger = this.isOpen;
+			this.close = () => {
+				var trigger = this.isOpen;
 
-					this.setTextboxValue();
+				this.setTextboxValue();
 
-					if (this.settings.mode === 'single' && this.items.length) {
-						this.inputState();
-					}
-
-
-					this.isOpen = false;
-					this.focus_node.setAttribute('aria-expanded',  'false');
-					this.dropdown.style.visibility = 'hidden';
-					if( this.settings.hideSelected ){
-						this.clearActiveOption();
-					}
-					this.refreshState();
-
-					if (trigger) this.trigger('dropdown_close', this.dropdown);
+				if (this.settings.mode === 'single' && this.items.length) {
+					this.inputState();
 				}
+
+
+				this.isOpen = false;
+				this.focus_node.setAttribute('aria-expanded',  'false');
+				this.dropdown.style.visibility = 'hidden';
+				if( this.settings.hideSelected ){
+					this.clearActiveOption();
+				}
+				this.refreshState();
+
+				if (trigger) this.trigger('dropdown_close', this.dropdown);
+			}
 		});
 		let settings = {
 			plugins:['dropdown'],
 		};
-		new TomSelect(el,settings);
+		try {
+			new TomSelect(el,settings);
+		} catch {}
 	});
 }

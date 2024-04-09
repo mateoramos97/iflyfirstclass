@@ -29,11 +29,11 @@
           </div>
         </div>
         <div class="form-group field-row field-data flex grow flex-col col-span-3">
-          <i class="input-prefix icon-calendar text-gray top-3 text-lg"></i>
+          <i class="input-prefix icon-calendar text-gray top-[14px] text-lg"></i>
           <datepicker
               name="FlightRequestMax[dep_date][]"
               placeholder="Departure"
-              id="dep-date-multi-city-1"
+              :id="'dep-date-multi-city-' + number"
               class-name="has-prefix has-suffix required-field w-full bg-white"
           ></datepicker>
           <i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
@@ -68,7 +68,7 @@ function removeFlight(index) {
 }
 
 onMounted(() => {
-  InitAutocompleteAirport();
+  setTimeout(InitAutocompleteAirport, 100);
 });
 
 </script>

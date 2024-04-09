@@ -47,6 +47,7 @@ $path_img_thumbs = Url::base() . '/public/images/thumbs/';
 				<?= FlightRequestMax::widget(['shortHead' => 'First class flights']) ?>
 			</div>
 		</div>
+		<?= $this->render('@app/views/layouts/_support-chat') ?>
     </div>
 </div>
 <div class="page-content mt-16">

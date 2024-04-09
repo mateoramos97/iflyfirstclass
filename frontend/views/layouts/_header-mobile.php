@@ -2,14 +2,16 @@
 use \yii\helpers\Url;
 ?>
 
-<header class="header-mobile-wrapper xl:hidden flex justify-between items-center box-border pl-4 py-3 pr-2 shadow">
-    <div class="open-menu"></div>
-    <div class="logo">
-        <a href="<?= Url::home(true); ?>">
-            <img class="scale-85" src="/public/img/logo.svg" alt="">
-        </a>
-    </div>
-    <div class="tel bg-secondary rounded-xl p-3"><a href="tel:+18883477817"></a><i class="icon-phone text-lg text-brown"></i></div>
+<header class="header-mobile-wrapper xl:hidden  box-border">
+    <div class="header-head relative pl-5 py-2 pr-2 flex justify-center w-full">
+		<div class="open-menu"></div>
+		<div class="logo">
+			<a href="<?= Url::home(true); ?>">
+				<img src="/public/img/mobile-logo.png" alt="mobile-logo" width="215" height="52">
+			</a>
+		</div>
+		<a class="icon-phone-link" href="tel:+18883477817"><i class="icon-phone text-lg text-brown"></i></a>
+	</div>
     <div class="left-menu">
         <div class="left-menu-inner border-box">
             <div class="close-menu"></div>

@@ -52,6 +52,7 @@ $this->params['breadcrumbs'][] = Html::encode($airline_model['name']);
 					<?= FlightRequestMax::widget() ?>
 				</div>
 			</div>
+			<?= $this->render('@app/views/layouts/_support-chat') ?>
 		</div>
 	</div>
 	<div class="highlight-block-wrapper pt-20 pb-8 bg-secondary -mt-10">

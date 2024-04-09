@@ -1,5 +1,6 @@
 import { createApp, ref } from "vue";
 import {initFlightRequestForm} from "../../scripts/custom";
+import {tomSelectInit} from "../../scripts/tom-select";
 import Datepicker from "../Datepicker.vue";
 import MultiFlights from "../MultiFlights.vue";
 
@@ -14,6 +15,8 @@ const form = createApp({
 		function setActiveForm(value) {
 			activeForm.value = value;
 			initFlightRequestForm();
+			setTimeout(tomSelectInit, 100)
+
 		}
 
 		return {

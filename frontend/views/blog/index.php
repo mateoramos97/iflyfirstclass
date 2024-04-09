@@ -56,6 +56,7 @@ $this->params['breadcrumbs'][] = Html::encode($blog_article_model['title']);
 						<?= FlightRequestMin::widget() ?>
 					</div>
 				</div>
+				<?= $this->render('@app/views/layouts/_support-chat') ?>
 			</div>
 		</div>
 	</div>

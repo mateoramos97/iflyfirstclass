@@ -6,8 +6,8 @@ use app\components\widgets\custom\LandingHeaderMenu;
 $path_logo =  Url::base().'/design/iffc-logo.svg';
 $path_icons =  Url::base().'/design/icons/';
 ?>
-<header id="header-wrapper" class="header-wrapper px-8 mx-auto">
-	<div class="m-auto xl:flex hidden justify-between items-end pt-2">
+<header id="header-wrapper" class="header-wrapper px-8 mx-auto xl:block hidden">
+	<div class="m-auto flex justify-between items-end pt-2">
 		<div class="contact-btn flex items-center h-12 bg-secondary rounded-2xl px-4 relative cursor-pointer hover:bg-hover-2 transition duration-300">
 			<img src="/public/img/phone.svg" width="20" height="20" alt="phone-icon">
 			<div class="h-8 w-px bg-black bg-opacity-10 mx-4"></div>
@@ -55,15 +55,15 @@ $path_icons =  Url::base().'/design/icons/';
 			</div>
 		</div>
 		<div itemscope="" itemtype="http://schema.org/Organization" id="logo" class="logo">
-			<a itemprop="url" href="<?= Url::home(true); ?>" >
-				<img src="/public/img/logo.svg" itemprop="logo" alt="logo" width="237" height="57">
+			<a itemprop="url" href="<?= Url::home(true); ?>">
+				<img src="/public/img/logo.png" itemprop="logo" alt="logo" width="237" height="56" class="h-[56px]">
 			</a>
 		</div>
 		<div class="flex gap-2 items-center">
 			<img src="/public/img/based-company.svg" width="104" height="29" alt="based-company">
 		</div>
 	</div>
-	<div class="main-nav xl:block hidden pt-7 pb-[18px] bg-white top-0 left-0 w-full items-center justify-center">
+	<div class="main-nav block pt-7 pb-[18px] bg-white top-0 left-0 w-full items-center justify-center">
 		<div class="flex items-center justify-center justify-items-center">
 			<div class="main-nav-logo flex justify-center">
 				<a href="<?= Url::home(true); ?>">

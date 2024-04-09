@@ -8,36 +8,28 @@
       width: 100%;
       height: 100%;
 
-      .tickets-holder-inner,
-      .tickets-holder-inner-mobile {
-        width: 1000px;
-        min-height: 430px;
-        border-radius: 16px;
-        background-color: #ffffff;
-        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.32);
+      .tickets-holder-inner {
+        min-height: 435px;
+        border-radius: 32px;
+        filter: drop-shadow(0px 8px 56px rgba(0, 0, 0, 0.25));
 
         .ticket-grid {
           display: grid;
-          grid-template-columns: 799px 200px;
+          grid-template-columns: 783px 232px;
         }
 
         .ticket-separator-line {
-          border-left: 1px dashed #cfd8dc;
+          border-left: 1px dashed rgba(49, 48, 47, 0.5);
         }
 
         .header {
           width: 100%;
-          height: 83px;
-          border-radius: 16px 16px 0 0;
-          background-color: #1565c0;
+          height: 80px;
+          border-radius: 32px 32px 0 0;
+          background-color: #31302F;
 
-          .site {
-            font-size: 15px;
-            font-family: GilroySemiBold, serif;
-            color: #ffffff;
-            padding-left: 40px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
+          .ticket-separator-line {
+            border-left: 1px dashed rgba(244, 241, 237, 0.25);
           }
 
           .ticket-number {
@@ -56,175 +48,122 @@
 
         .content {
           width: 100%;
+          background-color: $white;
 
-          .column-1 {
-            padding: 40px;
+          &.person-info {
+            background-color: #F4F1ED;
+            .column-1 {
+              padding: 32px 40px;
+            }
+            .column-2 {
+              padding: 32px 40px 24px 40px;
+            }
           }
 
-          .column-2 {
-            padding: 40px 0 0 30px;
-          }
-
-          .phone-wrapper {
-            padding-top: 10px;
+          &.flight-info {
+            border-radius: 0 0 32px 32px;
+            .column-1 {
+              .airport-info {
+                padding: 32px 48px 20px;
+                .dotted-separator {
+                  overflow: visible;
+                  &:after {
+                    bottom: 25px;
+                  }
+                }
+              }
+              .ticket-info {
+                padding: 20px 32px 32px;
+              }
+            }
+            .column-2 {
+              padding: 36px 40px 24px 40px;
+            }
           }
 
           .phone {
-            color: #757575;
             font-family: GilroySemiBold, serif;
-            padding-right: 15px;
-            padding-left: 32px;
-      
-            .icon-phone {
-              position: relative;
-              display: block;
-              margin: 0;
-              margin-right: 10px;
-              width: 30px;
-              height: 30px;
-              font-size: 25vmin;
-              background-color: #ff5722;
-              border-radius: 0.5em;
-              transform: translate3d(0, 0, 0) scale(1);
-      
-              &::before,
-              &::after {
-                position: absolute;
-                content: "";
-              }
-      
+            .icon-phone-fill {
+              background: #EC7F00;
+              border-radius: 12px;
+              width: 40px;
+              height: 40px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: $white;
+              font-size: 16px;
               &::before {
-                top: 0;
-                left: 0;
-                width: 30px;
-                height: 30px;
-                background-color: rgba(255, 255, 255, 0.2);
-                border-radius: 100%;
-                opacity: 1;
-                transform: translate3d(0, 0, 0) scale(0);
-                animation: phone-inner 3000ms infinite;
-              }
-      
-              &::after {
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
                 margin: auto;
-                width: 17px;
-                height: 17px;
-                background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTYuNiAxMC44YzEuNCAyLjggMy44IDUuMSA2LjYgNi42bDIuMi0yLjJjLjMtLjMuNy0uNCAxLS4yIDEuMS40IDIuMy42IDMuNi42LjUgMCAxIC40IDEgMVYyMGMwIC41LS41IDEtMSAxLTkuNCAwLTE3LTcuNi0xNy0xNyAwLS42LjQtMSAxLTFoMy41Yy41IDAgMSAuNCAxIDEgMCAxLjIuMiAyLjUuNiAzLjYuMS40IDAgLjctLjIgMWwtMi4zIDIuMnoiIGZpbGw9IiNmZmZmZmYiLz48L3N2Zz4=);
-                background-position: 50% 50%;
-                background-repeat: no-repeat;
-                background-size: cover;
-                transform: translate3d(0, 0, 0);
                 animation: phone-icon 3000ms infinite;
+                transform: translate3d(0, 0, 0);
               }
-      
-              @keyframes phone-icon {
-                0% { transform: translate3d(0em, 0, 0); }
-                2% { transform: translate3d(0.01em, 0, 0); }
-                4% { transform: translate3d(-0.01em, 0, 0); }
-                6% { transform: translate3d(0.01em, 0, 0); }
-                8% { transform: translate3d(-0.01em, 0, 0); }
-                10% { transform: translate3d(0.01em, 0, 0); }
-                12% { transform: translate3d(-0.01em, 0, 0); }
-                14% { transform: translate3d(0.01em, 0, 0); }
-                16% { transform: translate3d(-0.01em, 0, 0); }
-                18% { transform: translate3d(0.01em, 0, 0); }
-                20% { transform: translate3d(-0.01em, 0, 0); }
-                22% { transform: translate3d(0.01em, 0, 0); }
-                24% { transform: translate3d(-0.01em, 0, 0); }
-                26% { transform: translate3d(0.01em, 0, 0); }
-                28% { transform: translate3d(-0.01em, 0, 0); }
-                30% { transform: translate3d(0.01em, 0, 0); }
-                32% { transform: translate3d(-0.01em, 0, 0); }
-                34% { transform: translate3d(0.01em, 0, 0); }
-                36% { transform: translate3d(-0.01em, 0, 0); }
-                38% { transform: translate3d(0.01em, 0, 0); }
-                40% { transform: translate3d(-0.01em, 0, 0); }
-                42% { transform: translate3d(0.01em, 0, 0); }
-                44% { transform: translate3d(-0.01em, 0, 0); }
-                46% { transform: translate3d(0em, 0, 0); }
-              }
-            }
-      
-            img {
-              margin-right: 12px;
             }
       
             .title {
               color: #ff5722;
             }
-      
-            span {
-              font-size: 17px;
-              color: #212121;
-            }
           }
 
           .name-passenger {
-            font-size: 28px;
+            font-size: 24px;
             font-family: GilroySemiBold, serif;
-            color: #424242;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
           }
 
           .people-number {
-            font-size: 16px;
-            color: #424242;
-            font-family: GilroySemiBold, serif;
+            font-size: 13px;
           }
 
           .from-to {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #cfd8dc;
-
-            .from, .to {
-              width: 320px;
+            .from {
+              padding-right: 16px;
+            }
+            .to {
+              padding-left: 16px;
+              text-align: right;
             }
 
-            .icon {
-              width: 29px;
-              height: 31px;
-              background-image: url("/design/icons/spraite-iffc.png");
-              background-repeat: no-repeat;
-              background-position: -80px 0;
+            .icon-airplane {
+              transform: rotate(90deg);
+              font-size: 30px;
+              color: #31302F;
+              position: relative;
+              z-index: 1;
+              padding-bottom: 16px;
+              padding-top: 16px;
+              background-color: $white;
             }
 
+            .airport-code {
+              color:#31302F;
+              font-size: 56px;
+              transform: translateY(5px);
+              font-family: SilkSerifMedium, serif;
+            }
             .detail {
-              font-size: 18px;
-              color: #424242;
-              font-family: GilroySemiBold, serif;
+              max-width: 300px;
+              display: block;
+              font-weight: 500;
             }
           }
 
           .ticket-info {
-            font-size: 16px;
-            color: #424242;
-            margin-top: 40px;
-
-            span {
-              font-size: 18px;
-              font-family: GilroySemiBold, serif;
-              color: #1565c0;
+            p {
+              color: $black;
+              background-color: #EEEAE8;
+              border-radius: 16px;
+              padding: 13px 22px;
             }
           }
 
           .cabin-holder {
-            margin-bottom: 32px;
-
             .ttl {
-              font-size: 16px;
-              color: #424242;
               margin-bottom: 10px;
             }
 
             .cabin {
-              font-size: 20px;
-              color: #1565c0;
-              font-family: GilroySemiBold, serif;
+              font-size: 18px;
             }
           }
 
@@ -232,16 +171,14 @@
             margin-bottom: 30px;
 
             .ttl {
-              font-size: 16px;
-              color: #424242;
+              font-family: ProximaNovaMedium, sans-serif;
               margin-bottom: 10px;
             }
 
             .date {
               position: relative;
-              font-size: 20px;
-              color: #424242;
-              padding-left: 20px;
+              font-size: 22px;
+              padding-left: 26px;
               box-sizing: border-box;
               font-family: GilroySemiBold, serif;
 
@@ -250,56 +187,19 @@
                 position: absolute;
                 width: 15px;
                 height: 16px;
-                top: 5px;
+                top: 2px;
                 left: 0;
-                background-image: url("/design/icons/spraite-iffc.png");
+
                 background-repeat: no-repeat;
-                background-position: -61px 0;
+              }
+              &.from:before {
+                background-image: url("/public/img/calendar-from-date.svg");
+              }
+              &.to:before {
+                background-image: url("/public/img/calendar-to-date.svg");
               }
             }
           }
-        }
-      }
-
-      .tickets-holder-inner-mobile {
-        display: none;
-        width: 100%;
-
-        .content {
-          .from-to {
-            .from, .to {
-              width: 100%;
-            }
-
-            .from {
-              margin-bottom: 5px;
-            }
-
-            .to {
-              margin-top: 5px;
-            }
-
-            .icon {
-              margin: 0 auto;
-            }
-          }
-
-          .ticket-number {
-            width: 100%;
-            background-color: #1565c0;
-            padding: 20px 40px;
-            font-size: 16px;
-            color: #ffffff;
-
-            .num {
-              font-size: 20px;
-              font-family: GilroySemiBold, serif;
-            }
-          }
-        }
-
-        .site {
-          padding-left: 0 !important;
         }
       }
 
@@ -307,206 +207,63 @@
         padding: 0 20px;
         box-sizing: border-box;
 
-        .tickets-holder-inner {
-          display: none;
+        .ticket-grid {
+          display: grid;
+          grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
         }
 
-        .tickets-holder-inner-mobile {
+        .tickets-holder-inner {
           display: block;
         }
-      }
-    }
-  }
 
-  .recently-flights-wrapper {
-    .head-block {
-      width: 100%;
-      height: 90px;
-
-      h3 {
-        font-size: 24px;
-        font-weight: normal;
-        color: #212121;
-        font-family: GilroySemiBold, serif;
-      }
-
-      .shopper-approved {
-        margin-right: 30px;
-
-        span {
-          font-size: 18px;
-          color: #002639;
-          margin-left: 10px;
-          font-family: GilroySemiBold, serif;
+        .header {
+          height: auto !important;
+          padding: 20px !important;
         }
 
-        .star {
-          margin-left: 10px;
+        .ticket-separator-line {
+          border: none !important;
         }
-      }
 
-      .separate-line {
-        position: relative;
-        margin-right: 30px;
-
-        &:before {
-          content: '';
-          position: absolute;
-          width: 1px;
-          height: 40px;
-          background-color: #e0e0e0;
-        }
-      }
-
-      @media screen and (max-width: $xl-screen) {
-        height: auto;
-        flex-direction: column;
-        padding: 20px 0;
-
-        > .flex {
-          flex-direction: column;
-          align-items: center;
-
-          div {
-            margin-bottom: 10px;
+        .person-info {
+          .column-1 {
+            padding: 20px 20px 10px !important;
+          }
+          .column-2 {
+            padding: 10px 20px 20px !important;
           }
         }
 
-        .separate-line  {
-          display: none;
-        }
-      }
-    }
-
-    .cities-block {
-      display: grid;
-      grid-gap: 24px;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      padding-bottom: 55px;
-
-      .item {
-        a {
-          text-decoration: none;
-        }
-
-        .city-item {
-          position: relative;
-          overflow: hidden;
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
-          border-radius: 8px;
-          background-color: #ffffff;
-
-          &:hover {
-            box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.16);
+        .flight-info {
+          border-radius: 0 0 32px 32px;
+          .column-1 {
+            .airport-info {
+              padding: 20px !important;
+              .dotted-separator {
+                &:after {
+                  content: '' !important;
+                }
+              }
+            }
+            .ticket-info {
+              padding: 20px !important;
+            }
+          }
+          .column-2 {
+            padding: 20px !important;
+          }
+          .from-to {
+            .from.airport-code {
+              padding-right: 0 !important;
+              padding-bottom: 16px;
+            }
+            .to.airport-code  {
+              padding-top: 16px;
+              padding-left: 0 !important;
+              padding-bottom: 16px;
+            }
           }
         }
-
-        .photo-img {
-          width: 100%;
-          height: 302px;
-          overflow: hidden;
-
-          @media screen and (max-width: $xl-screen) {
-            width: 100%;
-            height: auto;
-          }
-        }
-
-        .photo {
-          position: relative;
-          width: 100%;
-          height: 300px;
-          overflow: hidden;
-
-          .back-slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            left: 0;
-            top: 0;
-          }
-
-          .back-slide-inner {
-            float: left;
-            position: relative;
-            left: 50%;
-          }
-
-          img {
-            display: block;
-            position: relative;
-            left: -50%;
-            height: 100%;
-          }
-        }
-
-        .body {
-          padding: 24px;
-        }
-
-        .title {
-          font-size: 20px;
-          color: #071c26;
-          font-family: GilroySemiBold, serif;
-        }
-
-        .rating {
-          span {
-            font-size: 15px;
-            color: #ff5722;
-            margin-left: 5px;
-            font-family: GilroyBold, serif;
-          }
-        }
-
-        .cabin-class {
-          font-size: 14px;
-          color: #616161;
-          margin: 7px 0;
-        }
-
-        .price-block {
-
-          .new-price {
-            font-size: 18px;
-            color: #ff5722;
-            font-family: GilroySemiBold, serif;
-          }
-
-          .old-price {
-            font-size: 15px;
-            color: #071c26;
-            text-decoration: line-through;
-          }
-        }
-      }
-    }
-  }
-
-  .contact-info-wrapper {
-    font-size: 15px;
-    color: #212121;
-    margin-bottom: 85px;
-
-    .column {
-      width: 600px;
-    }
-
-    p {
-      margin-bottom: 20px;
-
-      span {
-        color: #ff5722;
-      }
-    }
-
-    @media screen and (max-width: $xl-screen) {
-      flex-direction: column;
-      box-sizing: border-box;
-
-      .column {
-        width: 100%;
       }
     }
   }

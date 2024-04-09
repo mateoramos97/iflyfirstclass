@@ -43,6 +43,7 @@ $this->params['breadcrumbs'][] = 'Last minute deals';
 				<?= FlightRequestMax::widget() ?>
 			</div>
 		</div>
+		<?= $this->render('@app/views/layouts/_support-chat') ?>
     </div>
 </div>
 <div class="page-content my-16">

@@ -1,24 +1,24 @@
 .support-chat-button {
-	position: fixed;
-	top: 170px;
-	right: 0;
-	z-index: 99;
+	position: absolute;
+	right: 8px;
+	top: calc(50% - 64px);
+	width: 38px;
+	height: 128px;
+	background: linear-gradient(180deg, #3F3D3B 0%, #2D2C2A 100%);
+	box-shadow: 0 2px 32px rgba(0, 0, 0, 0.2);
+	border-radius: 8px;
+	padding-top: 8px;
+	padding-bottom: 15px;
+	@apply xl:flex hidden;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-between;
 
 	.chat-now {
-		display: block;
-    	width: 28px;
-		height: 120px;
-		text-indent: -9999px;
-		background-image: url("/design/icons/chat-now-button.svg");
-	  	background-repeat: no-repeat;
 		cursor: pointer;
-		box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.24);
-	}
-}
-
-.front-page, .landing-page {
-	.support-chat-button {
-		top: 175px;
+		writing-mode: vertical-lr;
+		transform: rotate(180deg);
+		color: $white;
 	}
 }
 

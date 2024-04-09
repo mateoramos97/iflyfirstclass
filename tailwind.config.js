@@ -10,7 +10,9 @@ module.exports = {
       // => @media (min-width: 1024px) { ... }
       'xl': '1280px',
       '2xl': '1496px',
+      '3xl': '1600px',
       // => @media (min-width: 1280px) { ... }
+      'max-2xl': {'max': '1496px'},
       'max-xl': {'max': '1279px'},
       // => @media (max-width: 1279px) { ... }
 
@@ -34,10 +36,13 @@ module.exports = {
       primary: '#3D4043',
       secondary: '#F7F5F2',
       orange: '#DD7700',
+      'orange-2': '#FCB35F',
       danger: 'red',
       'orange-light': '#E7C38E',
+      'orange-light-2': '#D2B087',
       brown: '#827360',
       'brown-2': '#7D6F5F',
+      'brown-3': '#C5B9A2',
       green: '#4F724A',
       blue: '#475871',
       'blue-2': '#697785',
@@ -64,9 +69,11 @@ module.exports = {
       '3xl': ['30px', '40px'],
       '3.2xl': ['32px', '42px'],
       '4xl': ['40px', '50px'],
+      '4.5xl': ['45px', '52px'],
       '4.8xl': ['48px', '58px'],
       '5xl': ['52px', '68px'],
-      '6xl': ['60px', '70px'],
+      '5.6xl': ['56px', '76px'],
+      '6xl': ['60px', '80px'],
       '7xl': ['88px', '95px'],
       '8xl': ['96px', '110px'],
       '9xl': ['128px', '130px'],

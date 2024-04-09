@@ -67,6 +67,9 @@ header {
   .current-page {
     @apply text-gray-2;
   }
+  .main-nav-list {
+    @apply text-base-2;
+  }
 }
 
 .header-mobile-wrapper {
@@ -74,9 +77,14 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #ffffff;
-  z-index: 101;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
+  z-index: 4;
+  height: 80px;
+
+  .header-head {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(16px);
+  }
 
   .open-menu {
     width: 18px;
@@ -85,6 +93,24 @@ header {
     background-repeat: no-repeat;
     background-position: 0 -216px;
     cursor: pointer;
+    position: absolute;
+    top: calc(50% - 6px);
+    left: 20px;
+  }
+
+  .icon-phone-link {
+    position: absolute;
+    top: calc(50% - 24px);
+    right: 8px;
+    .icon-phone {
+      width: 48px;
+      height: 48px;
+      background: #EEEAE8;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   .left-menu {

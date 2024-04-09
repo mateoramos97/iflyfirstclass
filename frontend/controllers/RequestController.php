@@ -2,6 +2,8 @@
 
 namespace frontend\controllers;
 
+use common\sys\core\landing\AirlineInfoService;
+use common\sys\core\landing\CountryInfoService;
 use common\sys\core\request\FlightRequestEditService;
 use common\sys\core\request\FlightRequestInfoService;
 use common\sys\core\subscribers\SubscribersArticleEditService;
@@ -88,11 +90,22 @@ class RequestController extends BaseController
         $request_form_user_info = $flight_request_info_service
             ->get_request_form_user_info_by_request_form_id($request_form_users['id']);
 
+        $country_info_service = new CountryInfoService();
+        $city_info_service = new CityInfoService();
+        $airline_info_service = new AirlineInfoService();
+
+        $countries = $country_info_service->get_countries_list();
+        $cities = $city_info_service->get_cities_list();
+        $airlines = $airline_info_service->get_airlines_list();
+
         return $this->render('flight_request_accepted', [
             'static_page' => $static_page,
             'request_form_users' => $request_form_users,
             'request_form_user_info' => $request_form_user_info,
             'random_cities' => $random_cities,
+            'countries' => $countries,
+            'cities' => $cities,
+            'airlines' => $airlines,
         ]);
     }
 

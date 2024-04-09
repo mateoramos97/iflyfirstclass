@@ -12,40 +12,49 @@ use app\components\widgets\request\FlightRequestMax;
 $this->title = $head_title;
 
 
-$this->registerLinkTag(['rel' => 'preload', 'href' => '/public/img/home-banner.webp']);
+$this->registerLinkTag(['rel' => 'preload', 'href' => '/public/img/2k-hd-home-banner.webp', 'as' => 'image']);
+$this->registerLinkTag(['rel' => 'preload', 'href' => '/public/img/full-hd-home-banner.webp', 'as' => 'image']);
+$this->registerLinkTag(['rel' => 'preload', 'href' => '/public/img/mobile-home-banner.webp', 'as' => 'image']);
+$this->registerLinkTag(['rel' => 'preload', 'href' => '/design/video/movie.mp4', 'as' => 'fetch']);
 $path_icons =  Url::base().'/design/icons/';
 $path_img =  Url::base().'/public/images/';
 $path_img_thumbs =  Url::base().'/public/images/thumbs/';
-foreach ($random_cities as $city_item) {
-	$this->registerLinkTag(['rel' => 'preload', 'href' => $path_img. Html::encode($city_item['image_alias'])]);
+foreach ($random_cities as $cityGroup) {
+	foreach ($cityGroup as $city_item) {
+		$this->registerLinkTag(['rel' => 'preload', 'href' => $path_img . Html::encode($city_item['image_alias']), 'as' => 'image']);
+	}
 }
 ?>
 
 <div class="welcome-block-wrapper home xl:mt-0 mt-20">
-    <div class="back-slide">
-		<div class="container mx-auto welcome-block container-wrapper grid grid-cols-11">
-			<div class="content xl:flex hidden align-center pt-28 px-12 col-span-5">
-				<div>
-					<div class="title-form font-gilroy-semibold text-white 2xl:text-4.8xl xl:text-4xl md:text-xl">
-						The lowest prices on <br> Business & First class <br> <span class="text-orange">Guaranteed</span>
-					</div>
-					<p class="font-gilroy-semibold text-lg text-hover">First and Business class flights</p>
-					<div class="mt-10 pt-6 pl-4 pr-6 pb-4 bg-black-light w-fit rounded-tl-lg rounded-bl-3xl rounded-r-3xl border border-slate-500">
-						<span class="text-white">Call US Now to Book Your Flight 🌴️</span>
-						<div class="flex items-center mt-4">
-							<img class="mr-3" src="/public/img/phone-with-bg.png" alt="phone" width="40" height="40">
-							<a href="tel:+18883477817">
-								<span class="text-orange text-lg mr-2 font-semibold">+1</span> <span class="text-white text-lg font-semibold">888 347 7817</span>
-							</a>
+	<div class="back-slide">
+		<div class="back-slide-wrapper">
+			<div class="container mx-auto welcome-block container-wrapper grid grid-cols-11 relative items-center">
+				<div class="content xl:flex hidden align-center pt-[152px] px-12 col-span-5 pb-[48px]">
+					<div>
+						<p class="font-proxima-nova-medium text-white font-xl">The Philosophy of Travel</p>
+						<div class="title-form font-gilroy-semibold text-white 2xl:text-5xl xl:text-4xl md:text-xl !leading-[120%] mt-5">
+							The Lowest Prices on <br> Business & First class <br>
+							<span class="text-orange-2 border-b border-orange-2 hover:border-none cursor-pointer" onclick="openTermsConditions(this)">Guaranteed</span>
+						</div>
+						<div class="welcome-block-call-widget mt-14 pt-6 pr-8 pb-4 bg-black-light w-fit rounded-[20px] border border-slate-500">
+							<span class="text-orange-2 pl-7 font-proxima-nova-medium">Call US Now</span> <span class="text-white font-proxima-nova-medium">to Book Your Flight</span>
+							<div class="flex items-center mt-4 pl-4">
+								<i class="icon-phone-fill"></i>
+								<a href="tel:+18883477817" class="ml-5 text-[26px]">
+									<span class="text-orange-2 mr-2 font-gilroy-regular">+1</span> <span class="text-white font-gilroy-semibold">888 347 7817</span>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
+				<div class="form-block-wrapper xl:p-12 p-4 xl:col-span-6 col-span-11">
+					<?= FlightRequestMax::widget() ?>
+				</div>
 			</div>
-			<div class="form-block-wrapper xl:p-12 p-6 xl:col-span-6 col-span-11">
-				<?= FlightRequestMax::widget() ?>
-			</div>
+			<?= $this->render('@app/views/layouts/_support-chat') ?>
 		</div>
-    </div>
+	</div>
 </div>
 <div class="page-content mt-16">
     <div class="container mx-auto xl:px-16 px-4 recently-flights-wrapper">
@@ -66,63 +75,99 @@ foreach ($random_cities as $city_item) {
 				</div>
             </div>
         </div>
-        <div class="cities-block mt-4 grid lg:grid-cols-4 grid-cols-2 gap-6">
-            <!-- Images Start -->
-            <?php foreach($random_cities as $city_item): ?>
-                <div class="item">
-                    <a href="<?= Url::to(['city/index', 'alias' => $city_item['alias']]); ?>">
-                        <div class="city-item mt-4">
-							<div class="rounded-lg w-full pt-[100%] transition-all duration-1000 bg-100 hover:bg-110 bg-center "
-								 style="background-image: url(<?= $path_img. Html::encode($city_item['image_alias']) ?>)">
+		<?php foreach($random_cities as $index => $cityGroup): ?>
+			<div class="cities-block mt-4 grid lg:grid-cols-4 grid-cols-2 gap-6 <?= $index > 0 ? 'more-deals-wrapper' : ''?>">
+            	<?php foreach($cityGroup as $city_item): ?>
+					<div class="item">
+						<a href="<?= Url::to(['city/index', 'alias' => $city_item['alias']]); ?>">
+							<div class="city-item mt-4">
+								<div class="rounded-lg w-full pt-[100%] transition-all duration-1000 bg-100 hover:bg-110 bg-center "
+									 style="background-image: url(<?= $path_img. Html::encode($city_item['image_alias']) ?>)">
+								</div>
+								<div class="body box-border mt-5">
+									<div class="flex justify-between item-center">
+										<h5 class="title text-xl">
+											<?= Html::encode($city_item['name']) ?>
+										</h5>
+										<div class="rating flex">
+											<img src="/public/img/stars.svg" class="star" alt="star-icon" width="44" height="19">
+										</div>
+									</div>
+									<div class="cabin-class text-sm mt-2">
+										Round trip / Business class
+									</div>
+									<div class="price-block flex items-center mt-3">
+										<h5 class="text-black new-price text-xl">
+											$<?= Html::encode($city_item['business_class_price']) ?>
+										</h5>
+										<div class="ml-3 text-sm line-through old-price">
+											$<?= Html::encode($city_item['business_class_old_price']) ?>
+										</div>
+									</div>
+								</div>
 							</div>
-                            <div class="body box-border mt-5">
-                                <div class="flex justify-between item-center">
-                                    <h5 class="title text-xl">
-                                        <?= Html::encode($city_item['name']) ?>
-                                    </h5>
-                                    <div class="rating flex">
-                                        <img src="/public/img/stars.svg" class="star" alt="star-icon" width="44" height="19">
-                                    </div>
-                                </div>
-                                <div class="cabin-class text-sm mt-2">
-                                    Round trip / Business class
-                                </div>
-                                <div class="price-block flex items-center mt-3">
-                                    <h5 class="text-black new-price text-xl">
-                                        $<?= Html::encode($city_item['business_class_price']) ?>
-                                    </h5>
-                                    <div class="ml-3 text-sm line-through old-price">
-                                        $<?= Html::encode($city_item['business_class_old_price']) ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            <?php endforeach; ?>
-            <!-- Images End -->
-        </div>
+						</a>
+					</div>
+            	<?php endforeach; ?>
+			</div>
+		<?php endforeach; ?>
 		<div class="mt-10 text-center">
-			<a href="/" class="mx-auto show-more-btn show-more-deals">
+			<div class="mx-auto show-more-btn show-more-deals" onclick="readMoreDeals()">
 				<i class="icon-download"></i>
 				<p class="font-semibold grow px-5">Show More Deals</p>
-			</a>
+			</div>
 		</div>
     </div>
-    <div class="container mx-auto xl:px-16 px-2 mt-12 dealth-block-wrapper box-border">
-        <div class="dealth-block-inner grid xl:grid-cols-2 grid-cols-1 gap-2">
-			<div class="relative video-container rounded-l-3xl rounded-r-3xl xl:rounded-r-lg flex items-center justify-center play-btn cursor-pointer">
-				<img src="/public/img/play-btn.png">
+    <div class="px-2 mt-12 dealth-block-wrapper box-border">
+        <div class="dealth-block-inner grid xl:grid-cols-2 grid-cols-1 3xl:h-[680px] xl:h-[648px]">
+			<div class="relative video-container xl:rounded-l-2xl xl:rounded-tr-none rounded-t-2xl flex items-center xl:justify-end justify-center play-btn cursor-pointer xl:bg-right bg-center">
+				<div class="3xl:w-[580px] w-full flex justify-center xl:h-auto h-[416px] items-center">
+					<i class="play-btn"></i>
+				</div>
+				<div id="video-popup" class="popup">
+					<div class="popup-content">
+						<video controls autoplay
+						>
+							<source src="/design/video/movie.mp4" type="video/mp4">
+						</video>
+					</div>
+				</div>
 			</div>
-			<div class="bg-brown-light flex flex-col rounded-r-3xl rounded-l-3xl xl:rounded-l-lg xl:pt-22 xl:py-[105px] py-14 xl:px-16 px-6 shadow-md xl:mt-0 -mt-12">
-                <div class="font-gilroy-semibold text-brown text-center xl:text-left">Top Rated Luxury Travel Agency</div>
-                <h3 class="xl:mt-4 mt-3 text-center xl:text-left">
-                    Enjoy our Great Deals <br> on First & Business class
-                </h3>
-                <div class="description grid xl:grid-cols-2 grid-cols-1 gap-10 xl:mt-10 mt-6">
-					<p>I Fly First Class is your personal travel concierge. We're at your service 24/7 to meet all your travel needs. Our professional staff is dedicated to saving you time and money. </p>
-					<p class="xl:block hidden">We'll sort out even the most complex travel itineraries in minutes, getting you the best but least costly business class airfares. Our business flight booking division is always at your service! </p>
-                </div>
+			<div class="bg-black-light-2 flex flex-col justify-between xl:rounded-r-2xl xl:rounded-bl-none rounded-b-2xl xl:pt-22 xl:pt-[88px] xl:pb-[72px] 3xl:pt-[96px] 3xl:pb-[80px] py-14 xl:px-14 xl:mt-0 -mt-[1px]">
+				<div class="max-w-[580px] 3xl:px-16 xl:px-10 px-6 box-content">
+					<p class="font-gilroy-semibold text-orange-light-2 text-base">Enjoy our Great Deals</p>
+					<p class="xl:mt-4 mt-3 font-silk-serif-regular text-white xl:text-5.6xl text-4.5xl font-medium">
+						Top Rated Luxury  <br> Travel Agency
+					</p>
+					<div class="description xl:mt-6 mt-6">
+						<p class="text-white description-1">I Fly First Class is your personal travel concierge. We're at your service 24/7 to meet all your travel needs. Our professional staff is dedicated to saving you time and money.</p>
+						<p class="text-brown-3 description-2 mt-4">We'll sort out even the most complex travel itineraries in minutes, getting you the best but least costly business class airfares. Our business flight booking division is always at your service! </p>
+					</div>
+				</div>
+				<div class="swiper">
+					<div class="left-shadow"></div>
+					<div class="right-shadow"></div>
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="/public/img/cnn-gold.svg" alt="cnn-gold" width="168" height="112">
+						</div>
+						<div class="swiper-slide">
+							<img src="/public/img/cbs-news-gold.svg" alt="cbs-news-gold" width="152" height="120">
+						</div>
+						<div class="swiper-slide">
+							<img src="/public/img/fox-gold.svg" alt="fox-gold" width="168" height="106">
+						</div>
+						<div class="swiper-slide">
+							<img src="/public/img/nbc-gold.svg" alt="nbc-gold" width="119" height="120">
+						</div>
+						<div class="swiper-slide">
+							<img src="/public/img/sun-francisco-chronicle-gold.svg" alt="sun-francisco-chronicle-gold" width="214" height="120">
+						</div>
+						<div class="swiper-slide">
+							<img src="/public/img/y-gold.svg" alt="y-gold" width="141" height="112">
+						</div>
+					</div>
+				</div>
             </div>
         </div>
     </div>
@@ -209,20 +254,7 @@ foreach ($random_cities as $city_item) {
 			</div>
         </div>
     </div>
-	<div class="container mx-auto xl:px-16 px-4 book-with-confidence box-border xl:mt-24 mt-20">
-		<h3 class="font-silk-serif-bold text-center mt-5">
-			As seen on
-		</h3>
-		<div class="grid xl:grid-cols-6 grid-cols-2 gap-6 mt-8">
-			<img class="block m-auto" src="/public/img/cnn.svg" alt="cnn-img" width="169" height="112">
-			<img class="block m-auto" src="/public/img/cbsnews.svg" alt="cbsnews-img" width="151" height="120">
-			<img class="block m-auto" src="/public/img/fox.svg" alt="fox-img" width="168" height="106">
-			<img class="block m-auto" src="/public/img/nbc.svg" alt="nbc-img" width="120" height="120">
-			<img class="block m-auto" src="/public/img/san-francisco-cr.svg" alt="san-francisco-cr-img" width="208" height="117">
-			<img class="block m-auto" src="/public/img/y.svg" alt="y-img" width="141" height="112">
-		</div>
-	</div>
-    <div class="news-block-wrapper bg-secondary xl:mt-22 mt-20 overflow-hidden">
+    <div class="news-block-wrapper bg-secondary xl:mt-24 mt-20 overflow-hidden">
         <div class="news-inner">
 			<h2 class="font-silk-serif-bold text-center pt-20 xl:pb-20 py-14">
 				Travel <span class="xl:inline-block hidden">& Flight</span> <span class="text-brown">News</span>

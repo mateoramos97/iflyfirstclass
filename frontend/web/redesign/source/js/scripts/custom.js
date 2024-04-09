@@ -1,5 +1,5 @@
 import Swiper from 'swiper';
-import { Navigation, Scrollbar } from 'swiper/modules';
+import { Navigation, Scrollbar, Autoplay } from 'swiper/modules';
 import {tomSelectInit} from "./tom-select";
 import {InitAutocompleteAirport} from "./autocomplete";
 
@@ -18,15 +18,21 @@ jQuery(document).ready(function ($) {
     if ($(document.body).hasClass("front-page"))
         isFront = true;
 
-    $('.play-btn').click(function () {
-        popupwindow("/design/video/movie.mp4", 'I Fly First Class', 640, 480);
+    const close = $("#close-video-popup");
+    const videoPopup = $("#video-popup");
+
+    $(document).on('click', '#video-popup', function(event){
+        if (event.target.tagName !== 'VIDEO') {
+            videoPopup.find('video').trigger('pause');
+            videoPopup.hide();
+        }
+        console.log(event.target.tagName);
     });
 
-    function popupwindow(url, title, w, h) {
-        var left = (screen.width/2)-(w/2);
-        var top = (screen.height/2)-(h/2);
-        return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-    }
+    $('.play-btn').click(function () {
+        videoPopup.show();
+        videoPopup.find('video').trigger('play');
+    });
 
     $('.main-nav .dropdown').each(function(){
        $(this).click(function(){
@@ -43,6 +49,26 @@ jQuery(document).ready(function ($) {
         slidesPerView: "auto",
         spaceBetween: 30,
         updateOnWindowResize: false,
+    });
+
+    new Swiper('.dealth-block-wrapper .swiper', {
+        modules: [Autoplay],
+
+        slidesPerView: "auto",
+        speed: 5000,
+        autoplay: {
+            delay: 0,
+            disableOnInteraction: false,
+        },
+        loop: true,
+        breakpoints:{
+            1024: {
+                spaceBetween: 0,
+            },
+            1200: {
+                spaceBetween: 30,
+            }
+        }
     });
 
     new Swiper('.blog-list.swiper', {
@@ -352,6 +378,16 @@ window.readMoreLanding = (elem) => {
     content[0].classList.add("open");
 }
 
+window.popupBackdropShow = () => {
+    const el = document.querySelector(".backdrop");
+    el.classList.add("showed");
+}
+
+window.popupBackdropHide = () => {
+    const el = document.querySelector(".backdrop");
+    el.classList.remove("showed");
+}
+
 window.readMoreReviews = (elem) => {
     const content = document.querySelector(".reviews-wrapper");
     const moreLink = document.querySelector("#show-more-reviews");
@@ -359,6 +395,17 @@ window.readMoreReviews = (elem) => {
     content.classList.add("open");
 }
 
+window.readMoreDeals = (elem) => {
+    const content = document.querySelector(".more-deals-wrapper");
+    const moreLink = document.querySelector(".show-more-deals");
+    moreLink.classList.add('disable');
+    content.classList.add("open");
+}
+
+export const isMobileDisplay = () => {
+    return $(window).width() < 600;
+}
+
 export const initFlightRequestForm = function () {
-    setTimeout(InitAutocompleteAirport);
+    setTimeout(InitAutocompleteAirport, 100);
 };

@@ -76,6 +76,7 @@ select {
 }
 
 .form-flight-request-max-wrapper {
+  @apply font-proxima-nova-medium;
   .form-nav {
     .head-menu {
       @apply text-gray;
@@ -93,16 +94,31 @@ select {
       .ts-wrapper {
         border: none;
       }
+      .ts-control{
+        @apply text-base;
+      }
     }
     .tab-menu {
+      margin-bottom: 1.5rem;
+      ul {
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 100px;
+        width: fit-content;
+      }
       a {
-        @apply border border-white rounded-full text-white text-base px-4 py-2;
+        @apply border rounded-full text-white text-base px-5 py-2;
+        transition: 0.3s;
+        border-color: transparent;
         &.active, &:active, &.active, &:hover {
-          @apply border-black bg-black
+          @apply border border-black bg-black
         }
       }
 
     }
+  }
+
+  .form-flight-request-max-inner {
+    @apply text-base-2;
   }
 
   .tools-ringme-ringmeLink {
@@ -255,6 +271,10 @@ select {
     border: none;
   }
 
+  .form-flight-request-min-inner {
+    @apply text-base-2;
+  }
+
   input,select, .split-input-group, .ts-wrapper {
     border: 1px solid transparent;
   }
@@ -293,5 +313,11 @@ select {
 
   .btn {
     @apply py-4 text-lg;
+  }
+}
+
+.form-request-tab {
+  .ts-control {
+    @apply text-base-2 text-primary;
   }
 }

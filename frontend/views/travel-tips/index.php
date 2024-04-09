@@ -53,6 +53,7 @@ $this->params['breadcrumbs'][] = Html::encode($travel_tips_model['title']);
 						<?= FlightRequestMin::widget() ?>
 					</div>
 				</div>
+				<?= $this->render('@app/views/layouts/_support-chat') ?>
 			</div>
 		</div>
 	</div>

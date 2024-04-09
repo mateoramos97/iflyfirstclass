@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = 'About Us';
 				</h1>
 			</div>
 		</div>
+		<?= $this->render('@app/views/layouts/_support-chat') ?>
     </div>
 </div>
 <div class="container mx-auto mt-20 mb-10 xl:px-12 p-4">

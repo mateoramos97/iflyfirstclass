@@ -90,7 +90,7 @@ class SiteController extends BaseController
         $testimonialsService = new TestimonialsInfoService();
 
         $static_page = $static_page_info_service->get_static_page_by_id(AppConfig::Home_Page);
-        $random_cities = $city_info_service->get_random_cities(8);
+        $random_cities = $city_info_service->get_random_cities(16);
         $countries = $country_info_service->get_countries_list();
         $cities = $city_info_service->get_cities_list();
         $airlines = $airline_info_service->get_airlines_list();
@@ -128,7 +128,7 @@ class SiteController extends BaseController
 
         return $this->render('index', [
             'head_title' => $static_page->title,
-            'random_cities' => $random_cities,
+            'random_cities' => array_chunk($random_cities, 8),
             'countries' => $countries,
             'cities' => $cities,
             'airlines' => $airlines,

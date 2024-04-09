@@ -30,10 +30,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</div>
 	</div>
 	<?= $this->render('@app/views/layouts/footer') ?>
-	<?= $this->render('@app/views/layouts/_support-chat') ?>
 </div>
 <?= $this->render('@app/views/layouts/_scripts') ?>
 <?php $this->endBody() ?>
+<div class="backdrop popup-backdrop"></div>
 </body>
 </html>
 <?php $this->endPage() ?>

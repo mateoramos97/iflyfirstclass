@@ -4,12 +4,14 @@
                readonly
                @click="handleClick"
         >
-        <div class="calendar shadow-lg" :class="{opened: showCalendar}" :style="{left:leftPositionCalendar}">
-          <div class="px-[26px] pt-[26px] pb-[14px]">
+        <div class="calendar shadow-lg" :class="{opened: showCalendar}" :style="{width:calendarWidth, left: calendarLeft}">
+          <div class="pl-[24px] pr-[16px] py-[16px] flex justify-between items-center">
             <span class="text-xl font-gilroy-semibold">{{ placeholder }}</span>
+            <i class="icon-x" @click="resetCalendarView"></i>
           </div>
+          <hr>
           <div class="dates-wrapper" v-show="!showMonths">
-            <div class="flex justify-between items-center pl-[12px] pr-[14px]">
+            <div class="flex justify-between items-center pl-[12px] pr-[14px] h-[56px]">
               <div class="calendar-month-year" @click="showMonths = true">
                 <span class="text-sm">{{ nameSelectedMonth }} {{ selectedDate.format('YYYY') }}</span><i class="icon-chevron text-ns ml-3"></i>
               </div>
@@ -18,7 +20,7 @@
                 <i class="month-arrow icon-arrow-right text-xs ml-2 cursor-pointer" @click="nextMonth()"></i>
               </div>
             </div>
-            <div class="calendar-days p-[12px]">
+            <div class="calendar-days pb-[12px] pt-[6px] px-[12px]">
               <div class="days weekdays">
                 <span v-for="(day,index) in weekdays" :key="index" class="day">{{ day }}</span>
               </div>
@@ -34,7 +36,7 @@
             </div>
           </div>
           <div class="months-years-wrapper" v-show="showMonths">
-            <div class="months-years-header flex justify-between items-center">
+            <div class="months-years-header flex justify-between items-center h-[56px]">
               <div class="cursor-pointer flex items-center tab" :class="{active: activeTab === 'months'}" @click="activeTab = 'months'">
                 <span class="text-sm">{{ shortNameSelectedMonth }}</span><i class="icon-chevron text-ns ml-3"></i>
               </div>
@@ -61,11 +63,13 @@
             </div>
           </div>
         </div>
+      <div class="popup-backdrop" :class="{showed: isMobileView() && showCalendar}"></div>
     </fieldset>
 </template>
 
 <script setup>
 import { ref, computed, reactive, defineProps, onMounted, getCurrentInstance } from 'vue';
+import {isMobileDisplay} from "../scripts/custom";
 import dayjs from "dayjs";
 
 const props = defineProps({
@@ -95,6 +99,7 @@ const props = defineProps({
   }
 });
 
+const defaultWidth = 360;
 const weekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 const dates = reactive([]);
 
@@ -104,7 +109,8 @@ const $el = ref();
 const now = ref(dayjs());
 let selectedDate = ref(dayjs());
 let result = ref();
-let leftPositionCalendar = ref('-2px');
+let calendarWidth = ref('0');
+let calendarLeft = ref('-2px');
 
 const showMonths = ref(false);
 const showCalendar = ref(false);
@@ -203,6 +209,16 @@ function handleClick() {
   showCalendar.value = !showCalendar.value;
   const event = new CustomEvent('open-calendar', {detail: {uid: uid.value}});
   window.dispatchEvent(event);
+
+  if (!isMobileView()) {
+    return;
+  }
+  const el = document.querySelector('#' + props.id);
+  window.scrollTo({top: $(el).offset().top - 100, behavior: "smooth"});
+}
+
+function isMobileView() {
+  return isMobileDisplay();
 }
 
 function resetCalendarView() {
@@ -214,11 +230,18 @@ function resetCalendarView() {
 onMounted(() => {
   init();
   setTimeout(() => {
-    const el = $('#' + props.id);
-    const rightOffset = ($(window).width() - (el.offset().left));
-    if (rightOffset < 360) {
-      leftPositionCalendar.value = (rightOffset - 360) + 'px';
+    if (!isMobileView()) {
+      calendarWidth.value = defaultWidth + 'px';
+      return;
     }
+    const windowWidth = $(window).width();
+    const el = $('#' + props.id);
+    const rightOffset = (windowWidth - (el.offset().left));
+    const newWidth = windowWidth - 48;
+    if (rightOffset < newWidth) {
+      calendarLeft.value = (rightOffset - newWidth - 24) + 'px';
+    }
+    calendarWidth.value = newWidth + 'px';
   })
 
   window.addEventListener('open-calendar', e => {
@@ -233,7 +256,6 @@ onMounted(() => {
 <style scoped lang="scss">
   .calendar {
     position: absolute;
-    width: 360px;
     background-color: #ffffff;
     z-index: 9999;
     top: -10px;
@@ -278,6 +300,27 @@ onMounted(() => {
     }
   }
 
+  .icon-x {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    border: 1px solid #DBDCE0;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+    &:hover {
+      background-color: #F5D6B2;
+      border: 1px solid #DD7700;
+    }
+    &:active {
+      background-color: #F5D6B2;
+      border: 1px solid #DD7700;
+    }
+  }
+
   .month-arrow {
     width: 40px;
     height: 40px;
@@ -297,7 +340,7 @@ onMounted(() => {
   }
 
   .months-years-header {
-    padding: 0 50px 10px;
+    padding: 10px 50px 10px;
     font-size: 14px;
     span {
       color: #cccccc;

@@ -44,5 +44,6 @@ $this->params['breadcrumbs'][] = 'Hotels';
 				<?= RequestHotel::widget() ?>
 			</div>
 		</div>
+		<?= $this->render('@app/views/layouts/_support-chat') ?>
     </div>
 </div>

@@ -1,7 +1,10 @@
+import {isMobileDisplay} from "./custom";
+
 export const InitAutocompleteAirport = function () {
 
 	const leftOffset = 4;
 	const minRightOffset = 14;
+	const defaultWidth = 408;
 	$('.autocomplete-value-input').each(function() {
 		const elAutocompleteInput = $(this).closest('.autocomplete-wrapper').find('.autocomplete-enter-input-wrapper');
 		const elValueInput = $(this).closest('.autocomplete-wrapper').find('.autocomplete-value-input');
@@ -9,16 +12,27 @@ export const InitAutocompleteAirport = function () {
 		if(elValueInput.outerWidth() > (elAutocompleteInput.outerWidth() - leftOffset)) {
 			elAutocompleteInput.css('width', elValueInput.outerWidth() + leftOffset);
 		}
-		const windowWidth = $(window).width();
-		const rightOffset = ($(window).width() - (elValueInput.offset().left));
-		const formLeftFullOffset = form.offset().left + form.outerWidth();
-		const elAutocompleteInputLeftFullOffset = elAutocompleteInput.offset().left + elAutocompleteInput.outerWidth();
 
-		if (elAutocompleteInputLeftFullOffset > formLeftFullOffset) {
-			const left = (formLeftFullOffset -  elAutocompleteInputLeftFullOffset) - (windowWidth > 1024 ? minRightOffset : 0);
-			elAutocompleteInput.css('left', left+ 'px');
-		} else if (rightOffset < elAutocompleteInput.outerWidth()) {
-			elAutocompleteInput.css('left', (rightOffset - elAutocompleteInput.outerWidth()) + 'px');
+		const windowWidth = $(window).width();
+		if (isMobileDisplay()) {
+			const newWidth = windowWidth - 42;
+			elAutocompleteInput.css('width', newWidth);
+			const rightOffset = (windowWidth - (elValueInput.offset().left));
+			if (rightOffset < newWidth) {
+				elAutocompleteInput.css('left', (rightOffset - newWidth - 20) + 'px');
+			}
+		} else {
+			elAutocompleteInput.css('width', defaultWidth);
+			const rightOffset = ($(window).width() - (elValueInput.offset().left));
+			const formLeftFullOffset = form.offset().left + form.outerWidth();
+			const elAutocompleteInputLeftFullOffset = elAutocompleteInput.offset().left + elAutocompleteInput.outerWidth();
+
+			if (elAutocompleteInputLeftFullOffset > formLeftFullOffset) {
+				const left = (formLeftFullOffset -  elAutocompleteInputLeftFullOffset) - (windowWidth > 1024 ? minRightOffset : 0);
+				elAutocompleteInput.css('left', left+ 'px');
+			} else if (rightOffset < elAutocompleteInput.outerWidth()) {
+				elAutocompleteInput.css('left', (rightOffset - elAutocompleteInput.outerWidth()) + 'px');
+			}
 		}
 
 		$(this).click(function() {
@@ -27,8 +41,14 @@ export const InitAutocompleteAirport = function () {
 			});
 
 			const el = $(this).closest('.autocomplete-wrapper').find('.autocomplete-enter-input-wrapper');
+			if (isMobileDisplay()) {
+				popupBackdropShow();
+				window.scrollTo({top: $(el).offset().top - 100, behavior: "smooth"});
+			}
 			showElement(el);
-			setTimeout(() => el.find('.ui-autocomplete-input').focus(), 100);
+			setTimeout(() => {
+				el.find('.ui-autocomplete-input').focus();
+			}, 100);
 		});
 	});
 
@@ -37,6 +57,7 @@ export const InitAutocompleteAirport = function () {
 		if(!el.hasClass('autocomplete-value-input') && !el.parent('.autocomplete-value-input').length) {
 			const el = $('.autocomplete-enter-input-wrapper');
 			hideElement(el);
+			popupBackdropHide();
 		}
 	});
 

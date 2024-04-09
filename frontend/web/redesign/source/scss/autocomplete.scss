@@ -85,7 +85,7 @@
 }
 
 .autocomplete-enter-input-wrapper {
-  z-index: 3;
+  z-index: 6;
   position: absolute;
   left: -4px;
   background-color: $white;
@@ -103,7 +103,7 @@
     border-bottom-right-radius: 0;
   }
   input{
-    width: 408px;
+    //width: 408px;
     border: 1px solid $white;
     &:hover, &:focus, &:active{
       border: 1px solid $white;

@@ -37,9 +37,9 @@ use yii\helpers\Html;
 			</div>
 		</div>
 	</div>
-	<div class="grid xl:grid-cols-2 grid-cols-1 xl:gap-4 gap-5 mt-6">
+	<div class="grid xl:grid-cols-2 grid-cols-1 xl:gap-4 gap-5 xl:mt-6 mt-5">
 		<div class="form-group field-row field-data flex grow flex-col">
-			<i class="input-prefix icon-calendar text-gray top-3 text-lg"></i>
+			<i class="input-prefix icon-calendar text-gray top-[14px] text-lg"></i>
 			<datepicker
 				name="FlightRequestMax[dep_date][]"
 				placeholder="Departure"
@@ -67,8 +67,8 @@ use yii\helpers\Html;
 				<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 			</div>
 		</div>
-		<div class="field-row email-field grow relative">
-			<i class="input-prefix icon-mail text-gray top-4"></i>
+		<div class="field-row email-field grow relative xl:block hidden">
+			<i class="input-prefix icon-mail text-gray top-[17px]"></i>
 			<?= $form->field($model, 'email')->textInput([
 					'placeholder' => 'Email',
 					'id' => 'flightrequestmax_email_one_way',
@@ -76,27 +76,36 @@ use yii\helpers\Html;
 			]) ?>
 		</div>
 	</div>
-	<div class="contact-block-wrapper grid xl:grid-cols-2 lg:grid-cols-1 xl:gap-4 gap-5 mt-6">
+	<div class="contact-block-wrapper grid xl:grid-cols-2 lg:grid-cols-1 xl:gap-4 xl:mt-6 mt-5">
+		<div class="field-row email-field grow relative xl:hidden block">
+			<i class="input-prefix icon-mail text-gray top-[17px]"></i>
+			<?= $form->field($model, 'email')->textInput([
+					'placeholder' => 'Email',
+					'id' => 'flightrequestmax_email_round_trip',
+					'class' => 'has-prefix bg-white xl:rounded-b-xl rounded-b-none',
+					'required' => false
+			]) ?>
+		</div>
 		<div class="field-row name-field relative">
-			<i class="input-prefix icon-person-card text-gray bottom-3 text-lg"></i>
+			<i class="input-prefix icon-person-card text-gray bottom-4 text-lg"></i>
 			<?= $form->field($model, 'name')->textInput([
 					'placeholder' => 'Name',
 					'id' => 'flightrequestmax_name_one_way',
-					'class' => 'has-prefix bg-white required-field'
+					'class' => 'has-prefix bg-white xl:rounded-xl rounded-none'
 			]) ?>
 		</div>
 		<div class="field-row phone-field relative">
-			<i class="input-prefix icon-phone text-gray bottom-3 text-lg"></i>
+			<i class="input-prefix icon-phone text-gray bottom-4 text-lg"></i>
 			<?= $form->field($model, 'phone')->textInput([
 					'type' => 'number',
 					'placeholder' => 'Phone',
 					'id' => 'flightrequestmax_phone_one_way',
-					'class' => 'has-prefix bg-white required-field'
+					'class' => 'has-prefix bg-white xl:rounded-t-xl rounded-t-none'
 			]) ?>
 		</div>
 	</div>
 	<div class="form-group form-action grid xl:grid-cols-2 lg:grid-cols-1 gap-5 mt-9">
-		<?= Html::submitButton('Request a Quote', ['class' => 'xl:block hidden btn btn-primary submit form-action-button search-flights', 'name' => 'flyght-button']) ?>
+		<?= Html::submitButton('Search Flight Now', ['class' => 'xl:block hidden btn btn-primary submit form-action-button search-flights text-[17px]', 'name' => 'flyght-button']) ?>
 		<?= Html::submitButton('Search Flight Now', ['class' => 'xl:hidden block btn btn-warning submit form-action-button search-flights', 'name' => 'flyght-button']) ?>
 		<button
 				class="btn btn-secondary tools-ringme-ringmeLink form-action-button xl:flex hidden justify-center items-center"
