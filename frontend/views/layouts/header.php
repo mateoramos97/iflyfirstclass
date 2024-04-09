@@ -75,7 +75,7 @@ $path_icons =  Url::base().'/design/icons/';
 					<span id="menu-service" data-menu="menu-service"
 						  class="link <?php echo in_array($this->context->route, [
 								  'service/first-class', 'service/business-class', 'service/hotel'
-						  ]) ? 'menu current-page' : 'menu'; ?>"
+						  ]) ? 'menu-service current-page' : 'menu-service'; ?>"
 					>
 						Services
 						<i class="icon-chevron text-ns"></i>

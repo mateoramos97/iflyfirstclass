@@ -14,9 +14,8 @@ use yii\helpers\Html;
             <?= $form->field($model, 'from[]')->textInput([
                 'placeholder' => 'Where from ?',
                 'id' => 'flightrequestmax_from_round_trip',
-                'class' => 'has-prefix has-suffix from field-from required-field autocomplete-value-input'
+                'class' => 'has-prefix from field-from required-field autocomplete-value-input'
             ]) ?>
-			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 			<div class="autocomplete-enter-input-wrapper">
 				<i class="input-prefix icon-airplan-fly text-orange bottom-4"></i>
 				<input class="has-prefix autocomplete" placeholder="Where from ?">
@@ -28,9 +27,8 @@ use yii\helpers\Html;
             <?= $form->field($model, 'to[]')->textInput([
                 'placeholder' =>  'Where to ?',
                 'id' => 'flightrequestmax_to_round_trip',
-                'class' => 'has-prefix has-suffix to field-to required-field autocomplete-value-input'
+                'class' => 'has-prefix to field-to required-field autocomplete-value-input'
             ]) ?>
-			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 			<div class="autocomplete-enter-input-wrapper">
 				<i class="input-prefix icon-airplan-land text-orange bottom-4"></i>
 				<input class="has-prefix autocomplete" placeholder="Where to ?">

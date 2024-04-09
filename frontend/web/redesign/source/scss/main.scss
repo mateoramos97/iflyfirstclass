@@ -110,9 +110,11 @@ hr {
       .back-slide-wrapper {
         background-image: url('/public/img/2k-hd-home-banner.webp');
         background-position: top center;
-        background-size: contain;
+        background-size: cover;
         background-repeat: no-repeat;
         z-index: 1;
+        max-width: 2520px;
+        margin: 0 auto;
       }
       .back-slide {
         background-image: url('/public/img/2k-hd-home-banner.webp');

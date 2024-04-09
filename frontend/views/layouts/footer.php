@@ -29,23 +29,22 @@ $path_icons =  Url::base().'/design/icons/';
 					<h6 class="mb-7">Site Map</h6>
 					<ul class="flex flex-col gap-5">
 						<li>
-							<a href="/">Home</a>
+							<a class="link" href="/">Home</a>
 						</li>
 						<li>
-							<a href="<?= Url::to(['static-page/corporate-account']); ?>">Corporate accounts</a>
+							<a class="link" href="<?= Url::to(['static-page/corporate-account']); ?>">Corporate accounts</a>
 						</li>
 						<li>
-							<a href="<?= Url::to(['blog/list']); ?>">Blog</a>
+							<a class="link" href="<?= Url::to(['blog/list']); ?>">Blog</a>
 						</li>
 						<li>
-							<a href="<?= Url::to(['static-page/testimonials']); ?>">Testimonials</a>
+							<a class="link" href="<?= Url::to(['static-page/testimonials']); ?>">Testimonials</a>
 						</li>
 						<li>
-							<a href="<?= Url::to(['static-page/about']); ?>">About Us</a>
+							<a class="link" href="<?= Url::to(['static-page/about']); ?>">About Us</a>
 						</li>
 						<li>
-							<!-- <a href="<?= Url::to(['site-map-page/index']); ?>">Sitemap</a> -->
-							<a href="/sitemap.xml">Sitemap</a>
+							<a class="link" href="/sitemap.xml">Sitemap</a>
 						</li>
 					</ul>
 				</div>
@@ -53,13 +52,13 @@ $path_icons =  Url::base().'/design/icons/';
 					<h6 class="mb-7">Services</h6>
 					<ul class="flex flex-col gap-5">
 						<li>
-							<a href="<?= Url::to(['service/first-class']); ?>">First class</a>
+							<a class="link" href="<?= Url::to(['service/first-class']); ?>">First class</a>
 						</li>
 						<li>
-							<a href="<?= Url::to(['service/business-class']); ?>">Business</a>
+							<a class="link" href="<?= Url::to(['service/business-class']); ?>">Business</a>
 						</li>
 						<li>
-							<a href="<?= Url::to(['service/hotel']); ?>">Hotels</a>
+							<a class="link" href="<?= Url::to(['service/hotel']); ?>">Hotels</a>
 						</li>
 					</ul>
 				</div>
@@ -67,13 +66,13 @@ $path_icons =  Url::base().'/design/icons/';
 					<h6 class="mb-7">Tools</h6>
 					<ul class="flex flex-col gap-5">
 						<li>
-							<a href="<?= Url::to(['tools/flight-tracker']); ?>">Flight tracker</a>
+							<a class="link" href="<?= Url::to(['tools/flight-tracker']); ?>">Flight tracker</a>
 						</li>
 						<li>
-							<a href="<?= Url::to(['tools/visa']); ?>">Visa</a>
+							<a class="link" href="<?= Url::to(['tools/visa']); ?>">Visa</a>
 						</li>
 						<li>
-							<a href="<?= Url::to(['tools/request-quote']); ?>">Request quote</a>
+							<a class="link" href="<?= Url::to(['tools/request-quote']); ?>">Request quote</a>
 						</li>
 					</ul>
 				</div>

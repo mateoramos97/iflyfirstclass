@@ -48,12 +48,12 @@ foreach ($random_cities as $cityGroup) {
 						</div>
 					</div>
 				</div>
-				<div class="form-block-wrapper xl:p-12 p-4 xl:col-span-6 col-span-11">
+				<div class="form-block-wrapper xl:py-12 xl:pl-12 xl:pr-[calc(3rem+3px)] p-4 xl:col-span-6 col-span-11">
 					<?= FlightRequestMax::widget() ?>
 				</div>
 			</div>
-			<?= $this->render('@app/views/layouts/_support-chat') ?>
 		</div>
+		<?= $this->render('@app/views/layouts/_support-chat') ?>
 	</div>
 </div>
 <div class="page-content mt-16">
@@ -121,7 +121,7 @@ foreach ($random_cities as $cityGroup) {
     <div class="px-2 mt-12 dealth-block-wrapper box-border">
         <div class="dealth-block-inner grid xl:grid-cols-2 grid-cols-1 3xl:h-[680px] xl:h-[648px]">
 			<div class="relative video-container xl:rounded-l-2xl xl:rounded-tr-none rounded-t-2xl flex items-center xl:justify-end justify-center play-btn cursor-pointer xl:bg-right bg-center">
-				<div class="3xl:w-[580px] w-full flex justify-center xl:h-auto h-[416px] items-center">
+				<div class="3xl:w-[700px] w-full flex justify-center xl:h-auto h-[416px] items-center">
 					<i class="play-btn"></i>
 				</div>
 				<div id="video-popup" class="popup">
@@ -179,12 +179,12 @@ foreach ($random_cities as $cityGroup) {
             </h2>
 			<div class="grid lg:grid-cols-3 grid-cols-1 gap-6 mt-12">
 				<div class="item pb-10 bg-secondary rounded-3xl lg:text-left text-center">
-					<div class="p-6 flex xl:justify-between justify-center">
+					<div class="pt-8 px-6 pb-4 flex justify-center">
 						<div class="w-[56px] h-[56px] bg-white flex items-center justify-center rounded-xl p-[10px]">
 							<img src="/public/img/gold-pig.svg" alt="gold-pig-icon" width="52" height="48">
 						</div>
 					</div>
-					<div class="px-8">
+					<div class="px-8 text-center">
 						<h6>
 							Unpublished Fares
 						</h6>
@@ -194,12 +194,12 @@ foreach ($random_cities as $cityGroup) {
 					</div>
 				</div>
 				<div class="item pb-10 bg-secondary rounded-3xl lg:text-left text-center">
-					<div class="p-6 flex xl:justify-between justify-center">
+					<div class="pt-8 px-6 pb-4 flex justify-center">
 						<div class="w-[56px] h-[56px] bg-white flex items-center justify-center rounded-xl p-[10px]">
 							<img src="/public/img/team-gold.svg" alt="gold-team-icon" width="55" height="44">
 						</div>
 					</div>
-					<div class="px-8">
+					<div class="px-8 text-center">
 						<h6>
 							Expert Travel Team
 						</h6>
@@ -209,12 +209,12 @@ foreach ($random_cities as $cityGroup) {
 					</div>
 				</div>
 				<div class="item pb-10 bg-secondary rounded-3xl lg:text-left text-center">
-					<div class="p-6 flex xl:justify-between justify-center">
+					<div class="pt-8 px-6 pb-4 flex justify-center">
 						<div class="w-[56px] h-[56px] bg-white flex items-center justify-center rounded-xl p-[10px]">
 							<img src="/public/img/support-gold.svg" alt="gold-support-icon" width="51" height="46">
 						</div>
 					</div>
-					<div class="px-8">
+					<div class="px-8 text-center">
 						<h6>
 							24/7 Customer Suport
 						</h6>
@@ -224,12 +224,12 @@ foreach ($random_cities as $cityGroup) {
 					</div>
 				</div>
 				<div class="item pb-10 bg-secondary rounded-3xl lg:text-left text-center">
-					<div class="p-6 flex xl:justify-between justify-center">
+					<div class="pt-8 px-6 pb-4 flex justify-center">
 						<div class="w-[56px] h-[56px] bg-white flex items-center justify-center rounded-xl p-[10px]">
 							<img src="/public/img/security-gold.svg" alt="gold-security-icon" width="44" height="50">
 						</div>
 					</div>
-					<div class="px-8">
+					<div class="px-8 text-center">
 						<h6>Credibility & Reliability</h6>
 						<div class="mt-4 text-sm leading-6">
 							More then 10 years on the luxury travel market, member of Asta, Nacta, California Seller of Travel and BBB accredited.
@@ -237,12 +237,12 @@ foreach ($random_cities as $cityGroup) {
 					</div>
 				</div>
 				<div class="item pb-10 bg-secondary rounded-3xl lg:text-left text-center">
-					<div class="p-6 flex xl:justify-between justify-center">
+					<div class="pt-8 px-6 pb-4 flex justify-center">
 						<div class="w-[56px] h-[56px] bg-white flex items-center justify-center rounded-xl p-[10px]">
 							<img src="/public/img/flight-gold.svg" alt="gold-flight-icon" width="51" height="44">
 						</div>
 					</div>
-					<div class="px-8">
+					<div class="px-8 text-center">
 						<h6>
 							Travel protection & flexibility
 						</h6>

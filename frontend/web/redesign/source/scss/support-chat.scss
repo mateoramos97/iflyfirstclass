@@ -13,9 +13,14 @@
 	align-items: center;
 	flex-direction: column;
 	justify-content: space-between;
+	transition: 0.3s;
+	cursor: pointer;
+	z-index: 1;
+	&:hover {
+		background: linear-gradient(180deg, #6B635C 0%, #47433F 100%), #31302F;
+	}
 
 	.chat-now {
-		cursor: pointer;
 		writing-mode: vertical-lr;
 		transform: rotate(180deg);
 		color: $white;
