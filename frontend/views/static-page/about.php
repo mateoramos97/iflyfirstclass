@@ -73,7 +73,7 @@ $this->params['breadcrumbs'][] = 'About Us';
 			<img src="/public/img/about-us-first-img.png" alt="image" width="748" height="748">
 		</div>
 		<div class="xl:pl-24 xl:mt-0 mt-10">
-<!--			<h4 class="xl:text-4xl">Some kind of title for this section</h4>-->
+			<h4 class="xl:text-4xl font-gilroy-bold">Discounted Business and First Class Flights</h4>
 			<p class="text-gray mt-8">
 				Business and First class flights can be notoriously expensive, but with I Fly First Class, that's never a problem. Use our flight consolidator database to find reduced-fare flights for corporate business travel, and you'll save up to 60% over conventional published corporate airfares! With our business class international flights, you'll enjoy all the comforts of pricey premium air travel, but you won't pay an arm and a leg for it.
 			</p>
@@ -84,7 +84,7 @@ $this->params['breadcrumbs'][] = 'About Us';
 	</div>
 	<div class="container mx-auto grid xl:grid-cols-2 grid-cols-1 items-center justify-items-end mt-12">
 		<div class="xl:pr-24">
-<!--			<h4 class="xl:text-4xl">Some kind of title for this section.</h4>-->
+			<h4 class="xl:text-4xl font-gilroy-bold">The Leader in Luxury Travel with more than 20 years in business</h4>
 			<p class="text-gray mt-8">
 				Get access to affordable business class tickets for round-trip, one-way, round-the-world, even complex itineraries. Seats can be preassigned, and many tickets are changeable and refundable, although certain restrictions may apply.
 			</p>

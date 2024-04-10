@@ -58,8 +58,8 @@ foreach ($random_cities as $cityGroup) {
 </div>
 <div class="page-content mt-10">
     <div class="container mx-auto xl:px-16 px-4 recently-flights-wrapper">
-        <div class="head-block flex justify-between items-center mb-4">
-            <div class="flex flex-align-center"><h4 class="font-gilroy-semibold text-black">Best Deals</h4></div>
+        <div class="head-block flex justify-between items-end mb-4">
+            <div class="flex"><h4 class="font-gilroy-semibold text-black">Best Deals</h4></div>
             <div class="flex">
                 <div class="shopper-approved xl:flex items-center hidden">
                     <a class="flex" href="https://www.shopperapproved.com/reviews/iflyfirstclass.com" target="_blank">
@@ -172,7 +172,7 @@ foreach ($random_cities as $cityGroup) {
     </div>
     <div class="container mx-auto xl:px-16 px-4 book-with-confidence box-border mt-24">
         <div class="book-with-confidence-inner container-wrapper">
-			<p class="text-center">Performance and entertainment</p>
+			<p class="text-center">Fly with Comfort</p>
             <h2 class="font-silk-serif-bold text-center mt-5">
                 Book With Confidence
             </h2>
