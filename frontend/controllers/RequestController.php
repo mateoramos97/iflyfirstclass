@@ -355,22 +355,22 @@ class RequestController extends BaseController
 
     public function actionTestEmail()
     {
-        $flightRequest = [
-            'name' => 'Kostya',
-            'phone' => 'Ivanov',
-            'email' => 'test@email.com',
-            'type_trip' => 'Round',
-            'cabin_class_name' => 'test',
-            'people_number' => '2',
-        ];
-
-        Yii::$app->queue->push(new \common\queue\SendEmail([
-            'email' => 'noskov.kos@gmail.com',
-            'flightRequest' => $flightRequest,
-            'trips' => [],
-            'lastInsertId' => 5,
-        ]));
-
-        return 'Ok';
+//        $flightRequest = [
+//            'name' => 'Kostya',
+//            'phone' => 'Ivanov',
+//            'email' => 'test@email.com',
+//            'type_trip' => 'Round',
+//            'cabin_class_name' => 'test',
+//            'people_number' => '2',
+//        ];
+//
+//        Yii::$app->queue->push(new \common\queue\SendEmail([
+//            'email' => 'noskov.kos@gmail.com',
+//            'flightRequest' => $flightRequest,
+//            'trips' => [],
+//            'lastInsertId' => 5,
+//        ]));
+//
+//        return 'Ok';
     }
 }
