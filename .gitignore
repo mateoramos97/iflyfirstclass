@@ -15,5 +15,5 @@ vendor/*
 .md5sum
 .spamassassinenable
 .zshrc
-access-logs/
-error_log/
+access-logs
+error_log

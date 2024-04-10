@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = 'Blog';
         <h1 class="xl:text-9xl lg:text-8xl text-5xl font-silk-serif-bold text-center drop-shadow-2xl">Travel Blog</h1>
     </div>
 </div>
-<div class="page-content container mx-auto xl:px-12 px-4">
+<div class="page-content container mx-auto xl:px-12 px-4 mt-6">
     <div class="page-content-inner border-box">
             <?php
                 echo ListView::widget([
