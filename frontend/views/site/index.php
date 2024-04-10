@@ -267,7 +267,7 @@ foreach ($random_cities as $cityGroup) {
 									<div class="grid grid-cols-7 gap-2 h-full">
 										<div class="p-10 bg-black-light-2 rounded-l-3xl rounded-r-lg col-span-4">
 											<p class="font-gilroy-semibold text-gold-gradient border-b border-gold-gradient w-fit">Business</p>
-											<a class="font-gilroy-semibold xl:text-3xl text-2xl text-white block mt-12" href="<?= Url::to(['blog/index', 'alias' => $item['alias']]); ?>">
+											<a class="font-gilroy-semibold xl:text-3xl text-2xl text-white block mt-12 hover:underline transition" href="<?= Url::to(['blog/index', 'alias' => $item['alias']]); ?>">
 												<?= Html::encode($item['title']) ?>
 											</a>
 											<p class="text-white mt-8"><?= substr(Html::encode($item['summary']), 0, 150) ?>...</p>
@@ -279,7 +279,7 @@ foreach ($random_cities as $cityGroup) {
 									<div class="grid grid-cols-7 gap-2 h-full">
 										<div class="p-10 bg-brown-light-2 rounded-l-3xl rounded-r-lg col-span-4">
 											<p class="font-gilroy-semibold text-gold-gradient-2 border-b border-gold-gradient-2 w-fit">Travel</p>
-											<a class="font-gilroy-semibold xl:text-3xl text-2xl text-primary block mt-12" href="<?= Url::to(['blog/index', 'alias' => $item['alias']]); ?>">
+											<a class="font-gilroy-semibold xl:text-3xl text-2xl text-primary block mt-12 hover:underline transition" href="<?= Url::to(['travel-tips/index', 'alias' => $item['alias']]); ?>">
 												<?= Html::encode($item['title']) ?>
 											</a>
 											<p class="text-primary mt-8"><?= substr(Html::encode($item['summary']), 0, 150) ?>...</p>
