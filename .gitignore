@@ -6,3 +6,14 @@ node_modules/
 !vendor
 vendor/*
 !vendor/bower
+.bash_history
+.bash_logout
+.bash_profile
+.bashrc
+.contactemail
+.lastlogin
+.md5sum
+.spamassassinenable
+.zshrc
+access-logs/
+error_log/
