@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-use \app\components\AppConfig;
+use app\components\AppConfig;
 ?>
 
 <center>

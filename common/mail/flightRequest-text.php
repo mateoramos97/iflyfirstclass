@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Html;
-use \app\components\AppConfig;
+use app\components\AppConfig;
 ?>
     CONTACT INFO:
     Name: <?= Html::encode($data['flight_request']['name']) ?>
