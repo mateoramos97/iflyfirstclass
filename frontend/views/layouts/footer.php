@@ -83,7 +83,7 @@ $path_icons =  Url::base().'/design/icons/';
 			<div class="flex">
 				<img src="/public/img/logo-2.svg" width="237" height="32" alt="logo">
 				<p class="text-xs px-11 text-mute max-w-4xl">
-					© 2022 IFlyFirstClass. All rights Reserved. Registered in accordance to California State regulations # 2107775-40. Use of this Web site constitutes acceptance of the <a href="javascript:void(0);" class="terms-conditions-link underline text-black" onclick="openTermsConditions(this)">Terms of Service</a> and Privacy Policy. Designated trademarks and brands are the property of their respective owners.
+					© <?= date('Y') ?> IFlyFirstClass. All rights Reserved. Registered in accordance to California State regulations # 2107775-40. Use of this Web site constitutes acceptance of the <a href="javascript:void(0);" class="terms-conditions-link underline text-black" onclick="openTermsConditions(this)">Terms of Service</a> and Privacy Policy. Designated trademarks and brands are the property of their respective owners.
 				</p>
 				<?= $this->render('_footer-terms-conditions') ?>
 			</div>
