@@ -143,17 +143,23 @@
             }
             .detail {
               max-width: 300px;
-              display: block;
               font-weight: 500;
             }
           }
 
           .ticket-info {
-            p {
-              color: $black;
+            .ticket-info-content {
+              padding: 13px 22px;
               background-color: #EEEAE8;
               border-radius: 16px;
-              padding: 13px 22px;
+              p {
+                color: $black;
+              }
+              .icon-phone-fill {
+                width: 32px !important;
+                height: 32px !important;
+                font-size: 12px !important;
+              }
             }
           }
 
@@ -218,7 +224,7 @@
 
         .header {
           height: auto !important;
-          padding: 20px !important;
+          padding: 20px 30px !important;
         }
 
         .ticket-separator-line {
@@ -227,7 +233,7 @@
 
         .person-info {
           .column-1 {
-            padding: 20px 20px 10px !important;
+            padding: 32px 20px 32px !important;
           }
           .column-2 {
             padding: 10px 20px 20px !important;
@@ -238,7 +244,7 @@
           border-radius: 0 0 32px 32px;
           .column-1 {
             .airport-info {
-              padding: 20px !important;
+              padding: 40px !important;
               .dotted-separator {
                 &:after {
                   content: '' !important;
@@ -246,11 +252,22 @@
               }
             }
             .ticket-info {
-              padding: 20px !important;
+              padding: 0 20px !important;
+              .ticket-info-content {
+                padding: 30px !important;
+                p {
+                  font-size: 15px !important;
+                }
+              }
             }
           }
           .column-2 {
-            padding: 20px !important;
+            padding: 40px !important;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: 3rem;
+            row-gap: 2rem;
+            font-size: 15px;
           }
           .from-to {
             .from.airport-code {
@@ -262,6 +279,9 @@
               padding-left: 0 !important;
               padding-bottom: 16px;
             }
+          }
+          .icon-airplane {
+            transform: rotate(180deg)  !important;
           }
         }
       }

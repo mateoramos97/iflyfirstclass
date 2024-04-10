@@ -95,7 +95,7 @@ use yii\widgets\ActiveForm;
         ]) ?>
     </div>
 	<?php ActiveForm::end(); ?>
-	<div class="xl:hidden items-center flex justify-center mt-8">
+	<div class="xl:hidden items-center flex justify-center mt-8 mb-5">
 		<a class="flex" href="https://www.shopperapproved.com/reviews/iflyfirstclass.com" target="_blank">
 			<img class="scale-110" src="/public/img/shopper-approved-white.svg" alt="">
 			<img class="ml-6" src="/public/img/stars.svg" alt="">

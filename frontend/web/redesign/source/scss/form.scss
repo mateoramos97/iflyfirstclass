@@ -76,6 +76,7 @@ select {
 }
 
 .form-flight-request-max-wrapper {
+  box-shadow: 0 8px 56px rgba(0, 0, 0, 0.25);
   @apply font-proxima-nova-medium;
   .form-nav {
     .head-menu {
@@ -119,6 +120,11 @@ select {
 
   .form-flight-request-max-inner {
     @apply text-base-2;
+    @media screen and (max-width: $xl-screen) {
+      input[name="FlightRequestMax[name]"] {
+        border: 1px solid transparent;
+      }
+    }
   }
 
   .tools-ringme-ringmeLink {
@@ -185,6 +191,9 @@ select {
         padding: 10px !important;
       }
     }
+  }
+  @media screen and (max-width: $xl-screen) {
+    box-shadow: none !important;
   }
 }
 

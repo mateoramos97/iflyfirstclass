@@ -34,14 +34,14 @@ function getAirportCode($airportInfo) {
 							<span class="text-white font-proxima-nova-medium text-xl ml-5">Reference number</span>
 							<span class="num ml-4 text-gold-gradient font-gilroy-semibold text-2xl">IFFCN-<?= Html::encode($request_form_users['request_number']) ?></span>
 						</div>
-						<div class="ticket-separator-line">
+						<div class="ticket-separator-line xl:block hidden">
 							<div class="text-white xl:pl-10 pt-4 xl:pt-0 flex items-center h-full font-proxima-nova-light justify-center xl:justify-start">iflyfirstclass.com</div>
 						</div>
 					</div>
 					<div class="content ticket-grid box-border person-info">
 						<div class="column-1">
 							<div class="top-info flex justify-between items-center flex-col xl:flex-row">
-								<div>
+								<div class="xl:text-left text-center">
 									<div class="name-passenger">
 										<?= Html::encode($request_form_users['name']) ?>
 									</div>
@@ -49,7 +49,7 @@ function getAirportCode($airportInfo) {
 										<?= Html::encode($request_form_users['people_number']) ?> Person(s)
 									</div>
 								</div>
-								<div class="phone-wrapper mt-4 xl:mt-0">
+								<div class="phone-wrapper mt-4 xl:mt-0 xl:block hidden">
 									<div class="phone flex items-center">
 										<i class="icon-phone-fill"></i>
 										<span itemprop="telephone" class="text-xl pl-5">888 347 7817</span>
@@ -57,7 +57,7 @@ function getAirportCode($airportInfo) {
 								</div>
 							</div>
 						</div>
-						<div class="column-2 ticket-separator-line mx-auto xl:m-0">
+						<div class="column-2 ticket-separator-line mx-auto xl:m-0 xl:block hidden">
 							<div class="cabin-holder">
 								<div class="ttl font-proxima-nova-medium ">Cabin class</div>
 								<div class="cabin font-proxima-nova-semibold">
@@ -74,18 +74,24 @@ function getAirportCode($airportInfo) {
 									<?php foreach ($request_form_user_info as $key => $item): ?>
 										<div class="from-to flex justify-between items-center pt-5 dotted-separator">
 											<span class="from airport-code"><?= getAirportCode($item['from_air']) ?></span>
+											<span class="detail xl:hidden block mt-3">
+													<?= Html::encode($item['from_air']) ?>
+											</span>
 											<div class="icon-airplane"></div>
 											<span class="to airport-code"><?= getAirportCode($item['from_air']) ?></span>
+											<span class="detail xl:hidden block mt-3">
+													<?= Html::encode($item['from_air']) ?>
+											</span>
 										</div>
 										<div class="from-to flex justify-between mt-6">
 											<span class="from">
-												<span class="detail">
-													<?= Html::encode($item['from_air']) ?>
+												<span class="detail xl:block hidden">
+													<?= Html::encode($item['to_air']) ?>
 												</span>
 											</span>
 											<span class="to">
-												<span class="detail">
-													<?= Html::encode($item['from_air']) ?>
+												<span class="detail xl:block hidden">
+													<?= Html::encode($item['to_air']) ?>
 												</span>
 											</span>
 										</div>
@@ -93,25 +99,37 @@ function getAirportCode($airportInfo) {
 								<?php else: ?>
 									<div class="from-to flex justify-between items-center pt-5 dotted-separator flex-col xl:flex-row">
 										<span class="from airport-code"><?= getAirportCode($request_form_user_info[0]['from_air']) ?></span>
+										<span class="detail xl:hidden block mt-3 text-center">
+											<?= Html::encode($request_form_user_info[0]['from_air']) ?>
+										</span>
 										<div class="icon-airplane"></div>
 										<span class="to airport-code"><?= getAirportCode($request_form_user_info[0]['to_air']) ?></span>
+										<span class="detail xl:hidden block mt-3 text-center">
+											<?= Html::encode($request_form_user_info[0]['to_air']) ?>
+										</span>
 									</div>
-									<div class="from-to flex justify-between mt-6">
+									<div class="from-to flex justify-between mt-6 xl:flex hidden">
 										<span class="from">
-											<span class="detail">
+											<span class="detail block">
 												<?= Html::encode($request_form_user_info[0]['from_air']) ?>
 											</span>
 										</span>
 										<span class="to">
-											<span class="detail">
+											<span class="detail block">
 												<?= Html::encode($request_form_user_info[0]['to_air']) ?>
 											</span>
                                 		</span>
 									</div>
 								<?php endif; ?>
 							</div>
-							<div class="ticket-info">
-								<p>Our Luxury Travel Specialists will process your request and contact you as soon as possible</p>
+							<div class="ticket-info xl:text-left text-center">
+								<div class="ticket-info-content">
+									<p>Our Luxury Travel Specialists will process your request and contact you as soon as possible</p>
+									<div class="phone flex items-center justify-center mt-5 xl:hidden">
+										<i class="icon-phone-fill"></i>
+										<span itemprop="telephone" class="text-xl pl-5">888 347 7817</span>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="column-2 ticket-separator-line mx-auto xl:m-0">
@@ -134,6 +152,13 @@ function getAirportCode($airportInfo) {
 									<div class="date to"><?= Html::encode($request_form_user_info[0]['arrival']) ?></div>
 								</div>
 							<?php endif; ?>
+							<div class="cabin-holder xl:hidden">
+								<div class="ttl font-proxima-nova-medium ">Cabin class</div>
+								<div class="cabin font-proxima-nova-semibold">
+									<i class="icon-business"></i>
+									<?php echo $request_form_users['cabin_class_name'] == '1' ? 'Business' : 'First' ?>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

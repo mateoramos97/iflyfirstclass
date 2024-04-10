@@ -32,7 +32,7 @@ foreach ($random_cities as $cityGroup) {
 			<div class="container mx-auto welcome-block container-wrapper grid grid-cols-11 relative items-center">
 				<div class="content xl:flex hidden align-center pt-[152px] px-12 col-span-5 pb-[48px]">
 					<div>
-						<p class="font-proxima-nova-medium text-white font-xl">The Philosophy of Travel</p>
+						<p class="font-proxima-nova-medium text-white text-xl">The Philosophy of Travel</p>
 						<div class="title-form font-gilroy-semibold text-white 2xl:text-5xl xl:text-4xl md:text-xl !leading-[120%] mt-5">
 							The Lowest Prices on <br> Business & First class <br>
 							<span class="text-orange-2 border-b border-orange-2 hover:border-none cursor-pointer" onclick="openTermsConditions(this)">Guaranteed</span>
@@ -56,9 +56,9 @@ foreach ($random_cities as $cityGroup) {
 		<?= $this->render('@app/views/layouts/_support-chat') ?>
 	</div>
 </div>
-<div class="page-content mt-16">
+<div class="page-content mt-10">
     <div class="container mx-auto xl:px-16 px-4 recently-flights-wrapper">
-        <div class="head-block flex justify-between items-center">
+        <div class="head-block flex justify-between items-center mb-4">
             <div class="flex flex-align-center"><h4 class="font-gilroy-semibold text-black">Best Deals</h4></div>
             <div class="flex">
                 <div class="shopper-approved xl:flex items-center hidden">
@@ -126,8 +126,7 @@ foreach ($random_cities as $cityGroup) {
 				</div>
 				<div id="video-popup" class="popup">
 					<div class="popup-content">
-						<video controls
-						>
+						<video controls>
 							<source src="/design/video/movie.mp4" type="video/mp4">
 						</video>
 					</div>

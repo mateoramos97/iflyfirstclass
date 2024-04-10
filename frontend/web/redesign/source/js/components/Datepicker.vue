@@ -331,11 +331,9 @@ onMounted(() => {
     justify-content: center;
     &:hover {
       background-color: #FCF1E5;
-      transform: translateX(1px);
     }
     &:active {
       background-color: #F5D6B2;
-      transform: translateX(1px);
     }
   }
 
@@ -362,7 +360,6 @@ onMounted(() => {
       transition: 0.3s;
       &.active:hover {
         background-color: #ededee;
-        transform: translateX(1px);
       }
     }
   }
@@ -430,11 +427,9 @@ onMounted(() => {
 
     .day:not(.disabled, .selected):hover,  {
       background-color: #FCF1E5;
-      transform: translateX(1px);
     }
     .day:not(.disabled, .selected):active {
       background-color: #F5D6B2;
-      transform: translateX(1px);
     }
   }
 
