@@ -147,7 +147,7 @@ function previousMonth() {
 
 function initDays() {
   dates.splice(0, dates.length);
-  const countDays = now.value.daysInMonth();
+  const countDays = selectedDate.value.daysInMonth();
 
   const firstDayInWeek = selectedDate.value.clone().date(1).day();
   const allDaysInMonth = [];
