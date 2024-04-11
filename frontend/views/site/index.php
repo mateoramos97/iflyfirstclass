@@ -34,7 +34,7 @@ foreach ($random_cities as $cityGroup) {
 					<div>
 						<p class="font-proxima-nova-medium text-white text-xl">The Philosophy of Travel</p>
 						<div class="title-form font-gilroy-semibold text-white 2xl:text-5xl xl:text-4xl md:text-xl !leading-[120%] mt-5">
-							The Lowest Prices on <br> Business & First class <br>
+							The Lowest Prices on <br> Business & First Class <br>
 							<span class="text-orange-2 border-b border-orange-2 hover:border-none cursor-pointer" onclick="openTermsConditions(this)">Guaranteed</span>
 						</div>
 						<div class="welcome-block-call-widget mt-14 pt-6 pr-8 pb-4 bg-black-light w-fit rounded-[20px] border border-slate-500">

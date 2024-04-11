@@ -35,7 +35,7 @@ $path_img_thumbs =  Url::base().'/public/images/thumbs/';
         </p>
         <div class="news mt-4">
             <a class="w-full" href="<?= Url::to(['blog/index', 'alias' => $last_artical['alias']]); ?>">
-                <img class="rounded-xl w-full aspect-square object-cover " src="<?= $path_img_thumbs. Html::encode($last_artical_img['alias']) ?>"
+                <img class="rounded-xl w-full aspect-square object-cover " src="<?= $path_img. Html::encode($last_artical_img['alias']) ?>"
                      title="<?= Html::encode($last_artical_img['title']) ?>"
                      alt="<?= Html::encode($last_artical_img['title'])." - IFlyFirstClass" ?>">
             </a>

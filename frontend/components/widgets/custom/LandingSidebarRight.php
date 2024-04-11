@@ -24,6 +24,7 @@ class LandingSidebarRight extends Widget
             ->where(['is_top' => 1])
             ->one();
         $last_artical_img = Image::findOne([
+            'queue' => 0,
             'content_id' => $last_artical->id,
             'content_type_id' => AppConfig::Image_ContentType_BlogArticle,
             'content_field_id' => AppConfig::Image_ContentField_BlogArticle,
