@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "05a797f71d48ca01aa321f344229103d",
+    "content-hash": "8a4da39e870a2e6dc7756a205be11ccd",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -227,16 +227,16 @@
         },
         {
             "name": "ckeditor/ckeditor",
-            "version": "4.24.x-dev",
+            "version": "4.22.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ckeditor/ckeditor4-releases.git",
-                "reference": "f51eacdb067fd090c4b076d8290f008d9e400480"
+                "reference": "0d51138b0a258165ac09724e8f5cda67cf9126a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ckeditor/ckeditor4-releases/zipball/f51eacdb067fd090c4b076d8290f008d9e400480",
-                "reference": "f51eacdb067fd090c4b076d8290f008d9e400480",
+                "url": "https://api.github.com/repos/ckeditor/ckeditor4-releases/zipball/0d51138b0a258165ac09724e8f5cda67cf9126a3",
+                "reference": "0d51138b0a258165ac09724e8f5cda67cf9126a3",
                 "shasum": ""
             },
             "type": "library",
@@ -271,7 +271,7 @@
                 "source": "https://github.com/ckeditor/ckeditor4",
                 "wiki": "https://ckeditor.com/docs/ckeditor4/latest/"
             },
-            "time": "2024-02-07T11:28:48+00:00"
+            "time": "2023-06-30T13:35:30+00:00"
         },
         {
             "name": "doctrine/lexer",
