@@ -56,7 +56,7 @@ $path_icons =  Url::base().'/design/icons/';
 		</div>
 		<div itemscope="" itemtype="http://schema.org/Organization" id="logo" class="logo">
 			<a itemprop="url" href="<?= Url::home(true); ?>">
-				<img src="/public/img/logo.png" itemprop="logo" alt="logo" width="237" height="56" class="h-[56px]">
+				<img src="/public/img/logo.svg" itemprop="logo" alt="logo" width="237" height="56" class="h-[56px]">
 			</a>
 		</div>
 		<div class="flex gap-2 items-center">

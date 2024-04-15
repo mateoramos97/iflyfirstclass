@@ -7,7 +7,7 @@ use \yii\helpers\Url;
 		<div class="open-menu"></div>
 		<div class="logo">
 			<a href="<?= Url::home(true); ?>">
-				<img src="/public/img/mobile-logo.png" alt="mobile-logo" width="215" height="52">
+				<img src="/public/img/mobile-logo.svg" alt="mobile-logo" width="215" height="52">
 			</a>
 		</div>
 		<a class="icon-phone-link" href="tel:+18883477817"><i class="icon-phone text-lg text-brown"></i></a>
