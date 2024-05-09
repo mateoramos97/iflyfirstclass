@@ -137,7 +137,7 @@ select {
   }
 
   .form-request-notify {
-    display: none;
+    //display: none;
     position: relative;
     margin-top: -56px;
     width: 100%;
@@ -179,7 +179,6 @@ select {
 
     @media screen and (max-width: $lg-screen) {
       height: 213px;
-      top: 304px;
       padding: 10px;
 
       .icon {
