@@ -168,6 +168,11 @@ class TravelTipsController extends AdminController
                     'title' => isset($images_title[0]) ? $images[0] : null,
                     'queue' => 0,
                 ),
+                array(
+                   'alias' => isset($images[1]) ? $images[1] : null,
+                   'title' => isset($images_title[1]) ? $images[1] : null,
+                   'queue' => 1,
+                ),
             ),
         );
 
@@ -244,6 +249,12 @@ class TravelTipsController extends AdminController
                     'title' => $images[0]['title'],
                     'queue' => $images[0]['queue'],
                     'content_field_id' => isset($images[0]['content_field_id']) ? $images[0]['content_field_id'] : null,
+                ),
+                array(
+                    'alias' => isset($images[1]['alias']) ? $images[1]['alias'] : null,
+                    'title' => isset($images[1]['title']) ? $images[1]['title'] : null,
+                    'queue' => isset($images[1]['queue']) ? $images[1]['queue'] : null,
+                    'content_field_id' => isset($images[1]['content_field_id']) ? $images[1]['content_field_id'] : null,
                 ),
             ),
         );

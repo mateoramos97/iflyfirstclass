@@ -177,24 +177,25 @@ class RequestController extends BaseController
         if ($hotel_model->load(Yii::$app->request->post())) {
             $isValid = $hotel_model->validate();
 
-            $isEmailBlocked = $blocked_email_info_service->get_blocked_email($hotel_model->email);
-            if ($isEmailBlocked) return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
+//            $isEmailBlocked = $blocked_email_info_service->get_blocked_email($hotel_model->email);
+//            if ($isEmailBlocked) return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
 
-            if ($isValid) {
-                if ($hotel_model->sendEmailRequestHotel(Yii::$app->params['adminEmail'], $hotel_model)) {
-                    $this->bodyClass = "accept-page";
-                    Yii::$app->session->addFlash('request_accept', ['Your message has been sent', 'Travel expert will contact you asap']);
-                    $this->redirect(['service/hotel']);
-                }
-            } else {
-                $err = array();
-                $err = array_merge($hotel_model->errors);
-                $errors = $err;
-                $this->bodyClass = "rejected-page";
-                return $this->render('rejected', [
-                    'errors' => $errors,
-                ]);
-            }
+            return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
+//            if ($isValid) {
+//                if ($hotel_model->sendEmailRequestHotel(Yii::$app->params['adminEmail'], $hotel_model)) {
+//                    $this->bodyClass = "accept-page";
+//                    Yii::$app->session->addFlash('request_accept', ['Your message has been sent', 'Travel expert will contact you asap']);
+//                    $this->redirect(['service/hotel']);
+//                }
+//            } else {
+//                $err = array();
+//                $err = array_merge($hotel_model->errors);
+//                $errors = $err;
+//                $this->bodyClass = "rejected-page";
+//                return $this->render('rejected', [
+//                    'errors' => $errors,
+//                ]);
+//            }
         }
     }
 
@@ -212,24 +213,26 @@ class RequestController extends BaseController
         if ($model->load(Yii::$app->request->post())) {
             $isValid = $model->validate();
 
-            $isEmailBlocked = $blocked_email_info_service->get_blocked_email($model->email);
-            if ($isEmailBlocked) return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
+//            $isEmailBlocked = $blocked_email_info_service->get_blocked_email($model->email);
+//            if ($isEmailBlocked) return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
 
-            if ($isValid) {
-                if ($model->sendEmailRequestQuote(Yii::$app->params['adminEmail'], $model)) {
-                    $this->bodyClass = "accept-page";
-                    Yii::$app->session->addFlash('request_accept', ['Your message has been sent', 'Travel expert will contact you asap']);
-                    $this->redirect(['tools/request-quote']);
-                }
-            } else {
-                $err = array();
-                $err = array_merge($model->errors);
-                $errors = $err;
-                $this->bodyClass = "rejected-page";
-                return $this->render('rejected', [
-                    'errors' => $errors,
-                ]);
-            }
+            return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
+
+//            if ($isValid) {
+//                if ($model->sendEmailRequestQuote(Yii::$app->params['adminEmail'], $model)) {
+//                    $this->bodyClass = "accept-page";
+//                    Yii::$app->session->addFlash('request_accept', ['Your message has been sent', 'Travel expert will contact you asap']);
+//                    $this->redirect(['tools/request-quote']);
+//                }
+//            } else {
+//                $err = array();
+//                $err = array_merge($model->errors);
+//                $errors = $err;
+//                $this->bodyClass = "rejected-page";
+//                return $this->render('rejected', [
+//                    'errors' => $errors,
+//                ]);
+//            }
         }
     }
 
@@ -247,24 +250,26 @@ class RequestController extends BaseController
         if ($model->load(Yii::$app->request->post())) {
             $isValid = $model->validate();
 
-            $isEmailBlocked = $blocked_email_info_service->get_blocked_email($model->email);
-            if ($isEmailBlocked) return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
+//            $isEmailBlocked = $blocked_email_info_service->get_blocked_email($model->email);
+//            if ($isEmailBlocked) return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
 
-            if ($isValid) {
-                if ($model->sendEmailRequestCorporateAccount(Yii::$app->params['adminEmail'], $model)) {
-                    $this->bodyClass = "accept-page";
-                    Yii::$app->session->addFlash('request_accept', ['Your message has been sent', 'Travel expert will contact you asap']);
-                    $this->redirect(['static-page/corporate-account']);
-                }
-            } else {
-                $err = array();
-                $err = array_merge($model->errors);
-                $errors = $err;
-                $this->bodyClass = "rejected-page";
-                return $this->render('rejected', [
-                    'errors' => $errors,
-                ]);
-            }
+            return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
+
+//            if ($isValid) {
+//                if ($model->sendEmailRequestCorporateAccount(Yii::$app->params['adminEmail'], $model)) {
+//                    $this->bodyClass = "accept-page";
+//                    Yii::$app->session->addFlash('request_accept', ['Your message has been sent', 'Travel expert will contact you asap']);
+//                    $this->redirect(['static-page/corporate-account']);
+//                }
+//            } else {
+//                $err = array();
+//                $err = array_merge($model->errors);
+//                $errors = $err;
+//                $this->bodyClass = "rejected-page";
+//                return $this->render('rejected', [
+//                    'errors' => $errors,
+//                ]);
+//            }
         }
     }
 

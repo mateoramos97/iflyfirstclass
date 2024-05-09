@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = Html::encode($travel_tips_model['title']);
 			<h1 class="font-silk-serif-bold"><?= Html::encode($travel_tips_model->title);  ?></h1>
 		</div>
 		<div class="blog-poster-wrapper">
-			<div class="back-slide" style="background-image: linear-gradient(90deg, rgba(33, 33, 33, 0.56) 0%, rgba(33, 33, 33, 0.32) 100%), url(<?= $path_img . Html::encode($images[0]['alias']) ?>); background-position: center">
+			<div class="back-slide" style="background-image: linear-gradient(90deg, rgba(33, 33, 33, 0.56) 0%, rgba(33, 33, 33, 0.32) 100%), url(<?= $path_img . Html::encode(isset($images[1]['alias']) ? $images[1]['alias'] : $images[0]['alias']) ?>); background-position: center">
 				<div class="container mx-auto welcome-block container-wrapper grid grid-cols-12 items-center">
 					<div class="content xl:flex flex-col hidden align-center pt-8 px-12 xl:col-span-7 justify-end h-full">
 						<div class="my-16 text-3.2xl font-semibold">
