@@ -42,6 +42,8 @@ use yii\helpers\Html;
 				placeholder="Departure"
 				id="dep-date-round-trip"
 				class-name="has-prefix has-suffix bg-white"
+				:start-date="fromDate"
+				@date-selected="toDate = $event"
 			></datepicker>
 			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 		</div>
@@ -52,6 +54,7 @@ use yii\helpers\Html;
 				placeholder="Return"
 				id="arr-date-round-trip"
 				class-name="has-suffix bg-white"
+				:start-date="toDate"
 			></datepicker>
 			<i class="input-suffix icon-chevron text-ns absolute text-gray bottom-6"></i>
 		</div>

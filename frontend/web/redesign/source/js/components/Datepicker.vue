@@ -28,7 +28,7 @@
                 <div v-for="(weeks,i) in dates" :key="i" class="days">
                   <span v-for="(day,j) in weeks" :key="j"
                         class="day"
-                        :class="{today: isToday(day), disabled: day === '', selected: isSelected(day)}"
+                        :class="{today: isToday(day), disabled: isDisabled(day), selected: isSelected(day)}"
                         @click="selectDateHandler(day)"
                   >{{ day }}</span>
                 </div>
@@ -68,14 +68,18 @@
 </template>
 
 <script setup>
-import { ref, computed, reactive, defineProps, onMounted, getCurrentInstance } from 'vue';
+import { ref, computed, reactive, defineProps, onMounted, getCurrentInstance, defineEmits, watch } from 'vue';
 import {isMobileDisplay} from "../scripts/custom";
 import dayjs from "dayjs";
 
+const emit = defineEmits(['dateSelected'])
+
 const props = defineProps({
   startDate: {
-    type: String,
-    default: '',
+    type: Object,
+    default() {
+      return new Date();
+    },
   },
   name: {
     type: String,
@@ -164,10 +168,21 @@ function initDays() {
   }
 }
 
+watch(() => props.startDate,  (newValue) => {
+  if (selectedDate.value.isBefore(props.startDate, 'day')) {
+    selectedDate.value = dayjs(newValue);
+    result.value = selectedDate.value.clone();
+  }
+})
+
 function selectDateHandler(value) {
+  if (isDisabled(value)) {
+    return;
+  }
   selectedDate.value = selectedDate.value.date(value);
   result.value = selectedDate.value.clone().date(value);
   showCalendar.value = false;
+  emit('dateSelected', new Date(selectedDate.value.format()))
 }
 
 function selectMonthHandler(value) {
@@ -182,7 +197,11 @@ function selectYearHandler(value) {
 }
 
 function isToday(day) {
-  return selectedDate.value.clone().date(day).isSame(now.value);
+  return selectedDate.value.clone().date(day).isSame(now.value, 'day');
+}
+
+function isDisabled(day) {
+  return day === '' || selectedDate.value.clone().date(day).isBefore(props.startDate, 'day');
 }
 
 function isSelected(day) {
@@ -423,6 +442,10 @@ onMounted(() => {
     .day {
       font-family: GilroyMedium, sans,serif;
       cursor: pointer;
+      &.disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
     }
 
     .day:not(.disabled, .selected):hover,  {

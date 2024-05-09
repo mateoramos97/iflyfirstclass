@@ -10,6 +10,8 @@ const form = createApp({
 		const peopleNumber = ref(1);
 		const cabinClassName = ref(1);
 		const showHiddenFields = ref(false);
+		const fromDate = ref(new Date());
+		const toDate = ref(new Date());
 		function changeActiveForm(event) {
 			setActiveForm(event.target.value);
 		}
@@ -28,6 +30,8 @@ const form = createApp({
 			setActiveForm,
 			peopleNumber,
 			cabinClassName,
+			fromDate,
+			toDate,
 		}
 	},
 
