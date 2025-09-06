@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^(www\.)?iflyfirstclass\.com$ [NC]
+RewriteRule ^(.*)$ https://iflyfirstclass.com/$1 [L,R=301]
+<IfModule mod_headers.c>
+Header always set Content-Security-Policy "upgrade-insecure-requests;" env=UPGRADE
+</IfModule>
+</IfModule>
+
+Options +FollowSymLinks
+IndexIgnore */*
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} !^/(web)
+RewriteRule (.*) frontend/web/$1
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . frontend/web/index.php

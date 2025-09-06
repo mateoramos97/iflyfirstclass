@@ -25,7 +25,7 @@ class RequestController extends BaseController
 {
     public function actionSearchAirport()
     {
-        $keyword = $_POST['keyword'];
+        $keyword = filter_input(INPUT_POST,'keyword');
         $url = 'https://airlabs.co/api/v9/suggest?q=' . urlencode($keyword) . '&api_key=4a758c12-39af-453c-87f5-5ac58aa3ce37';
 
         $ch = curl_init();
@@ -39,7 +39,7 @@ class RequestController extends BaseController
 
     public function actionSearchAirline()
     {
-        $keyword = $_POST['keyword'];
+        $keyword = filter_input(INPUT_POST,'keyword');
 
         $url = "https://www.flightstats.com/go/Suggest/airlineSuggest.do?responseType=json&desiredResults=10&term=" . urlencode($keyword);
         $referer = "https://www.flightstats.com/go/FlightTracker/flightTracker.do";

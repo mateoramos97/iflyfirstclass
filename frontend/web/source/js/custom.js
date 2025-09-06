@@ -9,6 +9,7 @@ jQuery(document).ready(function ($) {
         /* datepicker */
         $(".datepicker").datepicker({
             minDate: 0,
+            maxDate: 350,
             dateFormat: "d M, y"
         });
     };
@@ -23,6 +24,7 @@ jQuery(document).ready(function ($) {
                 arrDateObj.val("");
             arrDateObj.removeClass("hasDatepicker").datepicker({
                 minDate: mindate,
+                maxDate: 350,
                 dateFormat: "d M, y"
             });
         };
@@ -30,6 +32,7 @@ jQuery(document).ready(function ($) {
             .removeClass("hasDatepicker")
             .datepicker({
                 minDate: 0,
+                maxDate: 350,
                 dateFormat: "d M, y",
                 onSelect: function (date) {
                     var targetField = $(this).attr('data-date');
@@ -233,6 +236,7 @@ jQuery(document).ready(function ($) {
                                 placeholder: 'Depart',
                                 readonly: 'readonly'}).datepicker({
                                 minDate: 0,
+                                maxDate: 350,
                                 dateFormat: "d M, y"
                             })
                         );

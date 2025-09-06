@@ -39,8 +39,11 @@ jQuery(document).ready(function ($) {
 
     var InitCustomUI = function () {
         /* datepicker */
+        var maxDate = new Date();
+        maxDate.setDate(maxDate.getDate() + 350);
         $(".datepicker").datepicker({
             minDate: 0,
+            maxDate: maxDate,
             dateFormat: "d M, y"
         });
     };

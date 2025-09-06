@@ -130,11 +130,16 @@ const formattedResult = computed(() => {
   return result.value ? result.value.format(props.formatDate) : '';
 })
 
-const months = ['January', 'February', 'Mart', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+const maxFutureDate = computed(() => {
+  return now.value.add(350, 'day');
+});
 
 function initYears() {
   const currentYear = now.value.year();
-  for(let i = currentYear; i < (currentYear + 7); i++){
+  const maxYear = maxFutureDate.value.year();
+  for(let i = currentYear; i <= maxYear; i++){
     years.push(i);
   }
 }
@@ -201,7 +206,9 @@ function isToday(day) {
 }
 
 function isDisabled(day) {
-  return day === '' || selectedDate.value.clone().date(day).isBefore(props.startDate, 'day');
+  if (day === '') return true;
+  const dateToCheck = selectedDate.value.clone().date(day);
+  return dateToCheck.isBefore(props.startDate, 'day') || dateToCheck.isAfter(maxFutureDate.value, 'day');
 }
 
 function isSelected(day) {
