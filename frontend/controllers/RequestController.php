@@ -360,22 +360,47 @@ class RequestController extends BaseController
 
     public function actionTestEmail()
     {
-//        $flightRequest = [
-//            'name' => 'Kostya',
-//            'phone' => 'Ivanov',
-//            'email' => 'test@email.com',
-//            'type_trip' => 'Round',
-//            'cabin_class_name' => 'test',
-//            'people_number' => '2',
-//        ];
-//
-//        Yii::$app->queue->push(new \common\queue\SendEmail([
-//            'email' => 'noskov.kos@gmail.com',
-//            'flightRequest' => $flightRequest,
-//            'trips' => [],
-//            'lastInsertId' => 5,
-//        ]));
-//
-//        return 'Ok';
+        $flightRequest = [
+            'name' => 'Test User',
+            'phone' => '+1234567890',
+            'email' => 'test@example.com',
+            'type_trip' => '1',
+            'cabin_class_name' => '2',
+            'people_number' => '2',
+        ];
+
+        $trips = [
+            [
+                'from' => 'New York (JFK)',
+                'to' => 'London (LHR)',
+                'dep_date' => '2024-12-25',
+                'arr_date' => '2025-01-05'
+            ]
+        ];
+
+        try {
+            // Test direct email sending with your actual email
+            $testEmail = 'mateoramos97@gmail.com'; // Replace with your email
+            
+            $flight_request_max_model = new FlightRequestMax();
+            $result = $flight_request_max_model->sendEmailFlightRequest(
+                $testEmail,
+                $flightRequest,
+                $trips,
+                999
+            );
+            
+            // Also test queue system
+            Yii::$app->queue->push(new \common\queue\SendEmail([
+                'email' => $testEmail,
+                'flightRequest' => $flightRequest,
+                'trips' => $trips,
+                'lastInsertId' => 999,
+            ]));
+            
+            return 'Email sent to: ' . $testEmail . '. Result: ' . ($result ? 'SUCCESS' : 'FAILED') . '. Queue job added.';
+        } catch (\Exception $e) {
+            return 'Error: ' . $e->getMessage();
+        }
     }
 }

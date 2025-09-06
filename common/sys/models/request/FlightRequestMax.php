@@ -33,6 +33,7 @@ class FlightRequestMax extends Model
             [['name'], 'string', 'max' => 100],
             [['email'], 'string', 'max' => 100],
             [['phone'], 'string', 'max' => 100],
+            [['dep_date', 'arr_date'], 'validateDateRange'],
         ];
     }
 
@@ -52,6 +53,24 @@ class FlightRequestMax extends Model
             'cabin_class_name' => 'Cabin class',
             'people_number' => 'People number'
         ];
+    }
+
+    public function validateDateRange($attribute, $params)
+    {
+        $value = $this->$attribute;
+        if (!empty($value)) {
+            // Handle array values from form
+            $dateValue = is_array($value) ? $value[0] : $value;
+            
+            if (!empty($dateValue)) {
+                $selectedDate = strtotime($dateValue);
+                $maxDate = strtotime('+350 days');
+                
+                if ($selectedDate > $maxDate) {
+                    $this->addError($attribute, 'Date cannot be more than 350 days from today.');
+                }
+            }
+        }
     }
 
     public function sendEmailFlightRequest($email, $flight_request, $trips, $lastInsertID)
