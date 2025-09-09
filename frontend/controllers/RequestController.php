@@ -134,24 +134,11 @@ class RequestController extends BaseController
             if ($isValid) {
                 $lastInsertID = $flight_request_edit_service->add_flight_request($flightRequestMax);
 
-                Yii::$app->queue->push(new \common\queue\SendEmail([
-                    'email' => Yii::$app->params['adminEmail'],
-                    'flightRequest' => $flightRequestMax,
-                    'trips' => $trips,
-                    'lastInsertId' => $lastInsertID,
-                ]));
-
-                Yii::$app->queue->push(new \common\queue\SendEmail([
-                    'email' => $flight_request_max_model->email,
-                    'flightRequest' => $flightRequestMax,
-                    'trips' => $trips,
-                    'lastInsertId' => $lastInsertID,
-                ]));
-
-                // $flight_request_max_model
-                //     ->sendEmailFlightRequest(Yii::$app->params['adminEmail'], Yii::$app->request->post('FlightRequestMax'), $trips, $lastInsertID);
-                // $flight_request_max_model
-                //     ->sendEmailFlightRequest($flight_request_max_model->email, Yii::$app->request->post('FlightRequestMax'), $trips, $lastInsertID);
+                // Send emails immediately
+                $flight_request_max_model
+                    ->sendEmailFlightRequest(Yii::$app->params['adminEmail'], $flightRequestMax, $trips, $lastInsertID);
+                $flight_request_max_model
+                    ->sendEmailFlightRequest($flight_request_max_model->email, $flightRequestMax, $trips, $lastInsertID);
 
                 $request_number = RequestFormUsers::find()
                     ->select(['request_number'])
