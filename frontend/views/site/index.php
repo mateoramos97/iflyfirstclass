@@ -53,7 +53,7 @@ foreach ($random_cities as $cityGroup) {
 				</div>
 			</div>
 		</div>
-		<?= $this->render('@app/views/layouts/_support-chat') ?>
+		<?php // Chatbot widget hidden - <?= $this->render('@app/views/layouts/_support-chat') ?> ?>
 	</div>
 </div>
 <div class="page-content mt-10">

@@ -85,7 +85,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 </div>
 <?= $this->render('@app/views/layouts/footer') ?>
-<?= $this->render('@app/views/layouts/_support-chat') ?>
+<?php // Support chat disabled - $this->render('@app/views/layouts/_support-chat') ?>
 <script type="text/javascript">
         var dispop_pixel_id = "3ad067416e8b9df40ee91a10d958e804";
         var dispop_advertiser_id = "cebe1eff0954d86b5ed95b37efa7acbb";
@@ -101,6 +101,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             };
         }());
 </script>
+<!-- Botsonic chatbot widget disabled
 <script>
 	(function (w, d, s, o, f, js, fjs) {
 		w["botsonic_widget"] = o;
@@ -120,6 +121,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		token: "ac827286-2531-4632-a0de-43e1cc0b3463",
 	});
 </script>
+-->
 
 <?php $this->endBody() ?>
 </body>

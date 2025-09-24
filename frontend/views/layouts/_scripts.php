@@ -13,6 +13,7 @@
 		};
 	}());
 </script>
+<!-- Botsonic chatbot widget disabled
 <script type="text/javascript" async>
 	(function (w, d, s, o, f, js, fjs) {
 		w["botsonic_widget"] = o;
@@ -32,4 +33,4 @@
 		token: "ac827286-2531-4632-a0de-43e1cc0b3463",
 	});
 </script>
-
+-->
