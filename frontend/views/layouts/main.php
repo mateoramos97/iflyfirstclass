@@ -52,7 +52,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   gtag('config', 'G-3V6TN8EEX1');
 </script>
-<meta name="google-site-verification" content="kjkFTFXluay_uZWB18_0Wzu1-8pFiXNIua1DJx3VAXU" /> 
+<meta name="google-site-verification" content="kjkFTFXluay_uZWB18_0Wzu1-8pFiXNIua1DJx3VAXU" />
+
+<!-- Vibe Tracking Scripts -->
+<script>
+  !function(v,i,b,e,c,o){if(!v[c]){var s=v[c]=function(){s.process?s.process.apply(s,arguments):s.queue.push(arguments)};s.queue=[],s.b=1*new Date;var t=i.createElement(b);t.async=!0,t.src=e;var n=i.getElementsByTagName(b)[0];n.parentNode.insertBefore(t,n)}}(window,document,"script","https://s.vibe.co/vbpx.js","vbpx");
+  vbpx('init','0g0UNZ');
+  vbpx('event', 'page_view');
+  <?php if (Yii::$app->controller->id === 'request' && Yii::$app->controller->action->id === 'flight-request-accepted'): ?>
+  vbpx('event', 'lead');
+  console.log('Vibe lead event fired on flight confirmation page');
+  <?php endif; ?>
+  console.log('Vibe tracking loaded - Controller: <?= Yii::$app->controller->id ?>, Action: <?= Yii::$app->controller->action->id ?>');
+</script>
+<!-- End Vibe Tracking Scripts --> 
 </head>
 <body class="<?= $this->context->bodyClass; ?>">
 <?php $this->beginBody() ?>

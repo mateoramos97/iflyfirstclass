@@ -19,10 +19,23 @@ use frontend\models\SupportForm;
 use app\components\AppConfig;
 use common\sys\core\seo\StaticPageInfoService;
 use common\sys\core\landing\CityInfoService;
+use common\queue\SendEmail;
 use yii;
 
 class RequestController extends BaseController
 {
+    /**
+     * @inheritdoc
+     */
+    public function beforeAction($action)
+    {
+        // Disable CSRF validation for the async email endpoint
+        if ($action->id == 'send-email-async') {
+            $this->enableCsrfValidation = false;
+        }
+        return parent::beforeAction($action);
+    }
+    
     public function actionSearchAirport()
     {
         $keyword = filter_input(INPUT_POST,'keyword');
@@ -134,11 +147,23 @@ class RequestController extends BaseController
             if ($isValid) {
                 $lastInsertID = $flight_request_edit_service->add_flight_request($flightRequestMax);
 
-                // Send emails immediately
-                $flight_request_max_model
-                    ->sendEmailFlightRequest(Yii::$app->params['adminEmail'], $flightRequestMax, $trips, $lastInsertID);
-                $flight_request_max_model
-                    ->sendEmailFlightRequest($flight_request_max_model->email, $flightRequestMax, $trips, $lastInsertID);
+                // Use HTTP fire-and-forget for async email sending
+                // Prepare email data
+                $emailData = [
+                    'flightRequest' => $flightRequestMax,
+                    'trips' => $trips,
+                    'lastInsertId' => $lastInsertID
+                ];
+                
+                // Fire-and-forget request for admin email
+                $this->fireAndForgetRequest([
+                    'adminEmail' => Yii::$app->params['adminEmail'],
+                ] + $emailData);
+                
+                // Fire-and-forget request for user email
+                $this->fireAndForgetRequest([
+                    'userEmail' => $flight_request_max_model->email,
+                ] + $emailData);
 
                 $request_number = RequestFormUsers::find()
                     ->select(['request_number'])
@@ -345,6 +370,132 @@ class RequestController extends BaseController
         }
     }
 
+    public function actionSendEmailAsync()
+    {
+        
+        // Security check - use a secret token (COMMENTED OUT FOR TESTING)
+        // $token = Yii::$app->request->post('token');
+        // $secretToken = isset(Yii::$app->params['emailAsyncToken']) 
+        //     ? Yii::$app->params['emailAsyncToken'] 
+        //     : 'iflyfirstclass-async-email-2025-secret';
+            
+        // if ($token !== $secretToken) {
+        //     Yii::$app->response->statusCode = 403;
+        //     return 'Invalid token';
+        // }
+        
+        // Set time limit for email sending
+        set_time_limit(120); // 2 minutes should be enough
+        
+        // Get the raw JSON data from the request body
+        $rawData = Yii::$app->request->getRawBody();
+        $decodedData = json_decode($rawData, true);
+        
+        // Log received data for debugging
+        Yii::info('Received raw data: ' . substr($rawData, 0, 500), 'email'); // Log first 500 chars
+        
+        // Get the email data from decoded JSON
+        $emailData = isset($decodedData['emailData']) ? $decodedData['emailData'] : null;
+        
+        if ($emailData) {
+            $flight_request_max_model = new FlightRequestMax();
+            $emailsSent = [];
+            
+            try {
+                // Log the structure of emailData for debugging
+                Yii::info('Email data structure: ' . json_encode(array_keys($emailData)), 'email');
+                
+                // Send to admin
+                if (isset($emailData['adminEmail'])) {
+                    Yii::info('Sending email to admin: ' . $emailData['adminEmail'], 'email');
+                    $result = $flight_request_max_model->sendEmailFlightRequest(
+                        $emailData['adminEmail'],
+                        $emailData['flightRequest'],
+                        $emailData['trips'],
+                        $emailData['lastInsertId']
+                    );
+                    $emailsSent['admin'] = $result;
+                }
+                
+                // Send to user
+                if (isset($emailData['userEmail'])) {
+                    Yii::info('Sending email to user: ' . $emailData['userEmail'], 'email');
+                    $result = $flight_request_max_model->sendEmailFlightRequest(
+                        $emailData['userEmail'],
+                        $emailData['flightRequest'],
+                        $emailData['trips'],
+                        $emailData['lastInsertId']
+                    );
+                    $emailsSent['user'] = $result;
+                }
+                
+                // Log the result
+                Yii::info('Async emails sent: ' . json_encode($emailsSent), 'email');
+                
+                return json_encode(['status' => 'success', 'sent' => $emailsSent]);
+            } catch (\Exception $e) {
+                Yii::error('Async email error: ' . $e->getMessage() . ' Stack: ' . $e->getTraceAsString(), 'email');
+                return json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+            }
+        } else {
+            Yii::error('No email data received. Raw data: ' . substr($rawData, 0, 200), 'email');
+        }
+        
+        return json_encode(['status' => 'error', 'message' => 'No email data']);
+    }
+    
+    /**
+     * Helper method to make fire-and-forget HTTP requests
+     */
+    private function fireAndForgetRequest($emailData)
+    {
+        $url = Yii::$app->urlManager->createAbsoluteUrl(['request/send-email-async']);
+        // Token security commented out for testing
+        // $token = isset(Yii::$app->params['emailAsyncToken']) 
+        //     ? Yii::$app->params['emailAsyncToken'] 
+        //     : 'iflyfirstclass-async-email-2025-secret';
+        
+        // Encode data as JSON to preserve complex array structure
+        $jsonData = json_encode([
+            // 'token' => $token,
+            'emailData' => $emailData
+        ]);
+        
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        
+        // Set Content-Type header for JSON
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($jsonData)
+        ]);
+        
+        // Key settings for fire-and-forget
+        curl_setopt($ch, CURLOPT_TIMEOUT_MS, 50); // 50ms timeout - just enough to start the request
+        curl_setopt($ch, CURLOPT_NOSIGNAL, 1); // Required for millisecond timeouts to work
+        curl_setopt($ch, CURLOPT_FRESH_CONNECT, true); // Don't reuse connections
+        curl_setopt($ch, CURLOPT_FORBID_REUSE, true); // Close connection after use
+        
+        // SSL options for local development (remove in production if not needed)
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        
+        // Execute and immediately continue (don't wait for response)
+        @curl_exec($ch); // @ suppresses timeout warnings which are expected
+        curl_close($ch);
+        
+        // Log that we initiated the request with data preview
+        Yii::info('Fire-and-forget email request initiated for: ' . 
+            (isset($emailData['adminEmail']) ? 'admin' : 'user') . 
+            ' with data size: ' . strlen($jsonData) . ' bytes', 'email');
+        
+        // We don't care about the response - continue immediately
+        return true;
+    }
+    
     public function actionTestEmail()
     {
         $flightRequest = [
@@ -366,26 +517,27 @@ class RequestController extends BaseController
         ];
 
         try {
-            // Test direct email sending with your actual email
+            // Test fire-and-forget async email
             $testEmail = 'mateoramos97@gmail.com'; // Replace with your email
             
-            $flight_request_max_model = new FlightRequestMax();
-            $result = $flight_request_max_model->sendEmailFlightRequest(
-                $testEmail,
-                $flightRequest,
-                $trips,
-                999
-            );
-            
-            // Also test queue system
-            Yii::$app->queue->push(new \common\queue\SendEmail([
-                'email' => $testEmail,
+            // Prepare email data
+            $emailData = [
                 'flightRequest' => $flightRequest,
                 'trips' => $trips,
-                'lastInsertId' => 999,
-            ]));
+                'lastInsertId' => 999
+            ];
             
-            return 'Email sent to: ' . $testEmail . '. Result: ' . ($result ? 'SUCCESS' : 'FAILED') . '. Queue job added.';
+            // Test fire-and-forget for admin
+            $this->fireAndForgetRequest([
+                'adminEmail' => Yii::$app->params['adminEmail'],
+            ] + $emailData);
+            
+            // Test fire-and-forget for user
+            $this->fireAndForgetRequest([
+                'userEmail' => $testEmail,
+            ] + $emailData);
+            
+            return 'Fire-and-forget email requests initiated for: ' . $testEmail . ' and admin. Check emails in a few seconds.';
         } catch (\Exception $e) {
             return 'Error: ' . $e->getMessage();
         }

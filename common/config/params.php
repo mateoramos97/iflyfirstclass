@@ -1,7 +1,7 @@
 <?php
 return [
-    'adminEmail' => 'info@flyfirst.com',
-    'supportEmail' => 'info@flyfirst.com',
+    'adminEmail' => 'info@iflyfirstclass.com',
+    'supportEmail' => 'info@iflyfirstclass.com',
+    'emailFrom' => 'info@iflyfirstclass.com',
     'user.passwordResetTokenExpire' => 3600,
-    //'docRoot' => realpath(dirname(__FILE__).'/../'),
 ];
